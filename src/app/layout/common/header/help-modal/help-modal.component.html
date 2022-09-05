@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Help
+  </h4>
+  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Message
+        </label>
+
+        <textarea class="form-control" (keydown.space)="$event.preventDefault()" formControlName="messageBody"
+                  type="email" placeholder="Enter Your Message">
+        </textarea>
+
+        <div class="text-error" *ngIf="form.controls['messageBody'].errors?.required && showError">
+          This field is required
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <!-- <button (click)="bsModalRef.hide()" type="button" class="btn-cancel">Cancel</button> -->
+    <button type="submit" class="btn-blue">Save</button>
+  </div>
+</form>

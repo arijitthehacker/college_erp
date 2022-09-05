@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">
+    {{!modalData ? 'Add' : 'Edit'}} {{commonService.title}}
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Email</label>
+        <input [autofocus]="true" class="form-control" formControlName="email"
+               type="text" placeholder="Enter Email"/>
+        <div class="text-error" *ngIf="form.controls['email'].errors?.required && showError">
+          Please enter email!
+        </div>
+        <div class="text-error" *ngIf="form.controls['email'].errors?.email && showError">
+          Please enter valid email!
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Contact Number</label>
+
+        <ngx-intl-tel-input
+          [cssClass]="'my-phone'"
+          [preferredCountries]="[CountryISO.UnitedStates]"
+          [enableAutoCountrySelect]="false"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [selectFirstCountry]="false"
+          [selectedCountryISO]="CountryISO.India"
+          [maxLength]="15"
+          [phoneValidation]="false"
+          formControlName="phone_number"
+        ></ngx-intl-tel-input>
+
+        <div class="text-error"
+             *ngIf="form.controls['phone_number'].errors?.required && showError">
+          {{message.message.required}}
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">{{!modalData ? 'Submit' : 'Update'}}</button>
+  </div>
+</form>

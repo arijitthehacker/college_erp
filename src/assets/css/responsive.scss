@@ -1,0 +1,16 @@
+//for mobile
+@media (max-width: 768px) {
+  .app-sidebar {
+    padding-top: 102px;
+  }
+
+  .top-name {
+    font-size: 14px;
+    margin-left: 0;
+  }
+  .app-header__logo {
+    margin-left: -18px;
+  }
+}
+
+//for desktop

@@ -1,0 +1,33 @@
+<header class="app-header"><a class="app-header__logo" href="javascript://">
+    {{profileData?.name || appTitle}}
+<!--  <img src="/assets/images/logo.svg" class="header-logos">-->
+
+
+</a>
+  <a class="app-sidebar__toggle" href="javascript://" data-toggle="sidebar" aria-label="Hide Sidebar"
+     (click)="showSideBar = !showSideBar;closeNav()">
+
+
+    <img src="/assets/images/menu-close.png" style="padding-top: 11px;" *ngIf="showSideBar">
+
+    <img src="/assets/images/menu-open.png" style="padding-top: 11px;" *ngIf="!showSideBar">
+
+
+  </a>
+  <!-- Navbar Right Menu-->
+
+  <ul class="app-nav">
+    <li class="item_btn">
+      <h4 class="top-name">{{officeName}}</h4>
+    </li>
+
+    <li class="item_btn header-right-side">
+<!--      <img src="/assets/images/noti-icon.png">-->
+<!--      <img src="/assets/images/header-help.png" (click)="openHelp()">-->
+<!--      <img src="/assets/images/my-pic-placeholder.png">-->
+<!--      <h4 class="my-name">{{commonService?.profileData?.firstName}} {{commonService?.profileData?.lastName}}</h4>-->
+      <img src="assets/images/header-logout.png" (click)="logout()">
+    </li>
+  </ul>
+
+</header>
