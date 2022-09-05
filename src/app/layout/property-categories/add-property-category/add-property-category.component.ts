@@ -10,9 +10,9 @@ import { CommonService } from '../../../services/commonService/common.service';
 
 @Component({
   selector: 'app-add-account',
-  templateUrl: './add-banner.component.html'
+  templateUrl: './add-property-category.component.html'
 })
-export class AddBannerComponent implements OnInit {
+export class AddPropertyCategoryComponent implements OnInit {
 
   showError = false;
   form: FormGroup;
@@ -31,8 +31,7 @@ export class AddBannerComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       image: ['', [Validators.required]],
-      s_no: ['', [Validators.required]],
-      type: ['', [Validators.required]]
+      name: ['', [Validators.required]],
     });
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -42,8 +41,7 @@ export class AddBannerComponent implements OnInit {
   patchData(data) {
     this.form.patchValue({
       image: data.image,
-      type: data.type,
-      s_no: data.s_no
+      name: data.name
     });
   }
 
@@ -54,7 +52,7 @@ export class AddBannerComponent implements OnInit {
         obj[`_id`] = this.modalData._id;
       }
 
-      this.http.postData(ApiUrl.add_edit_banners, obj).subscribe(() => {
+      this.http.postData(ApiUrl.add_edit_peroperty_categories, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
@@ -73,8 +71,8 @@ export class AddBannerComponent implements OnInit {
     });
   }
 
-  removeImage() {
-    this.form.controls.image.patchValue('');
+  removeImage(id) {
+    this.form.controls.image.patchValue(id);
   }
 
 }

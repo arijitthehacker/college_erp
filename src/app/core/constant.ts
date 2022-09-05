@@ -9,6 +9,7 @@ export const SIDEBAR = [
   {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
   {path: 'members', name: 'Members', icon: 'fa fa-users'},
   {path: 'customer-leads', name: 'Customer Leads', icon: 'fa fa-windows'},
+  {path: 'property-categories', name: 'Property Categories', icon: 'fa fa-rocket'},
 ];
 
 // {path: 'building-material', name: 'Building Material', icon: 'fa fa-building'},
@@ -16,5 +17,4 @@ export const SIDEBAR = [
 // {path: 'vantilations', name: 'Vantilations', icon: 'fa fa-tachometer'},
 // {path: 'appliances', name: 'Appliances', icon: 'fa fa-usb'},
 // {path: 'rooms', name: 'Rooms', icon: 'fa fa-rocket'},
-// {path: 'cities', name: 'Cities', icon: 'fa fa-connectdevelop'},
 // {path: 'info-pages', name: 'Content Management', icon: 'fa fa-user-secret'}

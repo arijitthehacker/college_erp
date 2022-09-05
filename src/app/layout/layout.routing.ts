@@ -30,9 +30,9 @@ const routes: Routes = [
         loadChildren: () => import('./customer-leads/customer-leads.module').then(m => m.CustomerLeadsModule),
         data: {breadcrumb: 'Customer leads', title: 'customer-leads'}
       }, {
-        path: 'banners',
-        loadChildren: () => import('./property-categories/banners.module').then(m => m.BannersModule),
-        data: {breadcrumb: 'Banners', title: 'banners'}
+        path: 'property-categories',
+        loadChildren: () => import('./property-categories/property-categories.module').then(m => m.PropertyCategoriesModule),
+        data: {breadcrumb: 'Property Categories', title: 'property category'}
       }
     ]
   }

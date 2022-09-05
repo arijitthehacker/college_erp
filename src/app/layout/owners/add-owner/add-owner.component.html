@@ -14,7 +14,7 @@
         <input [autofocus]="true" class="form-control" formControlName="email"
                type="text" placeholder="Enter Email"/>
         <div class="text-error" *ngIf="form.controls['email'].errors?.required && showError">
-          Please enter email!
+          This field is required.
         </div>
         <div class="text-error" *ngIf="form.controls['email'].errors?.email && showError">
           Please enter valid email!

@@ -7,7 +7,6 @@ import { ConstMsg } from 'src/app/core/ConstMsg';
 import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
-import { InviteCodesComponent } from '../owners/invite-codes/invite-codes.component';
 import { StatusesComponent } from './statuses/statuses.component';
 
 @Component({

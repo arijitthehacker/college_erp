@@ -8,7 +8,7 @@ import { CommonService } from '../../../services/commonService/common.service';
   selector: 'app-add-account',
   templateUrl: './statuses.component.html'
 })
-export class InviteCodesComponent implements OnInit {
+export class StatusesComponent implements OnInit {
 
   public onClose: Subject<{}> = new Subject();
   modalData: any;

@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BannersComponent } from './banners.component';
+import { PropertyCategoriesComponent } from './property-categories.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AddBannerComponent } from './add-banner/add-banner.component';
+import { AddPropertyCategoryComponent } from './add-property-category/add-property-category.component';
 
 const routes: Routes = [
   {
-    path: '', component: BannersComponent
+    path: '', component: PropertyCategoriesComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    BannersComponent,
-    AddBannerComponent
+    PropertyCategoriesComponent,
+    AddPropertyCategoryComponent
   ],
   imports: [
     CommonModule,
@@ -22,8 +22,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   entryComponents: [
-    AddBannerComponent
+    AddPropertyCategoryComponent
   ]
 })
-export class BannersModule {
+export class PropertyCategoriesModule {
 }
