@@ -59,7 +59,7 @@ export class AddAgentComponent implements OnInit {
       obj.country_code = obj.phone_number.dialCode;
       obj.phone_number = obj.phone_number.number;
 
-      this.http.postData(ApiUrl.add_edit_group_owner, obj).subscribe(() => {
+      this.http.postData(ApiUrl.add_edit_agents, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);

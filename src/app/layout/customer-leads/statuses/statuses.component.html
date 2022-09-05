@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Status Details
+  </h4>
+  <button class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+
+<div class="modal-body">
+
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Sr. No.</th>
+          <th> Image</th>
+          <th> Name</th>
+          <th> Description</th>
+          <th> Date</th>
+          <th> Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr
+          *ngFor="let data of modalData ;let i = index;">
+          <td>{{ i + 1}}</td>
+          <td>
+            <img [src]="data.image" class="small-img"
+                 (click)="commonService.openLightBox(data.image)">
+          </td>
+          <td>{{data?.name || '-'}}</td>
+          <td>
+            <app-see-more [msg]="data?.description"></app-see-more>
+          </td>
+          <td>{{data?.date |date:'short'}}</td>
+          <td>{{data?.status_data}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button (click)="bsModalRef.hide()" type="button" class="btn btn-default mr-3">Cancel</button>
+  <!--      <button type="submit" class="btn btn-blue">{{!modalData ? 'Submit' : 'Update'}}</button>-->
+</div>

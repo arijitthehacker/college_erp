@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { CONSTANT } from '../../../core/constant';
 import { MessageService } from '../../../services/message/message.service';
 import { HttpService } from '../../../services/http/http.service';
-import { HelpModalComponent } from './help-modal/help-modal.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -67,13 +66,5 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  openHelp() {
-    const modalRef = this.modalService.show(HelpModalComponent, {
-      initialState: {},
-      backdrop: 'static',
-      keyboard: false,
-      class: 'modal-md'
-    });
-  }
 
 }

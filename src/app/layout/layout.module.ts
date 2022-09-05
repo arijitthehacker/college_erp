@@ -10,15 +10,13 @@ import { HeaderComponent } from './common/header/header.component';
 // modules
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ChangePasswordModule } from './common/change-password/change-password.module';
-import { HelpModalComponent } from './common/header/help-modal/help-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     SideBarComponent,
-    HeaderComponent,
-    HelpModalComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -27,9 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ChangePasswordModule,
     ReactiveFormsModule
   ],
-  entryComponents: [
-    HelpModalComponent
-  ]
+  entryComponents: []
 })
 export class LayoutModule {
 }

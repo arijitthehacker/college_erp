@@ -6,7 +6,9 @@ export const CONSTANT = {
 
 export const SIDEBAR = [
   {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
-  {path: 'agents', name: 'Agents', icon: 'fa fa-users'}
+  {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
+  {path: 'members', name: 'Members', icon: 'fa fa-users'},
+  {path: 'customer-leads', name: 'Customer Leads', icon: 'fa fa-windows'},
 ];
 
 // {path: 'building-material', name: 'Building Material', icon: 'fa fa-building'},
@@ -15,5 +17,4 @@ export const SIDEBAR = [
 // {path: 'appliances', name: 'Appliances', icon: 'fa fa-usb'},
 // {path: 'rooms', name: 'Rooms', icon: 'fa fa-rocket'},
 // {path: 'cities', name: 'Cities', icon: 'fa fa-connectdevelop'},
-// {path: 'simulations', name: 'Simulations', icon: 'fa fa-windows'},
 // {path: 'info-pages', name: 'Content Management', icon: 'fa fa-user-secret'}
