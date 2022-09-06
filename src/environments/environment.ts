@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://23.21.27.243:8002/'
+  apiBaseUrl: 'https://refrely-api.wehive.io/'
 };
 
 

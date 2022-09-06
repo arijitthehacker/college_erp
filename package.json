@@ -11,6 +11,7 @@
     "e2e": "ng e2e",
     "build:test": "ng build --configuration=test",
     "build:dev": "ng build --configuration=dev",
+    "server": "sudo ssh -i ../pem/DeveloperKey.pem ubuntu@23.21.27.243",
     "push": "npm run build && git add . && git commit -am 'changes' && git push origin master"
   },
   "private": true,
