@@ -9,6 +9,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { AddPropertyComponent } from './add-property/add-property.component';
 import { Lightbox } from 'ngx-lightbox';
+import { ProAddressesComponent } from './pro-addresses/pro-addresses.component';
+import { AddProAddressComponent } from './add-pro-address/add-pro-address.component';
 
 @Component({
   selector: 'app-accounts',
@@ -70,12 +72,41 @@ export class PropertiesComponent implements OnInit {
 
   addEditModalOpen(data?: any) {
     const modalRef = this.modalService.show(AddPropertyComponent, {
-      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-lg'
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
     });
     modalRef.content.onClose.subscribe(() => {
       this.getData();
     });
   }
 
+  openProAddresses(data?: any) {
+    const modalRef = this.modalService.show(ProAddressesComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-lg'
+    });
+    modalRef.content.onClose.subscribe(res => {
+      this.getData();
+      if (res.type === 'addAddress') {
+        this.openAddAddress(data);
+      }
+      if (res.type === 'editAddress') {
+        this.openAddAddress(res.data, data);
+      }
+    });
+  }
+
+  openAddAddress(propertyData?, modalData?) {
+    const modalRef = this.modalService.show(AddProAddressComponent, {
+      initialState: {modalData, propertyData},
+      backdrop: 'static',
+      keyboard: false,
+      class: 'modal-md'
+    });
+    modalRef.content.onClose.subscribe(res => {
+      this.getData();
+      if (res.type === 'openAddressList') {
+        this.openProAddresses(propertyData);
+      }
+    });
+  }
 
 }

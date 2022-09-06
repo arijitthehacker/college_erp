@@ -319,12 +319,9 @@ label.switch_drop {
 }
 
 .login .box .right {
-  //padding: 55px 80px 90px;
-  //width: 65%;
-
   padding: 25px 30px;
   width: 100%;
-  //}
+  background: white;
 }
 
 .login .box .right h2 {
@@ -789,10 +786,11 @@ tbody {
   padding: 12px;
   background: white;
   border: 1px solid $border-color;
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
-.multiple-images{
+.multiple-images {
   border: 1px solid $border-color;
   padding: 4px;
   margin-left: 14px;

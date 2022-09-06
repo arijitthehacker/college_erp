@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   showSideBar = true;
   appTitle = CONSTANT.SITE_NAME;
   profileData: any = {};
-  officeName = localStorage.getItem('officeName');
 
   constructor(public commonService: CommonService, public router: Router, private message: MessageService,
               public http: HttpService, private modalService: BsModalService

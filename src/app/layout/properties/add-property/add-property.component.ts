@@ -45,6 +45,9 @@ export class AddPropertyComponent implements OnInit {
       price: ['', Validators.required],
       is_featured: [true, Validators.required],
       area_size_type: ['', Validators.required],
+      address: ['', Validators.required],
+      lat: ['', Validators.required],
+      lng: ['', Validators.required],
       name: ['', Validators.required]
     });
     if (this.modalData) {
@@ -55,6 +58,9 @@ export class AddPropertyComponent implements OnInit {
   patchData(data) {
     this.form.patchValue({
       category_id: data.category_id,
+      lat: data.lat,
+      lng: data.lng,
+      address: data.address,
       discount_type: data.discount_type,
       is_featured: data.is_featured,
       descriptuon: data.descriptuon,
@@ -69,6 +75,13 @@ export class AddPropertyComponent implements OnInit {
       bathroom: data.bathroom,
       name: data.name
     });
+
+    if (data.location.coordinates) {
+      this.form.patchValue({
+        lat: data.location.coordinates[1],
+        lng: data.location.coordinates[0]
+      });
+    }
   }
 
   formSubmit() {

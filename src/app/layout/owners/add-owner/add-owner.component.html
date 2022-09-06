@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">
+  <h4 class="modal-title">
     {{!modalData ? 'Add' : 'Edit'}} {{commonService.title}}
   </h4>
 </div>
@@ -17,7 +17,7 @@
           This field is required.
         </div>
       </div>
-      
+
       <div class="col-md-12 form-group">
         <label class="required set-label">Email</label>
         <input [autofocus]="true" class="form-control" formControlName="email"

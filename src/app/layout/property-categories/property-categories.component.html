@@ -1,45 +1,40 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <div class="row">
+    <div class="my-box">
+      <div class="row">
+        <div class="col-md-3">
+          <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
+          </h4>
+        </div>
 
-          <div class="col-md-3">
-            <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
-              <!--                            (Total: {{totalAmount | currency:'INR':'':'2.2-2'}})-->
-            </h4>
-          </div>
+        <div class="col-md-9">
 
-          <div class="col-md-9">
+          <div class="row">
 
-            <div class="row">
+            <div class="col-md-5">
+            </div>
 
-              <div class="col-md-5">
-              </div>
+            <div class="col-md-5">
+              <!--                <form (ngSubmit)="pagination.pageNo = 0;getData()" class="search-input">-->
+              <!--                  <div class="input-group">-->
+              <!--                    <input autocomplete="off" class="form-control py-2 border-right-0 border"-->
+              <!--                           type="search"-->
+              <!--                           id="example-search-input" placeholder="Search"-->
+              <!--                           [formControl]="search">-->
+              <!--                    <span class="input-group-append">-->
+              <!--                                  <button class="btn border-left-0 border" type="submit">-->
+              <!--                                        <i class="fa fa-search"></i>-->
+              <!--                                  </button>-->
+              <!--                                </span>-->
 
-              <div class="col-md-5">
-                <!--                <form (ngSubmit)="pagination.pageNo = 0;getData()" class="search-input">-->
-                <!--                  <div class="input-group">-->
-                <!--                    <input autocomplete="off" class="form-control py-2 border-right-0 border"-->
-                <!--                           type="search"-->
-                <!--                           id="example-search-input" placeholder="Search"-->
-                <!--                           [formControl]="search">-->
-                <!--                    <span class="input-group-append">-->
-                <!--                                  <button class="btn border-left-0 border" type="submit">-->
-                <!--                                        <i class="fa fa-search"></i>-->
-                <!--                                  </button>-->
-                <!--                                </span>-->
+              <!--                  </div>-->
+              <!--                </form>-->
+            </div>
 
-                <!--                  </div>-->
-                <!--                </form>-->
-              </div>
-
-              <div class="col-md-2 sm-input-space">
-                <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
-                  + Add New
-                </button>
-              </div>
-
+            <div class="col-md-2 sm-input-space">
+              <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
+                + Add New
+              </button>
             </div>
           </div>
         </div>
@@ -50,60 +45,58 @@
 
 <div class="row mt-3 mb-2">
   <div class="col-md-12">
-    <div class="card">
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>Sr. No.</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr
-              *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-              <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
-              <td>
-                <img [src]="data.image" class="small-img"
-                     (click)="commonService.openLightBox(data.image)">
-              </td>
-              <td>{{data?.name}}</td>
-              <td class="edit-section">
-                <!--                <div (click)="blockUnblock(data)">-->
-                <!--                  <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>-->
-                <!--                  <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>-->
-                <!--                </div>-->
-                <!--                <span class="fa-span  ml-3">-->
-                <!--                    <i (click)="addEditModalOpen(data)" class="cursor-pointer action-fa fa fa-edit"></i>-->
-                <!--                  </span>-->
-                <div>
-                  <i (click)="deleteData(data)" class="fa fa-trash"></i>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <app-no-record *ngIf="!pagination.count"></app-no-record>
-        </div>
-
-        <div class="row" *ngIf="pagination.count">
-          <div class="col-sm-6">
-            <!--            <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to-->
-            <!--              {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out-->
-            <!--              of {{pagination.count}} entries </p>-->
-          </div>
-          <div class="col-sm-6 text-right">
-            <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
-                                 nextLabel="Next"
-                                 screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
-                                 screenReaderCurrentLabel="You're on page"></pagination-controls>
-          </div>
-        </div>
-
+    <div class="my-box">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
+            <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
+            <td>
+              <img [src]="data.image" class="small-img"
+                   (click)="commonService.openLightBox(data.image)">
+            </td>
+            <td>{{data?.name}}</td>
+            <td class="edit-section">
+              <!--                <div (click)="blockUnblock(data)">-->
+              <!--                  <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>-->
+              <!--                  <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>-->
+              <!--                </div>-->
+              <!--                <span class="fa-span  ml-3">-->
+              <!--                    <i (click)="addEditModalOpen(data)" class="cursor-pointer action-fa fa fa-edit"></i>-->
+              <!--                  </span>-->
+              <div>
+                <i (click)="deleteData(data)" class="fa fa-trash"></i>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <app-no-record *ngIf="!pagination.count"></app-no-record>
       </div>
+
+      <div class="row" *ngIf="pagination.count">
+        <div class="col-sm-6">
+          <!--            <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to-->
+          <!--              {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out-->
+          <!--              of {{pagination.count}} entries </p>-->
+        </div>
+        <div class="col-sm-6 text-right">
+          <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
+                               nextLabel="Next"
+                               screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                               screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

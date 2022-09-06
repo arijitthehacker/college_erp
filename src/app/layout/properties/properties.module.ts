@@ -4,6 +4,8 @@ import { PropertiesComponent } from './properties.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AddPropertyComponent } from './add-property/add-property.component';
+import { ProAddressesComponent } from './pro-addresses/pro-addresses.component';
+import { AddProAddressComponent } from './add-pro-address/add-pro-address.component';
 
 const routes: Routes = [
   {
@@ -14,7 +16,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     PropertiesComponent,
-    AddPropertyComponent
+    AddPropertyComponent,
+    ProAddressesComponent,
+    AddProAddressComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +26,10 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   entryComponents: [
-    AddPropertyComponent
+    AddPropertyComponent,
+    ProAddressesComponent,
+    AddProAddressComponent
+
   ]
 })
 export class PropertiesModule {

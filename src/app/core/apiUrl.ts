@@ -13,6 +13,7 @@ export const ApiUrl = {
   upload_api: 'OpenApi/file_upload',
   managed_peroperty_categories: 'Admin/managed_peroperty_categories',
   list_banners: 'Admin/list_banners',
+  managed_peroperty_address: 'Admin/managed_peroperty_address',
   list_peroperty_categories: 'Admin/list_peroperty_categories',
   add_edit_peroperty_categories: 'Admin/add_edit_peroperty_categories',
   add_edit_banners: 'Admin/add_edit_banners',
@@ -21,6 +22,8 @@ export const ApiUrl = {
   list_members: 'Admin/list_members',
   list_customer_request: 'Admin/list_customer_request',
   managed_members: 'Admin/managed_members',
+  list_property_address: 'Admin/list_property_address',
   add_edit_agents: 'Admin/add_edit_agents',
+  add_edit_peroperty_address: 'Admin/add_edit_peroperty_address',
 
 };

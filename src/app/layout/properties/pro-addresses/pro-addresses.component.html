@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Address List
+  </h4>
+  <button class="btn-blue-outline" (click)="openAddAddress()">+ Add New Address</button>
+</div>
+
+<div class="modal-body">
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Address</th>
+        <th>Longitude</th>
+        <th>Latitude</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of allData">
+        <td>{{data?.name}}</td>
+        <td>{{data.location.coordinates[0]}}</td>
+        <td>{{data.location.coordinates[1]}}</td>
+        <td class="edit-section">
+          <div>
+            <i (click)="deleteData(data)" class="fa fa-trash"></i>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <app-no-record *ngIf="!allData.length"></app-no-record>
+  </div>
+
+</div>
+
+<div class="modal-footer">
+  <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Close</button>
+  <!--  <button type="submit" class="btn btn-blue-outline">{{!modalData ? 'Submit' : 'Update'}}</button>-->
+</div>

@@ -39,6 +39,7 @@
             <th>Cover Image</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Address List</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -53,6 +54,9 @@
             <td>{{data?.name || '-'}}</td>
             <td>
               <app-see-more [msg]="data?.descriptuon"></app-see-more>
+            </td>
+            <td>
+              <a class="my-link" (click)="openProAddresses(data)">Address List</a>
             </td>
             <td class="edit-section">
               <!--                <div (click)="blockUnblock(data)">-->
