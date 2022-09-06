@@ -1,0 +1,186 @@
+<div class="modal-header" xmlns="http://www.w3.org/1999/html">
+  <h4 class="modal-title" id="modal-basic-title">
+    {{!modalData ? 'Add' : 'Edit'}} {{commonService.title}}
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">name</label>
+        <input class="form-control" formControlName="name"
+               type="text" placeholder="Enter name"/>
+        <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">Select Category</label>
+        <select class="form-control" formControlName="category_id">
+          <option value="">Please select category</option>
+          <option [value]="data._id" *ngFor="let data of categories">
+            {{data?.name}}
+          </option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['category_id'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">Description</label>
+        <textarea class="form-control" formControlName="descriptuon" placeholder="Enter description">
+        </textarea>
+        <div class="text-error" *ngIf="form.controls['descriptuon'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">bedroom</label>
+        <input class="form-control" formControlName="bedroom"
+               type="text" placeholder="Enter bedroom"/>
+        <div class="text-error" *ngIf="form.controls['bedroom'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+      <div class="col-md-6 form-group">
+        <label class="required set-label">bathroom</label>
+        <input class="form-control" formControlName="bathroom"
+               type="text" placeholder="Enter bathroom"/>
+        <div class="text-error" *ngIf="form.controls['bathroom'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">area size</label>
+        <input class="form-control" formControlName="area_size"
+               type="text" placeholder="Enter area size"/>
+        <div class="text-error" *ngIf="form.controls['area_size'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">area size type</label>
+        <input class="form-control" formControlName="area_size_type"
+               type="text" placeholder="Enter area size type"/>
+        <div class="text-error" *ngIf="form.controls['area_size_type'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">Select tensure</label>
+        <select class="form-control" formControlName="tensure">
+          <option value="">Please select tensure</option>
+          <option value="BOTH"> BOTH</option>
+          <option value="FREEHOLD"> FREEHOLD</option>
+          <option value="LEASEHOLD"> LEASEHOLD</option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['tensure'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">price</label>
+        <input class="form-control" formControlName="price" appNumberOnly
+               type="text" placeholder="Enter price"/>
+        <div class="text-error" *ngIf="form.controls['price'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">Select Discount type</label>
+        <select class="form-control" formControlName="discount_type">
+          <option value="">Please select disocunt type</option>
+          <option value="PERCENTAGE"> PERCENTAGE</option>
+          <option value="DIRECT"> DIRECT</option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['discount_type'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">discount</label>
+        <input class="form-control" formControlName="discount" appNumberOnly
+               type="text" placeholder="Enter discount"/>
+        <div class="text-error" *ngIf="form.controls['discount'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required set-label">completion year</label>
+        <input class="form-control" formControlName="completion_year"
+               type="text" placeholder="Enter completion year"/>
+        <div class="text-error" *ngIf="form.controls['completion_year'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <div class="form-check-inline" style="margin-left: 21px">
+          <label class="form-check-label">
+            <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label class="required">Cover Image</label>
+        <div class="product-images">
+          <input type="file" class="file-upload" id="cover_image"
+                 accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'cover_image',1)">
+          <label for="cover_image">
+            <img src="/assets/images/ic_camera.png">
+          </label>
+          <img class="ml-4 uploaded-img" height="72" for="cover_image"
+               [src]="form?.value?.cover_image"
+               *ngIf='form?.value?.cover_image'>
+          <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('cover_image')"
+             *ngIf='form?.value?.cover_image'></i>
+        </div>
+        <div class="text-error"
+             *ngIf="form.controls['cover_image'].errors?.required && showError">
+          Please select image.
+        </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="required">Images</label>
+        <div class="product-images">
+          <input type="file" class="file-upload" id="image"
+                 accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'image',2)">
+          <label for="image">
+            <img src="/assets/images/ic_camera.png">
+          </label>
+          <ng-container *ngFor="let data of images;let i =index">
+            <img class="ml-4 multiple-images"
+                 [src]="data"
+                 *ngIf='data'>
+            <i class="fa fa-times-circle fa-trash-css" (click)="removeImageFromArr(i)"
+               *ngIf='data'></i>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">{{!modalData ? 'Submit' : 'Update'}}</button>
+  </div>
+</form>

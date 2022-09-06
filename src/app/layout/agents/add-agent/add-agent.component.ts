@@ -33,6 +33,7 @@ export class AddAgentComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required]],
       phone_number: ['', [Validators.required]]
     });
     if (this.modalData) {
@@ -43,6 +44,7 @@ export class AddAgentComponent implements OnInit {
   patchData(data) {
     this.form.patchValue({
       email: data.email,
+      name: data.name,
       phone_number: data.phone_number
     });
   }

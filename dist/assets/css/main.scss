@@ -457,7 +457,7 @@ select {
 .form-control:focus {
   color: #495057;
   background-color: #FFF;
-  border-color: #7c51a0;
+  border-color: $main-color;
   outline: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -1122,7 +1122,7 @@ fieldset:disabled a.btn {
   -webkit-box-flex: 1;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
-  color: $main-blue;
+  color: $main-color;
   text-align: center;
   padding: 4px 16px;
   font-size: 29px;
@@ -1442,8 +1442,8 @@ fieldset:disabled a.btn {
 
 .app-menu__item.active,
 .app-menu__item:focus {
-  background-color: $main-blue;
-  fill: $main-blue;
+  background-color: $main-color;
+  fill: $main-color;
   //background: #0d1214;
   //border-left-color: #e07424;
   text-decoration: none;
@@ -1452,8 +1452,8 @@ fieldset:disabled a.btn {
 }
 
 .app-menu__item:hover {
-  background-color: $main-blue;
-  fill: $main-blue;
+  background-color: $main-color;
+  fill: $main-color;
   text-decoration: none;
   color: #fff;
 }
@@ -2173,7 +2173,7 @@ ul.list-main li:last-child {
 
 
 .ngx-pagination .current {
-  background: $main-blue !important;
+  background: $main-color !important;
 }
 
 .product-images img {
@@ -2238,7 +2238,7 @@ ul.list-main li:last-child {
 
 .app-menu__item i {
   flex: 0 0 auto;
-  width: 36px;
+  width: 30px;
 }
 
 .small-img {
@@ -2303,7 +2303,6 @@ ul.list-main li:last-child {
 }
 
 .clickable {
-  color: $btn-color !important;
   text-decoration: underline !important;
   cursor: pointer;
 }
@@ -2325,7 +2324,7 @@ ul.list-main li:last-child {
 
 
 .verify-div -card-headings {
-  color: $main-blue !important;
+  color: $main-color !important;
 }
 
 .form-control:disabled,
@@ -2344,7 +2343,7 @@ ul.list-main li:last-child {
 
 //.dropdown-item.active, .dropdown-item:hover {
 //  color: white !important;
-//  background-color: $main-blue;
+//  background-color: $main-color;
 //}
 
 

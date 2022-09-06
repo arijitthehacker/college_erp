@@ -10,6 +10,15 @@
     <div class="row">
 
       <div class="col-md-12 form-group">
+        <label class="required set-label">name</label>
+        <input [autofocus]="true" class="form-control" formControlName="name"
+               type="text" placeholder="Enter name"/>
+        <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
         <label class="required set-label">Email</label>
         <input [autofocus]="true" class="form-control" formControlName="email"
                type="text" placeholder="Enter Email"/>

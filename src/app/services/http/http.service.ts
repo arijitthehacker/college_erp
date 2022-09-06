@@ -45,8 +45,6 @@ export class HttpService {
   uploadImageService(url: string, event, id, backGroundUrl?: boolean) {
 
     if (event.target.files && event.target.files[0]) {
-      // const tempUrl = ApiUrl.imageFile;
-      // const apiUrl = `${environment.uploadUrl}${url}`;
       const apiUrl = `${environment.apiBaseUrl}${url}`;
       const fd = new FormData();
       fd.append('file', event.target.files[0]);

@@ -7,14 +7,14 @@ import { ConstMsg } from 'src/app/core/ConstMsg';
 import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
-import { AddOwnerComponent } from './add-owner/add-owner.component';
+import { AddPropertyComponent } from './add-property/add-property.component';
 import { Lightbox } from 'ngx-lightbox';
 
 @Component({
   selector: 'app-accounts',
-  templateUrl: './owners.component.html'
+  templateUrl: './properties.component.html'
 })
-export class OwnersComponent implements OnInit {
+export class PropertiesComponent implements OnInit {
 
   allData: any = [];
   date = '';
@@ -33,7 +33,7 @@ export class OwnersComponent implements OnInit {
     let obj: any = {
       skip: this.pagination.skip
     };
-    this.http.getData(ApiUrl.list_group_owner, obj).subscribe(res => {
+    this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
     }, () => {
@@ -45,7 +45,7 @@ export class OwnersComponent implements OnInit {
       _id: data._id,
       is_blocked: !data.is_blocked
     };
-    this.http.putData(ApiUrl.manage_plans, obj).subscribe(() => {
+    this.http.putData(ApiUrl.managed_peroperties, obj).subscribe(() => {
       this.commonService.checkBlockUnblock(data);
     }, () => {
     });
@@ -58,7 +58,7 @@ export class OwnersComponent implements OnInit {
           _id: data._id,
           is_deleted: true
         };
-        this.http.putData(ApiUrl.managed_group_owner, obj).subscribe(() => {
+        this.http.putData(ApiUrl.managed_peroperties, obj).subscribe(() => {
           this.message.toast('success', ConstMsg.deleteSuccess);
           this.getData();
         }, () => {
@@ -69,12 +69,13 @@ export class OwnersComponent implements OnInit {
   }
 
   addEditModalOpen(data?: any) {
-    const modalRef = this.modalService.show(AddOwnerComponent, {
-      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+    const modalRef = this.modalService.show(AddPropertyComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-lg'
     });
     modalRef.content.onClose.subscribe(() => {
       this.getData();
     });
   }
+
 
 }

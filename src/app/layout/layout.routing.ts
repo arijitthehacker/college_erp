@@ -26,6 +26,10 @@ const routes: Routes = [
         loadChildren: () => import('./members/members.module').then(m => m.MembersModule),
         data: {breadcrumb: 'Members', title: 'member'}
       }, {
+        path: 'properties',
+        loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule),
+        data: {breadcrumb: 'Properties', title: 'property'}
+      }, {
         path: 'customer-leads',
         loadChildren: () => import('./customer-leads/customer-leads.module').then(m => m.CustomerLeadsModule),
         data: {breadcrumb: 'Customer leads', title: 'customer-leads'}

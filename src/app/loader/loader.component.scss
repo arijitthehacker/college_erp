@@ -1,4 +1,4 @@
-$main-blue1: #323C7A;
+$main-color1: #323C7A;
 
 
 .glb-ldr-prt {
@@ -77,12 +77,12 @@ $main-blue1: #323C7A;
   transform: translateZ(0);
   -webkit-animation: load8 1.2s infinite linear;
   animation: load8 1.2s infinite linear;
-  color: $main-blue1;
+  color: $main-color1;
 }
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid $main-blue1;
+  border-top: 16px solid $main-color1;
   width: 120px;
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */

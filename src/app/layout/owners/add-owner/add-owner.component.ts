@@ -17,7 +17,6 @@ export class AddOwnerComponent implements OnInit {
 
   showError = false;
   CountryISO = CountryISO;
-
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
@@ -33,7 +32,8 @@ export class AddOwnerComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      phone_number: ['', [Validators.required]]
+      phone_number: ['', [Validators.required]],
+      name: ['', [Validators.required]]
     });
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -43,6 +43,7 @@ export class AddOwnerComponent implements OnInit {
   patchData(data) {
     this.form.patchValue({
       email: data.email,
+      name: data.name,
       phone_number: data.phone_number
     });
   }
