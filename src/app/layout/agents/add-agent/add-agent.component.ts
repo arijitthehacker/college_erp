@@ -8,6 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../../services/commonService/common.service';
 import { CountryISO } from 'ngx-intl-tel-input';
+import { CONSTANT } from '../../../core/constant';
 
 @Component({
   selector: 'app-add-account',
@@ -32,7 +33,7 @@ export class AddAgentComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
       name: ['', [Validators.required]],
       phone_number: ['', [Validators.required]]
     });

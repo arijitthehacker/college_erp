@@ -76,6 +76,9 @@ export class AddPropertyComponent implements OnInit {
       name: data.name
     });
 
+
+    this.images = data.images
+
     if (data.location.coordinates) {
       this.form.patchValue({
         lat: data.location.coordinates[1],

@@ -20,7 +20,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Latitude</label>
-        <input class="form-control" formControlName="lat"
+        <input class="form-control" formControlName="lat" appAmount
                type="text" placeholder="Enter latitude"/>
         <div class="text-error" *ngIf="form.controls['lat'].errors?.required && showError">
           This field is required.
@@ -29,7 +29,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Longitude</label>
-        <input class="form-control" formControlName="lng"
+        <input class="form-control" formControlName="lng" appAmount
                type="text" placeholder="Enter Longitude"/>
         <div class="text-error" *ngIf="form.controls['lng'].errors?.required && showError">
           This field is required.

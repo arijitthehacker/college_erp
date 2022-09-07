@@ -40,6 +40,7 @@
             <th>Name</th>
             <th>Description</th>
             <th>Address List</th>
+            <th>Details</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -58,6 +59,10 @@
             <td>
               <a class="my-link" (click)="openProAddresses(data)">Address List</a>
             </td>
+            <td>
+              <a class="my-link" (click)="openProDetails(data)">Details</a>
+            </td>
+
             <td class="edit-section">
               <!--                <div (click)="blockUnblock(data)">-->
               <!--                  <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>-->

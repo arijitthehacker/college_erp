@@ -33,7 +33,18 @@ export class AgentsComponent implements OnInit {
       skip: this.pagination.skip
     };
     this.http.getData(ApiUrl.list_agents, obj).subscribe(res => {
+      res.data.data.forEach((val) => {
+        let showCode = '';
+        val.invite_codes.forEach((val1, key1) => {
+          showCode = showCode + val1.invite_code;
+          if (key1 != val.invite_codes.length - 1) {
+            showCode = showCode + ', ';
+          }
+        });
+        val.showCode = showCode;
+      });
       this.allData = res.data.data;
+
       this.pagination.count = res.data.total_count;
     }, () => {
     });
@@ -75,6 +86,5 @@ export class AgentsComponent implements OnInit {
       this.getData();
     });
   }
-
 
 }

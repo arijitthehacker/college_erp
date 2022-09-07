@@ -59,8 +59,19 @@ export class PropertyCategoriesComponent implements OnInit {
         });
       }
     });
-
   }
+
+  blockUnblock(data: any) {
+    const obj: any = {
+      _id: data._id,
+      is_blocked: !data.is_blocked
+    };
+    this.http.putData(ApiUrl.managed_peroperty_categories, obj).subscribe(() => {
+      this.commonService.checkBlockUnblock(data);
+    }, () => {
+    });
+  }
+
 
   addEditModalOpen(data?: any) {
     const modalRef = this.modalService.show(AddPropertyCategoryComponent, {

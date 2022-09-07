@@ -8,6 +8,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { StatusesComponent } from './statuses/statuses.component';
+import { MemberDetailsComponent } from './member-details/member-details.component';
 
 @Component({
   selector: 'app-accounts',
@@ -68,7 +69,13 @@ export class CustomerLeadsComponent implements OnInit {
 
   openStatus(data?: any) {
     const modalRef = this.modalService.show(StatusesComponent, {
-      initialState: {modalData: data.status}, backdrop: 'static', keyboard: false, class: 'modal-lg'
+      initialState: {modalData: data.status}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
+    });
+  }
+
+  openMemberDetails(data?: any) {
+    const modalRef = this.modalService.show(MemberDetailsComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
   }
 

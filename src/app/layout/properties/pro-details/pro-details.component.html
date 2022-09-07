@@ -1,0 +1,101 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    User Details
+  </h4>
+  <button class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+
+<div class="modal-body">
+
+  <!--  <div class="row">-->
+  <!--    <div class="img-area">-->
+  <!--      <img [src]="modalData?.image"-->
+  <!--           (click)="commonService.openLightBox(modalData?.image)">-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+  <!--  <div class="row">-->
+  <table class="table details-table">
+    <tr>
+      <td>
+        <h5>Name</h5>
+        <p>{{modalData?.name || '-'}}</p>
+      </td>
+      <td>
+        <h5>From code</h5>
+        <p>{{modalData?.from_code || '-'}}</p>
+      </td>
+      <td>
+        <h5>Bedroom</h5>
+        <p>{{modalData?.bedroom || '-'}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h5>Bathroom</h5>
+        <p>{{modalData?.bathroom || '-'}}</p>
+      </td>
+      <td>
+        <h5>Area size</h5>
+        <p>{{modalData?.area_size || '-'}}</p>
+      </td>
+      <td>
+        <h5>Area size type</h5>
+        <p>{{modalData?.area_size_type || '-'}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h5>tensure</h5>
+        <p>{{modalData?.tensure || '-'}}</p>
+      </td>
+      <td>
+        <h5>price</h5>
+        <p>{{modalData?.price || '-'}}</p>
+      </td>
+      <td>
+        <h5>discount</h5>
+        <p>{{modalData?.discount || '-'}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h5>address</h5>
+        <p>{{modalData?.address || '-'}}</p>
+      </td>
+      <td>
+        <h5>completion year</h5>
+        <p>{{modalData?.completion_year || '-'}}</p>
+      </td>
+      <td>
+        <h5>is featured?</h5>
+        <p>{{modalData?.is_featured ? 'Yes' : 'No'}}</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <h5>description</h5>
+        <p>{{modalData?.descriptuon || '-'}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <h5>Images</h5>
+        <div class="detail-images">
+          <ng-container *ngFor="let data of modalData?.images">
+            <img [src]="data">
+          </ng-container>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+
+  <!--  </div>-->
+</div>
+
+<div class="modal-footer">
+  <button (click)="bsModalRef.hide()" type="button" class="btn btn-default mr-3">Close</button>
+  <!--      <button type="submit" class="btn btn-blue">{{!modalData ? 'Submit' : 'Update'}}</button>-->
+</div>

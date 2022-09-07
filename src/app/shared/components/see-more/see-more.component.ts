@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class SeeMoreComponent {
 
-    @Input() title = 'Details';
+    @Input() title = 'Description Details';
     @Input() msg = 'N.A.';
 
     constructor() {

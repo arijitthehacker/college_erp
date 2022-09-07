@@ -16,13 +16,20 @@
           <th> Image</th>
           <th> Name</th>
           <th> Description</th>
-          <th> Date</th>
+          <th> Managed By</th>
+          <th>  Manage at</th>
           <th> Status</th>
+          <th> Reject Reason</th>
         </tr>
         </thead>
         <tbody>
         <tr
-          *ngFor="let data of modalData ;let i = index;">
+          *ngFor="let data of modalData ;let i = index;"
+        [ngClass]="{
+        'rejected':data?.status_data === 'REJECTED',
+        'pending':data?.status_data === 'PENDING',
+        'approved':data?.status_data === 'APPROVED'
+        }">
           <td>{{ i + 1}}</td>
           <td>
             <img [src]="data.image" class="small-img"
@@ -32,8 +39,10 @@
           <td>
             <app-see-more [msg]="data?.description"></app-see-more>
           </td>
-          <td>{{data?.date |date:'short'}}</td>
+          <td>{{data?.managed_by}}</td>
+          <td>{{data?.managed_at |date:'short'}}</td>
           <td>{{data?.status_data}}</td>
+          <td>{{data?.reject_reason}}</td>
         </tr>
         </tbody>
       </table>

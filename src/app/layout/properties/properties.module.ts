@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AddPropertyComponent } from './add-property/add-property.component';
 import { ProAddressesComponent } from './pro-addresses/pro-addresses.component';
 import { AddProAddressComponent } from './add-pro-address/add-pro-address.component';
+import { ProDetailsComponent } from './pro-details/pro-details.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
     PropertiesComponent,
     AddPropertyComponent,
     ProAddressesComponent,
-    AddProAddressComponent
+    AddProAddressComponent,
+    ProDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ const routes: Routes = [
   ],
   entryComponents: [
     AddPropertyComponent,
+    ProDetailsComponent,
     ProAddressesComponent,
     AddProAddressComponent
 

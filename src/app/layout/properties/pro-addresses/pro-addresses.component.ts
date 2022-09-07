@@ -40,16 +40,25 @@ export class ProAddressesComponent implements OnInit {
       is_pagination: false,
       property_id: this.modalData._id
     };
-    this.http.getData(ApiUrl.list_property_address, obj, true).subscribe(res => {
+    this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
       this.allData = res.data.data;
     }, () => {
     });
-
   }
 
+  blockUnblock(data: any) {
+    const obj: any = {
+      _id: data._id,
+      is_blocked: !data.is_blocked
+    };
+    this.http.putData(ApiUrl.managed_peroperty_address, obj).subscribe(() => {
+      this.commonService.checkBlockUnblock(data);
+    }, () => {
+    });
+  }
 
   deleteData(data: any) {
-    this.message.confirm(`delete this ${this.commonService.title}`).then(res => {
+    this.message.confirm(`delete this address`).then(res => {
       if (res.isConfirmed) {
         const obj: any = {
           _id: data._id,
@@ -63,7 +72,6 @@ export class ProAddressesComponent implements OnInit {
       }
     });
   }
-
 
 }
 

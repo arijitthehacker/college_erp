@@ -11,6 +11,8 @@ import { AddPropertyComponent } from './add-property/add-property.component';
 import { Lightbox } from 'ngx-lightbox';
 import { ProAddressesComponent } from './pro-addresses/pro-addresses.component';
 import { AddProAddressComponent } from './add-pro-address/add-pro-address.component';
+import { MemberDetailsComponent } from '../customer-leads/member-details/member-details.component';
+import { ProDetailsComponent } from './pro-details/pro-details.component';
 
 @Component({
   selector: 'app-accounts',
@@ -108,5 +110,12 @@ export class PropertiesComponent implements OnInit {
       }
     });
   }
+
+  openProDetails(data?: any) {
+    const modalRef = this.modalService.show(ProDetailsComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
+    });
+  }
+
 
 }

@@ -1,6 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
 //@import './a ../../../assets/css/_variables.scss';
-
 @import "variables";
 
 .angular-editor .angular-editor-wrapper .angular-editor-textarea {
@@ -24,7 +22,6 @@
   width: 370px !important;
 }
 
-
 .set-contact {
   width: 100%;
 }
@@ -32,6 +29,8 @@
 .set-label {
   text-transform: capitalize;
   margin-bottom: 0.2rem;
+  font-size: 15px;
+  color: black;
 }
 
 .iti--allow-dropdown {
@@ -752,7 +751,11 @@ tbody {
 }
 
 .edit-section {
-  width: 120px
+  width: 140px
+}
+
+textarea.form-control {
+  resize: none;
 }
 
 .edit-section i {
@@ -795,4 +798,85 @@ tbody {
   padding: 4px;
   margin-left: 14px;
   height: 74px;
+}
+
+.login-label {
+  font-size: 16px;
+}
+
+.img-area {
+
+}
+
+.img-area img {
+
+}
+
+.details-table tr td h5 {
+  margin: 0;
+  padding: 0;
+  color: $main-color;
+  margin-top: 8px
+}
+
+.details-table tr td p {
+  margin: 0;
+  padding: 1px 0px 2px 3px;
+}
+
+.details-table tr {
+  //border-bottom: 1px solid $border-color;
+}
+
+.pending {
+  background: green;
+}
+
+.rejected {
+  background: red;
+}
+
+.approved {
+  background: orange;
+}
+
+//.lb-data .lb-close {
+//  width: 35px;
+//  float: right;
+//  padding-bottom: 0.7em;
+//  outline: none;
+//}
+
+.lb-dataContainer {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.select-drop-icon {
+  position: relative;
+}
+
+
+.select-drop-icon i {
+  position: absolute;
+  right: 19px;
+  bottom: 28px;
+  font-size: 20px;
+}
+
+.uploaded-img {
+  height: 70px;
+}
+
+.detail-images {
+  padding: 0;
+  padding-top: 6px;
+}
+
+.detail-images img {
+  width: 80px;
+  height: 80px;
+  margin-right: 12px;
 }

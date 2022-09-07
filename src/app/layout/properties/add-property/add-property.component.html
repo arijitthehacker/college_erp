@@ -2,6 +2,7 @@
   <h4 class="modal-title">
     {{!modalData ? 'Add' : 'Edit'}} {{commonService.title}}
   </h4>
+  <button class="btn-close" (click)="bsModalRef.hide()"></button>
 </div>
 
 <form [formGroup]="form" (ngSubmit)="formSubmit()">
@@ -18,7 +19,7 @@
         </div>
       </div>
 
-      <div class="col-md-4 form-group">
+      <div class="col-md-4 form-group select-drop-icon">
         <label class="required set-label">Select Category</label>
         <select class="form-control" formControlName="category_id">
           <option value="">Please select category</option>
@@ -26,6 +27,7 @@
             {{data?.name}}
           </option>
         </select>
+          <i class="fa fa-caret-down"></i>
         <div class="text-error" *ngIf="form.controls['category_id'].errors?.required && showError">
           This field is required.
         </div>
@@ -42,7 +44,7 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">bedroom</label>
-        <input class="form-control" formControlName="bedroom"
+        <input class="form-control" formControlName="bedroom" appNumberOnly
                type="text" placeholder="Enter bedroom"/>
         <div class="text-error" *ngIf="form.controls['bedroom'].errors?.required && showError">
           This field is required.
@@ -50,7 +52,7 @@
       </div>
       <div class="col-md-4 form-group">
         <label class="required set-label">bathroom</label>
-        <input class="form-control" formControlName="bathroom"
+        <input class="form-control" formControlName="bathroom" appNumberOnly
                type="text" placeholder="Enter bathroom"/>
         <div class="text-error" *ngIf="form.controls['bathroom'].errors?.required && showError">
           This field is required.
@@ -75,7 +77,7 @@
         </div>
       </div>
 
-      <div class="col-md-4 form-group">
+      <div class="col-md-4 form-group select-drop-icon">
         <label class="required set-label">Select tensure</label>
         <select class="form-control" formControlName="tensure">
           <option value="">Please select tensure</option>
@@ -83,6 +85,7 @@
           <option value="FREEHOLD"> FREEHOLD</option>
           <option value="LEASEHOLD"> LEASEHOLD</option>
         </select>
+        <i class="fa fa-caret-down"></i>
         <div class="text-error" *ngIf="form.controls['tensure'].errors?.required && showError">
           This field is required.
         </div>
@@ -97,13 +100,14 @@
         </div>
       </div>
 
-      <div class="col-md-4 form-group">
+      <div class="col-md-4 form-group select-drop-icon">
         <label class="required set-label">Select Discount type</label>
         <select class="form-control" formControlName="discount_type">
           <option value="">Please select disocunt type</option>
           <option value="PERCENTAGE"> PERCENTAGE</option>
           <option value="DIRECT"> DIRECT</option>
         </select>
+        <i class="fa fa-caret-down"></i>
         <div class="text-error" *ngIf="form.controls['discount_type'].errors?.required && showError">
           This field is required.
         </div>
@@ -138,7 +142,7 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">Latitude</label>
-        <input class="form-control" formControlName="lat"
+        <input class="form-control" formControlName="lat" appAmount
                type="text" placeholder="Enter latitude"/>
         <div class="text-error" *ngIf="form.controls['lat'].errors?.required && showError">
           This field is required.
@@ -147,7 +151,7 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">Longitude</label>
-        <input class="form-control" formControlName="lng"
+        <input class="form-control" formControlName="lng" appAmount
                type="text" placeholder="Enter Longitude"/>
         <div class="text-error" *ngIf="form.controls['lng'].errors?.required && showError">
           This field is required.
