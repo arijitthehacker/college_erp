@@ -71,7 +71,13 @@
               <!--              {{data?.agent_id?.name || '-'}}-->
             </td>
             <td>
-              {{data?.booking_status}}
+              <label class="status-label" [ngClass]="{
+                'rejected':data?.booking_status === 'REJECTED',
+                'pending':data?.booking_status === 'PENDING',
+                'approved':data?.booking_status === 'APPROVED'
+            }"> {{data?.booking_status}}</label>
+
+<!--              {{data?.booking_status}}-->
             </td>
 
             <td>
