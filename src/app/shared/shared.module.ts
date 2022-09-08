@@ -26,9 +26,10 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { TagInputModule } from 'ngx-chips';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ProDetailsComponent } from '../layout/properties/pro-details/pro-details.component';
 
 const directives = [NumberOnlyDirective, AmountDirective, NoRecordComponent, ReplaceUnderscorePipe,
-  SeeMoreComponent, HHMMSSPipe, CapitalizeFirstDirective];
+  SeeMoreComponent, HHMMSSPipe, CapitalizeFirstDirective, ProDetailsComponent];
 
 const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPaginationModule,
   NgSelectModule, FormsModule, NgxIntlTelInputModule, AutocompleteLibModule,
@@ -55,7 +56,10 @@ const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPagin
     ModalModule, PaginationModule, BsDropdownModule
   ],
   providers: [],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
+  entryComponents: [
+    ProDetailsComponent
+  ]
 })
 export class SharedModule {
 }

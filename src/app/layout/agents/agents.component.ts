@@ -55,7 +55,7 @@ export class AgentsComponent implements OnInit {
       _id: data._id,
       is_blocked: !data.is_blocked
     };
-    this.http.putData(ApiUrl.manage_plans, obj).subscribe(() => {
+    this.http.putData(ApiUrl.managed_agents, obj).subscribe(() => {
       this.commonService.checkBlockUnblock(data);
     }, () => {
     });
