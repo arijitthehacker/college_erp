@@ -12,6 +12,7 @@ export class MemberDetailsComponent implements OnInit {
 
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  showLabel: any;
 
   constructor(public message: MessageService, public bsModalRef: BsModalRef, public commonService: CommonService
   ) {

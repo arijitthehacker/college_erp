@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    User Details
+    Property Details
   </h4>
   <button class="btn-close" (click)="bsModalRef.hide()"></button>
 </div>
@@ -45,37 +45,44 @@
       </td>
     </tr>
     <tr>
+
       <td>
-        <h5>tensure</h5>
-        <p>{{modalData?.tensure || '-'}}</p>
-      </td>
-      <td>
-        <h5>price</h5>
+        <h5>Price</h5>
         <p>{{modalData?.price || '-'}}</p>
       </td>
       <td>
-        <h5>discount</h5>
+        <h5>Discount type</h5>
+        <p>{{modalData?.discount_type || '-'}}</p>
+      </td>
+      <td>
+        <h5>Discount</h5>
         <p>{{modalData?.discount || '-'}}</p>
       </td>
     </tr>
     <tr>
       <td>
-        <h5>address</h5>
+        <h5>Address</h5>
         <p>{{modalData?.address || '-'}}</p>
       </td>
       <td>
-        <h5>completion year</h5>
+        <h5>Completion year</h5>
         <p>{{modalData?.completion_year || '-'}}</p>
       </td>
       <td>
-        <h5>is featured?</h5>
+        <h5>Is featured?</h5>
         <p>{{modalData?.is_featured ? 'Yes' : 'No'}}</p>
       </td>
     </tr>
 
     <tr>
+      <td>
+        <h5>Tensure</h5>
+        <p>{{modalData?.tensure || '-'}}</p>
+      </td>
+    </tr>
+    <tr>
       <td colspan="3">
-        <h5>description</h5>
+        <h5>Description</h5>
         <p>{{modalData?.descriptuon || '-'}}</p>
       </td>
     </tr>

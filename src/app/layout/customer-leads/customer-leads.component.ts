@@ -68,15 +68,17 @@ export class CustomerLeadsComponent implements OnInit {
   }
 
   openStatus(data?: any) {
-    const modalRef = this.modalService.show(StatusesComponent, {
+    this.modalService.show(StatusesComponent, {
       initialState: {modalData: data.status}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
     });
   }
 
-  openMemberDetails(data?: any) {
-    const modalRef = this.modalService.show(MemberDetailsComponent, {
-      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
-    });
+  openMemberDetails(data?: any, showLabel?) {
+    if (data?.name) {
+      this.modalService.show(MemberDetailsComponent, {
+        initialState: {modalData: data, showLabel}, backdrop: 'static', keyboard: false, class: 'modal-md'
+      });
+    }
   }
 
 }

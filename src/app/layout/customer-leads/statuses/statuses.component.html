@@ -17,7 +17,7 @@
           <th> Name</th>
           <th> Description</th>
           <th> Managed By</th>
-          <th>  Manage at</th>
+          <th> Manage at</th>
           <th> Status</th>
           <th> Reject Reason</th>
         </tr>
@@ -25,24 +25,28 @@
         <tbody>
         <tr
           *ngFor="let data of modalData ;let i = index;"
-        [ngClass]="{
-        'rejected':data?.status_data === 'REJECTED',
-        'pending':data?.status_data === 'PENDING',
-        'approved':data?.status_data === 'APPROVED'
-        }">
+        >
           <td>{{ i + 1}}</td>
           <td>
-            <img [src]="data.image" class="small-img"
+            <img [src]="data.image || '/assets/images/no-img.webp'" class="small-img"
                  (click)="commonService.openLightBox(data.image)">
           </td>
           <td>{{data?.name || '-'}}</td>
           <td>
             <app-see-more [msg]="data?.description"></app-see-more>
           </td>
-          <td>{{data?.managed_by}}</td>
+          <td>{{data?.managed_by || '-'}}</td>
           <td>{{data?.managed_at |date:'short'}}</td>
-          <td>{{data?.status_data}}</td>
-          <td>{{data?.reject_reason}}</td>
+          <td>
+            <label class="status-label" [ngClass]="{
+        'rejected':data?.status_data === 'REJECTED',
+        'pending':data?.status_data === 'PENDING',
+        'approved':data?.status_data === 'APPROVED'
+            }"> {{data?.status_data}}</label>
+          </td>
+          <td>
+            <app-see-more [msg]="data?.reject_reason"></app-see-more>
+          </td>
         </tr>
         </tbody>
       </table>
