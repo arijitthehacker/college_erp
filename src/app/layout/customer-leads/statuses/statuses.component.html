@@ -36,12 +36,20 @@
             <app-see-more [msg]="data?.description"></app-see-more>
           </td>
           <td>{{data?.managed_by || '-'}}</td>
-          <td>{{data?.managed_at |date:'short'}}</td>
+          <td>
+            <ng-container *ngIf="data.status_data !== 'PENDING' else showEmpty">
+              {{data?.managed_at |date:'short'}}
+            </ng-container>
+            <ng-template #showEmpty>
+              -
+            </ng-template>
+          </td>
+
           <td>
             <label class="status-label" [ngClass]="{
-        'rejected':data?.status_data === 'REJECTED',
-        'pending':data?.status_data === 'PENDING',
-        'approved':data?.status_data === 'APPROVED'
+                'rejected':data?.status_data === 'REJECTED',
+                'pending':data?.status_data === 'PENDING',
+                'approved':data?.status_data === 'APPROVED'
             }"> {{data?.status_data}}</label>
           </td>
           <td>

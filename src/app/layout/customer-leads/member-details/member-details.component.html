@@ -36,6 +36,12 @@
         <p>{{modalData?.age || '-'}}</p>
       </td>
     </tr>
+    <tr *ngIf="modalData?.gender">
+      <td>
+        <h5>Gender</h5>
+        <p>{{modalData?.gender || '-'}}</p>
+      </td>
+    </tr>
   </table>
   <!--  </div>-->
 </div>

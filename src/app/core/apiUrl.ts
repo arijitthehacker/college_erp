@@ -24,6 +24,6 @@ export const ApiUrl = {
   managed_members: 'Admin/managed_members',
   list_property_address: 'Admin/list_property_address',
   add_edit_agents: 'Admin/add_edit_agents',
-  add_edit_peroperty_address: 'Admin/add_edit_peroperty_address',
+  add_edit_peroperty_address: 'Admin/add_edit_peroperty_address'
 
 };
