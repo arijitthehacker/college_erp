@@ -35,15 +35,20 @@ export class AddPropertyComponent implements OnInit {
       category_id: ['', Validators.required],
       descriptuon: ['', Validators.required],
       cover_image: ['', Validators.required],
+      brochure: [''],
+      total_units: ['', Validators.required],
       bedroom: ['', Validators.required],
+      builder_name: ['', Validators.required],
       bathroom: ['', Validators.required],
       area_size: ['', Validators.required],
       tensure: ['', Validators.required],
-      discount_type: ['', Validators.required],
-      discount: ['', Validators.required],
+      category_type: [''],
+      commision_in_percentage: ['', Validators.required],
       completion_year: ['', Validators.required],
-      price: ['', Validators.required],
-      is_featured: [true, Validators.required],
+      start_price: ['', Validators.required],
+      status: ['', Validators.required],
+      end_price: ['', Validators.required],
+      // is_featured: [true, Validators.required],
       area_size_type: ['', Validators.required],
       address: ['', Validators.required],
       lat: ['', Validators.required],
@@ -61,23 +66,27 @@ export class AddPropertyComponent implements OnInit {
       lat: data.lat,
       lng: data.lng,
       address: data.address,
-      discount_type: data.discount_type,
-      is_featured: data.is_featured,
+      builder_name: data.builder_name,
+      category_type: data.category_type,
+      // is_featured: data.is_featured,
       descriptuon: data.descriptuon,
       completion_year: data.completion_year,
+      total_units: data.total_units,
       area_size_type: data.area_size_type,
-      price: data.price,
-      discount: data.discount,
+      start_price: data.start_price,
+      end_price: data.end_price,
+      commision_in_percentage: data.commision_in_percentage,
+      status: data.status,
       cover_image: data.cover_image,
       tensure: data.tensure,
       bedroom: data.bedroom,
+      brochure: data.brochure,
       area_size: data.area_size,
       bathroom: data.bathroom,
       name: data.name
     });
 
-
-    this.images = data.images
+    this.images = data.images;
 
     if (data.location.coordinates) {
       this.form.patchValue({
@@ -95,6 +104,9 @@ export class AddPropertyComponent implements OnInit {
       }
       if (this.images.length) {
         obj.images = this.images;
+      } else {
+        this.message.toast('error', 'Please add atleast 1 image');
+        return;
       }
       this.http.postData(ApiUrl.add_edit_peroperties, obj).subscribe(() => {
         this.onClose.next(null);

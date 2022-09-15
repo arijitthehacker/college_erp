@@ -47,18 +47,57 @@
     <tr>
 
       <td>
-        <h5>Price</h5>
-        <p>{{modalData?.price || '-'}}</p>
+        <h5>Start Price</h5>
+        <p>{{modalData?.start_price || '-'}}</p>
       </td>
       <td>
-        <h5>Discount type</h5>
-        <p>{{modalData?.discount_type || '-'}}</p>
+        <h5>End Price</h5>
+        <p>{{modalData?.end_price || '-'}}</p>
       </td>
       <td>
-        <h5>Discount</h5>
-        <p>{{modalData?.discount || '-'}}</p>
+        <h5>Category Type</h5>
+        <p>{{modalData?.category_type |replaceUnderscore}}</p>
       </td>
     </tr>
+
+
+
+    <tr>
+      <td>
+        <h5>Total units</h5>
+        <p>{{modalData?.total_units || '-'}}</p>
+      </td>
+      <td>
+        <h5>Status</h5>
+        <p>{{modalData?.status |replaceUnderscore}}</p>
+      </td>
+      <td>
+        <h5>Commision in percentage</h5>
+        <p>{{modalData?.commision_in_percentage || '-'}}</p>
+      </td>
+    </tr>
+
+
+
+    <tr>
+      <td>
+        <h5>Brochure</h5>
+        <p>{{modalData?.brochure || '-'}}</p>
+      </td>
+      <td>
+        <h5>Builder name</h5>
+        <p>{{modalData?.builder_name || '-'}}</p>
+      </td>
+      <td>
+        <h5>Tensure</h5>
+        <p>{{modalData?.tensure || '-'}}</p>
+      </td>
+
+    </tr>
+
+
+
+
     <tr>
       <td>
         <h5>Address</h5>
@@ -68,18 +107,8 @@
         <h5>Completion year</h5>
         <p>{{modalData?.completion_year || '-'}}</p>
       </td>
-      <td>
-        <h5>Is featured?</h5>
-        <p>{{modalData?.is_featured ? 'Yes' : 'No'}}</p>
-      </td>
     </tr>
 
-    <tr>
-      <td>
-        <h5>Tensure</h5>
-        <p>{{modalData?.tensure || '-'}}</p>
-      </td>
-    </tr>
     <tr>
       <td colspan="3">
         <h5>Description</h5>

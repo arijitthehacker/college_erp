@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <div class="col-md-4 form-group select-drop-icon">
+      <div class="col-md-4 form-group ">
         <label class="required set-label">Select Category</label>
         <select class="form-control" formControlName="category_id">
           <option value="">Please select category</option>
@@ -27,7 +27,7 @@
             {{data?.name}}
           </option>
         </select>
-          <i class="fa fa-caret-down"></i>
+<!--          <i class="fa fa-caret-down"></i>-->
         <div class="text-error" *ngIf="form.controls['category_id'].errors?.required && showError">
           This field is required.
         </div>
@@ -38,6 +38,15 @@
         <textarea class="form-control" formControlName="descriptuon" placeholder="Enter description">
         </textarea>
         <div class="text-error" *ngIf="form.controls['descriptuon'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">builder name</label>
+        <input class="form-control" formControlName="builder_name"
+               type="text" placeholder="Enter builder name"/>
+        <div class="text-error" *ngIf="form.controls['builder_name'].errors?.required && showError">
           This field is required.
         </div>
       </div>
@@ -77,7 +86,7 @@
         </div>
       </div>
 
-      <div class="col-md-4 form-group select-drop-icon">
+      <div class="col-md-4 form-group">
         <label class="required set-label">Select tensure</label>
         <select class="form-control" formControlName="tensure">
           <option value="">Please select tensure</option>
@@ -85,48 +94,75 @@
           <option value="FREEHOLD"> FREEHOLD</option>
           <option value="LEASEHOLD"> LEASEHOLD</option>
         </select>
-        <i class="fa fa-caret-down"></i>
         <div class="text-error" *ngIf="form.controls['tensure'].errors?.required && showError">
           This field is required.
         </div>
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">price</label>
-        <input class="form-control" formControlName="price" appNumberOnly
-               type="text" placeholder="Enter price"/>
-        <div class="text-error" *ngIf="form.controls['price'].errors?.required && showError">
+        <label class="required set-label">start price</label>
+        <input class="form-control" formControlName="start_price" appNumberOnly
+               type="text" placeholder="Enter start price"/>
+        <div class="text-error" *ngIf="form.controls['start_price'].errors?.required && showError">
           This field is required.
         </div>
       </div>
-
-      <div class="col-md-4 form-group select-drop-icon">
-        <label class="required set-label">Select Discount type</label>
-        <select class="form-control" formControlName="discount_type">
-          <option value="">Please select disocunt type</option>
-          <option value="PERCENTAGE"> PERCENTAGE</option>
-          <option value="DIRECT"> DIRECT</option>
-        </select>
-        <i class="fa fa-caret-down"></i>
-        <div class="text-error" *ngIf="form.controls['discount_type'].errors?.required && showError">
+      <div class="col-md-4 form-group">
+        <label class="required set-label">end price</label>
+        <input class="form-control" formControlName="end_price" appNumberOnly
+               type="text" placeholder="Enter end price"/>
+        <div class="text-error" *ngIf="form.controls['end_price'].errors?.required && showError">
           This field is required.
         </div>
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">discount</label>
-        <input class="form-control" formControlName="discount" appNumberOnly
-               type="text" placeholder="Enter discount"/>
-        <div class="text-error" *ngIf="form.controls['discount'].errors?.required && showError">
+        <label class="required set-label">Select category type</label>
+        <select class="form-control" formControlName="category_type">
+          <option value="">Please select category type</option>
+          <option value="FEATURED"> FEATURED</option>
+          <option value="HOT_SELLING">HOT SELLING</option>
+          <option value="LIMITED_UNITIES">LIMITED UNITIES</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Select Status</label>
+        <select class="form-control" formControlName="status">
+          <option value="">Please select category type</option>
+          <option value="PRE_LAUNCH"> PRE LAUNCH</option>
+          <option value="NEW_LAUNCH">NEW_LAUNCH</option>
+          <option value="UNDER_CONSTRUCTION">UNDER CONSTRUCTION</option>
+          <option value="COMPLETED">COMPLETED</option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['status'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">commission (in %)</label>
+        <input class="form-control" formControlName="commision_in_percentage" appNumberOnly
+               type="text" placeholder="Enter commission"/>
+        <div class="text-error" *ngIf="form.controls['commision_in_percentage'].errors?.required && showError">
           This field is required.
         </div>
       </div>
 
       <div class="col-md-4 form-group">
         <label class="required set-label">completion year</label>
-        <input class="form-control" formControlName="completion_year"
+        <input class="form-control" formControlName="completion_year" appNumberOnly
                type="text" placeholder="Enter completion year"/>
         <div class="text-error" *ngIf="form.controls['completion_year'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">total units</label>
+        <input class="form-control" formControlName="total_units"
+               type="text" placeholder="Enter total units"/>
+        <div class="text-error" *ngIf="form.controls['total_units'].errors?.required && showError">
           This field is required.
         </div>
       </div>
@@ -157,14 +193,19 @@
           This field is required.
         </div>
       </div>
-
       <div class="col-md-4 form-group">
-        <div class="form-check-inline" style="margin-left: 21px">
-          <label class="form-check-label">
-            <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?
-          </label>
-        </div>
+        <label class="required set-label">brochure</label>
+        <input class="form-control" formControlName="lng"
+               type="text" placeholder="Enter brochure"/>
       </div>
+
+<!--      <div class="col-md-4 form-group">-->
+<!--        <div class="form-check-inline" style="margin-left: 21px">-->
+<!--          <label class="form-check-label">-->
+<!--            <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?-->
+<!--          </label>-->
+<!--        </div>-->
+<!--      </div>-->
 
     </div>
 

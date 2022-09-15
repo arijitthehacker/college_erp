@@ -819,6 +819,10 @@ textarea.form-control {
   margin-top: 8px
 }
 
+.details-table tr td {
+  width: 32%;
+}
+
 .details-table tr td p {
   margin: 0;
   padding: 1px 0px 2px 3px;
@@ -890,3 +894,8 @@ textarea.form-control {
 .modal-body {
   padding-top: 0;
 }
+
+select {
+  -webkit-appearance: listbox !important
+}
+
