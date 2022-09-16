@@ -97,6 +97,12 @@ export class AddPropertyComponent implements OnInit {
   }
 
   formSubmit() {
+
+    if (parseInt(this.form?.value?.start_price, 10) > parseInt(this.form?.value?.end_price, 10)) {
+      this.message.toast('error', 'End price should be greater than or equal to start price');
+      return;
+    }
+
     if (this.form.valid) {
       const obj = JSON.parse(JSON.stringify(this.form.value));
       if (this.modalData) {
@@ -105,9 +111,15 @@ export class AddPropertyComponent implements OnInit {
       if (this.images.length) {
         obj.images = this.images;
       } else {
-        this.message.toast('error', 'Please add atleast 1 image');
+        //   this.message.toast('error', 'Please add atleast 1 image');
         return;
       }
+
+      if (this.form?.value?.start_price > this.form?.value?.end_price) {
+        this.message.toast('error', 'Start price should be less than or equal to end price');
+        return;
+      }
+
       this.http.postData(ApiUrl.add_edit_peroperties, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',
@@ -134,18 +146,24 @@ export class AddPropertyComponent implements OnInit {
   selectImage(event: any, id, flag) {
     this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
       if (flag == 1) {
-        console.log('am in if');
         this.form.controls.cover_image.patchValue(response.data.original);
-      } else {
+      } else if (flag == 3) {
         console.log('am in else');
+        this.form.controls.brochure.patchValue(response.data.original);
+      } else {
         this.images.push(response.data.original);
       }
     }, () => {
     });
   }
 
-  removeImage(id) {
-    this.form.controls.image.patchValue(id);
+  removeImage(id, flag) {
+    if (flag === 3) {
+      this.form.controls.brochure.patchValue('');
+    } else {
+      this.form.controls.cover_image.patchValue('');
+    }
+
   }
 
   removeImageFromArr(index) {

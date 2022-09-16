@@ -91,7 +91,7 @@ export class PropertiesComponent implements OnInit {
         this.openAddAddress(data);
       }
       if (res.type === 'editAddress') {
-        this.openAddAddress(res.data, data);
+        this.openAddAddress(data, res.data);
       }
     });
   }
@@ -116,6 +116,5 @@ export class PropertiesComponent implements OnInit {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
     });
   }
-
 
 }

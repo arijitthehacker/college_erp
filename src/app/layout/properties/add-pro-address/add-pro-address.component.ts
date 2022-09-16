@@ -27,6 +27,8 @@ export class AddProAddressComponent implements OnInit {
 
   ngOnInit() {
     this.makeForm();
+    console.log(this.modalData, 'modalData');
+    console.log(this.propertyData, 'propertyData');
   }
 
   makeForm() {
@@ -42,9 +44,9 @@ export class AddProAddressComponent implements OnInit {
 
   patchData(data) {
     this.form.patchValue({
-      lng: data.lng,
+      lng: data.location.coordinates[0],
       name: data.name,
-      lat: data.lat
+      lat: data.location.coordinates[1]
     });
   }
 

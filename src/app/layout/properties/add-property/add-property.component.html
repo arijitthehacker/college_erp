@@ -27,7 +27,7 @@
             {{data?.name}}
           </option>
         </select>
-<!--          <i class="fa fa-caret-down"></i>-->
+        <!--          <i class="fa fa-caret-down"></i>-->
         <div class="text-error" *ngIf="form.controls['category_id'].errors?.required && showError">
           This field is required.
         </div>
@@ -178,8 +178,8 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">Latitude</label>
-        <input class="form-control" formControlName="lat" appAmount
-               type="text" placeholder="Enter latitude"/>
+        <input class="form-control" formControlName="lat"
+               type="number" placeholder="Enter latitude"/>
         <div class="text-error" *ngIf="form.controls['lat'].errors?.required && showError">
           This field is required.
         </div>
@@ -187,29 +187,45 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">Longitude</label>
-        <input class="form-control" formControlName="lng" appAmount
-               type="text" placeholder="Enter Longitude"/>
+        <input class="form-control" formControlName="lng"
+               type="number" placeholder="Enter Longitude"/>
         <div class="text-error" *ngIf="form.controls['lng'].errors?.required && showError">
           This field is required.
         </div>
       </div>
-      <div class="col-md-4 form-group">
-        <label class="required set-label">brochure</label>
-        <input class="form-control" formControlName="lng"
-               type="text" placeholder="Enter brochure"/>
-      </div>
 
-<!--      <div class="col-md-4 form-group">-->
-<!--        <div class="form-check-inline" style="margin-left: 21px">-->
-<!--          <label class="form-check-label">-->
-<!--            <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?-->
-<!--          </label>-->
-<!--        </div>-->
-<!--      </div>-->
+
+      <!--      <div class="col-md-4 form-group">-->
+      <!--        <div class="form-check-inline" style="margin-left: 21px">-->
+      <!--          <label class="form-check-label">-->
+      <!--            <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?-->
+      <!--          </label>-->
+      <!--        </div>-->
+      <!--      </div>-->
 
     </div>
 
     <div class="row">
+      <div class="col-md-4 form-group">
+        <label class="required">Brochure</label>
+        <div class="product-images">
+          <input type="file" class="file-upload" id="brochure"
+                 accept="image/jpg, image/jpeg, image/png, .pdf" (change)="selectImage($event, 'brochure',3)">
+          <label for="brochure">
+            <img src="/assets/images/ic_camera.png">
+          </label>
+          <img class="ml-4 uploaded-img" height="72" for="brochure"
+               [src]="form?.value?.brochure"
+               *ngIf='form?.value?.brochure'>
+          <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('brochure',3)"
+             *ngIf='form?.value?.brochure'></i>
+        </div>
+        <div class="text-error"
+             *ngIf="form.controls['brochure'].errors?.required && showError">
+          Please select image.
+        </div>
+      </div>
+
       <div class="col-md-4 form-group">
         <label class="required">Cover Image</label>
         <div class="product-images">
@@ -221,7 +237,7 @@
           <img class="ml-4 uploaded-img" height="72" for="cover_image"
                [src]="form?.value?.cover_image"
                *ngIf='form?.value?.cover_image'>
-          <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('cover_image')"
+          <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('cover_image',1)"
              *ngIf='form?.value?.cover_image'></i>
         </div>
         <div class="text-error"
@@ -245,6 +261,12 @@
             <i class="fa fa-times-circle fa-trash-css" (click)="removeImageFromArr(i)"
                *ngIf='data'></i>
           </ng-container>
+
+          <div class="text-error"
+               *ngIf="!images?.length && showError">
+            Please select image.
+          </div>
+
         </div>
       </div>
     </div>

@@ -29,6 +29,11 @@
             <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
             <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
           </div>
+
+          <div>
+            <i (click)="openAddAddress(data)" class="fa fa-edit"></i>
+          </div>
+
           <div>
             <i (click)="deleteData(data)" class="fa fa-trash"></i>
           </div>
