@@ -33,14 +33,14 @@
         </div>
       </div>
 
-<!--      <div class="col-md-4 form-group">-->
-<!--        <label class="required set-label">Description</label>-->
-<!--        <textarea class="form-control" formControlName="descriptuon" placeholder="Enter description">-->
-<!--        </textarea>-->
-<!--        <div class="text-error" *ngIf="form.controls['descriptuon'].errors?.required && showError">-->
-<!--          This field is required.-->
-<!--        </div>-->
-<!--      </div>-->
+      <!--      <div class="col-md-4 form-group">-->
+      <!--        <label class="required set-label">Description</label>-->
+      <!--        <textarea class="form-control" formControlName="descriptuon" placeholder="Enter description">-->
+      <!--        </textarea>-->
+      <!--        <div class="text-error" *ngIf="form.controls['descriptuon'].errors?.required && showError">-->
+      <!--          This field is required.-->
+      <!--        </div>-->
+      <!--      </div>-->
 
       <div class="col-md-4 form-group">
         <label class="required set-label">builder name</label>
@@ -207,7 +207,7 @@
 
     <div class="row">
       <div class="col-md-12">
-      <angular-editor formControlName="descriptuon" [config]="editorConfig"></angular-editor>
+        <angular-editor formControlName="descriptuon" [config]="editorConfig"></angular-editor>
       </div>
     </div>
 
@@ -216,15 +216,36 @@
         <label class="required">Brochure</label>
         <div class="product-images">
           <input type="file" class="file-upload" id="brochure"
-                 accept="image/jpg, image/jpeg, image/png, .pdf" (change)="selectImage($event, 'brochure',3)">
+                 accept="image/jpg, image/jpeg, image/png, .pdf"
+                 (change)="selectImage($event, 'brochure',3)">
           <label for="brochure">
             <img src="/assets/images/ic_camera.png">
           </label>
-          <img class="ml-4 uploaded-img" height="72" for="brochure"
-               [src]="form?.value?.brochure"
-               *ngIf='form?.value?.brochure'>
-          <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('brochure',3)"
-             *ngIf='form?.value?.brochure'></i>
+
+          <ng-container *ngIf='form?.value?.brochure'>
+            <img class="ml-4 uploaded-img" height="72" for="brochure"
+                 *ngIf="!commonService.checkPDFLink(modalData?.brochure)"
+            >
+
+            <a *ngIf="commonService.checkPDFLink(modalData?.brochure)" class="my-link"
+               (click)="commonService.goToLink(modalData?.brochure)">
+              <i class="fa fa-file-pdf-o add-pdf-btn" aria-hidden="true"></i>
+            </a>
+
+
+            <i class="fa fa-times-circle fa-trash-css ml-2" (click)="removeImage('brochure',3)"
+            ></i>
+
+          </ng-container>
+
+          <!--          <img [src]="modalData?.brochure" >-->
+
+          <!--          <a *ngIf="commonService.checkPDFLink(modalData?.brochure)" class="my-link"-->
+          <!--             (click)="commonService.goToLink(modalData?.brochure)">-->
+          <!--            <i class="fa fa-file-pdf-o fa-3x" aria-hidden="true"></i>-->
+          <!--          </a>-->
+
+
         </div>
         <div class="text-error"
              *ngIf="form.controls['brochure'].errors?.required && showError">
