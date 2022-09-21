@@ -31,6 +31,14 @@ const routes: Routes = [
         loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule),
         data: {breadcrumb: 'Properties', title: 'property'}
       }, {
+        path: 'budgets',
+        loadChildren: () => import('./budgets/budgets.module').then(m => m.BudgetsModule),
+        data: {breadcrumb: 'Property Budgets', title: 'budget'}
+      }, {
+        path: 'purposes',
+        loadChildren: () => import('./purposes/purposes.module').then(m => m.PurposesModule),
+        data: {breadcrumb: 'Property Purposes', title: 'purpose'}
+      }, {
         path: 'reasons',
         loadChildren: () => import('./reasons/reasons.module').then(m => m.ReasonsModule),
         data: {breadcrumb: 'Reject Reasons', title: 'reason'}

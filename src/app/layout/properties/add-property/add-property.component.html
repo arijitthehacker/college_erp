@@ -33,14 +33,14 @@
         </div>
       </div>
 
-      <div class="col-md-4 form-group">
-        <label class="required set-label">Description</label>
-        <textarea class="form-control" formControlName="descriptuon" placeholder="Enter description">
-        </textarea>
-        <div class="text-error" *ngIf="form.controls['descriptuon'].errors?.required && showError">
-          This field is required.
-        </div>
-      </div>
+<!--      <div class="col-md-4 form-group">-->
+<!--        <label class="required set-label">Description</label>-->
+<!--        <textarea class="form-control" formControlName="descriptuon" placeholder="Enter description">-->
+<!--        </textarea>-->
+<!--        <div class="text-error" *ngIf="form.controls['descriptuon'].errors?.required && showError">-->
+<!--          This field is required.-->
+<!--        </div>-->
+<!--      </div>-->
 
       <div class="col-md-4 form-group">
         <label class="required set-label">builder name</label>
@@ -203,6 +203,12 @@
       <!--        </div>-->
       <!--      </div>-->
 
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+      <angular-editor formControlName="descriptuon" [config]="editorConfig"></angular-editor>
+      </div>
     </div>
 
     <div class="row">

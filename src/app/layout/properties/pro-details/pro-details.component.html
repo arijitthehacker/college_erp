@@ -61,7 +61,6 @@
     </tr>
 
 
-
     <tr>
       <td>
         <h5>Total units</h5>
@@ -76,7 +75,6 @@
         <p>{{modalData?.commision_in_percentage || '-'}}</p>
       </td>
     </tr>
-
 
 
     <tr>
@@ -96,8 +94,6 @@
     </tr>
 
 
-
-
     <tr>
       <td>
         <h5>Address</h5>
@@ -106,7 +102,7 @@
 
       <td colspan="2">
         <h5>Description</h5>
-        <p>{{modalData?.descriptuon || '-'}}</p>
+        <p [innerHTML]="modalData?.descriptuon">{{modalData?.descriptuon || '-'}}</p>
       </td>
 
     </tr>
@@ -115,7 +111,7 @@
       <td colspan="3">
         <h5>Brochure</h5>
         <div class="detail-images">
-            <img [src]="modalData?.brochure">
+          <img [src]="modalData?.brochure">
         </div>
       </td>
     </tr>

@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{!modalData ? 'Add' : 'Edit'}} {{commonService.title}}
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Name</label>
+        <input [autofocus]="true" class="form-control" formControlName="name"
+               type="text" placeholder="Enter name"/>
+        <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">{{!modalData ? 'Submit' : 'Update'}}</button>
+  </div>
+</form>

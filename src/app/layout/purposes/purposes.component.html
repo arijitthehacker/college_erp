@@ -2,17 +2,33 @@
   <div class="col-md-12">
     <div class="my-box">
       <div class="row">
-
         <div class="col-md-3">
           <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
           </h4>
         </div>
 
-        <div class="col-md-9 text-right">
+        <div class="col-md-9">
 
           <div class="row">
 
-            <div class="col-md-10">
+            <div class="col-md-5">
+            </div>
+
+            <div class="col-md-5">
+              <!--                <form (ngSubmit)="pagination.pageNo = 0;getData()" class="search-input">-->
+              <!--                  <div class="input-group">-->
+              <!--                    <input autocomplete="off" class="form-control py-2 border-right-0 border"-->
+              <!--                           type="search"-->
+              <!--                           id="example-search-input" placeholder="Search"-->
+              <!--                           [formControl]="search">-->
+              <!--                    <span class="input-group-append">-->
+              <!--                                  <button class="btn border-left-0 border" type="submit">-->
+              <!--                                        <i class="fa fa-search"></i>-->
+              <!--                                  </button>-->
+              <!--                                </span>-->
+
+              <!--                  </div>-->
+              <!--                </form>-->
             </div>
 
             <div class="col-md-2 sm-input-space">
@@ -20,7 +36,6 @@
                 + Add New
               </button>
             </div>
-
           </div>
         </div>
       </div>
@@ -36,11 +51,7 @@
           <thead>
           <tr>
             <th>Sr. No.</th>
-            <th>Cover Image</th>
             <th>Name</th>
-<!--            <th>Description</th>-->
-            <th>Address List</th>
-            <th>Details</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -48,26 +59,12 @@
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
-            <td>
-              <img [src]="data.cover_image" class="small-img"
-                   (click)="commonService.openLightBox(data.cover_image)">
-            </td>
-            <td>{{data?.name || '-'}}</td>
-<!--            <td>-->
-<!--              <app-see-more [msg]="data?.descriptuon"></app-see-more>-->
-<!--            </td>-->
-            <td>
-              <a class="my-link" (click)="openProAddresses(data)">Address List</a>
-            </td>
-            <td>
-              <a class="my-link" (click)="openProDetails(data)">Details</a>
-            </td>
-
+            <td>{{data?.name}}</td>
             <td class="edit-section">
-              <!--                <div (click)="blockUnblock(data)">-->
-              <!--                  <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>-->
-              <!--                  <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>-->
-              <!--                </div>-->
+              <div (click)="blockUnblock(data)">
+                <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
+                <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
+              </div>
               <div>
                 <i (click)="addEditModalOpen(data)" class="fa fa-edit"></i>
               </div>
@@ -83,16 +80,18 @@
 
       <div class="row" *ngIf="pagination.count">
         <div class="col-sm-6">
-          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
-            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
-            of {{pagination.count}} entries </p>
+          <!--            <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to-->
+          <!--              {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out-->
+          <!--              of {{pagination.count}} entries </p>-->
         </div>
         <div class="col-sm-6 text-right">
           <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
-                               nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                               nextLabel="Next"
+                               screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
                                screenReaderCurrentLabel="You're on page"></pagination-controls>
         </div>
       </div>
+
     </div>
   </div>
 </div>

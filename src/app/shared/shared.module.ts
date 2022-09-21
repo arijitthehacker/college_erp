@@ -27,13 +27,14 @@ import { TagInputModule } from 'ngx-chips';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProDetailsComponent } from '../layout/properties/pro-details/pro-details.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const directives = [NumberOnlyDirective, AmountDirective, NoRecordComponent, ReplaceUnderscorePipe,
   SeeMoreComponent, HHMMSSPipe, CapitalizeFirstDirective, ProDetailsComponent];
 
 const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPaginationModule,
   NgSelectModule, FormsModule, NgxIntlTelInputModule, AutocompleteLibModule,
-  TagInputModule, TooltipModule, TextMaskModule
+  TagInputModule, TooltipModule, TextMaskModule,AngularEditorModule
 ];
 
 @NgModule({
