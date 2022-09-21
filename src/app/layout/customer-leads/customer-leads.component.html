@@ -67,7 +67,10 @@
             </td>
             <td>
               <a (click)="openMemberDetails(data?.agent_id, 'Agent ')"
+                 *ngIf="data?.agent_id?.name"
                  class="my-link">{{data?.agent_id?.name || '-'}}</a>
+              <ng-container *ngIf="!data?.agent_id?.name">-</ng-container>
+
               <!--              {{data?.agent_id?.name || '-'}}-->
             </td>
             <td>

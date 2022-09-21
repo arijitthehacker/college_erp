@@ -18,15 +18,14 @@ export class CommonService {
   profileData: any = {};
   public subject = new Subject<any>();
 
-
   constructor(private location: Location, private message: MessageService, public lightbox: Lightbox,
               public router: Router) {
 
   }
+
   getMessage(): Observable<any> {
     return this.subject.asObservable();
   }
-
 
   getProfileData() {
     if (!!localStorage.getItem(CONSTANT.tokenKey)) {
@@ -79,6 +78,16 @@ export class CommonService {
     window.open(url, '_blank');
   }
 
+  checkPDFLink(url) {
+    let isPdf = false;
+    if (url) {
+      if (url.includes('pdf')) {
+        isPdf = true;
+      }
+    }
+    return isPdf;
+  }
+
   removeEmptyKeys(obj) {
     Object.keys(obj).forEach((k) => {
       if (obj[k] == false) {
@@ -111,7 +120,6 @@ export class CommonService {
     }
     return finalMinutes;
   }
-
 
   afterLogout() {
     localStorage.clear();

@@ -99,19 +99,19 @@
       </td>
     </tr>
 
-    <tr>
-      <td colspan="3">
-        <h5>Description</h5>
-        <p [innerHTML]="modalData?.descriptuon">{{modalData?.descriptuon || '-'}}</p>
-      </td>
-
-    </tr>
 
     <tr>
       <td colspan="3">
         <h5>Brochure</h5>
         <div class="detail-images">
-          <img [src]="modalData?.brochure">
+
+          <img [src]="modalData?.brochure" *ngIf="!commonService.checkPDFLink(modalData?.brochure)">
+
+          <a *ngIf="commonService.checkPDFLink(modalData?.brochure)" class="my-link"
+             (click)="commonService.goToLink(modalData?.brochure)">
+            <i class="fa fa-file-pdf-o fa-3x" aria-hidden="true"></i>
+          </a>
+
         </div>
       </td>
     </tr>
@@ -125,6 +125,16 @@
         </div>
       </td>
     </tr>
+
+
+    <tr>
+      <td colspan="3">
+        <h5>Description</h5>
+        <p [innerHTML]="modalData?.descriptuon">{{modalData?.descriptuon || '-'}}</p>
+      </td>
+
+    </tr>
+
   </table>
 
 

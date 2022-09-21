@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkoffice=self.webpackChunkoffice||[]).push([[592],{2227:(s,t,i)=>{i.d(t,{j:()=>e});class e{constructor(){this.page=1,this.limit=10,this.pageSize=10,this.skip=0,this.pageIndex=0,this.count=0,this.pageNo=1,this.perPage=10,this.autoHide=!0,this.directionLinks=!0,this.rotate=!0,this.allData=[]}}}}]);
