@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout.component';
 import { AgentsModule } from './agents/agents.module';
 import { MembersModule } from './members/members.module';
+import { ReasonsModule } from './reasons/reasons.module';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
         path: 'properties',
         loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule),
         data: {breadcrumb: 'Properties', title: 'property'}
+      }, {
+        path: 'reasons',
+        loadChildren: () => import('./reasons/reasons.module').then(m => m.ReasonsModule),
+        data: {breadcrumb: 'Reject Reasons', title: 'reason'}
       }, {
         path: 'customer-leads',
         loadChildren: () => import('./customer-leads/customer-leads.module').then(m => m.CustomerLeadsModule),

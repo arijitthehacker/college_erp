@@ -81,16 +81,16 @@
 
     <tr>
       <td>
-        <h5>Brochure</h5>
-        <p>{{modalData?.brochure || '-'}}</p>
-      </td>
-      <td>
         <h5>Builder name</h5>
         <p>{{modalData?.builder_name || '-'}}</p>
       </td>
       <td>
         <h5>Tensure</h5>
         <p>{{modalData?.tensure || '-'}}</p>
+      </td>
+      <td>
+        <h5>Completion year</h5>
+        <p>{{modalData?.completion_year || '-'}}</p>
       </td>
 
     </tr>
@@ -103,16 +103,20 @@
         <h5>Address</h5>
         <p>{{modalData?.address || '-'}}</p>
       </td>
-      <td>
-        <h5>Completion year</h5>
-        <p>{{modalData?.completion_year || '-'}}</p>
+
+      <td colspan="2">
+        <h5>Description</h5>
+        <p>{{modalData?.descriptuon || '-'}}</p>
       </td>
+
     </tr>
 
     <tr>
       <td colspan="3">
-        <h5>Description</h5>
-        <p>{{modalData?.descriptuon || '-'}}</p>
+        <h5>Brochure</h5>
+        <div class="detail-images">
+            <img [src]="modalData?.brochure">
+        </div>
       </td>
     </tr>
     <tr>
