@@ -93,20 +93,23 @@
     </tr>
 
     <tr>
-      <td colspan="3">
-        <h5>Address</h5>
-        <p>{{modalData?.address || '-'}}</p>
+      <td>
+        <h5>Member Commission</h5>
+        <p>{{modalData?.member_commision || '-'}}</p>
+      </td>
+
+      <td>
+        <h5>Property Type</h5>
+        <p>{{modalData?.peropert_type || '-'}}</p>
       </td>
     </tr>
 
 
     <tr>
-      <td colspan="3">
+      <td>
         <h5>Brochure</h5>
         <div class="detail-images">
-
           <img [src]="modalData?.brochure" *ngIf="!commonService.checkPDFLink(modalData?.brochure)">
-
           <a *ngIf="commonService.checkPDFLink(modalData?.brochure)" class="my-link"
              (click)="commonService.goToLink(modalData?.brochure)">
             <i class="fa fa-file-pdf-o fa-3x" aria-hidden="true"></i>
@@ -114,6 +117,12 @@
 
         </div>
       </td>
+
+      <td colspan="2">
+        <h5>Address</h5>
+        <p>{{modalData?.address || '-'}}</p>
+      </td>
+
     </tr>
     <tr>
       <td colspan="3">

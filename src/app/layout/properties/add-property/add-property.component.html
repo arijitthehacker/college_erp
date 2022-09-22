@@ -131,11 +131,33 @@
         <select class="form-control" formControlName="status">
           <option value="">Please select category type</option>
           <option value="PRE_LAUNCH"> PRE LAUNCH</option>
-          <option value="NEW_LAUNCH">NEW_LAUNCH</option>
+          <option value="NEW_LAUNCH">NEW LAUNCH</option>
           <option value="UNDER_CONSTRUCTION">UNDER CONSTRUCTION</option>
           <option value="COMPLETED">COMPLETED</option>
         </select>
         <div class="text-error" *ngIf="form.controls['status'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Select property type</label>
+        <select class="form-control" formControlName="peropert_type">
+          <option value="">Please select property type</option>
+          <option value="HOUSE"> HOUSE</option>
+          <option value="APARTMENT">APARTMENT</option>
+          <option value="OFFICE">OFFICE</option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['peropert_type'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">member commision</label>
+        <input class="form-control" formControlName="member_commision" appNumberOnly
+               type="text" placeholder="Enter memeber commission"/>
+        <div class="text-error" *ngIf="form.controls['member_commision'].errors?.required && showError">
           This field is required.
         </div>
       </div>
