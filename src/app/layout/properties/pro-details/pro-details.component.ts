@@ -27,7 +27,8 @@ export class ProDetailsComponent implements OnInit {
 
   getData() {
     let obj: any = {
-      skip: 0
+      skip: 0,
+      _id: this.modalData._id
     };
     this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
       this.modalData = res.data.data[0];
