@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { MessageService } from 'src/app/services/message/message.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
-import {  SIDEBAR } from '../../../core/constant';
+import { SIDEBAR } from '../../../core/constant';
 
 @Component({
   selector: 'app-side-bar',
@@ -12,6 +12,7 @@ import {  SIDEBAR } from '../../../core/constant';
 export class SideBarComponent implements OnInit {
 
   sideBar = SIDEBAR;
+  showOptions = false;
   selectedIndex = 0;
   selectedRoute = 'appointments';
 

@@ -7,6 +7,7 @@ import { LayoutComponent } from './layout.component';
 import { AgentsModule } from './agents/agents.module';
 import { MembersModule } from './members/members.module';
 import { ReasonsModule } from './reasons/reasons.module';
+import { InfoPagesModule } from './info-pages/info-pages.module';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
         path: 'reasons',
         loadChildren: () => import('./reasons/reasons.module').then(m => m.ReasonsModule),
         data: {breadcrumb: 'Reject Reasons', title: 'reason'}
+      }, {
+        path: 'info-pages/:type',
+        loadChildren: () => import('./info-pages/info-pages.module').then(m => m.InfoPagesModule),
+        data: {breadcrumb: 'Info pages', title: 'info pages'}
       }, {
         path: 'customer-leads',
         loadChildren: () => import('./customer-leads/customer-leads.module').then(m => m.CustomerLeadsModule),
