@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Transfer to
+    <ng-container *ngIf="modalData?.type === 1">Owner</ng-container>
+    <ng-container *ngIf="modalData?.type === 2">Agent</ng-container>
+    <ng-container *ngIf="modalData?.type === 3">Member</ng-container>
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row" >
+      <div class="col-md-12 form-group">
+        <label class="required set-label">advanced price</label>
+        <input [autofocus]="true" class="form-control" formControlName="advanced_price"
+               type="text" placeholder="Enter advanced price"/>
+        <div class="text-error" *ngIf="form.controls['advanced_price'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">Submit</button>
+  </div>
+</form>

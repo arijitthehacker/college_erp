@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    {{!modalData ? 'Add' : 'Edit'}} {{commonService.title}}
+    {{!modalData ? 'Create New' : 'Edit'}} {{commonService.title}}
   </h4>
   <button class="btn-close" (click)="bsModalRef.hide()"></button>
 </div>
@@ -122,7 +122,7 @@
           <option value="">Please select category type</option>
           <option value="FEATURED"> FEATURED</option>
           <option value="HOT_SELLING">HOT SELLING</option>
-          <option value="LIMITED_UNITIES">LIMITED UNITIES</option>
+          <option value="LIMITED_UNITIES">LIMITED UNITS</option>
         </select>
       </div>
 
@@ -163,10 +163,18 @@
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">commission (in %)</label>
-        <input class="form-control" formControlName="commision_in_percentage" appNumberOnly
-               type="text" placeholder="Enter commission"/>
-        <div class="text-error" *ngIf="form.controls['commision_in_percentage'].errors?.required && showError">
+        <label class="required set-label">Agent commission</label>
+        <input class="form-control" formControlName="agent_commision" appNumberOnly
+               type="text" placeholder="Enter agent commission"/>
+        <div class="text-error" *ngIf="form.controls['agent_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Group owner commission</label>
+        <input class="form-control" formControlName="group_owner_commision" appNumberOnly
+               type="text" placeholder="Enter group owner commission"/>
+        <div class="text-error" *ngIf="form.controls['group_owner_commision'].errors?.required && showError">
           This field is required.
         </div>
       </div>

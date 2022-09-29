@@ -33,7 +33,7 @@ export class SideBarComponent implements OnInit {
     });
   }
 
-  optionClick(index) {
+  optionClick(index?) {
     // if (this.showSideBar) {
     //     document.getElementById('app-sidebar').style.width = '230px';
     //     document.getElementById('app-content').style['margin-left'] = '230px';

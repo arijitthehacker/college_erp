@@ -18,6 +18,7 @@ export const ApiUrl = {
   managed_rejection_reason: 'Admin/managed_rejection_reason',
   managed_peroperty_budgets: 'Admin/managed_peroperty_budgets',
   managed_peroperty_purpose: 'Admin/managed_peroperty_purpose',
+  managed_payment_request: 'Admin/managed_payment_request',
   list_rejection_reason: 'Admin/list_rejection_reason',
   managed_peroperty_address: 'Admin/managed_peroperty_address',
   list_peroperty_categories: 'Admin/list_peroperty_categories',

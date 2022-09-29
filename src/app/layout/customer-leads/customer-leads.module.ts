@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StatusesComponent } from './statuses/statuses.component';
 import { MemberDetailsComponent } from './member-details/member-details.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
   declarations: [
     CustomerLeadsComponent,
     StatusesComponent,
-    MemberDetailsComponent
+    MemberDetailsComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ const routes: Routes = [
   ],
   entryComponents: [
     StatusesComponent,
-    MemberDetailsComponent
+    MemberDetailsComponent,
+    PaymentComponent
   ]
 })
 export class CustomerLeadsModule {

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { StatusesComponent } from './statuses/statuses.component';
 import { MemberDetailsComponent } from './member-details/member-details.component';
 import { ProDetailsComponent } from '../properties/pro-details/pro-details.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @Component({
   selector: 'app-accounts',
@@ -74,8 +75,6 @@ export class CustomerLeadsComponent implements OnInit {
     });
   }
 
-
-
   openMemberDetails(data?: any, showLabel?) {
     if (data?.name) {
       this.modalService.show(MemberDetailsComponent, {
@@ -90,7 +89,11 @@ export class CustomerLeadsComponent implements OnInit {
     });
   }
 
-
-
+  openPaymentModal(data?: any, type?: number) {
+    data.type = type;
+    const modalRef = this.modalService.show(PaymentComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+    });
+  }
 
 }

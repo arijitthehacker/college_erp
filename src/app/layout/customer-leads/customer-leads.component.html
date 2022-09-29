@@ -38,7 +38,10 @@
             <th>Property Name</th>
             <th>Member Name</th>
             <th>Group Owner</th>
-            <th>Agent Name</th>
+            <th>Managed By</th>
+<!--            <th class="pay-th">Payment to owner</th>-->
+<!--            <th class="pay-th">Payment to agent</th>-->
+<!--            <th class="pay-th">Payment to member</th>-->
             <th>Status</th>
             <th>Status Details</th>
           </tr>
@@ -73,14 +76,29 @@
 
               <!--              {{data?.agent_id?.name || '-'}}-->
             </td>
+<!--            <td>-->
+<!--              <button type="button" class="payment-btn" (click)="openPaymentModal(data,1)">Transfer to-->
+<!--                owner-->
+<!--              </button>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <button type="button" class="payment-btn" (click)="openPaymentModal(data,2)">Transfer to-->
+<!--                agent-->
+<!--              </button>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <button type="button" class="payment-btn" (click)="openPaymentModal(data,3)">Transfer to-->
+<!--                member-->
+<!--              </button>-->
+<!--            </td>-->
             <td>
               <label class="status-label" [ngClass]="{
                 'rejected':data?.booking_status === 'REJECTED',
                 'pending':data?.booking_status === 'PENDING',
-                'approved':data?.booking_status === 'ACCEPTED'
+                'approved': (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'COMPLETED')
             }"> {{data?.booking_status}}</label>
 
-<!--              {{data?.booking_status}}-->
+              <!--              {{data?.booking_status}}-->
             </td>
 
             <td>

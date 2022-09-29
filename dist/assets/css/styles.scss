@@ -247,7 +247,7 @@ label.switch_drop {
   color: $main-color;
 }
 
-.add-pdf-btn{
+.add-pdf-btn {
   font-size: 46px;
   padding: 6px 8px;
   border: 1px solid;
@@ -906,5 +906,19 @@ textarea.form-control {
 
 select {
   -webkit-appearance: listbox !important
+}
+
+.payment-btn {
+  background: green;
+  color: white;
+  border: none;
+  font-size: 12px;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 0px 12px;
+}
+
+.pay-th{
+  min-width: 145px;
 }
 
