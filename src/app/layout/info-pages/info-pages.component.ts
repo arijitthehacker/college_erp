@@ -20,9 +20,10 @@ export class InfoPagesComponent implements OnInit {
 
   editorConfig: AngularEditorConfig = {
     editable: true,
+    height: '350px',
+    minHeight: '350px',
     // spellcheck: true,
-    height: '500',
-    minHeight: '500',
+
     // maxHeight: 'auto',
     // width: 'auto',
     // minWidth: '0',

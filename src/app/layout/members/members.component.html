@@ -2,24 +2,9 @@
   <div class="col-md-12">
     <div class="my-box">
       <div class="row">
-
         <div class="col-md-3">
           <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
           </h4>
-        </div>
-
-        <div class="col-md-9 text-right">
-
-          <div class="row">
-
-            <div class="col-md-10">
-            </div>
-
-            <div class="col-md-2 sm-input-space">
-
-
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -29,63 +14,63 @@
 <div class="row mt-3 mb-2">
   <div class="col-md-12">
     <div class="my-box">
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>Sr. No.</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Contact Number</th>
-              <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr
-              *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-              <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
-              <td>
-                <img [src]="data.image || '/assets/images/no-img.webp'" class="small-img"
-                     (click)="commonService.openLightBox(data.image)">
-              </td>
-              <td>{{data?.name || '-'}}</td>
-              <td>{{data?.email || '-'}}</td>
-              <td>{{data?.country_code}} {{data?.phone_number }}</td>
-              <!--              <td>-->
-              <!--                <app-see-more [msg]="data?.description"></app-see-more>-->
-              <!--              </td>-->
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
+            <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
+            <td>
+              <img [src]="data.image || '/assets/images/no-img.webp'" class="small-img"
+                   (click)="commonService.openLightBox(data.image)">
+            </td>
+            <td>{{data?.name || '-'}}</td>
+            <td>{{data?.email || '-'}}</td>
+            <td>{{data?.country_code}} {{data?.phone_number }}</td>
+            <!--              <td>-->
+            <!--                <app-see-more [msg]="data?.description"></app-see-more>-->
+            <!--              </td>-->
 
-              <td class="edit-section">
-                <div (click)="blockUnblock(data)">
-                  <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
-                  <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
-                </div>
-                <!--                <span class="fa-span  ml-3">-->
-                <!--                    <i (click)="addEditModalOpen(data)" class="cursor-pointer action-fa fa fa-edit"></i>-->
-                <!--                  </span>-->
-                <div>
-                  <i (click)="deleteData(data)" class="fa fa-trash"></i>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <app-no-record *ngIf="!pagination.count"></app-no-record>
-        </div>
+            <td class="edit-section">
+              <div (click)="blockUnblock(data)">
+                <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
+                <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
+              </div>
+              <!--                <span class="fa-span  ml-3">-->
+              <!--                    <i (click)="addEditModalOpen(data)" class="cursor-pointer action-fa fa fa-edit"></i>-->
+              <!--                  </span>-->
+              <div>
+                <i (click)="deleteData(data)" class="fa fa-trash"></i>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <app-no-record *ngIf="!pagination.count"></app-no-record>
+      </div>
 
-        <div class="row" *ngIf="pagination.count">
-          <div class="col-sm-6">
-            <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
-              {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
-              of {{pagination.count}} entries </p>
-          </div>
-          <div class="col-sm-6 text-right">
-            <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
-                                 nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
-                                 screenReaderCurrentLabel="You're on page"></pagination-controls>
-          </div>
+      <div class="row" *ngIf="pagination.count">
+        <div class="col-sm-6">
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
         </div>
+        <div class="col-sm-6 text-right">
+          <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
+                               nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                               screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+      </div>
     </div>
   </div>
 </div>

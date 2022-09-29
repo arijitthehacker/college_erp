@@ -9,17 +9,10 @@
         </div>
 
         <div class="col-md-9 text-right">
-
-          <div class="row">
-
-            <div class="col-md-8">
-            </div>
-
-            <div class="col-md-4 sm-input-space text-right">
-              <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
-                Create New Property
-              </button>
-            </div>
+          <div class="sm-input-space">
+            <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
+              Create New Property
+            </button>
 
           </div>
         </div>
@@ -38,7 +31,7 @@
             <th>Sr. No.</th>
             <th>Cover Image</th>
             <th>Name</th>
-<!--            <th>Description</th>-->
+            <!--            <th>Description</th>-->
             <th>Address List</th>
             <th>Property Details</th>
             <th>Action</th>
@@ -53,9 +46,9 @@
                    (click)="commonService.openLightBox(data.cover_image)">
             </td>
             <td>{{data?.name || '-'}}</td>
-<!--            <td>-->
-<!--              <app-see-more [msg]="data?.descriptuon"></app-see-more>-->
-<!--            </td>-->
+            <!--            <td>-->
+            <!--              <app-see-more [msg]="data?.descriptuon"></app-see-more>-->
+            <!--            </td>-->
             <td>
               <a class="my-link" (click)="openProAddresses(data)">View</a>
             </td>
