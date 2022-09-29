@@ -61,7 +61,7 @@ export class AddPropertyComponent implements OnInit {
       completion_year: ['', Validators.required],
       start_price: [null, Validators.required],
       status: ['', Validators.required],
-      end_price: [null, Validators.required],
+      end_price: [null],
       area_size_type: ['', Validators.required],
       address: ['', Validators.required],
       lat: ['', Validators.required],

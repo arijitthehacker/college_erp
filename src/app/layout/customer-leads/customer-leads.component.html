@@ -48,7 +48,13 @@
           </thead>
           <tbody>
           <tr
-            *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
+            *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;"
+            [ngClass]="{
+                'rejected':data?.booking_status === 'REJECTED',
+                'pending':data?.booking_status === 'PENDING',
+                'approved': (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'COMPLETED')
+            }"
+          >
             <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
             <td>
               <a (click)="openMemberDetails(data, 'Customer')"
@@ -92,11 +98,7 @@
 <!--              </button>-->
 <!--            </td>-->
             <td>
-              <label class="status-label" [ngClass]="{
-                'rejected':data?.booking_status === 'REJECTED',
-                'pending':data?.booking_status === 'PENDING',
-                'approved': (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'COMPLETED')
-            }"> {{data?.booking_status}}</label>
+              <label class="status-label"> {{data?.booking_status}}</label>
 
               <!--              {{data?.booking_status}}-->
             </td>

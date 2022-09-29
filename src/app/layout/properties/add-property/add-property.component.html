@@ -60,7 +60,7 @@
         </div>
       </div>
       <div class="col-md-4 form-group">
-        <label class="required set-label">max bedroom</label>
+        <label class="set-label">max bedroom (Optional)</label>
         <input class="form-control" formControlName="max_bedroom" appNumberOnly
                type="text" placeholder="Enter max bedroom"/>
       </div>
@@ -74,7 +74,7 @@
         </div>
       </div>
       <div class="col-md-4 form-group">
-        <label class="required set-label">max bathroom</label>
+        <label class="set-label">max bathroom (optional)</label>
         <input class="form-control" formControlName="max_bathroom" appNumberOnly
                type="text" placeholder="Enter max bathroom"/>
       </div>
@@ -89,7 +89,7 @@
         </div>
       </div>
       <div class="col-md-4 form-group">
-        <label class="required set-label">Max area size</label>
+        <label class="set-label">Max area size (optional)</label>
         <input class="form-control" formControlName="max_area_size"
                type="text" placeholder="Enter max area size"/>
       </div>
@@ -125,12 +125,9 @@
         </div>
       </div>
       <div class="col-md-4 form-group">
-        <label class="required set-label">end price</label>
+        <label class="set-label">end price (optional)</label>
         <input class="form-control" formControlName="end_price" appNumberOnly
                type="text" placeholder="Enter end price"/>
-        <div class="text-error" *ngIf="form.controls['end_price'].errors?.required && showError">
-          This field is required.
-        </div>
       </div>
 
       <div class="col-md-4 form-group">

@@ -7,14 +7,6 @@
 
 <div class="modal-body">
 
-  <!--  <div class="row">-->
-  <!--    <div class="img-area">-->
-  <!--      <img [src]="modalData?.image"-->
-  <!--           (click)="commonService.openLightBox(modalData?.image)">-->
-  <!--    </div>-->
-  <!--  </div>-->
-
-  <!--  <div class="row">-->
   <table class="table details-table">
     <tr>
       <td>
@@ -60,8 +52,8 @@
         <p>{{modalData?.area_size_type || '-'}}</p>
       </td>
     </tr>
-    <tr>
 
+    <tr>
       <td>
         <h5>Start Price</h5>
         <p>{{modalData?.start_price || '-'}}</p>
@@ -90,6 +82,10 @@
         <h5>Min agent commission</h5>
         <p>{{modalData?.min_agent_commision || '-'}}</p>
       </td>
+
+    </tr>
+
+    <tr>
       <td>
         <h5>Max agent commission</h5>
         <p>{{modalData?.max_agent_commision || '-'}}</p>
@@ -98,8 +94,11 @@
         <h5>Group owner commission</h5>
         <p>{{modalData?.group_owner_commision || '-'}}</p>
       </td>
+      <td>
+        <h5>Property Type</h5>
+        <p>{{modalData?.peropert_type || '-'}}</p>
+      </td>
     </tr>
-
 
     <tr>
       <td>
@@ -126,10 +125,7 @@
         <p>{{modalData?.max_member_commision || '-'}}</p>
       </td>
 
-      <td>
-        <h5>Property Type</h5>
-        <p>{{modalData?.peropert_type || '-'}}</p>
-      </td>
+
     </tr>
 
 

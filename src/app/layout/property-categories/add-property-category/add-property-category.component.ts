@@ -20,8 +20,7 @@ export class AddPropertyCategoryComponent implements OnInit {
   modalData: any;
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
-              public bsModalRef: BsModalRef, public commonService: CommonService
-  ) {
+              public bsModalRef: BsModalRef, public commonService: CommonService) {
   }
 
   ngOnInit() {
@@ -31,7 +30,8 @@ export class AddPropertyCategoryComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       image: ['', [Validators.required]],
-      name: ['', [Validators.required]],
+      se_no: ['', [Validators.required]],
+      name: ['', [Validators.required]]
     });
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -41,6 +41,7 @@ export class AddPropertyCategoryComponent implements OnInit {
   patchData(data) {
     this.form.patchValue({
       image: data.image,
+      se_no: data.se_no,
       name: data.name
     });
   }
@@ -51,7 +52,6 @@ export class AddPropertyCategoryComponent implements OnInit {
       if (this.modalData) {
         obj[`_id`] = this.modalData._id;
       }
-
       this.http.postData(ApiUrl.add_edit_peroperty_categories, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',

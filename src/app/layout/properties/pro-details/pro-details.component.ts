@@ -16,12 +16,10 @@ export class ProDetailsComponent implements OnInit {
   modalData: any;
 
   constructor(public message: MessageService, public bsModalRef: BsModalRef, public commonService: CommonService,
-              public http: HttpService
-  ) {
+              public http: HttpService) {
   }
 
   ngOnInit() {
-    console.log(this.modalData, 'modalData');
     this.getData();
   }
 

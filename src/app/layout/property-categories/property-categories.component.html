@@ -7,35 +7,11 @@
           </h4>
         </div>
 
-        <div class="col-md-9">
-
-          <div class="row">
-
-            <div class="col-md-5">
-            </div>
-
-            <div class="col-md-3">
-              <!--                <form (ngSubmit)="pagination.pageNo = 0;getData()" class="search-input">-->
-              <!--                  <div class="input-group">-->
-              <!--                    <input autocomplete="off" class="form-control py-2 border-right-0 border"-->
-              <!--                           type="search"-->
-              <!--                           id="example-search-input" placeholder="Search"-->
-              <!--                           [formControl]="search">-->
-              <!--                    <span class="input-group-append">-->
-              <!--                                  <button class="btn border-left-0 border" type="submit">-->
-              <!--                                        <i class="fa fa-search"></i>-->
-              <!--                                  </button>-->
-              <!--                                </span>-->
-
-              <!--                  </div>-->
-              <!--                </form>-->
-            </div>
-
-            <div class="col-md-4 sm-input-space">
-              <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
-               Create New Property Category
-              </button>
-            </div>
+        <div class="col-md-9 text-right">
+          <div class="sm-input-space">
+            <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
+              Create New Property Category
+            </button>
           </div>
         </div>
       </div>
@@ -50,7 +26,7 @@
         <table class="table table-hover">
           <thead>
           <tr>
-            <th>Sr. No.</th>
+            <th>Display Order</th>
             <th>Image</th>
             <th>Name</th>
             <th>Action</th>
@@ -59,7 +35,8 @@
           <tbody>
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-            <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
+            <!--            <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>-->
+            <td>{{data?.se_no}}</td>
             <td>
               <img [src]="data.image" class="small-img"
                    (click)="commonService.openLightBox(data.image)">
