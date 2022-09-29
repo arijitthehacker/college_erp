@@ -52,29 +52,46 @@
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">bedroom</label>
-        <input class="form-control" formControlName="bedroom" appNumberOnly
-               type="text" placeholder="Enter bedroom"/>
-        <div class="text-error" *ngIf="form.controls['bedroom'].errors?.required && showError">
+        <label class="required set-label">min bedroom</label>
+        <input class="form-control" formControlName="min_bedroom" appNumberOnly
+               type="text" placeholder="Enter min bedroom"/>
+        <div class="text-error" *ngIf="form.controls['min_bedroom'].errors?.required && showError">
           This field is required.
         </div>
       </div>
       <div class="col-md-4 form-group">
-        <label class="required set-label">bathroom</label>
-        <input class="form-control" formControlName="bathroom" appNumberOnly
-               type="text" placeholder="Enter bathroom"/>
-        <div class="text-error" *ngIf="form.controls['bathroom'].errors?.required && showError">
-          This field is required.
-        </div>
+        <label class="required set-label">max bedroom</label>
+        <input class="form-control" formControlName="max_bedroom" appNumberOnly
+               type="text" placeholder="Enter max bedroom"/>
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">area size</label>
-        <input class="form-control" formControlName="area_size"
-               type="text" placeholder="Enter area size"/>
-        <div class="text-error" *ngIf="form.controls['area_size'].errors?.required && showError">
+        <label class="required set-label">min bathroom</label>
+        <input class="form-control" formControlName="min_bathroom" appNumberOnly
+               type="text" placeholder="Enter min bathroom"/>
+        <div class="text-error" *ngIf="form.controls['min_bathroom'].errors?.required && showError">
           This field is required.
         </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <label class="required set-label">max bathroom</label>
+        <input class="form-control" formControlName="max_bathroom" appNumberOnly
+               type="text" placeholder="Enter max bathroom"/>
+      </div>
+
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Min area size</label>
+        <input class="form-control" formControlName="min_area_size"
+               type="text" placeholder="Enter min area size"/>
+        <div class="text-error" *ngIf="form.controls['min_area_size'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Max area size</label>
+        <input class="form-control" formControlName="max_area_size"
+               type="text" placeholder="Enter max area size"/>
       </div>
 
       <div class="col-md-4 form-group">
@@ -154,29 +171,46 @@
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">member commision</label>
-        <input class="form-control" formControlName="member_commision" appNumberOnly
-               type="text" placeholder="Enter memeber commission"/>
-        <div class="text-error" *ngIf="form.controls['member_commision'].errors?.required && showError">
+        <label class="required set-label">Min member commision</label>
+        <input class="form-control" formControlName="min_member_commision" appNumberOnly
+               type="text" placeholder="Enter min  member commission"/>
+        <div class="text-error" *ngIf="form.controls['min_member_commision'].errors?.required && showError">
           This field is required.
         </div>
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">Agent commission</label>
-        <input class="form-control" formControlName="agent_commision" appNumberOnly
-               type="text" placeholder="Enter agent commission"/>
-        <div class="text-error" *ngIf="form.controls['agent_commision'].errors?.required && showError">
+        <label class="required set-label">Max member commision</label>
+        <input class="form-control" formControlName="max_member_commision" appNumberOnly
+               type="text" placeholder="Enter max member commission"/>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Min Agent commission</label>
+        <input class="form-control" formControlName="min_agent_commision" appNumberOnly
+               type="text" placeholder="Enter min agent commission"/>
+        <div class="text-error" *ngIf="form.controls['min_agent_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Max Agent commission</label>
+        <input class="form-control" formControlName="max_agent_commision" appNumberOnly
+               type="text" placeholder="Enter max agent commission"/>
+      </div>
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Min Group owner commission</label>
+        <input class="form-control" formControlName="min_group_owner_commision" appNumberOnly
+               type="text" placeholder="Enter min  group owner commission"/>
+        <div class="text-error" *ngIf="form.controls['min_group_owner_commision'].errors?.required && showError">
           This field is required.
         </div>
       </div>
       <div class="col-md-4 form-group">
-        <label class="required set-label">Group owner commission</label>
-        <input class="form-control" formControlName="group_owner_commision" appNumberOnly
-               type="text" placeholder="Enter group owner commission"/>
-        <div class="text-error" *ngIf="form.controls['group_owner_commision'].errors?.required && showError">
-          This field is required.
-        </div>
+        <label class="required set-label">Max Group owner commission</label>
+        <input class="form-control" formControlName="max_group_owner_commision" appNumberOnly
+               type="text" placeholder="Enter max group owner commission"/>
       </div>
 
       <div class="col-md-4 form-group">

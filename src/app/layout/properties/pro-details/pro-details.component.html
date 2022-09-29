@@ -26,18 +26,34 @@
         <p>{{modalData?.from_code || '-'}}</p>
       </td>
       <td>
-        <h5>Bedroom</h5>
-        <p>{{modalData?.bedroom || '-'}}</p>
+        <h5>Min Bedroom</h5>
+        <p>{{modalData?.min_bedroom || '-'}}</p>
       </td>
     </tr>
+
     <tr>
       <td>
-        <h5>Bathroom</h5>
-        <p>{{modalData?.bathroom || '-'}}</p>
+        <h5>Max Bedroom</h5>
+        <p>{{modalData?.max_bedroom || '-'}}</p>
       </td>
       <td>
-        <h5>Area size</h5>
-        <p>{{modalData?.area_size || '-'}}</p>
+        <h5>Min Bathroom</h5>
+        <p>{{modalData?.min_bathroom || '-'}}</p>
+      </td>
+      <td>
+        <h5>Max Bathroom</h5>
+        <p>{{modalData?.max_bathroom || '-'}}</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h5>Min Area size</h5>
+        <p>{{modalData?.min_area_size || '-'}}</p>
+      </td>
+      <td>
+        <h5>Max Area size</h5>
+        <p>{{modalData?.max_area_size || '-'}}</p>
       </td>
       <td>
         <h5>Area size type</h5>
@@ -71,8 +87,12 @@
         <p>{{modalData?.status |replaceUnderscore}}</p>
       </td>
       <td>
-        <h5>agent commission</h5>
-        <p>{{modalData?.agent_commision || '-'}}</p>
+        <h5>Min agent commission</h5>
+        <p>{{modalData?.min_agent_commision || '-'}}</p>
+      </td>
+      <td>
+        <h5>Max agent commission</h5>
+        <p>{{modalData?.max_agent_commision || '-'}}</p>
       </td>
       <td>
         <h5>Group owner commission</h5>
@@ -98,8 +118,12 @@
 
     <tr>
       <td>
-        <h5>Member Commission</h5>
-        <p>{{modalData?.member_commision || '-'}}</p>
+        <h5>Min Member Commission</h5>
+        <p>{{modalData?.min_member_commision || '-'}}</p>
+      </td>
+      <td>
+        <h5>Max Member Commission</h5>
+        <p>{{modalData?.max_member_commision || '-'}}</p>
       </td>
 
       <td>
@@ -145,16 +169,12 @@
         <h5>Description</h5>
         <p [innerHTML]="modalData?.descriptuon">{{modalData?.descriptuon || '-'}}</p>
       </td>
-
     </tr>
 
   </table>
 
-
-  <!--  </div>-->
 </div>
 
 <div class="modal-footer">
   <button (click)="bsModalRef.hide()" type="button" class="btn btn-default mr-3">Close</button>
-  <!--      <button type="submit" class="btn btn-blue">{{!modalData ? 'Submit' : 'Update'}}</button>-->
 </div>
