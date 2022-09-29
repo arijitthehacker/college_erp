@@ -24,49 +24,6 @@ export class AddPropertyComponent implements OnInit {
 
   editorConfig: AngularEditorConfig = {
     editable: true
-    // spellcheck: true,
-    // height: 'auto',
-    // minHeight: '0',
-    // maxHeight: 'auto',
-    // width: 'auto',
-    // minWidth: '0',
-    // translate: 'yes',
-    // enableToolbar: true,
-    // showToolbar: true,
-    // placeholder: 'Enter text here...',
-    // defaultParagraphSeparator: '',
-    // defaultFontName: '',
-    // defaultFontSize: '',
-    // fonts: [
-    //   {class: 'arial', name: 'Arial'},
-    //   {class: 'times-new-roman', name: 'Times New Roman'},
-    //   {class: 'calibri', name: 'Calibri'},
-    //   {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-    // ],
-    // customClasses: [
-    //   {
-    //     name: 'quote',
-    //     class: 'quote',
-    //   },
-    //   {
-    //     name: 'redText',
-    //     class: 'redText'
-    //   },
-    //   {
-    //     name: 'titleText',
-    //     class: 'titleText',
-    //     tag: 'h1',
-    //   },
-    // ],
-    // uploadUrl: 'v1/image',
-    // upload: (file: File) => { ... }
-    // uploadWithCredentials: false,
-    // sanitize: true,
-    // toolbarPosition: 'top',
-    // toolbarHiddenButtons: [
-    //   ['bold', 'italic'],
-    //   ['fontSize']
-    // ]
   };
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
@@ -86,21 +43,21 @@ export class AddPropertyComponent implements OnInit {
       brochure: [''],
       total_units: ['', Validators.required],
       min_bedroom: ['', Validators.required],
-      max_bedroom: [''],
+      max_bedroom: [0],
       min_member_commision: ['', Validators.required],
-      max_member_commision: [''],
+      max_member_commision: [0],
       peropert_type: ['', Validators.required],
       builder_name: ['', Validators.required],
       min_bathroom: ['', Validators.required],
-      max_bathroom: [''],
+      max_bathroom: [0],
       min_area_size: ['', Validators.required],
-      max_area_size: [''],
+      max_area_size: [0],
       tensure: ['', Validators.required],
       category_type: [''],
       min_agent_commision: ['', Validators.required],
-      max_agent_commision: [''],
+      max_agent_commision: [0],
       min_group_owner_commision: ['', Validators.required],
-      max_group_owner_commision: [''],
+      max_group_owner_commision: [0],
       completion_year: ['', Validators.required],
       start_price: [null, Validators.required],
       status: ['', Validators.required],
@@ -122,13 +79,18 @@ export class AddPropertyComponent implements OnInit {
       lat: data.lat,
       lng: data.lng,
       address: data.address,
+      min_agent_commision: data.min_agent_commision,
+      min_member_commision: data.min_member_commision,
       builder_name: data.builder_name,
       member_commision: data.member_commision,
       category_type: data.category_type,
-      // is_featured: data.is_featured,
+      min_group_owner_commision: data.min_group_owner_commision,
       descriptuon: data.descriptuon,
       completion_year: data.completion_year,
       peropert_type: data.peropert_type,
+      max_member_commision: data.max_member_commision,
+      max_agent_commision: data.max_agent_commision,
+      max_group_owner_commision: data.max_group_owner_commision,
       total_units: data.total_units,
       area_size_type: data.area_size_type,
       start_price: data.start_price,

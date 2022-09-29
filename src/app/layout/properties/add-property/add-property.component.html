@@ -171,7 +171,7 @@
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">Min member commision</label>
+        <label class="required set-label">Min member commission</label>
         <input class="form-control" formControlName="min_member_commision" appNumberOnly
                type="text" placeholder="Enter min  member commission"/>
         <div class="text-error" *ngIf="form.controls['min_member_commision'].errors?.required && showError">
@@ -180,7 +180,7 @@
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">Max member commision</label>
+        <label class="set-label">Max member commission (optional)</label>
         <input class="form-control" formControlName="max_member_commision" appNumberOnly
                type="text" placeholder="Enter max member commission"/>
       </div>
@@ -195,7 +195,7 @@
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">Max Agent commission</label>
+        <label class="set-label">Max Agent commission (optional)</label>
         <input class="form-control" formControlName="max_agent_commision" appNumberOnly
                type="text" placeholder="Enter max agent commission"/>
       </div>
@@ -208,7 +208,7 @@
         </div>
       </div>
       <div class="col-md-4 form-group">
-        <label class="required set-label">Max Group owner commission</label>
+        <label class="set-label">Max Group owner commission (optional)</label>
         <input class="form-control" formControlName="max_group_owner_commision" appNumberOnly
                type="text" placeholder="Enter max group owner commission"/>
       </div>
