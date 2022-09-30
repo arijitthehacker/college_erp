@@ -1,10 +1,19 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="my-box">
+    <div class="my-box box-header">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-9">
           <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
           </h4>
+        </div>
+        <div class="col-md-3 text-right sm-input-space">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search"
+                   [(ngModel)]="search" (keyup.enter)="getData()">
+            <span class="input-group-text" (click)="getData()">
+                <i class="fa fa-search"></i>
+              </span>
+          </div>
         </div>
       </div>
     </div>
@@ -29,7 +38,8 @@
           <tbody>
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-            <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
+            <td>
+              {{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
             <td>
               <img [src]="data.image || '/assets/images/no-img.webp'" class="small-img"
                    (click)="commonService.openLightBox(data.image)">

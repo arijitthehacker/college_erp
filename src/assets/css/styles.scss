@@ -6,7 +6,6 @@
 }
 
 
-
 .country-dropdown {
   width: 370px !important;
 }
@@ -908,7 +907,26 @@ select {
   padding: 0px 12px;
 }
 
-.pay-th{
+.pay-th {
   min-width: 145px;
 }
+
+.sm-input-space {
+  padding-top: 10px;
+}
+
+.box-header {
+  height: 78px;
+}
+
+
+.box-header .card-title {
+  line-height: 44px;
+  font-size: 28px;
+}
+
+.input-group-text {
+  cursor: pointer;
+}
+
 

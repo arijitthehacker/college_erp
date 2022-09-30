@@ -20,6 +20,8 @@ export class CustomerLeadsComponent implements OnInit {
 
   allData: any = [];
   date = '';
+  status = '';
+  search = '';
   pagination = new PaginationControls();
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
@@ -35,6 +37,13 @@ export class CustomerLeadsComponent implements OnInit {
     let obj: any = {
       skip: this.pagination.skip
     };
+    if (this.status) {
+      obj.status = this.status;
+    }
+    if (this.search) {
+      obj.search = this.search;
+    }
+
     this.http.getData(ApiUrl.list_customer_request, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;

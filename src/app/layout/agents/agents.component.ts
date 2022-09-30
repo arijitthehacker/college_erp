@@ -17,6 +17,7 @@ export class AgentsComponent implements OnInit {
 
   allData: any = [];
   date = '';
+  search = '';
   pagination = new PaginationControls();
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
@@ -32,6 +33,10 @@ export class AgentsComponent implements OnInit {
     let obj: any = {
       skip: this.pagination.skip
     };
+    if (this.search) {
+      obj.search = this.search;
+    }
+
     this.http.getData(ApiUrl.list_agents, obj).subscribe(res => {
       res.data.data.forEach((val) => {
         let showCode = '';

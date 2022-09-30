@@ -1,13 +1,32 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="my-box">
+    <div class="my-box box-header">
       <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-6">
           <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
           </h4>
         </div>
-        <div class="col-md-9 text-right">
+
+        <div class="col-md-3 text-right sm-input-space">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search"
+                   [(ngModel)]="search" (keyup.enter)="getData()">
+            <span class="input-group-text" (click)="getData()">
+                <i class="fa fa-search"></i>
+              </span>
+          </div>
+        </div>
+        <div class="col-md-3 text-right sm-input-space">
+          <select class="form-control" [(ngModel)]="status" (change)="getData()">
+            <option value="">All Status</option>
+            <option value="PENDING">PENDING</option>
+            <option value="ACCEPTED">ACCEPTED</option>
+            <option value="NOT_ASSIGNED">NOT ASSIGNED</option>
+            <option value="IN_PROGRESS">IN PROGRESS</option>
+            <option value="REJECTED">REJECTED</option>
+            <option value="COMPLETED">COMPLETED</option>
+          </select>
         </div>
       </div>
     </div>
@@ -27,9 +46,9 @@
             <th>Member Name</th>
             <th>Group Owner</th>
             <th>Managed By</th>
-<!--            <th class="pay-th">Payment to owner</th>-->
-<!--            <th class="pay-th">Payment to agent</th>-->
-<!--            <th class="pay-th">Payment to member</th>-->
+            <!--            <th class="pay-th">Payment to owner</th>-->
+            <!--            <th class="pay-th">Payment to agent</th>-->
+            <!--            <th class="pay-th">Payment to member</th>-->
             <th>Status</th>
             <th>Status Details</th>
           </tr>
@@ -41,9 +60,12 @@
                 'rejected':data?.booking_status === 'REJECTED',
                 'pending':data?.booking_status === 'PENDING',
                 'approved': (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'COMPLETED')
-            }"
-          >
-            <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
+            }">
+
+            <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+
+            <!--                        <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+-->
             <td>
               <a (click)="openMemberDetails(data, 'Customer')"
                  class="my-link">{{data?.name || '-'}}</a>
@@ -70,21 +92,21 @@
 
               <!--              {{data?.agent_id?.name || '-'}}-->
             </td>
-<!--            <td>-->
-<!--              <button type="button" class="payment-btn" (click)="openPaymentModal(data,1)">Transfer to-->
-<!--                owner-->
-<!--              </button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--              <button type="button" class="payment-btn" (click)="openPaymentModal(data,2)">Transfer to-->
-<!--                agent-->
-<!--              </button>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--              <button type="button" class="payment-btn" (click)="openPaymentModal(data,3)">Transfer to-->
-<!--                member-->
-<!--              </button>-->
-<!--            </td>-->
+            <!--            <td>-->
+            <!--              <button type="button" class="payment-btn" (click)="openPaymentModal(data,1)">Transfer to-->
+            <!--                owner-->
+            <!--              </button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--              <button type="button" class="payment-btn" (click)="openPaymentModal(data,2)">Transfer to-->
+            <!--                agent-->
+            <!--              </button>-->
+            <!--            </td>-->
+            <!--            <td>-->
+            <!--              <button type="button" class="payment-btn" (click)="openPaymentModal(data,3)">Transfer to-->
+            <!--                member-->
+            <!--              </button>-->
+            <!--            </td>-->
             <td>
               <label class="status-label"> {{data?.booking_status}}</label>
 

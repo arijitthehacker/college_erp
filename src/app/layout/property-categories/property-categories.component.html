@@ -35,7 +35,8 @@
           <tbody>
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-            <!--            <td>{{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>-->
+            <!--                        <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+-->
             <td>{{data?.se_no}}</td>
             <td>
               <img [src]="data.image" class="small-img"

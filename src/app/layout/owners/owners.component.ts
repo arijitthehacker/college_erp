@@ -17,6 +17,7 @@ import { Lightbox } from 'ngx-lightbox';
 export class OwnersComponent implements OnInit {
 
   allData: any = [];
+  search = '';
   date = '';
   pagination = new PaginationControls();
 
@@ -33,6 +34,10 @@ export class OwnersComponent implements OnInit {
     let obj: any = {
       skip: this.pagination.skip
     };
+    if (this.search) {
+      obj.search = this.search;
+    }
+
     this.http.getData(ApiUrl.list_group_owner, obj).subscribe(res => {
 
       res.data.data.forEach((val) => {
