@@ -1,19 +1,28 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="my-box">
+    <div class="my-box box-header">
       <div class="row">
 
-        <div class="col-md-3">
+        <div class="col-md-7">
           <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
           </h4>
         </div>
 
-        <div class="col-md-9 text-right">
+        <div class="col-md-3 text-right sm-input-space">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search"
+                   [(ngModel)]="search" (keyup.enter)="getData()">
+            <span class="input-group-text" (click)="getData()">
+                <i class="fa fa-search"></i>
+              </span>
+          </div>
+        </div>
+
+        <div class="col-md-2 text-right">
           <div class="sm-input-space">
             <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
               Create New Property
             </button>
-
           </div>
         </div>
       </div>
@@ -40,7 +49,7 @@
           <tbody>
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-                        <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+            <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
 
             <td>
               <img [src]="data.cover_image" class="small-img"
@@ -48,10 +57,11 @@
             </td>
             <td>{{data?.name || '-'}}</td>
             <!--            <td>-->
-            <!--              <app-see-more [msg]="data?.descriptuon"></app-see-more>-->
+            <!--                          <app-see-more [msg]="data?.descriptuon"></app-see-more>-->
             <!--            </td>-->
             <td>
-              <a class="my-link" (click)="openProAddresses(data)">View</a>
+              {{data?.address |slice:0:25 }}
+              <a class="my-link" (click)="openProAddresses(data)">..See more</a>
             </td>
             <td>
               <a class="my-link" (click)="openProDetails(data)">View Property Details</a>

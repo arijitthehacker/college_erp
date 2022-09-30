@@ -22,6 +22,7 @@ export class PropertiesComponent implements OnInit {
 
   allData: any = [];
   date = '';
+  search = '';
   pagination = new PaginationControls();
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
@@ -37,6 +38,9 @@ export class PropertiesComponent implements OnInit {
     let obj: any = {
       skip: this.pagination.skip
     };
+    if (this.search) {
+      obj.search = this.search;
+    }
     this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;

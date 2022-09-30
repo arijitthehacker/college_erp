@@ -117,6 +117,15 @@
       </div>
 
       <div class="col-md-4 form-group">
+        <label class="required set-label">currency</label>
+        <input class="form-control" formControlName="currency" appNumberOnly
+               type="text" placeholder="Enter currency"/>
+        <div class="text-error" *ngIf="form.controls['currency'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
         <label class="required set-label">start price</label>
         <input class="form-control" formControlName="start_price" appNumberOnly
                type="text" placeholder="Enter start price"/>
