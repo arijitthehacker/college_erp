@@ -100,20 +100,33 @@
               </ng-container>
               <!--              {{data?.agent_id?.name || '-'}}-->
             </td>
-            <td>
-              <button type="button" class="payment-btn" (click)="openPaymentModal(data,1)">Transfer to
+            <td class="text-center">
+              <button type="button" class="payment-btn" (click)="openPaymentModal(data,1)"
+                      *ngIf="data?.group_payment_id?.status !== 'COMPLETED'">
+                Transfer to
                 owner
               </button>
+
+              <label class="payment-paid" *ngIf="data?.group_payment_id?.status === 'COMPLETED'">Paid</label>
+
             </td>
-            <td>
-              <button type="button" class="payment-btn" (click)="openPaymentModal(data,2)">Transfer to
+            <td class="text-center">
+              <button type="button" class="payment-btn" (click)="openPaymentModal(data,2)"
+                      *ngIf="data?.agent_payment_id?.status !== 'COMPLETED'">
+                Transfer to
                 agent
               </button>
+
+              <label class="payment-paid" *ngIf="data?.agent_payment_id?.status === 'COMPLETED'">Paid</label>
             </td>
-            <td>
-              <button type="button" class="payment-btn" (click)="openPaymentModal(data,3)">Transfer to
-                member
+            <td class="text-center">
+              <button type="button" class="payment-btn" (click)="openPaymentModal(data,3)"
+                      *ngIf="data?.member_payment_id?.status !== 'COMPLETED'">
+                Transfer to
+                agent
               </button>
+
+              <label class="payment-paid" *ngIf="data?.member_payment_id?.status === 'COMPLETED'">Paid</label>
             </td>
             <td>
               <label class="status-label"> {{data?.booking_status |replaceUnderscore}}</label>
