@@ -277,7 +277,13 @@
 
     <div class="row">
       <div class="col-md-12">
+        <label class="required set-label">Description</label>
         <angular-editor formControlName="descriptuon" [config]="editorConfig"></angular-editor>
+        <div class="text-error"
+             *ngIf="form.controls['descriptuon'].errors?.required && showError">
+         This field is required.
+        </div>
+
       </div>
     </div>
 
@@ -294,27 +300,19 @@
 
           <ng-container *ngIf='form?.value?.brochure'>
             <img class="ml-4 uploaded-img" height="72" for="brochure"
-                 *ngIf="!commonService.checkPDFLink(modalData?.brochure)"
+                 [src]="form?.value?.brochure"
+                 *ngIf="!commonService.checkPDFLink(form?.value?.brochure)"
             >
 
-            <a *ngIf="commonService.checkPDFLink(modalData?.brochure)" class="my-link"
-               (click)="commonService.goToLink(modalData?.brochure)">
+            <a *ngIf="commonService.checkPDFLink(form?.value?.brochure)" class="my-link"
+               (click)="commonService.goToLink(form?.value?.brochure)">
               <i class="fa fa-file-pdf-o add-pdf-btn" aria-hidden="true"></i>
             </a>
-
 
             <i class="fa fa-times-circle fa-trash-css ml-2" (click)="removeImage('brochure',3)"
             ></i>
 
           </ng-container>
-
-          <!--          <img [src]="modalData?.brochure" >-->
-
-          <!--          <a *ngIf="commonService.checkPDFLink(modalData?.brochure)" class="my-link"-->
-          <!--             (click)="commonService.goToLink(modalData?.brochure)">-->
-          <!--            <i class="fa fa-file-pdf-o fa-3x" aria-hidden="true"></i>-->
-          <!--          </a>-->
-
 
         </div>
         <div class="text-error"

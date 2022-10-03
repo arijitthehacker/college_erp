@@ -81,7 +81,7 @@ export class PaymentComponent implements OnInit {
         delete obj.advanced_price;
       } else {
         if (this.paymentData.total_price < this.form.value.advanced_price) {
-          this.message.toast('error', 'You can transfer maximum of ' + this.paymentData.advanced_price);
+          this.message.toast('error', 'You can transfer maximum of ' + this.paymentData.total_price);
           return;
         }
       }

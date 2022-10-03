@@ -14,7 +14,8 @@ export const SIDEBAR = [
   {path: 'properties', name: 'Properties', icon: 'fa fa-tachometer'},
   {path: 'reasons', name: 'Reject Reasons', icon: 'fa fa-usb'},
   {path: 'purposes', name: 'Property Purposes', icon: 'fa fa-user-secret'},
-  {path: 'budgets', name: 'Property Budgets', icon: 'fa fa-h-square'}
+  {path: 'budgets', name: 'Property Budgets', icon: 'fa fa-h-square'},
+  {path: 'info-pages/privacy-settings', name: 'Privacy Settings', icon: 'fa fa-info'}
 ];
 
 // {path: 'building-material', name: 'Building Material', icon: 'fa fa-building'},

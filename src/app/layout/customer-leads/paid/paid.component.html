@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Payment Details
+  </h4>
+  <button class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+
+<div class="modal-body">
+
+  <!--   customers-->
+  <table class="table details-table table-bordered">
+    <thead>
+    <tr>
+      <th>Date & Time</th>
+      <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of modalData?.payment_logs">
+      <td>{{data?.time | date:'dd-MM-yyyy, hh:mm a'}}  </td>
+      <td> {{data?.price || '-'}} </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="modal-footer">
+  <button (click)="bsModalRef.hide()" type="button" class="btn btn-default mr-3">Close</button>
+</div>

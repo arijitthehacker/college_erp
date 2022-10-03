@@ -21,49 +21,7 @@ export class InfoPagesComponent implements OnInit {
   editorConfig: AngularEditorConfig = {
     editable: true,
     height: '350px',
-    minHeight: '350px',
-    // spellcheck: true,
-
-    // maxHeight: 'auto',
-    // width: 'auto',
-    // minWidth: '0',
-    // translate: 'yes',
-    // enableToolbar: true,
-    // showToolbar: true,
-    // placeholder: 'Enter text here...',
-    // defaultParagraphSeparator: '',
-    // defaultFontName: '',
-    // defaultFontSize: '',
-    // fonts: [
-    //   {class: 'arial', name: 'Arial'},
-    //   {class: 'times-new-roman', name: 'Times New Roman'},
-    //   {class: 'calibri', name: 'Calibri'},
-    //   {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-    // ],
-    // customClasses: [
-    //   {
-    //     name: 'quote',
-    //     class: 'quote',
-    //   },
-    //   {
-    //     name: 'redText',
-    //     class: 'redText'
-    //   },
-    //   {
-    //     name: 'titleText',
-    //     class: 'titleText',
-    //     tag: 'h1',
-    //   },
-    // ],
-    // uploadUrl: 'v1/image',
-    // upload: (file: File) => { ... }
-    // uploadWithCredentials: false,
-    // sanitize: true,
-    // toolbarPosition: 'top',
-    // toolbarHiddenButtons: [
-    //   ['bold', 'italic'],
-    //   ['fontSize']
-    // ]
+    minHeight: '350px'
   };
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
@@ -96,6 +54,9 @@ export class InfoPagesComponent implements OnInit {
     if (this.type === 'terms') {
       this.form.controls.content.patchValue(data.terms_conditions);
     }
+    if (this.type === 'privacy-settings') {
+      // this.form.controls.content.patchValue(data.terms_conditions);
+    }
 
   }
 
@@ -117,10 +78,16 @@ export class InfoPagesComponent implements OnInit {
         obj.terms_conditions = this.form.value.content;
       }
 
+      if (this.type === 'privacy-settings') {
+        apiUrl = 'Admin/add_poilcy_terms';
+        obj.policy_terms = this.form.value.content;
+      }
+
       this.http.postData(apiUrl, obj).subscribe(() => {
         this.message.toast('success', ConstMsg.updatedSuccess);
       }, () => {
       });
+
     } else {
       this.showError = true;
     }

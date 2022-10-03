@@ -69,7 +69,7 @@
             <!--                        <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
 -->
             <td>
-              <a (click)="openMemberDetails(data, 'Customer')"
+              <a (click)="openMemberDetails(data, 'Customer',1)"
                  class="my-link">{{data?.name || '-'}}</a>
             </td>
             <td>
@@ -77,63 +77,83 @@
                  class="my-link">{{data?.peroperty_id?.name || '-'}}</a>
             </td>
             <td>
-              <a (click)="openMemberDetails(data?.member_id, 'Member')"
+              <a (click)="openMemberDetails(data?.member_id, 'Member',2)"
                  class="my-link">{{data?.member_id?.name || '-'}}</a>
             </td>
 
             <td>
-              <a (click)="openMemberDetails(data?.group_owner_id, 'Member')"
+              <a (click)="openMemberDetails(data?.group_owner_id, 'Group Owner',3)"
                  class="my-link">{{data?.group_owner_id?.name || '-'}}</a>
               <!--              {{data?.group_owner_id?.name || '-'}}-->
             </td>
             <td>
               <ng-container *ngIf="!data?.is_agent_my_self">
-                <a (click)="openMemberDetails(data?.agent_id, 'Agent ')"
+                <a (click)="openMemberDetails(data?.agent_id, 'Agent ', 4)"
                    *ngIf="data?.agent_id?.name"
                    class="my-link">{{data?.agent_id?.name || '-'}}</a>
                 <ng-container *ngIf="!data?.agent_id?.name">-</ng-container>
               </ng-container>
 
               <ng-container *ngIf="data?.is_agent_my_self">
-                <a (click)="openMemberDetails(data?.group_owner_id, 'Member')"
+                <a (click)="openMemberDetails(data?.group_owner_id, 'Group Owner', 3)"
                    class="my-link">{{data?.group_owner_id?.name || '-'}}</a>
               </ng-container>
               <!--              {{data?.agent_id?.name || '-'}}-->
             </td>
             <td class="text-center">
-              <button type="button" class="payment-btn" (click)="openPaymentModal(data,1)"
-                      *ngIf="data?.group_payment_id?.status !== 'COMPLETED'">
-                Transfer to
-                owner
-              </button>
 
-              <label class="payment-paid" *ngIf="data?.group_payment_id?.status === 'COMPLETED'">Paid</label>
+              <ng-container *ngIf="data?.booking_status !== 'REJECTED'">
+
+                <button type="button" class="payment-btn" (click)="openPaymentModal(data,1)"
+                        *ngIf="data?.group_payment_id?.status === 'PENDING'">
+                  {{data?.group_payment_id?.advanced_request ? 'Request for advance' : ' Transfer to Owner'}}
+                </button>
+                <label class="payment-paid" *ngIf="data?.group_payment_id?.status === 'COMPLETED'"
+                       (click)="openPaidModal(data?.group_payment_id)">Paid</label>
+              </ng-container>
+              <ng-container *ngIf="!data?.group_payment_id || data?.booking_status === 'REJECTED'">
+                N.A.
+              </ng-container>
 
             </td>
             <td class="text-center">
-              <button type="button" class="payment-btn" (click)="openPaymentModal(data,2)"
-                      *ngIf="data?.agent_payment_id?.status !== 'COMPLETED'">
-                Transfer to
-                agent
-              </button>
+              <ng-container *ngIf="data?.booking_status !== 'REJECTED'">
 
-              <label class="payment-paid" *ngIf="data?.agent_payment_id?.status === 'COMPLETED'">Paid</label>
+                <ng-container *ngIf="data?.agent_payment_id">
+                  <button type="button" class="payment-btn" (click)="openPaymentModal(data,2)"
+                          *ngIf="data?.agent_payment_id?.status === 'PENDING'">
+                    {{data?.agent_payment_id?.advanced_request ? 'Request for advance' : ' Transfer to agent'}}
+                  </button>
+
+                  <label class="payment-paid" *ngIf="data?.agent_payment_id?.status === 'COMPLETED'"
+                         (click)="openPaidModal(data?.agent_payment_id)">Paid</label>
+                </ng-container>
+              </ng-container>
+
+              <ng-container *ngIf="!data?.agent_payment_id || data?.booking_status == 'REJECTED'">
+                N.A.
+              </ng-container>
+
             </td>
-            <td class="text-center">
-              <button type="button" class="payment-btn" (click)="openPaymentModal(data,3)"
-                      *ngIf="data?.member_payment_id?.status !== 'COMPLETED'">
-                Transfer to
-                agent
-              </button>
 
-              <label class="payment-paid" *ngIf="data?.member_payment_id?.status === 'COMPLETED'">Paid</label>
+            <td class="text-center">
+              <ng-container *ngIf="data?.booking_status !== 'REJECTED'">
+                <button type="button" class="payment-btn" (click)="openPaymentModal(data,3)"
+                        *ngIf="data?.member_payment_id?.status === 'PENDING'">
+                  {{data?.member_payment_id?.advanced_request ? 'Request for advance' : ' Transfer to Member'}}
+                </button>
+                <!--              </ng-container>-->
+                <label class="payment-paid" *ngIf="data?.member_payment_id?.status === 'COMPLETED'"
+                       (click)="openPaidModal(data?.member_payment_id)">Paid</label>
+              </ng-container>
+
+              <ng-container *ngIf="!data?.member_payment_id || data?.booking_status == 'REJECTED'">
+                N.A.
+              </ng-container>
             </td>
             <td>
               <label class="status-label"> {{data?.booking_status |replaceUnderscore}}</label>
-
-              <!--              {{data?.booking_status}}-->
             </td>
-
             <td>
               <a (click)="openStatus(data)" class="my-link">View Status</a>
             </td>

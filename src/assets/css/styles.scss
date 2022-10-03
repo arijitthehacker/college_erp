@@ -901,7 +901,7 @@ select {
   background: $main-color;
   color: white;
   border: none;
-  font-size: 13px;
+  font-size: 12px;
   border-radius: 5px;
   font-weight: 600;
   padding: 0px 12px;
@@ -915,6 +915,7 @@ select {
   border-radius: 5px;
   font-weight: 600;
   min-width: 114px;
+  cursor: pointer;
 }
 
 .pay-th {

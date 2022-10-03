@@ -30,7 +30,9 @@ export class AddBudgetComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      name: ['', [Validators.required]],
+      max_price: ['', [Validators.required]],
+      min_price: ['', [Validators.required]],
+      currency: ['', [Validators.required]],
     });
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -39,7 +41,9 @@ export class AddBudgetComponent implements OnInit {
 
   patchData(data) {
     this.form.patchValue({
-      name: data.name
+      min_price: data.min_price,
+      max_price: data.max_price,
+      currency: data.currency,
     });
   }
 

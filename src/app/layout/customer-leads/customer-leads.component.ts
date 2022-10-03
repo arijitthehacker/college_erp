@@ -11,6 +11,7 @@ import { StatusesComponent } from './statuses/statuses.component';
 import { MemberDetailsComponent } from './member-details/member-details.component';
 import { ProDetailsComponent } from '../properties/pro-details/pro-details.component';
 import { PaymentComponent } from './payment/payment.component';
+import { PaidComponent } from './paid/paid.component';
 
 @Component({
   selector: 'app-accounts',
@@ -30,6 +31,12 @@ export class CustomerLeadsComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+  }
+
+  openPaidModal(data) {
+    const modalRef = this.modalService.show(PaidComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+    });
   }
 
   getData() {
@@ -84,8 +91,9 @@ export class CustomerLeadsComponent implements OnInit {
     });
   }
 
-  openMemberDetails(data?: any, showLabel?) {
+  openMemberDetails(data?: any, showLabel?, type?) {
     if (data?.name) {
+      data.type = type;
       this.modalService.show(MemberDetailsComponent, {
         initialState: {modalData: data, showLabel}, backdrop: 'static', keyboard: false, class: 'modal-md'
       });
@@ -102,6 +110,9 @@ export class CustomerLeadsComponent implements OnInit {
     data.type = type;
     const modalRef = this.modalService.show(PaymentComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+    });
+    modalRef.content.onClose.subscribe(() => {
+      this.getData();
     });
   }
 

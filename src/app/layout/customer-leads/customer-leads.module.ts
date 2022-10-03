@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { StatusesComponent } from './statuses/statuses.component';
 import { MemberDetailsComponent } from './member-details/member-details.component';
 import { PaymentComponent } from './payment/payment.component';
+import { PaidComponent } from './paid/paid.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
     CustomerLeadsComponent,
     StatusesComponent,
     MemberDetailsComponent,
-    PaymentComponent
+    PaymentComponent,
+    PaidComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ const routes: Routes = [
   entryComponents: [
     StatusesComponent,
     MemberDetailsComponent,
-    PaymentComponent
+    PaymentComponent,
+    PaidComponent
   ]
 })
 export class CustomerLeadsModule {

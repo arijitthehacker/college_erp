@@ -10,10 +10,28 @@
     <div class="row">
 
       <div class="col-md-12 form-group">
-        <label class="required set-label"> Budget</label>
-        <input [autofocus]="true" class="form-control" formControlName="name"
-               type="text" placeholder="Enter Budget"/>
-        <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
+        <label class="required set-label"> min price</label>
+        <input [autofocus]="true" class="form-control" formControlName="min_price"
+               type="number" placeholder="Enter min price"/>
+        <div class="text-error" *ngIf="form.controls['min_price'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label"> max price</label>
+        <input [autofocus]="true" class="form-control" formControlName="max_price"
+               type="number" placeholder="Enter max price"/>
+        <div class="text-error" *ngIf="form.controls['max_price'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label"> currency</label>
+        <input class="form-control" formControlName="currency"
+               type="text" placeholder="Enter currency"/>
+        <div class="text-error" *ngIf="form.controls['currency'].errors?.required && showError">
           This field is required.
         </div>
       </div>
