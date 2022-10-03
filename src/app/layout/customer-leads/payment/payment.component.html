@@ -10,11 +10,18 @@
 <form [formGroup]="form" (ngSubmit)="formSubmit()">
   <div class="modal-body">
 
-    <div class="row" >
+    <div class="row">
       <div class="col-md-12 form-group">
         <label class="required set-label">advanced price</label>
+
         <input [autofocus]="true" class="form-control" formControlName="advanced_price"
+               *ngIf="!modalData?.advanced_request"
+               type="text" placeholder="Enter advanced price" [attr.disabled]="true"/>
+
+        <input [autofocus]="true" class="form-control" formControlName="advanced_price"
+               *ngIf="modalData?.advanced_request" appNumberOnly
                type="text" placeholder="Enter advanced price"/>
+
         <div class="text-error" *ngIf="form.controls['advanced_price'].errors?.required && showError">
           This field is required.
         </div>

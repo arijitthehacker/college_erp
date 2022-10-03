@@ -133,10 +133,32 @@ export class AddPropertyComponent implements OnInit {
       } else {
         return;
       }
-      if (parseInt(this.form?.value?.start_price, 10) > parseInt(this.form?.value?.end_price, 10)) {
-        this.message.toast('error', 'End price should be greater than or equal to start price');
-        return;
+      if (this.form?.value?.end_price) {
+        if (parseInt(this.form?.value?.start_price, 10) > parseInt(this.form?.value?.end_price, 10)) {
+          this.message.toast('error', 'End price should be greater than or equal to start price');
+          return;
+        }
+      } else {
+        obj.end_price = 0;
       }
+
+      if (this.form?.value?.max_member_commision) {
+        if (parseInt(this.form?.value?.min_member_commision, 10) > parseInt(this.form?.value?.max_member_commision, 10)) {
+          this.message.toast('error', 'Max member commission should be greater than or equal to start price');
+          return;
+        }
+      } else {
+        obj.max_member_commision = 0;
+      }
+      if (this.form?.value?.max_bedroom) {
+        if (parseInt(this.form?.value?.min_bedroom, 10) > parseInt(this.form?.value?.max_bedroom, 10)) {
+          this.message.toast('error', 'Max bedroom should be greater than or equal to start price');
+          return;
+        }
+      } else {
+        obj.max_bedroom = 0;
+      }
+
       this.http.postData(ApiUrl.add_edit_peroperties, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',

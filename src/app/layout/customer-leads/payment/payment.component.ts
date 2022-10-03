@@ -5,7 +5,6 @@ import { ApiUrl } from 'src/app/core/apiUrl';
 import { HttpService } from 'src/app/services/http/http.service';
 import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../../services/commonService/common.service';
 
 @Component({
@@ -18,14 +17,29 @@ export class PaymentComponent implements OnInit {
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  paymentData: any;
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
   }
 
   ngOnInit() {
-    console.log(this.modalData, 'advanced_price');
+    console.log(this.modalData, 'modalData');
     this.makeForm();
+    if (this.modalData.type === 1) {
+      this.paymentData = this.modalData.group_payment_id;
+    } else if (this.modalData.type === 2) {
+      this.paymentData = this.modalData.agent_payment_id;
+    } else {
+      this.paymentData = this.modalData.member_payment_id;
+    }
+
+    console.log(this.paymentData, ' this.paymentData  this.paymentData ');
+
+    if (this.modalData) {
+      this.patchData(this.paymentData);
+    }
+
   }
 
   makeForm() {
@@ -33,9 +47,7 @@ export class PaymentComponent implements OnInit {
       advanced_price: ['', [Validators.required]],
       _id: ['']
     });
-    if (this.modalData) {
-      this.patchData(this.modalData);
-    }
+
   }
 
   patchData(data) {
@@ -43,6 +55,13 @@ export class PaymentComponent implements OnInit {
       advanced_price: data.advanced_price,
       _id: data._id
     });
+
+    console.log(this.paymentData, 'this?.paymentData');
+
+    if (!this.paymentData?.advanced_request) {
+      this.form.controls.advanced_price.patchValue(this.paymentData.total_price);
+    }
+
   }
 
   formSubmit() {
@@ -50,18 +69,19 @@ export class PaymentComponent implements OnInit {
       const obj = JSON.parse(JSON.stringify(this.form.value));
 
       if (this.modalData.type === 1) {
-        obj.type = 'USER';
-      } else if (this.modalData.type === 1) {
-        obj.type = 'AGNET';
-      } else {
         obj.type = 'GROUP_OWNER';
+      } else if (this.modalData.type === 2) {
+        obj.type = 'AGENT';
+      } else {
+        obj.type = 'USER';
       }
 
-      if (this.modalData.advanced_price === this.form.value.advanced_price) {
-        obj.status = 'COMPLETED';
+      if (this.paymentData.total_price === this.form.value.advanced_price) {
+        obj.is_completed = true;
+        delete obj.advanced_price;
       } else {
-        if (this.modalData.advanced_price < this.form.value.advanced_price) {
-          this.message.toast('error', 'You can transfer maximum of ' + this.modalData.advanced_price);
+        if (this.paymentData.total_price < this.form.value.advanced_price) {
+          this.message.toast('error', 'You can transfer maximum of ' + this.paymentData.advanced_price);
           return;
         }
       }
