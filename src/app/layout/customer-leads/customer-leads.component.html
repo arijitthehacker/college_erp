@@ -50,6 +50,7 @@
             <th class="pay-th">Payment to owner</th>
             <th class="pay-th">Payment to agent</th>
             <th class="pay-th">Payment to member</th>
+            <th class="pay-th">Assign Booking</th>
 
             <th style="min-width: 130px">Status</th>
             <th>Status Details</th>
@@ -63,11 +64,7 @@
                 'pending':data?.booking_status === 'PENDING',
                 'approved': (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'COMPLETED')
             }">
-
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
-
-            <!--                        <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
--->
             <td>
               <a (click)="openMemberDetails(data, 'Customer',1)"
                  class="my-link">{{data?.name || '-'}}</a>
@@ -151,6 +148,12 @@
                 N.A.
               </ng-container>
             </td>
+
+            <td class="text-center">
+              <a *ngIf="data?.booking_status == 'ACCEPTED'" (click)="assignBooking(data)" class="my-link">Assign</a>
+              <ng-container *ngIf="data?.booking_status != 'ACCEPTED'">-</ng-container>
+            </td>
+
             <td>
               <label class="status-label"> {{data?.booking_status |replaceUnderscore}}</label>
             </td>

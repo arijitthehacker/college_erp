@@ -12,6 +12,7 @@ import { MemberDetailsComponent } from './member-details/member-details.componen
 import { ProDetailsComponent } from '../properties/pro-details/pro-details.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaidComponent } from './paid/paid.component';
+import { AssignBookingComponent } from './assign-booking/assign-booking.component';
 
 @Component({
   selector: 'app-accounts',
@@ -109,6 +110,16 @@ export class CustomerLeadsComponent implements OnInit {
   openPaymentModal(data?: any, type?: number) {
     data.type = type;
     const modalRef = this.modalService.show(PaymentComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+    });
+    modalRef.content.onClose.subscribe(() => {
+      this.getData();
+    });
+  }
+
+  assignBooking(data?: any, type?: number) {
+    data.type = type;
+    const modalRef = this.modalService.show(AssignBookingComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
     modalRef.content.onClose.subscribe(() => {

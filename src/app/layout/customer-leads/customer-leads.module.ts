@@ -7,6 +7,7 @@ import { StatusesComponent } from './statuses/statuses.component';
 import { MemberDetailsComponent } from './member-details/member-details.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaidComponent } from './paid/paid.component';
+import { AssignBookingComponent } from './assign-booking/assign-booking.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
     StatusesComponent,
     MemberDetailsComponent,
     PaymentComponent,
-    PaidComponent
+    PaidComponent,
+    AssignBookingComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ const routes: Routes = [
     StatusesComponent,
     MemberDetailsComponent,
     PaymentComponent,
-    PaidComponent
+    PaidComponent,
+    AssignBookingComponent
   ]
 })
 export class CustomerLeadsModule {

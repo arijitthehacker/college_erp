@@ -20,6 +20,7 @@ export class AddPropertyComponent implements OnInit {
   public onClose: Subject<{}> = new Subject();
   modalData: any;
   categories: any = [];
+  developers: any = [];
   images: any = [];
 
   editorConfig: AngularEditorConfig = {
@@ -33,11 +34,13 @@ export class AddPropertyComponent implements OnInit {
   ngOnInit() {
     this.makeForm();
     this.categoryList();
+    this.devsList();
   }
 
   makeForm() {
     this.form = this.fb.group({
       category_id: ['', Validators.required],
+      developer_id: ['', Validators.required],
       descriptuon: ['', Validators.required],
       cover_image: ['', Validators.required],
       brochure: ['', Validators.required],
@@ -79,6 +82,7 @@ export class AddPropertyComponent implements OnInit {
       category_id: data.category_id,
       lat: data.lat,
       lng: data.lng,
+      developer_id: data.developer_id._id,
       address: data.address,
       min_agent_commision: data.min_agent_commision,
       min_member_commision: data.min_member_commision,
@@ -177,6 +181,15 @@ export class AddPropertyComponent implements OnInit {
     };
     this.http.getData(ApiUrl.list_peroperty_categories, obj, true).subscribe(res => {
       this.categories = res.data.data;
+    });
+  }
+
+  devsList() {
+    let obj = {
+      is_pagination: false
+    };
+    this.http.getData(ApiUrl.list_developers, obj, true).subscribe(res => {
+      this.developers = res.data.data;
     });
   }
 

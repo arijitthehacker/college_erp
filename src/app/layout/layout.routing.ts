@@ -36,6 +36,10 @@ const routes: Routes = [
         loadChildren: () => import('./budgets/budgets.module').then(m => m.BudgetsModule),
         data: {breadcrumb: 'Property Budgets', title: 'budget'}
       }, {
+        path: 'settings',
+        loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule),
+        data: {breadcrumb: 'Settings', title: 'setting'}
+      }, {
         path: 'purposes',
         loadChildren: () => import('./purposes/purposes.module').then(m => m.PurposesModule),
         data: {breadcrumb: 'Property Purposes', title: 'purpose'}
@@ -43,6 +47,10 @@ const routes: Routes = [
         path: 'reasons',
         loadChildren: () => import('./reasons/reasons.module').then(m => m.ReasonsModule),
         data: {breadcrumb: 'Reject Reasons', title: 'reason'}
+      }, {
+        path: 'developers',
+        loadChildren: () => import('./developers/developers.module').then(m => m.DevelopersModule),
+        data: {breadcrumb: 'Developers', title: 'developer'}
       }, {
         path: 'info-pages/:type',
         loadChildren: () => import('./info-pages/info-pages.module').then(m => m.InfoPagesModule),

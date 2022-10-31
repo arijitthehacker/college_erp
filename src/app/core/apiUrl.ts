@@ -11,6 +11,8 @@ export const ApiUrl = {
   list_property_budgets: 'Admin/list_property_budgets',
   getResetPasswordToken: 'user/getResetPasswordToken',
   manage_plans: 'Admin/manage_plans',
+  list_developers: 'Admin/list_developers',
+  managed_developers: 'Admin/managed_developers',
   upload_api: 'OpenApi/file_upload',
   managed_peroperty_categories: 'Admin/managed_peroperty_categories',
   add_edit_rejection_reason: 'Admin/add_edit_rejection_reason',
@@ -19,11 +21,13 @@ export const ApiUrl = {
   managed_peroperty_budgets: 'Admin/managed_peroperty_budgets',
   managed_peroperty_purpose: 'Admin/managed_peroperty_purpose',
   managed_payment_request: 'Admin/managed_payment_request',
+  assign_booking_to_agent_or_owner: 'Admin/assign_booking_to_agent_or_owner',
   list_rejection_reason: 'Admin/list_rejection_reason',
   managed_peroperty_address: 'Admin/managed_peroperty_address',
   list_peroperty_categories: 'Admin/list_peroperty_categories',
   list_property_purpose: 'Admin/list_property_purpose',
   add_edit_peroperty_categories: 'Admin/add_edit_peroperty_categories',
+  add_edit_developers: 'Admin/add_edit_developers',
   add_edit_peroperty_purpose: 'Admin/add_edit_peroperty_purpose',
   add_edit_banners: 'Admin/add_edit_banners',
   delete_banners: 'Admin/delete_banners',
@@ -34,6 +38,7 @@ export const ApiUrl = {
   list_property_address: 'Admin/list_property_address',
   add_edit_agents: 'Admin/add_edit_agents',
   add_edit_peroperty_budgets: 'Admin/add_edit_peroperty_budgets',
+  managed_user_share_link: 'Admin/managed_user_share_link',
+  user_share_link_details: 'Admin/user_share_link_details',
   add_edit_peroperty_address: 'Admin/add_edit_peroperty_address'
-
 };
