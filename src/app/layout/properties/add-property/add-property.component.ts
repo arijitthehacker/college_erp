@@ -40,6 +40,7 @@ export class AddPropertyComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       category_id: ['', Validators.required],
+      is_featured: ['', Validators.required],
       developer_id: ['', Validators.required],
       descriptuon: ['', Validators.required],
       cover_image: ['', Validators.required],
@@ -82,6 +83,7 @@ export class AddPropertyComponent implements OnInit {
       category_id: data.category_id,
       lat: data.lat,
       lng: data.lng,
+      is_featured: data.is_featured,
       developer_id: data.developer_id._id,
       address: data.address,
       min_agent_commision: data.min_agent_commision,

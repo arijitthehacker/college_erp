@@ -278,13 +278,13 @@
       </div>
 
 
-      <!--      <div class="col-md-4 form-group">-->
-      <!--        <div class="form-check-inline" style="margin-left: 21px">-->
-      <!--          <label class="form-check-label">-->
-      <!--            <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?-->
-      <!--          </label>-->
-      <!--        </div>-->
-      <!--      </div>-->
+      <div class="col-md-4 form-group mt-4">
+        <div class="form-check-inline" style="margin-left: 21px">
+          <label class="form-check-label">
+            <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?
+          </label>
+        </div>
+      </div>
 
     </div>
 
@@ -294,7 +294,7 @@
         <angular-editor formControlName="descriptuon" [config]="editorConfig"></angular-editor>
         <div class="text-error"
              *ngIf="form.controls['descriptuon'].errors?.required && showError">
-         This field is required.
+          This field is required.
         </div>
 
       </div>
