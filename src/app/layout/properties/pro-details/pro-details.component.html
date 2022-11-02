@@ -60,7 +60,7 @@
       </td>
       <td>
         <h5>End Price</h5>
-        <p>{{modalData?.currency}} {{modalData?.end_price || '-'}}</p>
+        <p><ng-container *ngIf="modalData?.end_price"> {{modalData?.currency}}</ng-container> {{modalData?.end_price || '-'}}</p>
       </td>
       <td>
         <h5>Category Type</h5>

@@ -34,7 +34,7 @@ export class AddAgentComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
-      name: ['', [Validators.required]],
+      name: ['', Validators.required],
       phone_number: ['', [Validators.required]]
     });
     if (this.modalData) {

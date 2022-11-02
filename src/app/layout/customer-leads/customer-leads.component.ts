@@ -34,9 +34,23 @@ export class CustomerLeadsComponent implements OnInit {
     this.getData();
   }
 
-  openPaidModal(data) {
+  openPaidModal(data, type) {
+
+    let modalData: any = {};
+    switch (type) {
+      case 1:
+        modalData = data.group_payment_id;
+        break;
+      case 2:
+        modalData = data.agent_payment_id;
+        break;
+      case 3:
+        modalData = data.member_payment_id;
+        break;
+    }
+
     const modalRef = this.modalService.show(PaidComponent, {
-      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+      initialState: {modalData: modalData}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
   }
 
@@ -112,8 +126,14 @@ export class CustomerLeadsComponent implements OnInit {
     const modalRef = this.modalService.show(PaymentComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
-    modalRef.content.onClose.subscribe(() => {
-      this.getData();
+    modalRef.content.onClose.subscribe((res: any) => {
+      if (res?.type) {
+        if (res?.type === 'openPaymentHistory') {
+          this.openPaidModal(data, type);
+        }
+      } else {
+        this.getData();
+      }
     });
   }
 

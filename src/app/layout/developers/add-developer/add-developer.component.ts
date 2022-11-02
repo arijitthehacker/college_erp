@@ -29,9 +29,9 @@ export class AddDeveloperComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      image: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      address: ['', [Validators.required]],
+      image: ['', Validators.required],
+      description: ['', Validators.required],
+      address: ['', Validators.required],
       name: ['', [Validators.required]]
     });
     if (this.modalData) {

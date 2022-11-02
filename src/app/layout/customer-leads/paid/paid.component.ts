@@ -14,12 +14,14 @@ export class PaidComponent implements OnInit {
   modalData: any;
   showLabel: any;
 
+
   constructor(public message: MessageService, public bsModalRef: BsModalRef, public commonService: CommonService
   ) {
   }
 
   ngOnInit() {
-    console.log(this.modalData,'modalData');
+
+
   }
 
 }

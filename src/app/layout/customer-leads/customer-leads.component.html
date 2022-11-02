@@ -106,7 +106,7 @@
                   {{data?.group_payment_id?.advanced_request ? 'Request for advance' : ' Transfer to Owner'}}
                 </button>
                 <label class="payment-paid" *ngIf="data?.group_payment_id?.status === 'COMPLETED'"
-                       (click)="openPaidModal(data?.group_payment_id)">Paid</label>
+                       (click)="openPaidModal(data,1)">Paid</label>
               </ng-container>
               <ng-container *ngIf="!data?.group_payment_id || data?.booking_status === 'REJECTED'">
                 N.A.
@@ -123,7 +123,7 @@
                   </button>
 
                   <label class="payment-paid" *ngIf="data?.agent_payment_id?.status === 'COMPLETED'"
-                         (click)="openPaidModal(data?.agent_payment_id)">Paid</label>
+                         (click)="openPaidModal(data,2)">Paid</label>
                 </ng-container>
               </ng-container>
 
@@ -141,7 +141,7 @@
                 </button>
                 <!--              </ng-container>-->
                 <label class="payment-paid" *ngIf="data?.member_payment_id?.status === 'COMPLETED'"
-                       (click)="openPaidModal(data?.member_payment_id)">Paid</label>
+                       (click)="openPaidModal(data,3)">Paid</label>
               </ng-container>
 
               <ng-container *ngIf="!data?.member_payment_id || data?.booking_status == 'REJECTED'">
@@ -150,8 +150,10 @@
             </td>
 
             <td class="text-center">
-              <a *ngIf="data?.booking_status == 'ACCEPTED'" (click)="assignBooking(data)" class="my-link">Assign</a>
-              <ng-container *ngIf="data?.booking_status != 'ACCEPTED'">-</ng-container>
+              <a *ngIf="data?.booking_status == 'ACCEPTED' || data?.booking_status == 'IN_PROGRESS'"
+                 (click)="assignBooking(data)" class="my-link">Assign</a>
+              <ng-container *ngIf="data?.booking_status != 'ACCEPTED' && data?.booking_status != 'IN_PROGRESS'">-
+              </ng-container>
             </td>
 
             <td>

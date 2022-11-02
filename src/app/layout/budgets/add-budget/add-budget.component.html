@@ -19,7 +19,7 @@
       </div>
 
       <div class="col-md-12 form-group">
-        <label class="required set-label"> max price</label>
+        <label class="set-label"> max price</label>
         <input [autofocus]="true" class="form-control" formControlName="max_price"
                type="number" placeholder="Enter max price"/>
         <div class="text-error" *ngIf="form.controls['max_price'].errors?.required && showError">

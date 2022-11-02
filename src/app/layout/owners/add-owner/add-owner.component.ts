@@ -33,7 +33,7 @@ export class AddOwnerComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
-      phone_number: ['', [Validators.required]],
+      phone_number: ['', Validators.required],
       name: ['', [Validators.required]]
     });
     if (this.modalData) {

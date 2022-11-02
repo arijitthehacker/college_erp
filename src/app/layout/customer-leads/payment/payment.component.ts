@@ -19,6 +19,7 @@ export class PaymentComponent implements OnInit {
   modalData: any;
   paymentData: any;
 
+  paidAmount = 0;
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
   }
@@ -44,7 +45,7 @@ export class PaymentComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      advanced_price: ['', [Validators.required]],
+      advanced_price: ['', Validators.required],
       _id: ['']
     });
 
@@ -55,12 +56,21 @@ export class PaymentComponent implements OnInit {
       advanced_price: data.advanced_price,
       _id: data._id
     });
-
-    console.log(this.paymentData, 'this?.paymentData');
-
     if (!this.paymentData?.advanced_request) {
       this.form.controls.advanced_price.patchValue(this.paymentData.total_price);
     }
+
+    console.log(this.paymentData, 'paymentDatapaymentData');
+    if (this.paymentData?.payment_logs && this.paymentData?.payment_logs?.length) {
+
+      console.log('1111');
+      this.paymentData.payment_logs.forEach((val) => {
+        console.log(val);
+        this.paidAmount = this.paidAmount + val.price;
+      });
+    }
+
+    console.log(this.paidAmount,'    this.paidAmount ');
 
   }
 
@@ -100,6 +110,11 @@ export class PaymentComponent implements OnInit {
     } else {
       this.showError = true;
     }
+  }
+
+  openPayment(){
+    this.onClose.next({type:'openPaymentHistory'});
+    this.bsModalRef.hide();
   }
 }
 

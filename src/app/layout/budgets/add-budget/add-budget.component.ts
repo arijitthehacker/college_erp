@@ -32,9 +32,9 @@ export class AddBudgetComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      max_price: ['', [Validators.required]],
-      min_price: ['', [Validators.required]],
-      currency: ['', [Validators.required]],
+      max_price: [''],
+      min_price: ['', Validators.required],
+      currency: ['', Validators.required]
     });
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -45,7 +45,7 @@ export class AddBudgetComponent implements OnInit {
     this.form.patchValue({
       min_price: data.min_price,
       max_price: data.max_price,
-      currency: data.currency,
+      currency: data.currency
     });
   }
 
@@ -54,6 +54,9 @@ export class AddBudgetComponent implements OnInit {
       const obj = JSON.parse(JSON.stringify(this.form.value));
       if (this.modalData) {
         obj[`_id`] = this.modalData._id;
+      }
+      if (!obj.max_price) {
+       obj.max_price = 0;
       }
 
       this.http.postData(ApiUrl.add_edit_peroperty_budgets, obj).subscribe(() => {

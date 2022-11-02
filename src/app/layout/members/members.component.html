@@ -31,6 +31,7 @@
             <th>Image</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Invite Codes</th>
             <th>Contact Number</th>
             <th>Action</th>
           </tr>
@@ -46,6 +47,10 @@
             </td>
             <td>{{data?.name || '-'}}</td>
             <td>{{data?.email || '-'}}</td>
+            <td>
+              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>
+            </td>
+
             <td>{{data?.country_code}} {{data?.phone_number }}</td>
             <!--              <td>-->
             <!--                <app-see-more [msg]="data?.description"></app-see-more>-->

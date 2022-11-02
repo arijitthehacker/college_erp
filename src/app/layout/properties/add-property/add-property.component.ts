@@ -180,6 +180,31 @@ export class AddPropertyComponent implements OnInit {
         obj.max_bedroom = 0;
       }
 
+      if (this.form?.value?.max_agent_commision) {
+        if (parseInt(this.form?.value?.min_agent_commision, 10) > parseInt(this.form?.value?.max_agent_commision, 10)) {
+          this.message.toast('error', 'Max agent commission should be greater than or equal to min agent commission');
+          return;
+        }
+      } else {
+        obj.max_agent_commision = 0;
+      }
+      if (this.form?.value?.max_group_owner_commision) {
+        if (parseInt(this.form?.value?.min_group_owner_commision, 10) > parseInt(this.form?.value?.max_group_owner_commision, 10)) {
+          this.message.toast('error', 'Max group owner commission should be greater than or equal to min group owner commission');
+          return;
+        }
+      } else {
+        obj.max_group_owner_commision = 0;
+      }
+      if (this.form?.value?.max_area_size) {
+        if (parseInt(this.form?.value?.min_area_size, 10) > parseInt(this.form?.value?.max_area_size, 10)) {
+          this.message.toast('error', 'Max area size should be greater than or equal to min area size');
+          return;
+        }
+      } else {
+        obj.max_group_owner_commision = 0;
+      }
+
       this.http.postData(ApiUrl.add_edit_peroperties, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',

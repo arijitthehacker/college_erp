@@ -30,7 +30,7 @@ export class AddPurposeComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', Validators.required],
     });
     if (this.modalData) {
       this.patchData(this.modalData);

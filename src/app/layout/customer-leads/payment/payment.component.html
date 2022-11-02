@@ -5,6 +5,13 @@
     <ng-container *ngIf="modalData?.type === 2">Agent</ng-container>
     <ng-container *ngIf="modalData?.type === 3">Member</ng-container>
   </h4>
+
+<!--  <h5 *ngIf="paidAmount" class="modal-title paid-text" >-->
+<!--&lt;!&ndash;    Paid Amount :{{paidAmount}}&ndash;&gt;-->
+
+<!--  </h5>-->
+  <button type="submit" class="btn btn-blue-outline"  *ngIf="paidAmount" (click)="openPayment()">Payment History</button>
+
 </div>
 
 <form [formGroup]="form" (ngSubmit)="formSubmit()">

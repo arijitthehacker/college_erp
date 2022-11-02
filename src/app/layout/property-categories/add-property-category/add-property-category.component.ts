@@ -29,8 +29,8 @@ export class AddPropertyCategoryComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      image: ['', [Validators.required]],
-      se_no: ['', [Validators.required]],
+      image: ['', Validators.required],
+      se_no: ['', Validators.required],
       name: ['', [Validators.required]]
     });
     if (this.modalData) {
