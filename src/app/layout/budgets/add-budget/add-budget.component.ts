@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../../services/commonService/common.service';
+import { Currencies } from '../../../core/constant';
 
 @Component({
   selector: 'app-add-account',
@@ -18,6 +19,7 @@ export class AddBudgetComponent implements OnInit {
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  currencyList: any = Currencies;
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService

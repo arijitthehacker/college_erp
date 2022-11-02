@@ -29,8 +29,15 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label"> currency</label>
-        <input class="form-control" formControlName="currency"
-               type="text" placeholder="Enter currency"/>
+        <select class="form-control" formControlName="currency">
+          <option value="">Select Currency</option>
+          <option *ngFor="let data of currencyList" [value]="data.symbol">
+            {{data?.name}} ({{data?.symbol}})
+          </option>
+        </select>
+
+<!--        <input class="form-control" formControlName="currency"-->
+<!--               type="text" placeholder="Enter currency"/>-->
         <div class="text-error" *ngIf="form.controls['currency'].errors?.required && showError">
           This field is required.
         </div>

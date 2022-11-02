@@ -8,6 +8,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../../services/commonService/common.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import CurrencyList from 'currency-list';
+import { Currencies } from '../../../core/constant';
 
 @Component({
   selector: 'app-add-account',
@@ -22,7 +24,7 @@ export class AddPropertyComponent implements OnInit {
   categories: any = [];
   developers: any = [];
   images: any = [];
-
+  currencyList: any = Currencies;
   editorConfig: AngularEditorConfig = {
     editable: true
   };
@@ -35,6 +37,19 @@ export class AddPropertyComponent implements OnInit {
     this.makeForm();
     this.categoryList();
     this.devsList();
+    this.setCurrency();
+
+  }
+
+  setCurrency() {
+
+    // let temp: any = CurrencyList.getAll();
+    // const propertyNames = Object.entries(temp);
+    // propertyNames.forEach((val) => {
+    //   this.currencyList.push(val[1]);
+    // });
+    console.log(this.currencyList, 'this.currencyList');
+
   }
 
   makeForm() {

@@ -141,4 +141,24 @@ export class CommonService {
     this.message.toast('success', 'Copied to Clipboard');
   }
 
+  getJSON(url) {
+
+    return new Promise(function (resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', url, true);
+      xhr.responseType = 'json';
+      xhr.onload = function () {
+        var status = xhr.status;
+        if (status == 200) {
+          let myData: any = JSON.stringify(xhr.response);
+          let parsed: any = JSON.parse(myData);
+          resolve(parsed);
+        } else {
+          reject(status);
+        }
+      };
+      xhr.send();
+    });
+  };
+
 }

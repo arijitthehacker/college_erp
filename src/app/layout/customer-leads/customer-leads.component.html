@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="col-md-3 text-right sm-input-space">
-          <select class="form-control" [(ngModel)]="status" (change)="getData()">
+          <select class="form-control" [(ngModel)]="status" (change)="pagination.pageNo =1;getData()">
             <option value="">All Status</option>
             <option value="PENDING">PENDING</option>
             <option value="ACCEPTED">ACCEPTED</option>

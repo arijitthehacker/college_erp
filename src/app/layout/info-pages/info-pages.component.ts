@@ -55,7 +55,7 @@ export class InfoPagesComponent implements OnInit {
       this.form.controls.content.patchValue(data.terms_conditions);
     }
     if (this.type === 'privacy-settings') {
-      // this.form.controls.content.patchValue(data.terms_conditions);
+      this.form.controls.content.patchValue(data.policy_terms);
     }
 
   }
@@ -103,6 +103,9 @@ export class InfoPagesComponent implements OnInit {
     }
     if (this.type === 'terms') {
       apiUrl = 'Admin/terms_conditions_details';
+    }
+    if (this.type === 'privacy-settings') {
+      apiUrl = 'Admin/list_policy_terms';
     }
     this.http.getData(apiUrl, {}).subscribe(res => {
       if (res.data) {

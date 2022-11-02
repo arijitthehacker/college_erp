@@ -86,6 +86,11 @@ export class PaymentComponent implements OnInit {
         }
       }
 
+      if (this.form.value.advanced_price == 0) {
+        this.message.toast('error', 'You can transfer only greater than 0');
+        return;
+      }
+
       this.http.putData(ApiUrl.managed_payment_request, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success', 'Sent Successfully!');

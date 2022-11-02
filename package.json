@@ -31,6 +31,8 @@
     "angular2-text-mask": "^9.0.0",
     "bootstrap": "^5.2.0",
     "crypto-js": "^4.1.1",
+    "currency-list": "^1.0.8",
+    "currency-symbol-map": "^5.1.0",
     "google-libphonenumber": "^3.2.30",
     "intl-tel-input": "^17.0.18",
     "jquery": "^3.6.0",
