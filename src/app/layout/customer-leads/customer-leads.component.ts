@@ -102,7 +102,7 @@ export class CustomerLeadsComponent implements OnInit {
 
   openStatus(data?: any) {
     this.modalService.show(StatusesComponent, {
-      initialState: {modalData: data.status}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
     });
   }
 

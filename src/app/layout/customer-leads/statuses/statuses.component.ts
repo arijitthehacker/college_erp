@@ -12,14 +12,32 @@ export class StatusesComponent implements OnInit {
 
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  showStatus: any = [];
 
-  constructor(public message: MessageService, public bsModalRef: BsModalRef, public commonService: CommonService
-  ) {
+  constructor(public message: MessageService, public bsModalRef: BsModalRef, public commonService: CommonService) {
   }
 
   ngOnInit() {
-  }
 
+    console.log(this.modalData);
+    if (this.modalData?.status?.length) {
+      this.modalData.status.forEach((val) => {
+        if (val.status_data != 'PENDING') {
+
+          if (val.managed_by === 'GROUP_OWNER') {
+            val.managed_by_name = this.modalData?.group_owner_id?.name;
+          } else {
+            val.managed_by_name = this.modalData?.agent_id?.name;
+          }
+
+          this.showStatus.push(val);
+        }
+      });
+    }
+    // status_data
+    //   :
+    //   "PENDING"  }
+  }
 }
 
 

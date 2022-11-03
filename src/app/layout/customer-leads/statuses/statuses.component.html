@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         <tr
-          *ngFor="let data of modalData ;let i = index;"
+          *ngFor="let data of showStatus ;let i = index;"
         >
           <td>{{ i + 1}}</td>
           <td>
@@ -35,7 +35,7 @@
           <td>
             <app-see-more [msg]="data?.description"></app-see-more>
           </td>
-          <td>{{data?.managed_by || '-'}}</td>
+          <td>{{data?.managed_by_name || '-'}}</td>
           <td>
             <ng-container *ngIf="data.status_data !== 'PENDING' else showEmpty">
               {{data?.managed_at |date:'short'}}
