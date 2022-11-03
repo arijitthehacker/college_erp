@@ -39,11 +39,12 @@
           [cssClass]="'my-phone'"
           [preferredCountries]="[CountryISO.Malaysia]"
           [enableAutoCountrySelect]="false"
-          [enablePlaceholder]="true"
+          [enablePlaceholder]="false"
           [searchCountryFlag]="true"
           [selectFirstCountry]="false"
           [selectedCountryISO]="CountryISO.Malaysia"
           [maxLength]="15"
+          [customPlaceholder]="'Enter Contact Number'"
           [phoneValidation]="false"
           formControlName="phone_number"
         ></ngx-intl-tel-input>

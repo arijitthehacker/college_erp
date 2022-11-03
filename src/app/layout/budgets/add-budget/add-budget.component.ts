@@ -55,8 +55,14 @@ export class AddBudgetComponent implements OnInit {
       if (this.modalData) {
         obj[`_id`] = this.modalData._id;
       }
-      if (!obj.max_price) {
-       obj.max_price = 0;
+
+      if (this.form?.value?.max_price) {
+        if (parseInt(this.form?.value?.min_price, 10) > parseInt(this.form?.value?.max_price, 10)) {
+          this.message.toast('error', 'Max price should be greater than or equal to min price');
+          return;
+        }
+      } else {
+        obj.max_price = 0;
       }
 
       this.http.postData(ApiUrl.add_edit_peroperty_budgets, obj).subscribe(() => {

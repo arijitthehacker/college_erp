@@ -85,14 +85,14 @@
             </td>
             <td>
               <ng-container *ngIf="!data?.is_agent_my_self">
-                <a (click)="openMemberDetails(data?.agent_id, 'Agent ', 4)"
+                <a (click)="openMemberDetails(data?.agent_id, 'Managed By ', 4)"
                    *ngIf="data?.agent_id?.name"
                    class="my-link">{{data?.agent_id?.name || '-'}}</a>
                 <ng-container *ngIf="!data?.agent_id?.name">-</ng-container>
               </ng-container>
 
               <ng-container *ngIf="data?.is_agent_my_self">
-                <a (click)="openMemberDetails(data?.group_owner_id, 'Group Owner', 3)"
+                <a (click)="openMemberDetails(data?.group_owner_id, 'Managed By', 3)"
                    class="my-link">{{data?.group_owner_id?.name || '-'}}</a>
               </ng-container>
               <!--              {{data?.agent_id?.name || '-'}}-->
@@ -150,9 +150,15 @@
             </td>
 
             <td class="text-center">
-              <a *ngIf="data?.booking_status == 'ACCEPTED' || data?.booking_status == 'IN_PROGRESS'"
-                 (click)="assignBooking(data)" class="my-link">Assign</a>
-              <ng-container *ngIf="data?.booking_status != 'ACCEPTED' && data?.booking_status != 'IN_PROGRESS'">-
+              <ng-container *ngIf="!data?.is_admin_assign">
+                <a *ngIf="data?.booking_status == 'ACCEPTED' || data?.booking_status == 'IN_PROGRESS'"
+                   (click)="assignBooking(data)" class="my-link">Assign</a>
+                <ng-container *ngIf="data?.booking_status != 'ACCEPTED' && data?.booking_status != 'IN_PROGRESS'">-
+                </ng-container>
+              </ng-container>
+
+              <ng-container *ngIf="data?.is_admin_assign">
+                <label class="status-label pending">Assigned</label>
               </ng-container>
             </td>
 
