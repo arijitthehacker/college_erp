@@ -111,7 +111,7 @@ export class AddNewPropertyComponent implements OnInit {
   makeForm1() {
     this.form1 = this.fb.group({
       category_id: ['', Validators.required],
-      is_featured: ['', Validators.required],
+      is_featured: [false, Validators.required],
       developer_id: ['', Validators.required],
       peropert_type: ['', Validators.required],
       tensure: ['', Validators.required],
@@ -147,6 +147,12 @@ export class AddNewPropertyComponent implements OnInit {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.id = res.data._id;
+        this.router.navigate([], {
+          queryParams: {id: this.id},
+          queryParamsHandling: 'merge'
+        });
+        this.getData();
+
       }, () => {
       });
     } else {
