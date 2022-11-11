@@ -168,9 +168,9 @@ export class AddNewPropertyComponent implements OnInit {
     });
     if (this.modalData) {
       this.form2.patchValue({
-        lng: this.modalData.location.coordinates[0],
-        name: this.modalData.name,
-        lat: this.modalData.location.coordinates[1]
+        // lng: this.modalData.location.coordinates[0],
+        // name: this.modalData.name,
+        // lat: this.modalData.location.coordinates[1]
       });
     }
 
