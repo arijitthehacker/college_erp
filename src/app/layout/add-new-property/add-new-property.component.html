@@ -1,0 +1,532 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-box box-header">
+      <div class="row">
+
+        <div class="col-md-6">
+          <h4 class="card-title  float-left">
+            {{savedData ? 'Edit' : 'Add New ' }} Property
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3 mb-2">
+  <div class="col-md-12">
+    <div class="my-box">
+
+      <div class="tables-area">
+        <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 1}" (click)="clickTab(1)">
+          Property information
+        </div>
+        <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 2}" (click)="clickTab(2)">
+          Property address
+        </div>
+        <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 3}" (click)="clickTab(3)">
+          Property amenities
+        </div>
+        <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 4}" (click)="clickTab(4)">
+          Property price
+        </div>
+        <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 5}" (click)="clickTab(5)">
+          Property description
+        </div>
+        <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 6}" (click)="clickTab(6)">
+          Property images
+        </div>
+      </div>
+
+
+      <div class="bottom-area">
+
+
+        <ng-container *ngIf="selectedTab === 1">
+
+          <form [formGroup]="form1" (ngSubmit)="form1Submit()" *ngIf="form1">
+
+
+            <div class="row">
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">name</label>
+                <input class="form-control" formControlName="name"
+                       type="text" placeholder="Enter name"/>
+                <div class="text-error" *ngIf="form1.controls['name'].errors?.required && show1Error">
+                  This field is required.
+                </div>
+              </div>
+
+              <div class="col-md-4 form-group ">
+                <label class="required set-label">Select Category</label>
+                <select class="form-control" formControlName="category_id">
+                  <option value="">Please select category</option>
+                  <option [value]="data._id" *ngFor="let data of categories">
+                    {{data?.name}}
+                  </option>
+                </select>
+                <div class="text-error" *ngIf="form1.controls['category_id'].errors?.required && show1Error">
+                  This field is required.
+                </div>
+              </div>
+
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Select tensure</label>
+                <select class="form-control" formControlName="tensure">
+                  <option value="">Please select tensure</option>
+                  <option value="BOTH"> BOTH</option>
+                  <option value="FREEHOLD"> FREEHOLD</option>
+                  <option value="LEASEHOLD"> LEASEHOLD</option>
+                </select>
+                <div class="text-error" *ngIf="form1.controls['tensure'].errors?.required && show1Error">
+                  This field is required.
+                </div>
+              </div>
+
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Select category type</label>
+                <select class="form-control" formControlName="category_type">
+                  <option value="">Please select category type</option>
+                  <option value="FEATURED"> FEATURED</option>
+                  <option value="HOT_SELLING">HOT SELLING</option>
+                  <option value="LIMITED_UNITIES">LIMITED UNITS</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Select Status</label>
+                <select class="form-control" formControlName="status">
+                  <option value="">Please select category type</option>
+                  <option value="PRE_LAUNCH"> PRE LAUNCH</option>
+                  <option value="NEW_LAUNCH">NEW LAUNCH</option>
+                  <option value="UNDER_CONSTRUCTION">UNDER CONSTRUCTION</option>
+                  <option value="COMPLETED">COMPLETED</option>
+                </select>
+                <div class="text-error" *ngIf="form1.controls['status'].errors?.required && show1Error">
+                  This field is required.
+                </div>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Select property type</label>
+                <select class="form-control" formControlName="peropert_type">
+                  <option value="">Please select property type</option>
+                  <option value="HOUSE"> HOUSE</option>
+                  <option value="APARTMENT">APARTMENT</option>
+                  <option value="OFFICE">OFFICE</option>
+                </select>
+                <div class="text-error" *ngIf="form1.controls['peropert_type'].errors?.required && show1Error">
+                  This field is required.
+                </div>
+              </div>
+
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">completion year</label>
+                <input class="form-control" formControlName="completion_year" appNumberOnly
+                       type="text" placeholder="Enter completion year"/>
+                <div class="text-error" *ngIf="form1.controls['completion_year'].errors?.required && show1Error">
+                  This field is required.
+                </div>
+              </div>
+
+
+              <div class="col-md-4 form-group ">
+                <label class="required set-label">Select Developer</label>
+                <select class="form-control" formControlName="developer_id">
+                  <option value="">Please select Developer</option>
+                  <option [value]="data._id" *ngFor="let data of developers">
+                    {{data?.name}}
+                  </option>
+                </select>
+                <div class="text-error" *ngIf="form1.controls['developer_id'].errors?.required && show1Error">
+                  This field is required.
+                </div>
+              </div>
+
+
+              <div class="col-md-4 form-group mt-4">
+                <div class="form-check-inline" style="margin-left: 21px">
+                  <label class="form-check-label">
+                    <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="btn-area">
+              <button type="submit" class="btn btn-blue-outline">Submit</button>
+            </div>
+
+          </form>
+        </ng-container>
+
+
+        <ng-container *ngIf="selectedTab === 2">
+
+          <form [formGroup]="form2" (ngSubmit)="form2Submit()" *ngIf="form2">
+
+
+            <div class="row">
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Address</label>
+                <input [autofocus]="true" class="form-control" formControlName="name"
+                       type="text" placeholder="Enter Address"/>
+                <div class="text-error" *ngIf="form2.controls['name'].errors?.required && show2Error">
+                  This field is required.
+                </div>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Latitude</label>
+                <input class="form-control" formControlName="lat"
+                       type="number" placeholder="Enter latitude"/>
+                <div class="text-error" *ngIf="form2.controls['lat'].errors?.required && show2Error">
+                  This field is required.
+                </div>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Longitude</label>
+                <input class="form-control" formControlName="lng"
+                       type="number" placeholder="Enter Longitude"/>
+                <div class="text-error" *ngIf="form2.controls['lng'].errors?.required && show2Error">
+                  This field is required.
+                </div>
+              </div>
+
+              <div class="col-md-6 form-group">
+
+              </div>
+            </div>
+
+            <div class="">
+              <button type="submit" class="btn btn-blue-outline">save</button>
+            </div>
+
+          </form>
+
+          <ng-container *ngIf="addresses?.length">
+            <div class="table-responsive mt-2">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>Sr. No.</th>
+                  <th>Address</th>
+                  <th>Longitude</th>
+                  <th>Latitude</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of addresses;let i =index">
+                  <td>{{i + 1}}</td>
+                  <td>{{data?.name}}</td>
+                  <td>{{data.location.coordinates[0]}}</td>
+                  <td>{{data.location.coordinates[1]}}</td>
+                  <td class="edit-section">
+                    <div (click)="blockUnblock(data)">
+                      <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
+                      <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
+                    </div>
+
+                    <div>
+                      <i (click)="deleteData(data)" class="fa fa-trash"></i>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
+
+
+        </ng-container>
+
+        <ng-container *ngIf="selectedTab === 3">
+          <form [formGroup]="form3" (ngSubmit)="form3Submit()" *ngIf="form3">
+
+            <div class="row">
+              <div class="col-md-4 form-group">
+                <label class="required set-label">min bedroom</label>
+                <input class="form-control" formControlName="min_bedroom" appNumberOnly
+                       type="text" placeholder="Enter min bedroom"/>
+                <div class="text-error" *ngIf="form3.controls['min_bedroom'].errors?.required && show3Error">
+                  This field is required.
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="set-label">max bedroom (Optional)</label>
+                <input class="form-control" formControlName="max_bedroom" appNumberOnly
+                       type="text" placeholder="Enter max bedroom"/>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">min bathroom</label>
+                <input class="form-control" formControlName="min_bathroom" appNumberOnly
+                       type="text" placeholder="Enter min bathroom"/>
+                <div class="text-error" *ngIf="form3.controls['min_bathroom'].errors?.required && show3Error">
+                  This field is required.
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="set-label">max bathroom (optional)</label>
+                <input class="form-control" formControlName="max_bathroom" appNumberOnly
+                       type="text" placeholder="Enter max bathroom"/>
+              </div>
+
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Min area size</label>
+                <input class="form-control" formControlName="min_area_size"
+                       type="text" placeholder="Enter min area size"/>
+                <div class="text-error" *ngIf="form3.controls['min_area_size'].errors?.required && show3Error">
+                  This field is required.
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="set-label">Max area size (optional)</label>
+                <input class="form-control" formControlName="max_area_size"
+                       type="text" placeholder="Enter max area size"/>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">area size type</label>
+                <input class="form-control" formControlName="area_size_type"
+                       type="text" placeholder="Enter area size type"/>
+                <div class="text-error" *ngIf="form3.controls['area_size_type'].errors?.required && show3Error">
+                  This field is required.
+                </div>
+              </div>
+
+            </div>
+
+            <div class="btn-area">
+              <button type="submit" class="btn btn-blue-outline">Submit</button>
+            </div>
+          </form>
+        </ng-container>
+
+
+        <ng-container *ngIf="selectedTab === 4">
+          <form [formGroup]="form4" (ngSubmit)="form4Submit()" *ngIf="form4">
+
+            <div class="row">
+              <div class="col-md-4 form-group">
+                <label class="required set-label">currency</label>
+                <select class="form-control" formControlName="currency">
+                  <option value="">Select Currency</option>
+                  <option *ngFor="let data of currencyList" [value]="data.symbol">
+                    {{data?.name}} ({{data?.symbol}})
+                  </option>
+                </select>
+
+                <div class="text-error" *ngIf="form4.controls['currency'].errors?.required && show4Error">
+                  This field is required.
+                </div>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">start price</label>
+                <input class="form-control" formControlName="start_price" appNumberOnly
+                       type="text" placeholder="Enter start price"/>
+                <div class="text-error" *ngIf="form4.controls['start_price'].errors?.required && show4Error">
+                  This field is required.
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="set-label">end price (optional)</label>
+                <input class="form-control" formControlName="end_price" appNumberOnly
+                       type="text" placeholder="Enter end price"/>
+              </div>
+
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Min member commission</label>
+                <input class="form-control" formControlName="min_member_commision" appNumberOnly
+                       type="text" placeholder="Enter min  member commission"/>
+                <div class="text-error" *ngIf="form4.controls['min_member_commision'].errors?.required && show4Error">
+                  This field is required.
+                </div>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="set-label">Max member commission (optional)</label>
+                <input class="form-control" formControlName="max_member_commision" appNumberOnly
+                       type="text" placeholder="Enter max member commission"/>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Min Agent commission</label>
+                <input class="form-control" formControlName="min_agent_commision" appNumberOnly
+                       type="text" placeholder="Enter min agent commission"/>
+                <div class="text-error" *ngIf="form4.controls['min_agent_commision'].errors?.required && show4Error">
+                  This field is required.
+                </div>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="set-label">Max Agent commission (optional)</label>
+                <input class="form-control" formControlName="max_agent_commision" appNumberOnly
+                       type="text" placeholder="Enter max agent commission"/>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Min Group owner commission</label>
+                <input class="form-control" formControlName="min_group_owner_commision" appNumberOnly
+                       type="text" placeholder="Enter min  group owner commission"/>
+                <div class="text-error"
+                     *ngIf="form4.controls['min_group_owner_commision'].errors?.required && show4Error">
+                  This field is required.
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="set-label">Max Group owner commission (optional)</label>
+                <input class="form-control" formControlName="max_group_owner_commision" appNumberOnly
+                       type="text" placeholder="Enter max group owner commission"/>
+              </div>
+
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">total units</label>
+                <input class="form-control" formControlName="total_units"
+                       type="text" placeholder="Enter total units"/>
+                <div class="text-error" *ngIf="form4.controls['total_units'].errors?.required && show4Error">
+                  This field is required.
+                </div>
+              </div>
+
+            </div>
+
+            <div class="btn-area">
+              <button type="submit" class="btn btn-blue-outline">Submit</button>
+            </div>
+          </form>
+
+        </ng-container>
+
+        <ng-container *ngIf="selectedTab === 5">
+
+          <form [formGroup]="form5" (ngSubmit)="form5Submit()" *ngIf="form5">
+
+            <div class="row">
+              <div class="col-md-12">
+                <label class="required set-label">Description</label>
+                <angular-editor formControlName="descriptuon" [config]="editorConfig"></angular-editor>
+                <div class="text-error"
+                     *ngIf="form5.controls['descriptuon'].errors?.required && show5Error">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+
+            <div class="btn-area">
+              <button type="submit" class="btn btn-blue-outline">Submit</button>
+            </div>
+
+          </form>
+        </ng-container>
+
+
+        <ng-container *ngIf="selectedTab === 6">
+
+          <form [formGroup]="form6" (ngSubmit)="form6Submit()" *ngIf="form6">
+
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <label class="required">Brochure</label>
+                <div class="product-images">
+                  <input type="file" class="file-upload" id="brochure"
+                         accept="image/jpg, image/jpeg, image/png, .pdf"
+                         (change)="selectImage($event, 'brochure',3)">
+                  <label for="brochure">
+                    <img src="/assets/images/ic_camera.png">
+                  </label>
+
+                  <ng-container *ngIf='form6?.value?.brochure'>
+                    <img class="ml-4 uploaded-img" height="72" for="brochure"
+                         [src]="form6?.value?.brochure"
+                         *ngIf="!commonService.checkPDFLink(form6?.value?.brochure)">
+
+                    <a *ngIf="commonService.checkPDFLink(form6?.value?.brochure)" class="my-link"
+                       (click)="commonService.goToLink(form6?.value?.brochure)">
+                      <i class="fa fa-file-pdf-o add-pdf-btn" aria-hidden="true"></i>
+                    </a>
+
+                    <i class="fa fa-times-circle fa-trash-css ml-2" (click)="removeImage('brochure',3)"
+                    ></i>
+
+                  </ng-container>
+
+                </div>
+                <div class="text-error"
+                     *ngIf="form6.controls['brochure'].errors?.required && show6Error">
+                  Please select image.
+                </div>
+              </div>
+
+              <div class="col-md-6 form-group">
+                <label class="required">Cover Image</label>
+                <div class="product-images">
+                  <input type="file" class="file-upload" id="cover_image"
+                         accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'cover_image',1)">
+                  <label for="cover_image">
+                    <img src="/assets/images/ic_camera.png">
+                  </label>
+                  <img class="ml-4 uploaded-img" height="72" for="cover_image"
+                       [src]="form6?.value?.cover_image"
+                       *ngIf='form6?.value?.cover_image'>
+                  <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('cover_image',1)"
+                     *ngIf='form6?.value?.cover_image'></i>
+                </div>
+                <div class="text-error"
+                     *ngIf="form6.controls['cover_image'].errors?.required && show6Error">
+                  Please select image.
+                </div>
+              </div>
+
+              <div class="col-md-12 form-group">
+                <label class="required">Images</label>
+                <div class="product-images">
+                  <input type="file" class="file-upload" id="image"
+                         accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'image',2)">
+                  <label for="image">
+                    <img src="/assets/images/ic_camera.png">
+                  </label>
+                  <ng-container *ngFor="let data of images;let i =index">
+                    <img class="ml-4 multiple-images"
+                         [src]="data"
+                         *ngIf='data'>
+                    <i class="fa fa-times-circle fa-trash-css" (click)="removeImageFromArr(i)"
+                       *ngIf='data'></i>
+                  </ng-container>
+
+                  <div class="text-error"
+                       *ngIf="!images?.length && show6Error">
+                    Please select image.
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="btn-area">
+              <button type="submit" class="btn btn-blue-outline">Submit</button>
+            </div>
+
+          </form>
+        </ng-container>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

@@ -30,6 +30,7 @@ export class PropertiesComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.removeItem('savedData');
     this.getData();
   }
 
@@ -77,12 +78,18 @@ export class PropertiesComponent implements OnInit {
   }
 
   addEditModalOpen(data?: any) {
-    const modalRef = this.modalService.show(AddPropertyComponent, {
-      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
-    });
-    modalRef.content.onClose.subscribe(() => {
-      this.getData();
-    });
+    if (data) {
+      this.router.navigate(['add-new-property'], {queryParams: {id: data._id}});
+    } else {
+      this.router.navigate(['add-new-property']);
+    }
+
+    // const modalRef = this.modalService.show(AddPropertyComponent, {
+    //   initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
+    // });
+    // modalRef.content.onClose.subscribe(() => {
+    //   this.getData();
+    // });
   }
 
   openProAddresses(data?: any) {

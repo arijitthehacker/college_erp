@@ -56,7 +56,6 @@ export class AddOwnerComponent implements OnInit {
         obj[`_id`] = this.modalData._id;
       }
 
-      console.log(obj, 'obj');
       obj.iso_code = obj.phone_number.countryCode;
       obj.country_code = obj.phone_number.dialCode;
       obj.phone_number = obj.phone_number.number;

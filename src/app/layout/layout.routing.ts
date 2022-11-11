@@ -51,6 +51,10 @@ const routes: Routes = [
         path: 'developers',
         loadChildren: () => import('./developers/developers.module').then(m => m.DevelopersModule),
         data: {breadcrumb: 'Developers', title: 'developer'}
+      },  {
+        path: 'add-new-property',
+        loadChildren: () => import('./add-new-property/add-new-property.module').then(m => m.AddNewPropertyModule),
+        data: {breadcrumb: 'Developers', title: 'developer'}
       }, {
         path: 'info-pages/:type',
         loadChildren: () => import('./info-pages/info-pages.module').then(m => m.InfoPagesModule),

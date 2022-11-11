@@ -5,19 +5,55 @@ export const CONSTANT = {
   email_pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 };
 
+// {path: 'members', name: 'Members', icon: 'fa fa-users'},
+// {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
+// {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
+// {path: 'developers', name: 'Developers', icon: 'fa fa-gavel'},
 export const SIDEBAR = [
-  {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
-  {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
-  {path: 'members', name: 'Members', icon: 'fa fa-users'},
-  {path: 'customer-leads', name: 'Customer Leads', icon: 'fa fa-windows'},
-  {path: 'developers', name: 'Developers', icon: 'fa fa-graduation-cap'},
-  {path: 'property-categories', name: 'Property Categories', icon: 'fa fa-rocket'},
-  {path: 'properties', name: 'Properties', icon: 'fa fa-tachometer'},
-  {path: 'reasons', name: 'Reject Reasons', icon: 'fa fa-usb'},
-  {path: 'purposes', name: 'Property Purposes', icon: 'fa fa-user-secret'},
-  {path: 'budgets', name: 'Property Budgets', icon: 'fa fa-h-square'},
-  {path: 'settings', name: 'Settings', icon: 'fa fa-cog'},
-  {path: 'info-pages/privacy-settings', name: 'Privacy Settings', icon: 'fa fa-info'}
+  {
+    path: '', name: 'Members Profile', children: [
+      {path: 'members', name: 'Members', icon: 'fa fa-user-o'},
+      {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
+      {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
+      {path: 'developers', name: 'Developers', icon: 'fa fa-gavel'}
+    ]
+  },
+  {
+    path: '', name: 'Property Management', children: [
+      {path: 'property-categories', name: 'Property Categories', icon: 'fa fa-rocket'},
+      {path: 'properties', name: 'Property List', icon: 'fa fa-building'},
+      {path: 'purposes', name: 'Property Purposes', icon: 'fa fa-user-secret'}
+
+    ]
+  },
+
+  {
+    path: '', name: 'Leads Management', children: [
+      {path: 'customer-leads', name: 'Customer Leads', icon: 'fa fa-windows'},
+      {path: 'reasons', name: 'Reject Reasons', icon: 'fa fa-usb'}
+    ]
+  },
+
+  {
+    path: '', name: 'Control Management', children: [
+      {path: 'settings', name: 'Settings', icon: 'fa fa-cog'}
+    ]
+  },
+
+  {
+    path: '', name: 'Accounts', children: [
+      {path: 'budgets', name: 'Property Budgets', icon: 'fa fa-h-square'}
+    ]
+  },
+
+  {
+    path: '', name: 'Content Management', children: [
+      {path: 'privacy', name: 'Privacy Policy'},
+      {path: 'terms', name: 'Terms & Conditions'},
+      {path: 'about', name: 'About Us'},
+      {path: 'info-pages/privacy-settings', name: 'Privacy Settings', icon: 'fa fa-info'}
+    ]
+  }
 ];
 
 // {path: 'building-material', name: 'Building Material', icon: 'fa fa-building'},

@@ -40,5 +40,10 @@ export const ApiUrl = {
   add_edit_peroperty_budgets: 'Admin/add_edit_peroperty_budgets',
   managed_user_share_link: 'Admin/managed_user_share_link',
   user_share_link_details: 'Admin/user_share_link_details',
-  add_edit_peroperty_address: 'Admin/add_edit_peroperty_address'
+  add_edit_peroperty_address: 'Admin/add_edit_peroperty_address',
+  add_peroperties_step_3: 'Admin/add_peroperties_step_3',
+  add_peroperties_step_4: 'Admin/add_peroperties_step_4',
+  add_peroperties_step_5: 'Admin/add_peroperties_step_5',
+  add_peroperties_step_6: 'Admin/add_peroperties_step_6',
+
 };

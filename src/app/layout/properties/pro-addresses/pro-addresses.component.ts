@@ -17,6 +17,7 @@ export class ProAddressesComponent implements OnInit {
   public onClose: Subject<any> = new Subject();
   modalData: any;
   allData: any = [];
+  addresses: any = [];
 
   constructor(public message: MessageService, private http: HttpService, public bsModalRef: BsModalRef,
               public commonService: CommonService, private modalService: BsModalService) {
@@ -44,6 +45,9 @@ export class ProAddressesComponent implements OnInit {
       this.allData = res.data.data;
     }, () => {
     });
+
+
+
   }
 
   blockUnblock(data: any) {

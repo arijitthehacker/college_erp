@@ -11,6 +11,7 @@ import { HeaderComponent } from './common/header/header.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ChangePasswordModule } from './common/change-password/change-password.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     SideBarComponent,
     HeaderComponent
   ],
-  imports: [
-    CommonModule,
-    LayoutRoutingModule,
-    ModalModule.forRoot(),
-    ChangePasswordModule,
-    ReactiveFormsModule
-  ],
+   imports: [
+      CommonModule,
+      LayoutRoutingModule,
+      ModalModule.forRoot(),
+      ChangePasswordModule,
+      ReactiveFormsModule,
+      CollapseModule
+   ],
   entryComponents: []
 })
 export class LayoutModule {

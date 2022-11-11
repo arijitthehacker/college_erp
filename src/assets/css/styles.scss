@@ -79,6 +79,11 @@
   margin-bottom: -22px;
 }
 
+.btn-area {
+  text-align: right;
+  margin-top: 10px;
+}
+
 
 .ng-autocomplete {
   width: auto !important;
@@ -941,9 +946,51 @@ select {
 }
 
 
-.paid-text{
+.paid-text {
   border: 1px solid #fa6400;
   padding: 1px 10px;
   border-radius: 4px;
 
 }
+
+.inner-icons {
+  width: 24px;
+}
+
+.sub-menu-item a {
+  //padding-left: 20px;
+  font-size: 14px;
+}
+
+
+.app-menu__item {
+  cursor: pointer;
+}
+
+
+.tables-area {
+  display: flex;
+
+}
+
+.each-tab {
+  display: inline-flex;
+  padding: 0 6px;
+  border-bottom: 2px solid;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 18px;
+  text-transform: capitalize;
+}
+
+.selected-tab {
+  font-size: 17px;
+  color: $main-color;
+}
+
+.bottom-area {
+  margin-top: 20px;
+  padding: 4px 16px;
+}
+

@@ -50,13 +50,11 @@ export class AppComponent implements OnInit {
   checkNewVersion() {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
-        console.log('11111');
         if (confirm('New version available. Load New Version?')) {
           window.location.reload();
         }
       });
       this.swUpdate.versionUpdates.subscribe(res => {
-        console.log(res, '222222');
         if (confirm('New version available. Load New Version?')) {
           window.location.reload();
         }

@@ -19,7 +19,6 @@ export class StatusesComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.modalData);
     if (this.modalData?.status?.length) {
       this.modalData.status.forEach((val) => {
         if (val.status_data != 'PENDING') {
