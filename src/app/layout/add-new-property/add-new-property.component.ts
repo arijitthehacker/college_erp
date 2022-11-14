@@ -110,12 +110,14 @@ export class AddNewPropertyComponent implements OnInit {
   }
 
   getAddress() {
-    let obj: any = {
-      property_id: this.id
-    };
-    this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
-      this.addresses = res.data.data;
-    });
+    if(this.id) {
+      let obj: any = {
+        property_id: this.id
+      };
+      this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
+        this.addresses = res.data.data;
+      });
+    }
   }
 
   makeForm1() {

@@ -8,9 +8,10 @@ export const CONSTANT = {
 export const SIDEBAR = [
   {
     path: '', name: 'Members Profile', icon: 'fa-users', children: [
-      {path: 'members', name: 'Members', icon: 'fa fa-user-o'},
       {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
       {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
+      {path: 'members', name: 'Members', icon: 'fa fa-user-o'},
+
       {path: 'developers', name: 'Developers', icon: 'fa fa-gavel'}
     ]
   },
