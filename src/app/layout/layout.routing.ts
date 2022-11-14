@@ -8,6 +8,7 @@ import { AgentsModule } from './agents/agents.module';
 import { MembersModule } from './members/members.module';
 import { ReasonsModule } from './reasons/reasons.module';
 import { InfoPagesModule } from './info-pages/info-pages.module';
+import { ProfileModule } from './profile/profile.module';
 
 const routes: Routes = [
   {
@@ -47,10 +48,18 @@ const routes: Routes = [
         path: 'reasons',
         loadChildren: () => import('./reasons/reasons.module').then(m => m.ReasonsModule),
         data: {breadcrumb: 'Reject Reasons', title: 'reason'}
+      },{
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+        data: {breadcrumb: 'Admin profile', title: 'profile'}
       }, {
         path: 'developers',
         loadChildren: () => import('./developers/developers.module').then(m => m.DevelopersModule),
         data: {breadcrumb: 'Developers', title: 'developer'}
+      }, {
+        path: 'change-password',
+        loadChildren: () => import('./change-password/change-password.module').then(m => m.ChangePasswordModule),
+        data: {breadcrumb: 'Change Password', title: 'Change Password'}
       },  {
         path: 'add-new-property',
         loadChildren: () => import('./add-new-property/add-new-property.module').then(m => m.AddNewPropertyModule),

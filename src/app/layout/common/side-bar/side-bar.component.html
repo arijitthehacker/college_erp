@@ -96,11 +96,23 @@
         <div [id]="'collapseBasic'" [collapse]="!data.isCollapsed" [isAnimated]="true"
              *ngFor="let val of data.children;let j =index">
           <div class="sub-menu-item  animate__animated animate__slideInDown">
+
+
             <a routerLinkActive="active" [routerLink]="['/'+data?.path +'/'+val?.path]" href="javascript://"
+               *ngIf="val?.path"
                (click)="optionClick(i,3);" class="app-menu__item">
               <i class="inner-icons fa" [ngClass]="val.icon"></i>
               {{val?.name}}
             </a>
+
+
+            <!--            for logout-->
+            <a routerLinkActive="active" href="javascript://" *ngIf="!val?.path"
+               (click)="optionClick(i,4);" class="app-menu__item">
+              <i class="inner-icons fa" [ngClass]="val.icon"></i>
+              {{val?.name}}
+            </a>
+            <!--            for logout ended-->
           </div>
         </div>
       </li>

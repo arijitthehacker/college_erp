@@ -4,6 +4,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { MessageService } from 'src/app/services/message/message.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { SIDEBAR } from '../../../core/constant';
+import { CommonService } from '../../../services/commonService/common.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -12,13 +13,12 @@ import { SIDEBAR } from '../../../core/constant';
 export class SideBarComponent implements OnInit {
 
   sideBar: any = SIDEBAR;
-  showOptions = false;
   selectedIndex = 0;
   selectedRoute = 'appointments';
   showSideBar = false;
 
   constructor(private message: MessageService, private modalService: BsModalService, private router: Router,
-              public activatedRoute: ActivatedRoute) {
+              public activatedRoute: ActivatedRoute, public commonService: CommonService) {
   }
 
   ngOnInit() {
@@ -30,6 +30,14 @@ export class SideBarComponent implements OnInit {
     this.sideBar.forEach((val, key) => {
       if (this.selectedRoute === '/' + val.path) {
         this.selectedIndex = key;
+      }
+    });
+  }
+
+  logout() {
+    this.message.confirm(`Logout`).then(res => {
+      if (res.isConfirmed) {
+        this.commonService.afterLogout();
       }
     });
   }
@@ -46,6 +54,10 @@ export class SideBarComponent implements OnInit {
         break;
       case 3:
         this.showSideBar = false;
+        break;
+      case 4:
+        this.showSideBar = false;
+        this.logout();
         break;
     }
 
@@ -78,15 +90,6 @@ export class SideBarComponent implements OnInit {
     this.modalService.show(ChangePasswordComponent, {
       backdrop: 'static',
       keyboard: false
-    });
-  }
-
-  logout() {
-    this.message.confirm(`Logout`).then(res => {
-      if (res.isConfirmed) {
-        localStorage.clear();
-        this.router.navigate(['/login']);
-      }
     });
   }
 

@@ -5,10 +5,7 @@ export const CONSTANT = {
   email_pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 };
 
-// {path: 'members', name: 'Members', icon: 'fa fa-users'},
-// {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
-// {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
-// {path: 'developers', name: 'Developers', icon: 'fa fa-gavel'},
+
 export const SIDEBAR = [
   {
     path: '', name: 'Members Profile', children: [
@@ -51,7 +48,13 @@ export const SIDEBAR = [
       {path: 'privacy', name: 'Privacy Policy'},
       {path: 'terms', name: 'Terms & Conditions'},
       {path: 'about', name: 'About Us'},
-      {path: 'info-pages/privacy-settings', name: 'Privacy Settings', icon: 'fa fa-info'}
+      // {path: 'info-pages/privacy-settings', name: 'Privacy Settings'}
+    ]
+  }, {
+    path: '', name: 'Profile', children: [
+      {path: 'profile', name: 'Update Profile', icon: 'fa-id-card-o'},
+      {path: 'change-password', name: 'Change Password', icon: 'fa-key'},
+      {path: '', name: 'Logout', icon: 'fa-sign-out'}
     ]
   }
 ];

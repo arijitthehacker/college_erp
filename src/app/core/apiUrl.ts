@@ -35,6 +35,7 @@ export const ApiUrl = {
   list_members: 'Admin/list_members',
   list_customer_request: 'Admin/list_customer_request',
   managed_members: 'Admin/managed_members',
+  update_profile: 'Admin/update_profile',
   list_property_address: 'Admin/list_property_address',
   add_edit_agents: 'Admin/add_edit_agents',
   add_edit_peroperty_budgets: 'Admin/add_edit_peroperty_budgets',

@@ -96,6 +96,8 @@ export class AddNewPropertyComponent implements OnInit {
           this.getAddress();
           break;
       }
+    } else {
+      this.form1Submit();
     }
   }
 
@@ -143,6 +145,11 @@ export class AddNewPropertyComponent implements OnInit {
       if (this.modalData) {
         obj[`_id`] = this.modalData._id;
       }
+
+      // if (!obj.category_type) {
+      //   delete obj.category_type;
+      // }
+
       this.http.postData(ApiUrl.add_edit_peroperties, obj).subscribe(res => {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);

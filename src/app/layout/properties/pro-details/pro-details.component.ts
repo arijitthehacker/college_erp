@@ -14,6 +14,8 @@ export class ProDetailsComponent implements OnInit {
 
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  selectedTab = 1;
+  addresses: any = [];
 
   constructor(public message: MessageService, public bsModalRef: BsModalRef, public commonService: CommonService,
               public http: HttpService) {
@@ -21,6 +23,20 @@ export class ProDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.getAddress();
+  }
+
+  clickTab(flag) {
+    this.selectedTab = flag;
+  }
+
+  getAddress() {
+    let obj: any = {
+      property_id: this.modalData._id
+    };
+    this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
+      this.addresses = res.data.data;
+    });
   }
 
   getData() {
