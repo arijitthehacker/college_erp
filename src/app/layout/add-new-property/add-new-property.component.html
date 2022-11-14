@@ -156,18 +156,18 @@
               </div>
 
 
-<!--              <div class="col-md-4 form-group mt-4">-->
-<!--                <div class="form-check-inline" style="margin-left: 21px">-->
-<!--                  <label class="form-check-label">-->
-<!--                    <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?-->
-<!--                  </label>-->
-<!--                </div>-->
-<!--              </div>-->
+              <!--              <div class="col-md-4 form-group mt-4">-->
+              <!--                <div class="form-check-inline" style="margin-left: 21px">-->
+              <!--                  <label class="form-check-label">-->
+              <!--                    <input type="checkbox" formControlName="is_featured" class="form-check-input" value="true">Featured?-->
+              <!--                  </label>-->
+              <!--                </div>-->
+              <!--              </div>-->
 
             </div>
 
             <div class="btn-area">
-              <button type="submit" class="btn btn-blue-outline">Submit</button>
+              <button type="submit" class="btn btn-blue-outline">Next</button>
             </div>
 
           </form>
@@ -190,7 +190,7 @@
                 </div>
               </div>
 
-              <div class="col-md-4 form-group">
+              <div class="col-md-3 form-group">
                 <label class="required set-label">Latitude</label>
                 <input class="form-control" formControlName="lat"
                        type="number" placeholder="Enter latitude"/>
@@ -199,7 +199,7 @@
                 </div>
               </div>
 
-              <div class="col-md-4 form-group">
+              <div class="col-md-3 form-group">
                 <label class="required set-label">Longitude</label>
                 <input class="form-control" formControlName="lng"
                        type="number" placeholder="Enter Longitude"/>
@@ -208,18 +208,15 @@
                 </div>
               </div>
 
-              <div class="col-md-6 form-group">
-
+              <div class="col-md-2 form-group" style="margin-top:26px;">
+                <button type="submit" class="btn btn-blue-outline">save</button>
               </div>
-            </div>
-
-            <div class="">
-              <button type="submit" class="btn btn-blue-outline">save</button>
             </div>
 
           </form>
 
           <ng-container *ngIf="addresses?.length">
+            <label class="add-table"> Address List</label>
             <div class="table-responsive mt-2">
               <table class="table">
                 <thead>
@@ -251,6 +248,14 @@
                 </tbody>
               </table>
             </div>
+
+
+            <div class="btn-area">
+              <button type="button" class="btn btn-blue-outline" (click)="gotoPrev(1)">Previous</button>
+              <button type="button" class="btn btn-blue-outline" (click)="gotoNext(3)">Next</button>
+            </div>
+
+
           </ng-container>
 
 
@@ -314,9 +319,12 @@
 
             </div>
 
+
             <div class="btn-area">
-              <button type="submit" class="btn btn-blue-outline">Submit</button>
+              <button type="button" class="btn btn-blue-outline" (click)="gotoPrev(2)">Previous</button>
+              <button type="submit" class="btn btn-blue-outline">Next</button>
             </div>
+
           </form>
         </ng-container>
 
@@ -326,10 +334,10 @@
 
             <div class="row">
               <div class="col-md-4 form-group">
-                <label class="required set-label">currency</label>
+                <label class="required set-label">currency </label>
                 <select class="form-control" formControlName="currency">
                   <option value="">Select Currency</option>
-                  <option *ngFor="let data of currencyList" [value]="data.symbol">
+                  <option *ngFor="let data of currencyList;" [value]="data.cc">
                     {{data?.name}} ({{data?.symbol}})
                   </option>
                 </select>
@@ -411,8 +419,10 @@
             </div>
 
             <div class="btn-area">
-              <button type="submit" class="btn btn-blue-outline">Submit</button>
+              <button type="button" class="btn btn-blue-outline" (click)="gotoPrev(3)">Previous</button>
+              <button type="submit" class="btn btn-blue-outline">Next</button>
             </div>
+
           </form>
 
         </ng-container>

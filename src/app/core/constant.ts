@@ -5,10 +5,9 @@ export const CONSTANT = {
   email_pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 };
 
-
 export const SIDEBAR = [
   {
-    path: '', name: 'Members Profile', children: [
+    path: '', name: 'Members Profile', icon: 'fa-users', children: [
       {path: 'members', name: 'Members', icon: 'fa fa-user-o'},
       {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
       {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
@@ -16,7 +15,7 @@ export const SIDEBAR = [
     ]
   },
   {
-    path: '', name: 'Property Management', children: [
+    path: '', name: 'Property Management', icon: 'fa-building', children: [
       {path: 'property-categories', name: 'Property Categories', icon: 'fa fa-rocket'},
       {path: 'properties', name: 'Property List', icon: 'fa fa-building'},
       {path: 'purposes', name: 'Property Purposes', icon: 'fa fa-user-secret'}
@@ -25,33 +24,33 @@ export const SIDEBAR = [
   },
 
   {
-    path: '', name: 'Leads Management', children: [
+    path: '', name: 'Leads Management', icon: 'fa-bar-chart', children: [
       {path: 'customer-leads', name: 'Customer Leads', icon: 'fa fa-windows'},
       {path: 'reasons', name: 'Reject Reasons', icon: 'fa fa-usb'}
     ]
   },
 
   {
-    path: '', name: 'Control Management', children: [
+    path: '', name: 'Control Management', icon: 'fa-sliders', children: [
       {path: 'settings', name: 'Settings', icon: 'fa fa-cog'}
     ]
   },
 
   {
-    path: '', name: 'Accounts', children: [
+    path: '', name: 'Accounts', icon: 'fa-money', children: [
       {path: 'budgets', name: 'Property Budgets', icon: 'fa fa-h-square'}
     ]
   },
 
   {
-    path: '', name: 'Content Management', children: [
+    path: '', name: 'Content Management', icon: 'fa-info', children: [
       {path: 'privacy', name: 'Privacy Policy'},
       {path: 'terms', name: 'Terms & Conditions'},
-      {path: 'about', name: 'About Us'},
+      {path: 'about', name: 'About Us'}
       // {path: 'info-pages/privacy-settings', name: 'Privacy Settings'}
     ]
   }, {
-    path: '', name: 'Profile', children: [
+    path: '', name: 'Profile', icon: 'fa-id-card-o', children: [
       {path: 'profile', name: 'Update Profile', icon: 'fa-id-card-o'},
       {path: 'change-password', name: 'Change Password', icon: 'fa-key'},
       {path: '', name: 'Logout', icon: 'fa-sign-out'}

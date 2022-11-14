@@ -88,6 +88,14 @@ export class AddNewPropertyComponent implements OnInit {
 
   }
 
+  gotoPrev(flag) {
+    this.selectedTab = flag;
+  }
+
+  gotoNext(flag) {
+    this.selectedTab = flag;
+  }
+
   clickTab(flag) {
     if (this.id || flag == 1) {
       this.selectedTab = flag;
@@ -124,8 +132,11 @@ export class AddNewPropertyComponent implements OnInit {
     });
 
     if (this.modalData) {
+
+      console.log(this.modalData.category_id, ' this.modalData.category_id._id,');
+
       this.form1.patchValue({
-        category_id: this.modalData.category_id,
+        category_id: this.modalData?.category_id?._id || this.modalData?.category_id,
         is_featured: this.modalData.is_featured,
         developer_id: this.modalData.developer_id._id,
         category_type: this.modalData.category_type,
@@ -160,6 +171,7 @@ export class AddNewPropertyComponent implements OnInit {
         });
         this.getData();
 
+        this.selectedTab = 2;
       }, () => {
       });
     } else {
@@ -252,6 +264,8 @@ export class AddNewPropertyComponent implements OnInit {
       this.http.postData(ApiUrl.add_peroperties_step_3, obj).subscribe(() => {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+
+        this.selectedTab = 4;
       }, () => {
       });
     } else {
@@ -275,7 +289,6 @@ export class AddNewPropertyComponent implements OnInit {
 
     if (this.modalData) {
       this.form4.patchValue({
-        currency: this.modalData.currency,
         start_price: this.modalData.start_price,
         end_price: this.modalData.end_price,
         total_units: this.modalData.total_units,
@@ -289,6 +302,18 @@ export class AddNewPropertyComponent implements OnInit {
         group_owner_commision: this.modalData.group_owner_commision,
         max_group_owner_commision: this.modalData.max_group_owner_commision
       });
+
+      if (this.modalData.currency) {
+
+        this.currencyList.forEach((val) => {
+          if (val.name == this.modalData.currency) {
+            this.form4.patchValue({
+              currency: val.cc
+            });
+          }
+        });
+      }
+
     }
 
   }
@@ -335,9 +360,16 @@ export class AddNewPropertyComponent implements OnInit {
         obj.max_group_owner_commision = 0;
       }
 
+      this.currencyList.forEach((val) => {
+        if (val.cc == this.form4.value.currency) {
+          obj.currency = JSON.parse(JSON.stringify(val.name));
+          obj.currency_code = val.symbol;
+        }
+      });
       this.http.postData(ApiUrl.add_peroperties_step_4, obj).subscribe(() => {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+        this.selectedTab = 5;
       }, () => {
       });
     } else {
@@ -469,8 +501,11 @@ export class AddNewPropertyComponent implements OnInit {
     let obj = {
       is_pagination: false
     };
+    console.log(this.form1, 'categories');
+
     this.http.getData(ApiUrl.list_peroperty_categories, obj, true).subscribe(res => {
       this.categories = res.data.data;
+      this.getAddress();
     });
   }
 

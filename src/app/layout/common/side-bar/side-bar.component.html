@@ -80,7 +80,7 @@
         <a [routerLinkActive]="'active'" [routerLink]="['/'+data?.path]" href="javascript://"
            (click)="optionClick(i,1);"
            class="app-menu__item" #rla="routerLinkActive">
-          <i class="fa" [ngClass]="data.icon" [ngStyle]="{'font-size': data.fontSize}"></i>
+          <i class="fa fa-fw" [ngClass]="data.icon" [ngStyle]="{'font-size': data.fontSize}"></i>
 
           <span class="app-menu__label">{{data?.name}}</span>
         </a>
@@ -89,7 +89,7 @@
       <li *ngIf="data?.children">
         <a (click)="optionClick(i,2);" [attr.aria-expanded]="!data?.isCollapsed" aria-controls="collapseBasic"
            class="app-menu__item sub-menu">
-          <i class="fa" [ngClass]="data.icon"></i>
+          <i class="fa fa-fw" [ngClass]="data.icon"></i>
           <span class="app-menu__label">{{data?.name}}</span>
           <i class="fa " [ngClass]="data?.isCollapsed ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </a>

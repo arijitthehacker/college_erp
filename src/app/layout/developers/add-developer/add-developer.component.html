@@ -8,10 +8,7 @@
   <div class="modal-body">
 
     <div class="row">
-
-
-
-      <div class="col-md-12 form-group">
+      <div class="col-md-6 form-group">
         <label class="required set-label">Name</label>
         <input class="form-control" formControlName="name"
                type="text" placeholder="Enter name"/>
@@ -20,7 +17,7 @@
         </div>
       </div>
 
-      <div class="col-md-12 form-group">
+      <div class="col-md-6 form-group">
         <label class="required set-label">address</label>
         <input class="form-control" formControlName="address"
                type="text" placeholder="Enter address"/>
@@ -31,9 +28,9 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">description</label>
-        <textarea class="form-control" formControlName="description"
-                  type="text" placeholder="Enter description">
-        </textarea>
+        <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
+        <!--        <textarea class="form-control" formControlName="description"-->
+        <!--                  type="text" placeholder="Enter description"> </textarea>-->
         <div class="text-error" *ngIf="form.controls['description'].errors?.required && showError">
           This field is required.
         </div>

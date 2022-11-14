@@ -24,6 +24,9 @@ export class SideBarComponent implements OnInit {
   ngOnInit() {
     this.selectedRoute = this.router.url;
     this.setSelectedIndex();
+
+    this.optionClick(0,2);
+
   }
 
   setSelectedIndex() {
