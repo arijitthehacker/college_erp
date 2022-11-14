@@ -13,7 +13,10 @@ export const ApiUrl = {
   manage_plans: 'Admin/manage_plans',
   list_developers: 'Admin/list_developers',
   managed_developers: 'Admin/managed_developers',
+  managed_comission: 'Admin/managed_comission',
+  list_comission: 'Admin/list_comission',
   upload_api: 'OpenApi/file_upload',
+  add_edit_comission: 'Admin/add_edit_comission',
   managed_peroperty_categories: 'Admin/managed_peroperty_categories',
   add_edit_rejection_reason: 'Admin/add_edit_rejection_reason',
   list_banners: 'Admin/list_banners',
@@ -46,5 +49,10 @@ export const ApiUrl = {
   add_peroperties_step_4: 'Admin/add_peroperties_step_4',
   add_peroperties_step_5: 'Admin/add_peroperties_step_5',
   add_peroperties_step_6: 'Admin/add_peroperties_step_6',
-
+  update_device_token: 'Admin/update_device_token',
+  list_notification: 'Admin/list_notification',
+  read_notification: 'Admin/read_notification',
+  clear_notification: 'Admin/clear_notification',
+  access_token_login: 'Admin/access_token_login',
+  list_lead_logs: 'Admin/list_lead_logs'
 };

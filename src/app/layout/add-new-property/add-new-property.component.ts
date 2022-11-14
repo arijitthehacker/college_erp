@@ -46,6 +46,7 @@ export class AddNewPropertyComponent implements OnInit {
 
   categories: any = [];
   developers: any = [];
+  commissions: any = [];
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
               public router: Router, public lightbox: Lightbox,
@@ -85,6 +86,7 @@ export class AddNewPropertyComponent implements OnInit {
     this.makeForm6();
     this.categoryList();
     this.devsList();
+    this.commissionList();
 
   }
 
@@ -110,7 +112,7 @@ export class AddNewPropertyComponent implements OnInit {
   }
 
   getAddress() {
-    if(this.id) {
+    if (this.id) {
       let obj: any = {
         property_id: this.id
       };
@@ -194,7 +196,6 @@ export class AddNewPropertyComponent implements OnInit {
         // lat: this.modalData.location.coordinates[1]
       });
     }
-
   }
 
   form2Submit() {
@@ -203,7 +204,6 @@ export class AddNewPropertyComponent implements OnInit {
       if (this.modalData) {
         obj[`property_id`] = this.modalData._id;
       }
-
       this.http.postData(ApiUrl.add_edit_peroperty_address, obj).subscribe(() => {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
@@ -213,7 +213,7 @@ export class AddNewPropertyComponent implements OnInit {
       }, () => {
       });
     } else {
-      this.show3Error = true;
+      this.show2Error = true;
     }
   }
 
@@ -238,7 +238,6 @@ export class AddNewPropertyComponent implements OnInit {
         min_bathroom: this.modalData.min_bathroom
       });
     }
-
   }
 
   form3Submit() {
@@ -266,7 +265,6 @@ export class AddNewPropertyComponent implements OnInit {
       this.http.postData(ApiUrl.add_peroperties_step_3, obj).subscribe(() => {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
-
         this.selectedTab = 4;
       }, () => {
       });
@@ -278,14 +276,9 @@ export class AddNewPropertyComponent implements OnInit {
   makeForm4() {
     this.form4 = this.fb.group({
       currency: ['', Validators.required],
+      comission_id: ['', Validators.required],
       start_price: [null, Validators.required],
       end_price: [null],
-      min_member_commision: ['', Validators.required],
-      max_member_commision: [0],
-      min_agent_commision: ['', Validators.required],
-      max_agent_commision: [0],
-      min_group_owner_commision: ['', Validators.required],
-      max_group_owner_commision: [0],
       total_units: ['', Validators.required]
     });
 
@@ -293,20 +286,11 @@ export class AddNewPropertyComponent implements OnInit {
       this.form4.patchValue({
         start_price: this.modalData.start_price,
         end_price: this.modalData.end_price,
-        total_units: this.modalData.total_units,
-        min_agent_commision: this.modalData.min_agent_commision,
-        min_member_commision: this.modalData.min_member_commision,
-        min_group_owner_commision: this.modalData.min_group_owner_commision,
-        member_commision: this.modalData.member_commision,
-        max_member_commision: this.modalData.max_member_commision,
-        max_agent_commision: this.modalData.max_agent_commision,
-        agent_commision: this.modalData.agent_commision,
-        group_owner_commision: this.modalData.group_owner_commision,
-        max_group_owner_commision: this.modalData.max_group_owner_commision
+        comission_id: this.modalData?.comission_id?._id || '',
+        total_units: this.modalData.total_units
       });
 
       if (this.modalData.currency) {
-
         this.currencyList.forEach((val) => {
           if (val.name == this.modalData.currency) {
             this.form4.patchValue({
@@ -315,7 +299,6 @@ export class AddNewPropertyComponent implements OnInit {
           }
         });
       }
-
     }
 
   }
@@ -336,31 +319,31 @@ export class AddNewPropertyComponent implements OnInit {
         obj.end_price = 0;
       }
 
-      if (this.form4?.value?.max_member_commision) {
-        if (parseInt(this.form4?.value?.min_member_commision, 10) > parseInt(this.form4?.value?.max_member_commision, 10)) {
-          this.message.toast('error', 'Max member commission should be greater than or equal to start price');
-          return;
-        }
-      } else {
-        obj.max_member_commision = 0;
-      }
-
-      if (this.form4?.value?.max_agent_commision) {
-        if (parseInt(this.form4?.value?.min_agent_commision, 10) > parseInt(this.form4?.value?.max_agent_commision, 10)) {
-          this.message.toast('error', 'Max agent commission should be greater than or equal to min agent commission');
-          return;
-        }
-      } else {
-        obj.max_agent_commision = 0;
-      }
-      if (this.form4?.value?.max_group_owner_commision) {
-        if (parseInt(this.form4?.value?.min_group_owner_commision, 10) > parseInt(this.form4?.value?.max_group_owner_commision, 10)) {
-          this.message.toast('error', 'Max group owner commission should be greater than or equal to min group owner commission');
-          return;
-        }
-      } else {
-        obj.max_group_owner_commision = 0;
-      }
+      // if (this.form4?.value?.max_member_commision) {
+      //   if (parseInt(this.form4?.value?.min_member_commision, 10) > parseInt(this.form4?.value?.max_member_commision, 10)) {
+      //     this.message.toast('error', 'Max member commission should be greater than or equal to start price');
+      //     return;
+      //   }
+      // } else {
+      //   obj.max_member_commision = 0;
+      // }
+      //
+      // if (this.form4?.value?.max_agent_commision) {
+      //   if (parseInt(this.form4?.value?.min_agent_commision, 10) > parseInt(this.form4?.value?.max_agent_commision, 10)) {
+      //     this.message.toast('error', 'Max agent commission should be greater than or equal to min agent commission');
+      //     return;
+      //   }
+      // } else {
+      //   obj.max_agent_commision = 0;
+      // }
+      // if (this.form4?.value?.max_group_owner_commision) {
+      //   if (parseInt(this.form4?.value?.min_group_owner_commision, 10) > parseInt(this.form4?.value?.max_group_owner_commision, 10)) {
+      //     this.message.toast('error', 'Max group owner commission should be greater than or equal to min group owner commission');
+      //     return;
+      //   }
+      // } else {
+      //   obj.max_group_owner_commision = 0;
+      // }
 
       this.currencyList.forEach((val) => {
         if (val.cc == this.form4.value.currency) {
@@ -517,6 +500,15 @@ export class AddNewPropertyComponent implements OnInit {
     };
     this.http.getData(ApiUrl.list_developers, obj, true).subscribe(res => {
       this.developers = res.data.data;
+    });
+  }
+
+  commissionList() {
+    let obj = {
+      is_pagination: false
+    };
+    this.http.getData(ApiUrl.list_comission, obj, true).subscribe(res => {
+      this.commissions = res.data.data;
     });
   }
 

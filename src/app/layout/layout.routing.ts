@@ -56,6 +56,10 @@ const routes: Routes = [
         path: 'developers',
         loadChildren: () => import('./developers/developers.module').then(m => m.DevelopersModule),
         data: {breadcrumb: 'Developers', title: 'developer'}
+      },{
+        path: 'commissions',
+        loadChildren: () => import('./commissions/commissions.module').then(m => m.CommissionsModule),
+        data: {breadcrumb: 'Commissions', title: 'commission'}
       }, {
         path: 'change-password',
         loadChildren: () => import('./change-password/change-password.module').then(m => m.ChangePasswordModule),

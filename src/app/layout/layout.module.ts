@@ -12,6 +12,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ChangePasswordModule } from './common/change-password/change-password.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
       ModalModule.forRoot(),
       ChangePasswordModule,
       ReactiveFormsModule,
-      CollapseModule
+      CollapseModule,
+      SharedModule
    ],
   entryComponents: []
 })

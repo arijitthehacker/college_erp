@@ -24,9 +24,20 @@ export class SideBarComponent implements OnInit {
   ngOnInit() {
     this.selectedRoute = this.router.url;
     this.setSelectedIndex();
+    let openedIndex = 0;
+    this.sideBar.forEach((val, key) => {
+      if (val.children) {
+        val.children.forEach((val1) => {
+          if (this.router.url === '/' + val1.path) {
+            openedIndex = key;
+          }
+        });
+      }
+    });
 
-    this.optionClick(0,2);
+    // console.log(openedIndex, 'openedIndexopenedIndex');
 
+    this.optionClick(openedIndex, 2);
   }
 
   setSelectedIndex() {
@@ -46,6 +57,11 @@ export class SideBarComponent implements OnInit {
   }
 
   optionClick(index, flag?) {
+    if (this.selectedIndex !== index) {
+      this.sideBar.forEach((val) => {
+        val.isCollapsed = false;
+      });
+    }
     this.selectedIndex = index;
 
     switch (flag) {

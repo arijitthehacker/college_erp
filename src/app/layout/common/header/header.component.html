@@ -1,33 +1,48 @@
 <header class="app-header"><a class="app-header__logo" href="javascript://">
-    {{profileData?.name || appTitle}}
-<!--  <img src="/assets/images/logo.svg" class="header-logos">-->
+  {{profileData?.name || appTitle}}
+  <!--  <img src="/assets/images/logo.svg" class="header-logos">-->
 
 
 </a>
-<!--  <a class="app-sidebar__toggle" href="javascript://" data-toggle="sidebar" aria-label="Hide Sidebar"-->
-<!--     (click)="showSideBar = !showSideBar;closeNav()">-->
+  <!--  <a class="app-sidebar__toggle" href="javascript://" data-toggle="sidebar" aria-label="Hide Sidebar"-->
+  <!--     (click)="showSideBar = !showSideBar;closeNav()">-->
 
 
-<!--    <img src="/assets/images/menu-close.png" style="padding-top: 11px;" *ngIf="showSideBar">-->
+  <!--    <img src="/assets/images/menu-close.png" style="padding-top: 11px;" *ngIf="showSideBar">-->
 
-<!--    <img src="/assets/images/menu-open.png" style="padding-top: 11px;" *ngIf="!showSideBar">-->
+  <!--    <img src="/assets/images/menu-open.png" style="padding-top: 11px;" *ngIf="!showSideBar">-->
 
 
-<!--  </a>-->
+  <!--  </a>-->
   <!-- Navbar Right Menu-->
 
   <ul class="app-nav">
     <li class="item_btn">
-<!--      <h4 class="top-name">{{officeName}}</h4>-->
+      <!--      <h4 class="top-name">{{officeName}}</h4>-->
     </li>
 
     <li class="item_btn header-right-side">
-<!--      <img src="/assets/images/noti-icon.png">-->
-<!--      <img src="/assets/images/header-help.png" (click)="openHelp()">-->
-<!--      <img src="/assets/images/my-pic-placeholder.png">-->
-<!--      <h4 class="my-name">{{commonService?.profileData?.firstName}} {{commonService?.profileData?.lastName}}</h4>-->
-<!--      <img src="assets/images/header-logout.png" (click)="logout()">-->
+
+      <div dropdown >
+        <img src="/assets/images/noti-icon.png" (click)="openNoti()"
+             href id="basic-link" dropdownToggle aria-controls="basic-link-dropdown">
+
+        <ul id="basic-link-dropdown noti-list" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="basic-link">
+          <li *ngFor="let choice of items" class="">
+            <a class="dropdown-item">{{choice}}</a>
+          </li>
+        </ul>
+      </div>
+
+
+      <!--      <img src="/assets/images/header-help.png" (click)="openHelp()">-->
+      <!--      <img src="/assets/images/my-pic-placeholder.png">-->
+      <!--      <h4 class="my-name">{{commonService?.profileData?.firstName}} {{commonService?.profileData?.lastName}}</h4>-->
+      <!--      <img src="assets/images/header-logout.png" (click)="logout()">-->
     </li>
+
+
   </ul>
 
 </header>

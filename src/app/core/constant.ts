@@ -7,11 +7,10 @@ export const CONSTANT = {
 
 export const SIDEBAR = [
   {
-    path: '', name: 'Members Profile', icon: 'fa-users', children: [
+    path: '', name: "User's Profile", icon: 'fa-users', children: [
       {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
       {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
       {path: 'members', name: 'Members', icon: 'fa fa-user-o'},
-
       {path: 'developers', name: 'Developers', icon: 'fa fa-gavel'}
     ]
   },
@@ -19,8 +18,9 @@ export const SIDEBAR = [
     path: '', name: 'Property Management', icon: 'fa-building', children: [
       {path: 'property-categories', name: 'Property Categories', icon: 'fa fa-rocket'},
       {path: 'properties', name: 'Property List', icon: 'fa fa-building'},
+      {path: 'add-new-property', name: 'Create Property', icon: 'fa fa-building'},
+      {path: 'commissions', name: 'Commissions', icon: 'fa fa-money'},
       {path: 'purposes', name: 'Property Purposes', icon: 'fa fa-user-secret'}
-
     ]
   },
 
@@ -44,7 +44,7 @@ export const SIDEBAR = [
   },
 
   {
-    path: '', name: 'Content Management', icon: 'fa-info', children: [
+    path: '', name: 'Content Management', icon: 'fa-info-circle', children: [
       {path: 'privacy', name: 'Privacy Policy'},
       {path: 'terms', name: 'Terms & Conditions'},
       {path: 'about', name: 'About Us'}

@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   showSideBar = true;
   appTitle = CONSTANT.SITE_NAME;
   profileData: any = {};
+  showNoti = false;
+  items: any = [1, 2, 3, 4, 5, 6, 7, 7, 8, 1, 9];
 
   constructor(public commonService: CommonService, public router: Router, private message: MessageService,
               public http: HttpService, private modalService: BsModalService
@@ -36,8 +38,8 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  showHeadingName() {
-
+  openNoti() {
+    this.showNoti = !this.showNoti;
   }
 
   // getProfileData() {
@@ -64,6 +66,5 @@ export class HeaderComponent implements OnInit {
 
     }
   }
-
 
 }
