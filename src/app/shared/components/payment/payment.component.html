@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Approve Request
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+
+      <div class="col-md-12 form-group">
+        <label class="required">Proof of Transaction</label>
+        <div class="product-images">
+          <input type="file" class="file-upload" id="transaction_image"
+                 accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'transaction_image')">
+          <label for="transaction_image">
+            <img src="/assets/images/ic_camera.png">
+          </label>
+          <img class="ml-4 uploaded-img" height="72" for="transaction_image"
+               [src]="form?.value?.transaction_image"
+               *ngIf='form?.value?.transaction_image'>
+          <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('transaction_image')"
+             *ngIf='form?.value?.transaction_image'></i>
+        </div>
+        <div class="text-error"
+             *ngIf="form.controls['transaction_image'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Transaction id</label>
+        <input class="form-control" formControlName="transaction_id"
+               type="text" placeholder="Enter Transaction Id"/>
+        <div class="text-error" *ngIf="form.controls['transaction_id'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="set-label">Comment</label>
+        <input class="form-control" formControlName="transaction_comment"
+               type="text" placeholder="Enter Comment"/>
+      </div>
+
+
+
+    </div>
+
+
+
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">Submit</button>
+  </div>
+</form>

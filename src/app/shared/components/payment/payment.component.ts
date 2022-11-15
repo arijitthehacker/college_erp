@@ -9,16 +9,14 @@ import { CommonService } from '../../../services/commonService/common.service';
 
 @Component({
   selector: 'app-add-account',
-  templateUrl: './assign-booking.component.html'
+  templateUrl: './payment.component.html'
 })
-export class AssignBookingComponent implements OnInit {
+export class PaymentComponent implements OnInit {
 
   showError = false;
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
-  agents: any = [];
-  paymentData: any;
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
@@ -27,35 +25,37 @@ export class AssignBookingComponent implements OnInit {
   ngOnInit() {
     console.log(this.modalData, 'modalData');
     this.makeForm();
-    this.getAgents();
+    if (this.modalData) {
+      this.patchData(this.modalData);
+    }
   }
 
   makeForm() {
     this.form = this.fb.group({
-      assignType: ['agent', Validators.required],
-      agent_id: [''],
+      transaction_id: ['', Validators.required],
+      transaction_image: ['', Validators.required],
+      transaction_comment: [''],
       _id: ['']
     });
 
   }
 
+  patchData(data) {
+    this.form.patchValue({
+      transaction_id: data.transaction_id,
+      transaction_image: data.transaction_image,
+      transaction_comment: data.transaction_comment,
+      _id: data._id
+    });
+  }
+
   formSubmit() {
     if (this.form.valid) {
-      const obj: any = {};
-      if (this.form?.value?.assignType === 'agent') {
-        if (this.form.value.agent_id) {
-          obj.agent_id = this.form.value.agent_id;
-        } else {
-          this.message.toast('error', 'Please select at least 1 agent');
-          return;
-        }
-      } else {
-        obj.is_asssign_group_owner = true;
-      }
-      obj._id = this.modalData._id;
-      this.http.postData(ApiUrl.assign_booking_to_agent_or_owner, obj).subscribe(() => {
+      const obj = JSON.parse(JSON.stringify(this.form.value));
+
+      this.http.putData(ApiUrl.managed_payment_request, obj).subscribe(() => {
         this.onClose.next(null);
-        this.message.toast('success', 'Assigned Successfully!');
+        this.message.toast('success', 'Sent Successfully!');
         this.bsModalRef.hide();
       }, () => {
       });
@@ -64,13 +64,15 @@ export class AssignBookingComponent implements OnInit {
     }
   }
 
-  getAgents() {
-    let obj: any = {
-      is_pagination: false
-    };
-    this.http.getData(ApiUrl.list_agents, obj).subscribe(res => {
-      this.agents = res.data.data;
+  selectImage(event: any, id) {
+    this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
+      this.form.controls.transaction_image.patchValue(response.data.original);
+    }, () => {
     });
+  }
+
+  removeImage(id) {
+    this.form.controls.transaction_image.patchValue(id);
   }
 
 }

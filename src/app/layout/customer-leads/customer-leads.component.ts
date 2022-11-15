@@ -10,9 +10,10 @@ import { Router } from '@angular/router';
 import { StatusesComponent } from './statuses/statuses.component';
 import { MemberDetailsComponent } from './member-details/member-details.component';
 import { ProDetailsComponent } from '../properties/pro-details/pro-details.component';
-import { PaymentComponent } from './payment/payment.component';
+import { PaymentComponent } from '../../shared/components/payment/payment.component';
 import { PaidComponent } from './paid/paid.component';
 import { AssignBookingComponent } from './assign-booking/assign-booking.component';
+import { LogsComponent } from './logs/logs.component';
 
 @Component({
   selector: 'app-accounts',
@@ -106,6 +107,12 @@ export class CustomerLeadsComponent implements OnInit {
     });
   }
 
+  openLogs(data) {
+    this.modalService.show(LogsComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
+    });
+  }
+
   openMemberDetails(data?: any, showLabel?, type?) {
     if (data?.name) {
       data.type = type;
@@ -121,21 +128,21 @@ export class CustomerLeadsComponent implements OnInit {
     });
   }
 
-  openPaymentModal(data?: any, type?: number) {
-    data.type = type;
-    const modalRef = this.modalService.show(PaymentComponent, {
-      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
-    });
-    modalRef.content.onClose.subscribe((res: any) => {
-      if (res?.type) {
-        if (res?.type === 'openPaymentHistory') {
-          this.openPaidModal(data, type);
-        }
-      } else {
-        this.getData();
-      }
-    });
-  }
+  // openPaymentModal(data?: any, type?: number) {
+  //   data.type = type;
+  //   const modalRef = this.modalService.show(PaymentComponent, {
+  //     initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+  //   });
+  //   modalRef.content.onClose.subscribe((res: any) => {
+  //     if (res?.type) {
+  //       if (res?.type === 'openPaymentHistory') {
+  //         this.openPaidModal(data, type);
+  //       }
+  //     } else {
+  //       this.getData();
+  //     }
+  //   });
+  // }
 
   assignBooking(data?: any, type?: number) {
     data.type = type;

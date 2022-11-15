@@ -5,9 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StatusesComponent } from './statuses/statuses.component';
 import { MemberDetailsComponent } from './member-details/member-details.component';
-import { PaymentComponent } from './payment/payment.component';
 import { PaidComponent } from './paid/paid.component';
 import { AssignBookingComponent } from './assign-booking/assign-booking.component';
+import { LogsComponent } from './logs/logs.component';
 
 const routes: Routes = [
   {
@@ -20,9 +20,9 @@ const routes: Routes = [
     CustomerLeadsComponent,
     StatusesComponent,
     MemberDetailsComponent,
-    PaymentComponent,
     PaidComponent,
-    AssignBookingComponent
+    AssignBookingComponent,
+    LogsComponent
   ],
   imports: [
     CommonModule,
@@ -32,9 +32,9 @@ const routes: Routes = [
   entryComponents: [
     StatusesComponent,
     MemberDetailsComponent,
-    PaymentComponent,
     PaidComponent,
-    AssignBookingComponent
+    AssignBookingComponent,
+    LogsComponent
   ]
 })
 export class CustomerLeadsModule {

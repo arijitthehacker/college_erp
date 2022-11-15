@@ -7,7 +7,7 @@ export const CONSTANT = {
 
 export const SIDEBAR = [
   {
-    path: '', name: "User's Profile", icon: 'fa-users', children: [
+    path: '', name: 'User\'s Profile', icon: 'fa-users', children: [
       {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
       {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
       {path: 'members', name: 'Members', icon: 'fa fa-user-o'},
@@ -19,13 +19,13 @@ export const SIDEBAR = [
       {path: 'property-categories', name: 'Property Categories', icon: 'fa fa-rocket'},
       {path: 'properties', name: 'Property List', icon: 'fa fa-building'},
       {path: 'add-new-property', name: 'Create Property', icon: 'fa fa-building'},
-      {path: 'commissions', name: 'Commissions', icon: 'fa fa-money'},
+      {path: 'commissions', name: 'Commissions', icon: 'fa fa-money'}
     ]
   },
 
   {
     path: '', name: 'Customer Management', icon: 'fa-bar-chart', children: [
-      {path: 'customer-leads', name: 'Customer Leads', icon: 'fa fa-windows'},
+      {path: 'customer-leads', name: 'Customer Leads', icon: 'fa fa-windows'}
 
     ]
   },
@@ -40,10 +40,13 @@ export const SIDEBAR = [
     ]
   },
 
-  // {
-  //   path: '', name: 'Accounts', icon: 'fa-money', children: [
-  //   ]
-  // },
+  {
+    path: '', name: 'Accounts', icon: 'fa-money', children: [
+      {path: 'advance-request', name: 'Advance request', icon: 'fa fa-shopping-cart'},
+      {path: 'pending-payment', name: 'Pending payment', icon: 'fa fa-money'},
+      {path: 'transaction-history', name: 'History transactions', icon: 'fa fa-history'},
+    ]
+  },
 
   {
     path: '', name: 'Content Management', icon: 'fa-info-circle', children: [

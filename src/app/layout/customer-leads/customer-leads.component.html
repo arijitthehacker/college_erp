@@ -45,15 +45,10 @@
             <th>Property Name</th>
             <th>Member Name</th>
             <th>Group Owner</th>
-            <th>Managed By</th>
-
-            <th class="pay-th">Payment to owner</th>
-            <th class="pay-th">Payment to agent</th>
-            <th class="pay-th">Payment to member</th>
-            <th class="pay-th">Assign Booking</th>
-
+            <th>Agent Info</th>
+            <th>Commission Status</th>
             <th style="min-width: 130px">Status</th>
-            <th>Status Details</th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -95,79 +90,48 @@
                 <a (click)="openMemberDetails(data?.group_owner_id, 'Managed By', 3)"
                    class="my-link">{{data?.group_owner_id?.name || '-'}}</a>
               </ng-container>
-              <!--              {{data?.agent_id?.name || '-'}}-->
             </td>
-            <td class="text-center">
-
-              <ng-container *ngIf="data?.booking_status !== 'REJECTED'">
-
-                <button type="button" class="payment-btn" (click)="openPaymentModal(data,1)"
-                        *ngIf="data?.group_payment_id?.status === 'PENDING'">
-                  {{data?.group_payment_id?.advanced_request ? 'Request for advance' : ' Transfer to Owner'}}
-                </button>
-                <label class="payment-paid" *ngIf="data?.group_payment_id?.status === 'COMPLETED'"
-                       (click)="openPaidModal(data,1)">Paid</label>
-              </ng-container>
-              <ng-container *ngIf="!data?.group_payment_id || data?.booking_status === 'REJECTED'">
-                N.A.
-              </ng-container>
-
-            </td>
-            <td class="text-center">
-              <ng-container *ngIf="data?.booking_status !== 'REJECTED'">
-
-                <ng-container *ngIf="data?.agent_payment_id">
-                  <button type="button" class="payment-btn" (click)="openPaymentModal(data,2)"
-                          *ngIf="data?.agent_payment_id?.status === 'PENDING'">
-                    {{data?.agent_payment_id?.advanced_request ? 'Request for advance' : ' Transfer to agent'}}
-                  </button>
-
-                  <label class="payment-paid" *ngIf="data?.agent_payment_id?.status === 'COMPLETED'"
-                         (click)="openPaidModal(data,2)">Paid</label>
-                </ng-container>
-              </ng-container>
-
-              <ng-container *ngIf="!data?.agent_payment_id || data?.booking_status == 'REJECTED'">
-                N.A.
-              </ng-container>
-
-            </td>
-
-            <td class="text-center">
-              <ng-container *ngIf="data?.booking_status !== 'REJECTED'">
-                <button type="button" class="payment-btn" (click)="openPaymentModal(data,3)"
-                        *ngIf="data?.member_payment_id?.status === 'PENDING'">
-                  {{data?.member_payment_id?.advanced_request ? 'Request for advance' : ' Transfer to Member'}}
-                </button>
-                <!--              </ng-container>-->
-                <label class="payment-paid" *ngIf="data?.member_payment_id?.status === 'COMPLETED'"
-                       (click)="openPaidModal(data,3)">Paid</label>
-              </ng-container>
-
-              <ng-container *ngIf="!data?.member_payment_id || data?.booking_status == 'REJECTED'">
-                N.A.
-              </ng-container>
-            </td>
-
-            <td class="text-center">
-              <ng-container *ngIf="!data?.is_admin_assign">
-                <a *ngIf="data?.booking_status == 'ACCEPTED' || data?.booking_status == 'IN_PROGRESS'"
-                   (click)="assignBooking(data)" class="my-link">Assign</a>
-                <ng-container *ngIf="data?.booking_status != 'ACCEPTED' && data?.booking_status != 'IN_PROGRESS'">-
-                </ng-container>
-              </ng-container>
-
-              <ng-container *ngIf="data?.is_admin_assign">
-                <label class="status-label pending">Assigned</label>
-              </ng-container>
+            <td>
+              <b>Group Owner:</b> {{data?.group_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}<br>
+              <b>Agent:</b> {{data?.agent_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}<br>
+              <b>Member:</b> {{data?.member_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}
             </td>
 
             <td>
-              <label class="status-label"> {{data?.booking_status |replaceUnderscore}}</label>
+              <label class="">
+
+                <ng-container *ngIf="data?.booking_status === 'PENDING'">Waiting for owner acceptance</ng-container>
+                <ng-container *ngIf="data?.booking_status === 'ACCEPTED'">In progress</ng-container>
+                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected by team member</ng-container>
+                <ng-container *ngIf="data?.booking_status === 'IN_PROGRESS'">In progress</ng-container>
+                <ng-container *ngIf="data?.booking_status === 'COMPLETED'">Status Completed</ng-container>
+<!--                {{data?.booking_status |replaceUnderscore}}-->
+
+
+              </label>
             </td>
-            <td>
-              <a (click)="openStatus(data)" class="my-link">View Status</a>
+
+            <td class="dots-area">
+              <div class="btn-group" dropdown>
+
+
+                <i dropdownToggle class=" fa fa-ellipsis-v"
+                   aria-controls="dropdown-animated" aria-hidden="true" style="cursor: pointer;">
+                </i>
+                <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+                    role="menu" aria-labelledby="button-animated">
+                  <li role="menuitem"><a class="dropdown-item" (click)="openLogs(data)">
+                    View Change Log</a></li>
+                  <li role="menuitem" *ngIf="!data?.agent_id?._id">
+                    <a class="dropdown-item" (click)="assignBooking(data)">Assign to agent</a>
+                  </li>
+                  <li role="menuitem">
+                    <a class="dropdown-item" (click)="openStatus(data)">View Status</a>
+                  </li>
+                </ul>
+              </div>
             </td>
+
             <!--              <td>-->
             <!--                <app-see-more [msg]="data?.description"></app-see-more>-->
             <!--              </td>-->

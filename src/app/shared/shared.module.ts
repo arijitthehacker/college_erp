@@ -28,9 +28,11 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProDetailsComponent } from '../layout/properties/pro-details/pro-details.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { PaymentComponent } from './components/payment/payment.component';
 
 const directives = [NumberOnlyDirective, AmountDirective, NoRecordComponent, ReplaceUnderscorePipe,
-  SeeMoreComponent, HHMMSSPipe, CapitalizeFirstDirective, ProDetailsComponent];
+  SeeMoreComponent, HHMMSSPipe, CapitalizeFirstDirective, ProDetailsComponent,
+  PaymentComponent];
 
 const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPaginationModule,
   NgSelectModule, FormsModule, NgxIntlTelInputModule, AutocompleteLibModule,
@@ -59,7 +61,8 @@ const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPagin
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],
   entryComponents: [
-    ProDetailsComponent
+    ProDetailsComponent,
+    PaymentComponent
   ]
 })
 export class SharedModule {

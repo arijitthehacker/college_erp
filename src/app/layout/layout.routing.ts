@@ -48,15 +48,27 @@ const routes: Routes = [
         path: 'reasons',
         loadChildren: () => import('./reasons/reasons.module').then(m => m.ReasonsModule),
         data: {breadcrumb: 'Reject Reasons', title: 'reason'}
-      },{
+      }, {
         path: 'profile',
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
         data: {breadcrumb: 'Admin profile', title: 'profile'}
       }, {
+        path: 'pending-payment',
+        loadChildren: () => import('./pending-payment/pending-payment.module').then(m => m.PendingPaymentModule),
+        data: {breadcrumb: 'Pending Payments', title: 'Pending Payments'}
+      }, {
+        path: 'transaction-history',
+        loadChildren: () => import('./transaction-history/transaction-history.module').then(m => m.TransactionHistoryModule),
+        data: {breadcrumb: 'Transaction History', title: 'Transaction History'}
+      }, {
+        path: 'advance-request',
+        loadChildren: () => import('./advance-request/advance-request.module').then(m => m.AdvanceRequestModule),
+        data: {breadcrumb: 'Advance Request', title: 'Advance Request'}
+      }, {
         path: 'developers',
         loadChildren: () => import('./developers/developers.module').then(m => m.DevelopersModule),
         data: {breadcrumb: 'Developers', title: 'developer'}
-      },{
+      }, {
         path: 'commissions',
         loadChildren: () => import('./commissions/commissions.module').then(m => m.CommissionsModule),
         data: {breadcrumb: 'Commissions', title: 'commission'}
@@ -64,7 +76,7 @@ const routes: Routes = [
         path: 'change-password',
         loadChildren: () => import('./change-password/change-password.module').then(m => m.ChangePasswordModule),
         data: {breadcrumb: 'Change Password', title: 'Change Password'}
-      },  {
+      }, {
         path: 'add-new-property',
         loadChildren: () => import('./add-new-property/add-new-property.module').then(m => m.AddNewPropertyModule),
         data: {breadcrumb: 'Developers', title: 'developer'}

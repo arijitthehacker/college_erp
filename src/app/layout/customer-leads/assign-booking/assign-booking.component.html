@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    Assign to
+    Assign to Agent
 <!--    <ng-container *ngIf="modalData?.type === 1">Owner</ng-container>-->
 <!--    <ng-container *ngIf="modalData?.type === 2">Agent</ng-container>-->
 <!--    <ng-container *ngIf="modalData?.type === 3">Member</ng-container>-->
@@ -11,17 +11,17 @@
   <div class="modal-body">
 
     <div class="row">
-      <div class="col-md-12 form-group">
-        <label class="required set-label">Select Assign Type</label>
-        <select class="form-control" formControlName="assignType">
-          <option value="agent">Agent</option>
-          <option value="group_owner">Group Owner</option>
-        </select>
+<!--      <div class="col-md-12 form-group">-->
+<!--        <label class="required set-label">Select Assign Type</label>-->
+<!--        <select class="form-control" formControlName="assignType">-->
+<!--          <option value="agent">Agent</option>-->
+<!--          <option value="group_owner">Group Owner</option>-->
+<!--        </select>-->
 
-        <div class="text-error" *ngIf="form.controls['assignType'].errors?.required && showError">
-          This field is required.
-        </div>
-      </div>
+<!--        <div class="text-error" *ngIf="form.controls['assignType'].errors?.required && showError">-->
+<!--          This field is required.-->
+<!--        </div>-->
+<!--      </div>-->
 
       <div class="col-md-12 form-group" *ngIf="form?.value?.assignType === 'agent'">
         <label class="required set-label">Select Agent</label>

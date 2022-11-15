@@ -998,3 +998,34 @@ select {
   padding: 4px 16px;
 }
 
+.account-table td {
+  line-height: 24px;
+}
+
+.account-table td {
+}
+
+.highlighted-text {
+  color: $main-color;
+}
+
+.col-width {
+  min-width: 160px
+}
+
+.small-btn {
+  HEIGHT: 33px;
+  padding: 5px 13px;
+  margin-bottom: 3px;
+}
+
+.proof-img {
+  height: 70px;
+  width: 70px;
+  cursor: pointer;
+}
+
+.dots-area .dropdown-menu.show {
+  inset: 100% auto auto -150px !important;
+}
+
