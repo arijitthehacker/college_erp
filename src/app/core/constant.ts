@@ -20,28 +20,30 @@ export const SIDEBAR = [
       {path: 'properties', name: 'Property List', icon: 'fa fa-building'},
       {path: 'add-new-property', name: 'Create Property', icon: 'fa fa-building'},
       {path: 'commissions', name: 'Commissions', icon: 'fa fa-money'},
-      {path: 'purposes', name: 'Property Purposes', icon: 'fa fa-user-secret'}
     ]
   },
 
   {
-    path: '', name: 'Leads Management', icon: 'fa-bar-chart', children: [
+    path: '', name: 'Customer Management', icon: 'fa-bar-chart', children: [
       {path: 'customer-leads', name: 'Customer Leads', icon: 'fa fa-windows'},
-      {path: 'reasons', name: 'Reject Reasons', icon: 'fa fa-usb'}
+
     ]
   },
 
   {
     path: '', name: 'Control Management', icon: 'fa-sliders', children: [
-      {path: 'settings', name: 'Settings', icon: 'fa fa-cog'}
+      {path: 'settings', name: 'Settings', icon: 'fa fa-cog'},
+      {path: 'purposes', name: 'Property Purposes', icon: 'fa fa-user-secret'},
+      {path: 'reasons', name: 'Reject Reasons', icon: 'fa fa-usb'},
+      {path: 'budgets', name: 'Property Budgets', icon: 'fa fa-h-square'}
+
     ]
   },
 
-  {
-    path: '', name: 'Accounts', icon: 'fa-money', children: [
-      {path: 'budgets', name: 'Property Budgets', icon: 'fa fa-h-square'}
-    ]
-  },
+  // {
+  //   path: '', name: 'Accounts', icon: 'fa-money', children: [
+  //   ]
+  // },
 
   {
     path: '', name: 'Content Management', icon: 'fa-info-circle', children: [
