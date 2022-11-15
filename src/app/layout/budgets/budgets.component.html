@@ -38,7 +38,7 @@
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
-            <td>{{data?.currency}}</td>
+            <td>{{data?.currency}} ({{data?.currency_code}})</td>
             <td>{{data?.min_price}}</td>
             <td>{{data?.max_price}}</td>
 

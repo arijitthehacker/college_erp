@@ -45,8 +45,16 @@ export class AddBudgetComponent implements OnInit {
     this.form.patchValue({
       min_price: data.min_price,
       max_price: data.max_price,
-      currency: data.currency
     });
+    if (this.modalData.currency) {
+      this.currencyList.forEach((val) => {
+        if (val.name == this.modalData.currency) {
+          this.form.patchValue({
+            currency: val.cc
+          });
+        }
+      });
+    }
   }
 
   formSubmit() {
@@ -64,6 +72,12 @@ export class AddBudgetComponent implements OnInit {
       } else {
         obj.max_price = 0;
       }
+      this.currencyList.forEach((val) => {
+        if (val.cc == this.form.value.currency) {
+          obj.currency = JSON.parse(JSON.stringify(val.name));
+          obj.currency_code = val.symbol;
+        }
+      });
 
       this.http.postData(ApiUrl.add_edit_peroperty_budgets, obj).subscribe(() => {
         this.onClose.next(null);
