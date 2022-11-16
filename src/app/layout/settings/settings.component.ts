@@ -53,7 +53,6 @@ export class SettingsComponent implements OnInit {
 
   getData() {
     this.http.getData(ApiUrl.user_share_link_details).subscribe(res => {
-      console.log(res.data);
       this.form.controls.member_share_link.patchValue(res.data.member_share_link);
     });
   }

@@ -19,7 +19,6 @@ export class MemberDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.modalData,'modalData');
   }
 
 }

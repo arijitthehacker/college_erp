@@ -826,7 +826,7 @@ textarea.form-control {
 }
 
 .details-table tr td {
-  width: 32%;
+  //width: 32%;
 }
 
 .details-table tr td p {
@@ -1029,3 +1029,6 @@ select {
   inset: 100% auto auto -150px !important;
 }
 
+.dropdown-item{
+  font-size: 14px;
+}

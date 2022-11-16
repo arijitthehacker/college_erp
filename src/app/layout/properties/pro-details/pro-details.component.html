@@ -130,19 +130,21 @@
           <h5>Max Bathroom</h5>
           <p>{{modalData?.max_bathroom || '-'}}</p>
         </td>
-        <td>
-          <h5>Area size type</h5>
-          <p>{{modalData?.area_size_type || '-'}}</p>
-        </td>
+
         <td>
           <h5>Min Area size</h5>
           <p>{{modalData?.min_area_size || '-'}}</p>
         </td>
-      </tr>
-      <tr>
+
         <td>
           <h5>Max Area size</h5>
           <p>{{modalData?.max_area_size || '-'}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h5>Area size type</h5>
+          <p>{{modalData?.area_size_type || '-'}}</p>
         </td>
       </tr>
     </ng-container>
@@ -152,17 +154,17 @@
       <tr>
         <td>
           <h5>Start Price</h5>
-          <p>{{modalData?.currency}} {{modalData?.start_price || '-'}}</p>
+          <p>{{modalData?.currency_code}} {{modalData?.start_price || '-'}}</p>
         </td>
         <td>
           <h5>End Price</h5>
           <p>
-            <ng-container *ngIf="modalData?.end_price"> {{modalData?.currency}}</ng-container>
+            <ng-container *ngIf="modalData?.end_price"> {{modalData?.currency_code}}</ng-container>
             {{modalData?.end_price || '-'}}</p>
         </td>
         <td>
-          <h5>From code</h5>
-          <p>{{modalData?.from_code || '-'}}</p>
+          <h5>Commission</h5>
+          <p>{{modalData?.comission_id?.name || '-'}}</p>
         </td>
       </tr>
 

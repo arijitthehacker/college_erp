@@ -5,7 +5,7 @@
 
         <div class="col-md-6">
           <h4 class="card-title  float-left">
-            {{savedData ? 'Edit' : 'Add New ' }} Property
+            {{isEdit ? 'Edit' : 'Add New ' }} Property
           </h4>
         </div>
 
@@ -48,7 +48,6 @@
 
 
       <div class="bottom-area">
-
 
         <ng-container *ngIf="selectedTab === 1">
 
@@ -131,7 +130,6 @@
                 </div>
               </div>
 
-
               <div class="col-md-4 form-group">
                 <label class="required set-label">completion year</label>
                 <input class="form-control" formControlName="completion_year" appNumberOnly
@@ -140,7 +138,6 @@
                   This field is required.
                 </div>
               </div>
-
 
               <div class="col-md-4 form-group ">
                 <label class="required set-label">Select Developer</label>
@@ -172,7 +169,6 @@
 
           </form>
         </ng-container>
-
 
         <ng-container *ngIf="selectedTab === 2">
 
@@ -349,7 +345,7 @@
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">start price</label>
-                <input class="form-control" formControlName="start_price" appNumberOnly
+                <input class="form-control" formControlName="start_price" appAmount
                        type="text" placeholder="Enter start price"/>
                 <div class="text-error" *ngIf="form4.controls['start_price'].errors?.required && show4Error">
                   This field is required.
@@ -357,7 +353,7 @@
               </div>
               <div class="col-md-4 form-group">
                 <label class="set-label">end price (optional)</label>
-                <input class="form-control" formControlName="end_price" appNumberOnly
+                <input class="form-control" formControlName="end_price" appAmount
                        type="text" placeholder="Enter end price"/>
               </div>
 
@@ -374,51 +370,6 @@
                   This field is required.
                 </div>
               </div>
-
-<!--              <div class="col-md-4 form-group">-->
-<!--                <label class="required set-label">Min member commission</label>-->
-<!--                <input class="form-control" formControlName="min_member_commision" appNumberOnly-->
-<!--                       type="text" placeholder="Enter min  member commission"/>-->
-<!--                <div class="text-error" *ngIf="form4.controls['min_member_commision'].errors?.required && show4Error">-->
-<!--                  This field is required.-->
-<!--                </div>-->
-<!--              </div>-->
-
-<!--              <div class="col-md-4 form-group">-->
-<!--                <label class="set-label">Max member commission (optional)</label>-->
-<!--                <input class="form-control" formControlName="max_member_commision" appNumberOnly-->
-<!--                       type="text" placeholder="Enter max member commission"/>-->
-<!--              </div>-->
-
-<!--              <div class="col-md-4 form-group">-->
-<!--                <label class="required set-label">Min Agent commission</label>-->
-<!--                <input class="form-control" formControlName="min_agent_commision" appNumberOnly-->
-<!--                       type="text" placeholder="Enter min agent commission"/>-->
-<!--                <div class="text-error" *ngIf="form4.controls['min_agent_commision'].errors?.required && show4Error">-->
-<!--                  This field is required.-->
-<!--                </div>-->
-<!--              </div>-->
-
-<!--              <div class="col-md-4 form-group">-->
-<!--                <label class="set-label">Max Agent commission (optional)</label>-->
-<!--                <input class="form-control" formControlName="max_agent_commision" appNumberOnly-->
-<!--                       type="text" placeholder="Enter max agent commission"/>-->
-<!--              </div>-->
-<!--              <div class="col-md-4 form-group">-->
-<!--                <label class="required set-label">Min Group owner commission</label>-->
-<!--                <input class="form-control" formControlName="min_group_owner_commision" appNumberOnly-->
-<!--                       type="text" placeholder="Enter min  group owner commission"/>-->
-<!--                <div class="text-error"-->
-<!--                     *ngIf="form4.controls['min_group_owner_commision'].errors?.required && show4Error">-->
-<!--                  This field is required.-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col-md-4 form-group">-->
-<!--                <label class="set-label">Max Group owner commission (optional)</label>-->
-<!--                <input class="form-control" formControlName="max_group_owner_commision" appNumberOnly-->
-<!--                       type="text" placeholder="Enter max group owner commission"/>-->
-<!--              </div>-->
-
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">total units</label>
@@ -457,7 +408,8 @@
             </div>
 
             <div class="btn-area">
-              <button type="submit" class="btn btn-blue-outline">Submit</button>
+              <button type="button" class="btn btn-blue-outline" (click)="gotoPrev(4)">Previous</button>
+              <button type="submit" class="btn btn-blue-outline">Next</button>
             </div>
 
           </form>
@@ -466,7 +418,7 @@
 
         <ng-container *ngIf="selectedTab === 6">
 
-          <form [formGroup]="form6" (ngSubmit)="form6Submit()" *ngIf="form6">
+          <form [formGroup]="form6"  *ngIf="form6">
 
             <div class="row">
               <div class="col-md-6 form-group">
@@ -548,7 +500,9 @@
             </div>
 
             <div class="btn-area">
-              <button type="submit" class="btn btn-blue-outline">Submit</button>
+              <button type="button" (click)="form6Submit()" class="btn btn-blue-outline">Save</button>
+              <button type="button" class="btn btn-blue-outline ml-3" (click)="form6Submit(true)"
+              *ngIf="!modalData?.publish">Save & Publish</button>
             </div>
 
           </form>

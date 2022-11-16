@@ -26,6 +26,7 @@
           <thead>
           <tr>
             <th style="width:60px">Sr. No.</th>
+            <th class="col-width">Date</th>
             <th class="col-width">Property Info</th>
             <th class="col-width">Request By</th>
             <th class="col-width">Member Info</th>
@@ -39,6 +40,7 @@
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+            <td>{{data?.advanced_date |date:'short'}}</td>
             <td>
               <b>Property Name:</b> {{data?.booking_id?.peroperty_id?.name || '-'}}<br>
               <b>Developer Name:</b> {{data?.booking_id?.peroperty_id?.developer_id?.name || '-'}}
@@ -100,9 +102,9 @@
 
       <div class="row" *ngIf="pagination.count">
         <div class="col-sm-6">
-          <!--            <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to-->
-          <!--              {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out-->
-          <!--              of {{pagination.count}} entries </p>-->
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
         </div>
         <div class="col-sm-6 text-right">
           <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"

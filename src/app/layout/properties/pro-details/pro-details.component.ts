@@ -46,7 +46,6 @@ export class ProDetailsComponent implements OnInit {
     };
     this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
       this.modalData = res.data.data[0];
-      console.log(this.modalData, 'this.modalData ');
     }, () => {
     });
   }

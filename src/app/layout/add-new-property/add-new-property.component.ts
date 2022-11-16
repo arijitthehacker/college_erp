@@ -47,6 +47,8 @@ export class AddNewPropertyComponent implements OnInit {
   categories: any = [];
   developers: any = [];
   commissions: any = [];
+  progress: any = 1;
+  isEdit = false;
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
               public router: Router, public lightbox: Lightbox,
@@ -59,11 +61,14 @@ export class AddNewPropertyComponent implements OnInit {
       this.savedData = localStorage.getItem('savedData');
     }
     this.id = this.activatedRoute.snapshot.queryParams.id;
+    this.isEdit = this.activatedRoute.snapshot.queryParams.isEdit;
     if (this.id) {
       this.getData();
+      this.getProgress();
     } else {
       this.createForms();
     }
+
   }
 
   getData() {
@@ -73,6 +78,16 @@ export class AddNewPropertyComponent implements OnInit {
     this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
       this.modalData = res.data.data[0];
       this.createForms();
+    });
+
+  }
+
+  getProgress() {
+    let obj: any = {
+      _id: this.id
+    };
+    this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
+      this.progress = parseInt(res.data.data[0].progress);
     });
 
   }
@@ -100,7 +115,9 @@ export class AddNewPropertyComponent implements OnInit {
 
   clickTab(flag) {
     if (this.id || flag == 1) {
-      this.selectedTab = flag;
+      if ((this.progress) + 1 >= flag) {
+        this.selectedTab = flag;
+      }
       switch (flag) {
         case 2:
           this.getAddress();
@@ -136,9 +153,6 @@ export class AddNewPropertyComponent implements OnInit {
     });
 
     if (this.modalData) {
-
-      console.log(this.modalData.category_id, ' this.modalData.category_id._id,');
-
       this.form1.patchValue({
         category_id: this.modalData?.category_id?._id || this.modalData?.category_id,
         is_featured: this.modalData.is_featured,
@@ -174,7 +188,7 @@ export class AddNewPropertyComponent implements OnInit {
           queryParamsHandling: 'merge'
         });
         this.getData();
-
+        this.getProgress();
         this.selectedTab = 2;
       }, () => {
       });
@@ -189,13 +203,6 @@ export class AddNewPropertyComponent implements OnInit {
       name: ['', Validators.required],
       lat: ['', Validators.required]
     });
-    if (this.modalData) {
-      this.form2.patchValue({
-        // lng: this.modalData.location.coordinates[0],
-        // name: this.modalData.name,
-        // lat: this.modalData.location.coordinates[1]
-      });
-    }
   }
 
   form2Submit() {
@@ -209,6 +216,7 @@ export class AddNewPropertyComponent implements OnInit {
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.form2.reset();
         this.getAddress();
+        this.getProgress();
 
       }, () => {
       });
@@ -220,14 +228,14 @@ export class AddNewPropertyComponent implements OnInit {
   makeForm3() {
     this.form3 = this.fb.group({
       min_bathroom: ['', Validators.required],
-      max_bathroom: [0],
+      max_bathroom: [],
       min_area_size: ['', Validators.required],
-      max_area_size: [0],
+      max_area_size: [],
       min_bedroom: ['', Validators.required],
-      max_bedroom: [0],
+      max_bedroom: [],
       area_size_type: ['', Validators.required]
     });
-    if (this.modalData) {
+    if (this.modalData && this.modalData.area_size_type) {
       this.form3.patchValue({
         area_size_type: this.modalData.area_size_type,
         min_bedroom: this.modalData.min_bedroom,
@@ -252,7 +260,7 @@ export class AddNewPropertyComponent implements OnInit {
           return;
         }
       } else {
-        obj.max_bedroom = 0;
+        delete obj.max_bedroom;
       }
       if (this.form3?.value?.max_area_size) {
         if (parseInt(this.form3?.value?.min_area_size, 10) > parseInt(this.form3?.value?.max_area_size, 10)) {
@@ -260,12 +268,21 @@ export class AddNewPropertyComponent implements OnInit {
           return;
         }
       } else {
-        obj.min_area_size = 0;
+        delete obj.max_area_size;
+      }
+      if (this.form3?.value?.max_bathroom) {
+        if (parseInt(this.form3?.value?.min_bathroom, 10) > parseInt(this.form3?.value?.max_bathroom, 10)) {
+          this.message.toast('error', 'Max bathroom should be greater than or equal to min bathroom');
+          return;
+        }
+      } else {
+        delete obj.max_bathroom;
       }
       this.http.postData(ApiUrl.add_peroperties_step_3, obj).subscribe(() => {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.selectedTab = 4;
+        this.getProgress();
       }, () => {
       });
     } else {
@@ -282,7 +299,7 @@ export class AddNewPropertyComponent implements OnInit {
       total_units: ['', Validators.required]
     });
 
-    if (this.modalData) {
+    if (this.modalData && this.modalData.total_units) {
       this.form4.patchValue({
         start_price: this.modalData.start_price,
         end_price: this.modalData.end_price,
@@ -319,32 +336,6 @@ export class AddNewPropertyComponent implements OnInit {
         obj.end_price = 0;
       }
 
-      // if (this.form4?.value?.max_member_commision) {
-      //   if (parseInt(this.form4?.value?.min_member_commision, 10) > parseInt(this.form4?.value?.max_member_commision, 10)) {
-      //     this.message.toast('error', 'Max member commission should be greater than or equal to start price');
-      //     return;
-      //   }
-      // } else {
-      //   obj.max_member_commision = 0;
-      // }
-      //
-      // if (this.form4?.value?.max_agent_commision) {
-      //   if (parseInt(this.form4?.value?.min_agent_commision, 10) > parseInt(this.form4?.value?.max_agent_commision, 10)) {
-      //     this.message.toast('error', 'Max agent commission should be greater than or equal to min agent commission');
-      //     return;
-      //   }
-      // } else {
-      //   obj.max_agent_commision = 0;
-      // }
-      // if (this.form4?.value?.max_group_owner_commision) {
-      //   if (parseInt(this.form4?.value?.min_group_owner_commision, 10) > parseInt(this.form4?.value?.max_group_owner_commision, 10)) {
-      //     this.message.toast('error', 'Max group owner commission should be greater than or equal to min group owner commission');
-      //     return;
-      //   }
-      // } else {
-      //   obj.max_group_owner_commision = 0;
-      // }
-
       this.currencyList.forEach((val) => {
         if (val.cc == this.form4.value.currency) {
           obj.currency = JSON.parse(JSON.stringify(val.name));
@@ -355,6 +346,7 @@ export class AddNewPropertyComponent implements OnInit {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.selectedTab = 5;
+        this.getProgress();
       }, () => {
       });
     } else {
@@ -385,6 +377,8 @@ export class AddNewPropertyComponent implements OnInit {
       this.http.postData(ApiUrl.add_peroperties_step_5, obj).subscribe(() => {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+        this.getProgress();
+        this.selectedTab = 6;
       }, () => {
       });
     } else {
@@ -407,7 +401,7 @@ export class AddNewPropertyComponent implements OnInit {
     }
   }
 
-  form6Submit() {
+  form6Submit(isPublish?) {
     if (this.form6.valid) {
       const obj = JSON.parse(JSON.stringify(this.form6.value));
       if (this.modalData) {
@@ -423,6 +417,10 @@ export class AddNewPropertyComponent implements OnInit {
       this.http.postData(ApiUrl.add_peroperties_step_6, obj).subscribe(() => {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+        this.getProgress();
+        if (isPublish) {
+          this.publishApi();
+        }
       }, () => {
       });
     } else {
@@ -486,7 +484,6 @@ export class AddNewPropertyComponent implements OnInit {
     let obj = {
       is_pagination: false
     };
-    console.log(this.form1, 'categories');
 
     this.http.getData(ApiUrl.list_peroperty_categories, obj, true).subscribe(res => {
       this.categories = res.data.data;
@@ -509,6 +506,18 @@ export class AddNewPropertyComponent implements OnInit {
     };
     this.http.getData(ApiUrl.list_comission, obj, true).subscribe(res => {
       this.commissions = res.data.data;
+    });
+  }
+
+  publishApi() {
+    let obj = {
+      publish: true,
+      _id: this.id
+    };
+
+    this.http.putData(ApiUrl.managed_peroperties, obj).subscribe(res => {
+      this.message.toast('success', 'Property published successfully!');
+      this.router.navigate(['/properties']);
     });
   }
 

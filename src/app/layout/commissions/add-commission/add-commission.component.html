@@ -19,29 +19,38 @@
       </div>
 
       <div class="col-md-12 form-group">
-        <label class="set-label"> group owner commission</label>
-        <input class="form-control" formControlName="group_owner_commision"
-               type="number" placeholder="Enter group owner commission"/>
+        <label class="set-label required"> group owner commission</label>
+        <input class="form-control" formControlName="group_owner_commision" appAmount
+               type="text" placeholder="Enter group owner commission"/>
         <div class="text-error" *ngIf="form.controls['group_owner_commision'].errors?.required && showError">
           This field is required.
         </div>
-      </div>
-
-      <div class="col-md-12 form-group">
-        <label class="set-label"> agent commission</label>
-        <input class="form-control" formControlName="agent_commision"
-               type="number" placeholder="Enter agent commission"/>
-        <div class="text-error" *ngIf="form.controls['agent_commision'].errors?.required && showError">
-          This field is required.
+        <div class="text-error" *ngIf="form.controls['group_owner_commision'].errors?.max && showError">
+          Commission should be between 1-100
         </div>
       </div>
 
       <div class="col-md-12 form-group">
-        <label class="set-label"> member commission</label>
-        <input class="form-control" formControlName="member_commision"
-               type="number" placeholder="Enter member commission"/>
+        <label class="set-label required"> agent commission</label>
+        <input class="form-control" formControlName="agent_commision" appAmount
+               type="text" placeholder="Enter agent commission"/>
+        <div class="text-error" *ngIf="form.controls['agent_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['agent_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required"> member commission</label>
+        <input class="form-control" formControlName="member_commision" appAmount
+               type="text" placeholder="Enter member commission"/>
         <div class="text-error" *ngIf="form.controls['member_commision'].errors?.required && showError">
           This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['member_commision'].errors?.max && showError">
+          Commission should be between 1-100
         </div>
       </div>
 

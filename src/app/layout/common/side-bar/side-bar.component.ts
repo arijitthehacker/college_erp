@@ -35,7 +35,6 @@ export class SideBarComponent implements OnInit {
       }
     });
 
-    // console.log(openedIndex, 'openedIndexopenedIndex');
 
     this.optionClick(openedIndex, 2);
   }

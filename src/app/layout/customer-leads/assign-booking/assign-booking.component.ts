@@ -25,7 +25,6 @@ export class AssignBookingComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.modalData, 'modalData');
     this.makeForm();
     this.getAgents();
   }

@@ -77,19 +77,25 @@ export class PropertiesComponent implements OnInit {
 
   }
 
+  publishApi(data: any) {
+    let obj = {
+      publish: true,
+      _id: data._id
+    };
+
+    this.http.putData(ApiUrl.managed_peroperties, obj).subscribe(res => {
+      this.message.toast('success', 'Property published successfully!');
+      data.publish = true;
+      this.router.navigate(['/properties']);
+    });
+  }
+
   addEditModalOpen(data?: any) {
     if (data) {
-      this.router.navigate(['add-new-property'], {queryParams: {id: data._id}});
+      this.router.navigate(['add-new-property'], {queryParams: {id: data._id, isEdit: true}});
     } else {
       this.router.navigate(['add-new-property']);
     }
-
-    // const modalRef = this.modalService.show(AddPropertyComponent, {
-    //   initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
-    // });
-    // modalRef.content.onClose.subscribe(() => {
-    //   this.getData();
-    // });
   }
 
   openProAddresses(data?: any) {

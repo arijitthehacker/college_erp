@@ -23,7 +23,6 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.modalData, 'modalData');
     this.makeForm();
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -49,10 +48,14 @@ export class PaymentComponent implements OnInit {
     });
   }
 
+
   formSubmit() {
     if (this.form.valid) {
       const obj = JSON.parse(JSON.stringify(this.form.value));
 
+      if (!obj.transaction_comment) {
+        delete obj.transaction_comment;
+      }
       this.http.putData(ApiUrl.managed_payment_request, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success', 'Sent Successfully!');

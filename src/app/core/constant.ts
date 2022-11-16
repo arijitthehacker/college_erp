@@ -2,7 +2,8 @@ export const CONSTANT = {
   SITE_NAME: 'Referly Admin',
   tokenKey: 'referly_token',
   // email_pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-  email_pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+  email_pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+  no_image: '/assets/images/no-img.webp'
 };
 
 export const SIDEBAR = [
@@ -44,7 +45,7 @@ export const SIDEBAR = [
     path: '', name: 'Accounts', icon: 'fa-money', children: [
       {path: 'advance-request', name: 'Advance request', icon: 'fa fa-shopping-cart'},
       {path: 'pending-payment', name: 'Pending payment', icon: 'fa fa-money'},
-      {path: 'transaction-history', name: 'History transactions', icon: 'fa fa-history'},
+      {path: 'transaction-history', name: 'History transactions', icon: 'fa fa-history'}
     ]
   },
 

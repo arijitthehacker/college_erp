@@ -105,7 +105,7 @@
                 <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected by team member</ng-container>
                 <ng-container *ngIf="data?.booking_status === 'IN_PROGRESS'">In progress</ng-container>
                 <ng-container *ngIf="data?.booking_status === 'COMPLETED'">Status Completed</ng-container>
-<!--                {{data?.booking_status |replaceUnderscore}}-->
+                <!--                {{data?.booking_status |replaceUnderscore}}-->
 
 
               </label>
@@ -122,7 +122,8 @@
                     role="menu" aria-labelledby="button-animated">
                   <li role="menuitem"><a class="dropdown-item" (click)="openLogs(data)">
                     View Change Log</a></li>
-                  <li role="menuitem" *ngIf="!data?.agent_id?._id">
+                  <li role="menuitem" *ngIf="!data?.agent_id?._id &&
+                  (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'IN_PROGRESS')">
                     <a class="dropdown-item" (click)="assignBooking(data)">Assign to agent</a>
                   </li>
                   <li role="menuitem">

@@ -27,8 +27,6 @@ export class AddProAddressComponent implements OnInit {
 
   ngOnInit() {
     this.makeForm();
-    console.log(this.modalData, 'modalData');
-    console.log(this.propertyData, 'propertyData');
   }
 
   makeForm() {

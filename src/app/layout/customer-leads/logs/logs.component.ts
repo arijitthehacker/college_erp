@@ -30,7 +30,6 @@ export class LogsComponent implements OnInit {
     };
     this.http.getData(ApiUrl.list_lead_logs, obj).subscribe(res => {
       this.allData = res.data.data;
-      console.log(this.allData, '     this.allData');
     }, () => {
     });
   }
