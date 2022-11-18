@@ -20,6 +20,10 @@ import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { initializeApp } from "firebase/app";
+initializeApp(environment.firebase);
+
+
 @NgModule({
     declarations: [
         AppComponent,
