@@ -78,7 +78,8 @@ export class AddDeveloperComponent implements OnInit {
   }
 
   removeImage(id) {
-    this.form.controls.image.patchValue(id);
+    document.getElementById(id)[`value`] = '';
+    this.form.controls.image.patchValue('');
   }
 
 }

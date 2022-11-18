@@ -9,8 +9,8 @@
         <div class="col-md-3 text-right sm-input-space">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Search"
-                   [(ngModel)]="search" (keyup.enter)="getData()">
-            <span class="input-group-text" (click)="getData()">
+                   [(ngModel)]="search" (keyup.enter)="searchFun()">
+            <span class="input-group-text" (click)="searchFun()">
                 <i class="fa fa-search"></i>
               </span>
           </div>
@@ -33,6 +33,7 @@
             <th>Email</th>
             <th>Invite Codes</th>
             <th>Contact Number</th>
+            <th>Gold Member</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -40,7 +41,7 @@
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td>
-              {{ i + ( pagination.pageSize * ( pagination.page - 1 ) ) + 1}}</td>
+              {{ i + ( pagination.pageSize * ( pagination.pageNo - 1 ) ) + 1}}</td>
             <td>
               <img [src]="data.image || '/assets/images/no-img.webp'" class="small-img"
                    (click)="commonService.openLightBox(data.image)">
@@ -50,20 +51,14 @@
             <td>
               <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>
             </td>
-
             <td>{{data?.country_code}} {{data?.phone_number }}</td>
-            <!--              <td>-->
-            <!--                <app-see-more [msg]="data?.description"></app-see-more>-->
-            <!--              </td>-->
+            <td>{{data?.is_gold ? 'Gold' : '-'}} </td>
 
             <td class="edit-section">
               <div (click)="blockUnblock(data)">
                 <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
                 <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
               </div>
-              <!--                <span class="fa-span  ml-3">-->
-              <!--                    <i (click)="addEditModalOpen(data)" class="cursor-pointer action-fa fa fa-edit"></i>-->
-              <!--                  </span>-->
               <div>
                 <i (click)="deleteData(data)" class="fa fa-trash"></i>
               </div>

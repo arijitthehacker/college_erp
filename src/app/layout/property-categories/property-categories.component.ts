@@ -41,6 +41,10 @@ export class PropertyCategoriesComponent implements OnInit {
     this.http.getData(ApiUrl.list_peroperty_categories, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
+      if (res.data.total_count > 0 && !this.allData?.length) {
+        this.pagination.pageNo--;
+        this.getData();
+      }
     }, () => {
     });
   }

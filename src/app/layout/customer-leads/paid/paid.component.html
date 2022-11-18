@@ -17,7 +17,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let data of modalData?.payment_logs">
-      <td>{{data?.time | date:'dd-MM-yyyy, hh:mm a'}}  </td>
+      <td>{{data?.time | date:'short'}}  </td>
       <td> {{data?.price || '-'}} </td>
     </tr>
     </tbody>

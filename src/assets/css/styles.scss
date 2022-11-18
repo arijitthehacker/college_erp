@@ -1029,6 +1029,16 @@ select {
   inset: 100% auto auto -150px !important;
 }
 
-.dropdown-item{
+.dots-area .dropdown-item {
   font-size: 14px;
 }
+
+
+.header-right-side {
+  .dropdown-menu-left {
+    right: 0 !important;
+    left: auto !important;
+    width: 300px;
+  }
+}
+

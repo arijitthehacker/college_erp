@@ -19,7 +19,7 @@ export const SIDEBAR = [
     path: '', name: 'Property Management', icon: 'fa-building', children: [
       {path: 'property-categories', name: 'Property Categories', icon: 'fa fa-rocket'},
       {path: 'properties', name: 'Property List', icon: 'fa fa-building'},
-      {path: 'add-new-property', name: 'Create Property', icon: 'fa fa-building'},
+      {path: 'add-new-property', name: 'Create Property', icon: 'fa fa-plus-square-o'},
       {path: 'commissions', name: 'Commissions', icon: 'fa fa-money'}
     ]
   },
@@ -27,7 +27,6 @@ export const SIDEBAR = [
   {
     path: '', name: 'Customer Management', icon: 'fa-bar-chart', children: [
       {path: 'customer-leads', name: 'Customer Leads', icon: 'fa fa-windows'}
-
     ]
   },
 
@@ -50,7 +49,7 @@ export const SIDEBAR = [
   },
 
   {
-    path: '', name: 'Content Management', icon: 'fa-info-circle', children: [
+    path: 'info-pages', name: 'Content Management', icon: 'fa-info-circle', children: [
       {path: 'privacy', name: 'Privacy Policy'},
       {path: 'terms', name: 'Terms & Conditions'},
       {path: 'about', name: 'About Us'}
@@ -64,9 +63,6 @@ export const SIDEBAR = [
     ]
   }
 ];
-
-// {path: 'building-material', name: 'Building Material', icon: 'fa fa-building'},
-// {path: 'rooms', name: 'Rooms', icon: 'fa fa-rocket'},
 
 export const Currencies = [
   {'cc': 'AED', 'symbol': '\u062f.\u0625;', 'name': 'UAE dirham'},

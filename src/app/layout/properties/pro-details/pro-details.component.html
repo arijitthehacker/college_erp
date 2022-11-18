@@ -71,15 +71,9 @@
           <h5>Developer Name</h5>
           <p>{{modalData?.developer_id?.name || '-'}}</p>
         </td>
-<!--        <td>-->
-<!--          <h5> Featured?</h5>-->
-<!--          <p>{{modalData?.is_featured ? 'Yes' : 'No'}}</p>-->
-<!--        </td>-->
       </tr>
 
-
     </ng-container>
-
 
     <ng-container *ngIf="selectedTab === 2">
       <ng-container *ngIf="addresses?.length">
@@ -163,7 +157,7 @@
             {{modalData?.end_price || '-'}}</p>
         </td>
         <td>
-          <h5>Commission</h5>
+          <h5>Commission Name</h5>
           <p>{{modalData?.comission_id?.name || '-'}}</p>
         </td>
       </tr>
@@ -174,39 +168,7 @@
           <p>{{modalData?.total_units || '-'}}</p>
         </td>
 
-<!--        <td>-->
-<!--          <h5>Min agent commission</h5>-->
-<!--          <p>{{modalData?.min_agent_commision || '-'}}</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <h5>Max agent commission</h5>-->
-<!--          <p>{{modalData?.max_agent_commision || '-'}}</p>-->
-<!--        </td>-->
       </tr>
-
-<!--      <tr>-->
-
-<!--        <td>-->
-<!--          <h5>Min Group owner commission</h5>-->
-<!--          <p>{{modalData?.min_group_owner_commision || '-'}}</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <h5>Max Group owner commission</h5>-->
-<!--          <p>{{modalData?.max_group_owner_commision || '-'}}</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <h5>Min Member Commission</h5>-->
-<!--          <p>{{modalData?.min_member_commision || '-'}}</p>-->
-<!--        </td>-->
-
-<!--      </tr>-->
-
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <h5>Max Member Commission</h5>-->
-<!--          <p>{{modalData?.max_member_commision || '-'}}</p>-->
-<!--        </td>-->
-<!--      </tr>-->
 
     </ng-container>
 
@@ -256,11 +218,9 @@
           </div>
         </td>
       </tr>
-
     </ng-container>
 
   </table>
-
 
 </div>
 

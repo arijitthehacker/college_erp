@@ -49,10 +49,14 @@ export class CustomerLeadsComponent implements OnInit {
         modalData = data.member_payment_id;
         break;
     }
-
-    const modalRef = this.modalService.show(PaidComponent, {
+    this.modalService.show(PaidComponent, {
       initialState: {modalData: modalData}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
+  }
+
+  searchFun() {
+    this.pagination.pageNo = 1;
+    this.getData();
   }
 
   getData() {

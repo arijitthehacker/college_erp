@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Lightbox } from 'ngx-lightbox';
 import { PaymentComponent } from '../../shared/components/payment/payment.component';
+import { skipLast } from 'rxjs';
 
 @Component({
   selector: 'app-accounts',
@@ -32,6 +33,7 @@ export class AdvanceRequestComponent implements OnInit {
   getData() {
     this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
     let obj: any = {
+      skip: this.pagination.skip,
       type: 'EARLY'
     };
     if (this.search.value) {

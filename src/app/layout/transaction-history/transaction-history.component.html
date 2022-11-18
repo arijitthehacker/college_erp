@@ -52,7 +52,8 @@
               {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code}}
               {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number}}
               <br>
-              <b class="highlighted-text">Completed On:</b> {{data?.advanced_date |date:'dd-MM-yyyy'}}
+              <b class="highlighted-text">Completed On:</b> {{data?.time |date:'short'}}
+              {{data?.advanced_request ? 'Advanced Paid On' : 'Paid After completion '}}
             </td>
 
             <td>
@@ -106,9 +107,9 @@
 
       <div class="row" *ngIf="pagination.count">
         <div class="col-sm-6">
-                      <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
-                        {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
-                        of {{pagination.count}} entries </p>
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
         </div>
         <div class="col-sm-6 text-right">
           <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"

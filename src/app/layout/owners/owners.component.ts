@@ -29,6 +29,12 @@ export class OwnersComponent implements OnInit {
     this.getData();
   }
 
+
+  searchFun() {
+    this.pagination.pageNo = 1;
+    this.getData();
+  }
+
   getData() {
     this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
     let obj: any = {
@@ -51,8 +57,13 @@ export class OwnersComponent implements OnInit {
         val.showCode = showCode;
       });
       this.allData = res.data.data;
-
       this.pagination.count = res.data.total_count;
+
+      if (res.data.total_count > 0 && !this.allData?.length) {
+        this.pagination.pageNo--;
+        this.getData();
+      }
+
     }, () => {
     });
   }

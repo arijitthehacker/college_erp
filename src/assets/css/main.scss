@@ -1157,12 +1157,17 @@ fieldset:disabled a.btn {
 }
 
 .app-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-bottom: 0;
-  justify-content: space-between;
-  align-items: center;
+  //display: -webkit-box;
+  //display: -ms-flexbox;
+  //display: flex;
+  //margin-bottom: 0;
+  //justify-content: space-between;
+  //align-items: center;
+
+  float: right;
+  right: 30px;
+  position: absolute;
+
 }
 
 @media (min-width: 768px) {

@@ -31,7 +31,7 @@ export class TransactionHistoryComponent implements OnInit {
   getData() {
     this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
     let obj: any = {
-      // skip: this.pagination.skip
+      skip: this.pagination.skip,
       type: 'COMPLETED'
     };
     if (this.search.value) {

@@ -45,6 +45,10 @@ export class PropertiesComponent implements OnInit {
     this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
+      if (res.data.total_count > 0 && !this.allData?.length) {
+        this.pagination.pageNo--;
+        this.getData();
+      }
     }, () => {
     });
   }
@@ -96,6 +100,11 @@ export class PropertiesComponent implements OnInit {
     } else {
       this.router.navigate(['add-new-property']);
     }
+  }
+
+  searchFun() {
+    this.pagination.pageNo = 1;
+    this.getData();
   }
 
   openProAddresses(data?: any) {

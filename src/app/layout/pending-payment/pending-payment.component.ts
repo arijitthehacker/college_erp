@@ -32,7 +32,7 @@ export class PendingPaymentComponent implements OnInit {
   getData() {
     this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
     let obj: any = {
-      // skip: this.pagination.skip
+      skip: this.pagination.skip,
       type: 'PENDING'
     };
     if (this.search.value) {

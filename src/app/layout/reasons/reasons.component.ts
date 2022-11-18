@@ -41,6 +41,12 @@ export class ReasonsComponent implements OnInit {
     this.http.getData(ApiUrl.list_rejection_reason, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
+
+      if (res.data.total_count > 0 && !this.allData?.length) {
+        this.pagination.pageNo--;
+        this.getData();
+      }
+
     }, () => {
     });
   }
@@ -71,7 +77,6 @@ export class ReasonsComponent implements OnInit {
     }, () => {
     });
   }
-
 
   addEditModalOpen(data?: any) {
     const modalRef = this.modalService.show(AddReasonComponent, {

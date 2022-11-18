@@ -61,9 +61,9 @@
 
       <div class="row" *ngIf="pagination.count">
         <div class="col-sm-6">
-          <!--            <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to-->
-          <!--              {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out-->
-          <!--              of {{pagination.count}} entries </p>-->
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
         </div>
         <div class="col-sm-6 text-right">
           <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"

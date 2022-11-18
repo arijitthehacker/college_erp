@@ -48,7 +48,6 @@ export class PaymentComponent implements OnInit {
     });
   }
 
-
   formSubmit() {
     if (this.form.valid) {
       const obj = JSON.parse(JSON.stringify(this.form.value));
@@ -75,7 +74,8 @@ export class PaymentComponent implements OnInit {
   }
 
   removeImage(id) {
-    this.form.controls.transaction_image.patchValue(id);
+    document.getElementById(id)[`value`] = '';
+    this.form.controls.transaction_image.patchValue('');
   }
 
 }
