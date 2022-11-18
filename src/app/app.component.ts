@@ -7,8 +7,11 @@ import { SwUpdate } from '@angular/service-worker';
 import { CommonService } from './services/commonService/common.service';
 import { CONSTANT } from './core/constant';
 
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import { environment } from '../environments/environment';
+import { HttpService } from './services/http/http.service';
+import { ApiUrl } from './core/apiUrl';
+import { MessageService } from './services/message/message.service';
 
 @Component({
   selector: 'app-root',
@@ -18,18 +21,13 @@ export class AppComponent implements OnInit {
 
   appTitle = CONSTANT.SITE_NAME;
   pageTitle = '';
-
-  title1 = 'af-notification';
-  message:any = null;
+  message: any = null;
+  device_token;
 
   constructor(
-    private router: Router,
-    private activeRoute: ActivatedRoute,
-    private routePartsService: RoutePartsService,
-    private title: Title,
-    private swUpdate: SwUpdate,
-    public commonService: CommonService
-  ) {
+    private router: Router, private activeRoute: ActivatedRoute, private routePartsService: RoutePartsService,
+    private title: Title, private swUpdate: SwUpdate, public commonService: CommonService,
+    public http: HttpService, public messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -41,15 +39,17 @@ export class AppComponent implements OnInit {
 
   }
 
-
   requestPermission() {
     const messaging = getMessaging();
     getToken(messaging,
-      { vapidKey: environment.firebase.vapidKey}).then(
+      {vapidKey: environment.firebase.vapidKey}).then(
       (currentToken) => {
         if (currentToken) {
-          console.log("Hurraaa!!! we got the token.....");
+          console.log('Hurraaa!!! we got the token.....');
           console.log(currentToken);
+          this.device_token = currentToken;
+          localStorage.setItem('device_token', currentToken);
+          this.saveToken();
         } else {
           console.log('No registration token available. Request permission to generate one.');
         }
@@ -57,11 +57,23 @@ export class AppComponent implements OnInit {
       console.log('An error occurred while retrieving token. ', err);
     });
   }
+
   listen() {
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
       console.log('Message received. ', payload);
-      this.message=payload;
+      this.message = payload;
+      this.messageService.toast('info', this.message.notification.title);
+    });
+  }
+
+  saveToken() {
+    let obj: any = {
+      device_type: 3,
+      device_token: this.device_token
+    };
+    this.http.postData(ApiUrl.update_device_token, obj).subscribe(res => {
+
     });
   }
 

@@ -5,6 +5,7 @@ import { CONSTANT } from '../../../core/constant';
 import { MessageService } from '../../../services/message/message.service';
 import { HttpService } from '../../../services/http/http.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { ApiUrl } from '../../../core/apiUrl';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   showSideBar = true;
   appTitle = CONSTANT.SITE_NAME;
   profileData: any = {};
-  items: any = [1, 2, 3, 4, 5, 6, 7, 7, 8, 1, 9];
+  notifications: any = [];
 
   constructor(public commonService: CommonService, public router: Router, private message: MessageService,
               public http: HttpService, private modalService: BsModalService
@@ -24,6 +25,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.commonService.getProfileData();
+    this.getNotifications();
+    this.getProfileData();
+  }
+
+  getProfileData() {
+    this.http.getData(ApiUrl.access_token_login, {}, true).subscribe(res => {
+      console.log(res,'56666666666666666666666666666');
+    });
   }
 
   getMessage() {
@@ -37,10 +46,36 @@ export class HeaderComponent implements OnInit {
 
   onShown() {
     console.log('aaaaaa', 'isOpenChangeisOpenChangeisOpenChange');
+    this.getNotifications();
   }
 
   getNotifications() {
+    this.http.getData(ApiUrl.list_notification, {}, true).subscribe(res => {
+      this.notifications = res.data;
+      console.log(this.notifications);
+    });
+  }
 
+  readNotifications() {
+    this.http.putData(ApiUrl.read_notification).subscribe(res => {
+      console.log(res, 'res');
+    });
+  }
+
+  clearNotifications() {
+    this.http.putData(ApiUrl.clear_notification).subscribe(res => {
+      console.log(res, 'res');
+    });
+  }
+
+  apiHit() {
+    let obj: any = {
+      device_token: localStorage.getItem('device_token'),
+      message: 'hiiiii'
+    };
+    this.http.postData(ApiUrl.send_custom_notification, obj).subscribe(res => {
+      console.log(res, 'http');
+    });
   }
 
   logout() {

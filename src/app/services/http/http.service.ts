@@ -69,7 +69,7 @@ export class HttpService {
     }));
   }
 
-  putData(url: string, data, formData?: boolean) {
+  putData(url: string, data?, formData?: boolean) {
     const apiUrl = `${environment.apiBaseUrl}${url}`;
     const postData = !formData ? data : this.appendFormData(data);
     return this.http.put(apiUrl, postData).pipe(map((response: any) => {

@@ -14,7 +14,7 @@ export class MessageService {
   }
 
   /******************* toast messages ********************/
-  toast(type, title: string) {
+  toast(type, title: string, description?) {
     const Toast = swal.mixin({
       toast: true,
       position: 'top-end',
@@ -22,15 +22,15 @@ export class MessageService {
       timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
-        toast.addEventListener('mouseenter', swal.stopTimer)
-        toast.addEventListener('mouseleave', swal.resumeTimer)
+        toast.addEventListener('mouseenter', swal.stopTimer);
+        toast.addEventListener('mouseleave', swal.resumeTimer);
       }
-    })
+    });
 
     Toast.fire({
       icon: type,
       title: title
-    })
+    });
 
     // const toast = swal.mixin({
     //   toast: true,

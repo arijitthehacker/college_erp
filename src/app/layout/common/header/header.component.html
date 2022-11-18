@@ -3,14 +3,24 @@
 </a>
   <ul class="app-nav">
 
+    <button class="btn btn-primary" (click)="apiHit()">Push</button>
+
+
     <li class="item_btn header-right-side">
-      <div dropdown  placement="bottom left"  (onShown)="onShown()">
+      <div dropdown placement="bottom left" (onShown)="onShown()">
         <img src="/assets/images/noti-icon.png"
              href id="basic-link" dropdownToggle aria-controls="basic-link-dropdown">
-        <ul id="basic-link-dropdown noti-list" *dropdownMenu class="dropdown-menu dropdown-menu-left"
+        <ul id="basic-link-dropdown " *dropdownMenu class="dropdown-menu dropdown-menu-left"
             role="menu" aria-labelledby="basic-link">
-          <li *ngFor="let choice of items" class="">
-            <a class="dropdown-item">{{choice}}</a>
+          <li *ngFor="let data of notifications" class="noti-list row">
+
+
+            <h5 class="col-md-12">{{data?.title}}</h5>
+
+            <p class="col-md-12">{{data?.message}}</p>
+
+            <span class="col-md-12">{{data?.created_at |date:'short'}}</span>
+
           </li>
         </ul>
 
@@ -18,3 +28,6 @@
     </li>
   </ul>
 </header>
+
+
+
