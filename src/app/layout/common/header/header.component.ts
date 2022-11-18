@@ -6,6 +6,8 @@ import { MessageService } from '../../../services/message/message.service';
 import { HttpService } from '../../../services/http/http.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ApiUrl } from '../../../core/apiUrl';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -17,8 +19,10 @@ export class HeaderComponent implements OnInit {
   appTitle = CONSTANT.SITE_NAME;
   profileData: any = {};
   notifications: any = [];
+  message: any = null;
+  device_token;
 
-  constructor(public commonService: CommonService, public router: Router, private message: MessageService,
+  constructor(public commonService: CommonService, public router: Router, private messageService: MessageService,
               public http: HttpService, private modalService: BsModalService
   ) {
   }
@@ -27,11 +31,54 @@ export class HeaderComponent implements OnInit {
     this.commonService.getProfileData();
     this.getNotifications();
     this.getProfileData();
+
+    this.requestPermission();
+    this.listen();
+
+  }
+
+  requestPermission() {
+    const messaging = getMessaging();
+    getToken(messaging,
+      {vapidKey: environment.firebase.vapidKey}).then(
+      (currentToken) => {
+        if (currentToken) {
+          console.log('Hurraaa!!! we got the token.....');
+          console.log(currentToken);
+          this.device_token = currentToken;
+          localStorage.setItem('device_token', currentToken);
+          this.saveToken();
+        } else {
+          console.log('No registration token available. Request permission to generate one.');
+        }
+      }).catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+    });
+  }
+
+  listen() {
+    const messaging = getMessaging();
+    onMessage(messaging, (payload) => {
+      console.log('Message received. ', payload);
+      this.message = payload;
+      this.messageService.toast('info', this.message.notification.title);
+    });
+  }
+
+  saveToken() {
+    let obj: any = {
+      device_type: 3,
+      device_token: this.device_token
+    };
+    this.http.postData(ApiUrl.update_device_token, obj).subscribe(res => {
+
+    });
   }
 
   getProfileData() {
     this.http.getData(ApiUrl.access_token_login, {}, true).subscribe(res => {
-      console.log(res,'56666666666666666666666666666');
+      this.profileData = res.data;
+      console.log(this.profileData, '56666666666666666666666666666');
     });
   }
 

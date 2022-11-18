@@ -1067,5 +1067,16 @@ select {
   }
 }
 
+.show-count{
+  position: absolute;
+  background: red;
+  border-radius: 100%;
+  width: 21px;
+  height: 21px;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  right: 5px;
+}
 
 
