@@ -47,6 +47,7 @@
             <th>Group Owner</th>
             <th>Agent Info</th>
             <th>Commission Status</th>
+            <th>Property final price</th>
             <th style="min-width: 130px">Status</th>
             <th>Action</th>
           </tr>
@@ -96,13 +97,16 @@
               <b>Agent:</b> {{data?.agent_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}<br>
               <b>Member:</b> {{data?.member_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}
             </td>
+            <td>{{data?.commission_price || '-'}}</td>
 
             <td>
               <label class="">
 
-                <ng-container *ngIf="data?.booking_status === 'PENDING'">Waiting for owner acceptance</ng-container>
+<!--                <ng-container *ngIf="data?.booking_status === 'PENDING'">Waiting for owner acceptance</ng-container>-->
+                <ng-container *ngIf="data?.booking_status === 'PENDING'">Pending</ng-container>
                 <ng-container *ngIf="data?.booking_status === 'ACCEPTED'">In progress</ng-container>
-                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected by team member</ng-container>
+<!--                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected by team member</ng-container>-->
+                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected</ng-container>
                 <ng-container *ngIf="data?.booking_status === 'IN_PROGRESS'">In progress</ng-container>
                 <ng-container *ngIf="data?.booking_status === 'COMPLETED'">Status Completed</ng-container>
                 <!--                {{data?.booking_status |replaceUnderscore}}-->
@@ -118,14 +122,29 @@
                 </i>
                 <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
                     role="menu" aria-labelledby="button-animated">
+
+
+                  <ng-container *ngIf="data?.booking_status === 'PENDING'">
+                    <li role="menuitem">
+                      <a class="dropdown-item" (click)="acceptReject(data,'APPROVED')">Accept</a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-item" (click)="acceptReject(data,'REJECTED')">Reject</a>
+                    </li>
+                  </ng-container>
+
                   <li role="menuitem"><a class="dropdown-item" (click)="openLogs(data)">
                     View Change Log</a></li>
-                  <li role="menuitem" *ngIf="!data?.agent_id?._id &&
+<!--                  !data?.agent_id?._id &&-->
+                  <li role="menuitem" *ngIf="
                   (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'IN_PROGRESS')">
                     <a class="dropdown-item" (click)="assignBooking(data)">Assign to agent</a>
                   </li>
                   <li role="menuitem">
                     <a class="dropdown-item" (click)="openStatus(data)">View Status</a>
+                  </li>
+                  <li role="menuitem" *ngIf="!data?.commission_price">
+                    <a class="dropdown-item" (click)="addFinal(data)">Add final property price</a>
                   </li>
                 </ul>
               </div>

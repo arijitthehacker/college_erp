@@ -104,8 +104,9 @@ export class HeaderComponent implements OnInit {
   }
 
   readNotifications() {
-    this.http.putData(ApiUrl.read_notification).subscribe(res => {
+    this.http.putData(ApiUrl.read_notification, true).subscribe(res => {
       console.log(res, 'res');
+      this.getProfileData();
     });
   }
 

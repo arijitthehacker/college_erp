@@ -7,6 +7,8 @@ import { ConstMsg } from 'src/app/core/ConstMsg';
 import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
+import { ForgotPasswordComponent } from '../../public/login/forgot-password/forgot-password.component';
+import { ChangeMemberPasswordComponent } from './change-member-password/change-member-password.component';
 
 @Component({
   selector: 'app-accounts',
@@ -27,11 +29,11 @@ export class MembersComponent implements OnInit {
     this.getData();
   }
 
-
   searchFun() {
     this.pagination.pageNo = 1;
     this.getData();
   }
+
   getData() {
     this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
     let obj: any = {
@@ -61,7 +63,6 @@ export class MembersComponent implements OnInit {
         this.pagination.pageNo--;
         this.getData();
       }
-
 
     }, () => {
     });
@@ -93,6 +94,16 @@ export class MembersComponent implements OnInit {
       }
     });
 
+  }
+
+  openChangePassword(modalData?: any) {
+    console.log(modalData,'modalData');
+    const modalRef = this.modalService.show(ChangeMemberPasswordComponent, {
+      initialState: {modalData: modalData},
+      backdrop: 'static',
+      keyboard: false,
+      class: 'modal-md'
+    });
   }
 
 }

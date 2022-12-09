@@ -2182,6 +2182,8 @@ ul.list-main li:last-child {
   position: relative;
   margin: 0;
   cursor: pointer;
+  margin-right: 7px;
+  margin-top: 2px;
 }
 
 .product-images .file-upload + label img {
@@ -2190,7 +2192,7 @@ ul.list-main li:last-child {
 
 .fa-trash-css {
   position: absolute;
-  margin-left: -10px;
+  margin-left: -20px;
   margin-top: -8px;
   border-radius: 50px;
   z-index: 99;

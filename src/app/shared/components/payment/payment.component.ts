@@ -17,6 +17,7 @@ export class PaymentComponent implements OnInit {
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  advancePage: boolean;
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
@@ -34,6 +35,7 @@ export class PaymentComponent implements OnInit {
       transaction_id: ['', Validators.required],
       transaction_image: ['', Validators.required],
       transaction_comment: [''],
+      advanced_payment: [''],
       _id: ['']
     });
 
@@ -44,6 +46,7 @@ export class PaymentComponent implements OnInit {
       transaction_id: data.transaction_id,
       transaction_image: data.transaction_image,
       transaction_comment: data.transaction_comment,
+      advanced_payment: data.advanced_payment,
       _id: data._id
     });
   }
@@ -55,6 +58,19 @@ export class PaymentComponent implements OnInit {
       if (!obj.transaction_comment) {
         delete obj.transaction_comment;
       }
+
+      if (!obj.advanced_payment) {
+        delete obj.advanced_payment;
+      }
+
+      if (this.advancePage) {
+        let leftAmount = this.modalData?.total_price - this.modalData?.advanced_price;
+        if (obj.advanced_payment >= leftAmount) {
+          this.message.toast('error', 'Advance payment should be less than pending payment');
+          return;
+        }
+      }
+
       this.http.putData(ApiUrl.managed_payment_request, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success', 'Sent Successfully!');

@@ -19,12 +19,16 @@ export class StatusesComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(this.showStatus,'showStatus');
+
     if (this.modalData?.status?.length) {
       this.modalData.status.forEach((val) => {
         if (val.status_data != 'PENDING') {
 
           if (val.managed_by === 'GROUP_OWNER') {
             val.managed_by_name = this.modalData?.group_owner_id?.name;
+          }else if (val.managed_by === 'ADMIN') {
+            val.managed_by_name = 'Admin';
           } else {
             val.managed_by_name = this.modalData?.agent_id?.name;
           }

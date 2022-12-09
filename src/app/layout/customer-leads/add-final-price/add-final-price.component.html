@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Add final property price
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Commission price</label>
+        <input class="form-control" formControlName="commission_price"
+               type="text" placeholder="Enter commission price" appAmount/>
+        <div class="text-error" *ngIf="form.controls['commission_price'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">Submit</button>
+  </div>
+</form>

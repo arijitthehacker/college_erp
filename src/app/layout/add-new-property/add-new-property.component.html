@@ -42,7 +42,7 @@
           Property description
         </div>
         <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 6}" (click)="clickTab(6)">
-          Property images
+          Property media
         </div>
       </div>
 
@@ -461,7 +461,7 @@
                   <label for="cover_image">
                     <img src="/assets/images/ic_camera.png">
                   </label>
-                  <img class="ml-4 uploaded-img" height="72" for="cover_image"
+                  <img class="ml-4 uploaded-img multiple-images" height="72" for="cover_image"
                        [src]="form6?.value?.cover_image"
                        *ngIf='form6?.value?.cover_image'>
                   <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('cover_image',1)"

@@ -48,7 +48,7 @@ export class AdvanceRequestComponent implements OnInit {
 
   openPaymentModal(data?: any) {
     const modalRef = this.modalService.show(PaymentComponent, {
-      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+      initialState: {modalData: data, advancePage: true}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
     modalRef.content.onClose.subscribe((res: any) => {
       this.getData();

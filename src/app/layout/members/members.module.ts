@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MembersComponent } from './members.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ChangeMemberPasswordComponent } from './change-member-password/change-member-password.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     MembersComponent,
+    ChangeMemberPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   entryComponents: [
+    ChangeMemberPasswordComponent
   ]
 })
 export class MembersModule {

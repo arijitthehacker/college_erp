@@ -2,17 +2,34 @@
   <div class="col-md-12">
     <div class="my-box">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
           <h4 class="card-title  float-left">
             {{commonService?.breadcrumb}}
           </h4>
         </div>
 
-        <div class="col-md-9 text-right">
+        <div class="col-md-3 text-right">
           <div class="sm-input-space">
-
+            <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search"
+                   [(ngModel)]="search" (keyup.enter)="getData()">
+            <span class="input-group-text" (click)="getData()">
+                <i class="fa fa-search"></i>
+              </span>
+          </div>
           </div>
         </div>
+
+        <div class="col-md-3 text-right sm-input-space">
+          <select class="form-control" [(ngModel)]="type" (change)="pagination.pageNo =1;getData()">
+            <option value="">All Transactions</option>
+            <option value="EARLY">Advanced</option>
+            <option value="PENDING">Pending</option>
+            <option value="COMPLETED">Completed</option>
+            <option value="DECLINED">Declined</option>
+          </select>
+        </div>
+
       </div>
     </div>
   </div>
@@ -35,6 +52,7 @@
             <th class="col-width">Customer Info</th>
             <th class="col-width">Proof of Transaction</th>
             <th class="col-width">Transaction Details</th>
+            <th class="col-width">Payment Details</th>
           </tr>
           </thead>
           <tbody>
@@ -53,7 +71,7 @@
               {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number}}
               <br>
               <b class="highlighted-text">Completed On:</b> {{data?.time |date:'short'}}
-              {{data?.advanced_request ? 'Advanced Paid On' : 'Paid After completion '}}
+              {{data?.advanced_request ? 'Advanced Paid' : 'Paid After completion '}}
             </td>
 
             <td>
@@ -97,6 +115,11 @@
               <b>Transaction id:</b> {{data?.transaction_id || '-'}}<br>
               <b>Transaction Comment:</b> {{data?.transaction_comment || '-'}}
               <br>
+            </td>
+            <td>
+              <b>Property Price:</b> {{data?.commission_price}}<br>
+              <b>Advance Payment:</b> {{data?.advanced_price}}<br>
+              <b>Pending Payment:</b> {{data?.total_price - data?.advanced_price}}<br>
             </td>
 
           </tr>

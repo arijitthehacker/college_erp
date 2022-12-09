@@ -14,6 +14,7 @@ import { PaymentComponent } from '../../shared/components/payment/payment.compon
 import { PaidComponent } from './paid/paid.component';
 import { AssignBookingComponent } from './assign-booking/assign-booking.component';
 import { LogsComponent } from './logs/logs.component';
+import { AddFinalPriceComponent } from './add-final-price/add-final-price.component';
 
 @Component({
   selector: 'app-accounts',
@@ -155,6 +156,32 @@ export class CustomerLeadsComponent implements OnInit {
     });
     modalRef.content.onClose.subscribe(() => {
       this.getData();
+    });
+  }
+
+  addFinal(data?: any) {
+    const modalRef = this.modalService.show(AddFinalPriceComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+    });
+    modalRef.content.onClose.subscribe(() => {
+      this.getData();
+    });
+  }
+
+  acceptReject(data, status) {
+    let obj: any = {
+      status,
+      _id: data._id
+
+    };
+    this.http.putData(ApiUrl.customer_request_managed, obj).subscribe(() => {
+      if (status == 'APPROVED') {
+        this.message.toast('success', 'Accepted Successfully!');
+      } else {
+        this.message.toast('success', 'Rejected Successfully!');
+      }
+      this.getData();
+    }, () => {
     });
   }
 

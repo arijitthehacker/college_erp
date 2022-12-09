@@ -1,36 +1,33 @@
 <header class="app-header"><a class="app-header__logo" href="javascript://">
-  {{profileData?.name || appTitle}}
+  {{appTitle}}
 </a>
   <ul class="app-nav">
 
-    <button class="btn btn-primary" (click)="apiHit()">Push</button>
-
+    <!--    <button class="btn btn-primary" (click)="apiHit()">Push</button>-->
 
     <li class="item_btn header-right-side">
       <div dropdown placement="bottom left" (onShown)="onShown()">
         <img src="/assets/images/noti-icon.png"
-             href id="basic-link" dropdownToggle aria-controls="basic-link-dropdown">
+             href id="basic-link" dropdownToggle aria-controls="basic-link-dropdown" (click)="readNotifications()">
         <span class="show-count" *ngIf="profileData?.notification_count">{{profileData?.notification_count}}</span>
         <ul id="basic-link-dropdown " *dropdownMenu class="dropdown-menu dropdown-menu-left"
             role="menu" aria-labelledby="basic-link">
-          <li *ngFor="let data of notifications" class="noti-list row">
 
+          <li *ngFor="let data of notifications" class="noti-list row">
 
             <h5 class="col-md-12">{{data?.title}}</h5>
 
             <p class="col-md-12">{{data?.message}}</p>
 
             <span class="col-md-12">{{data?.created_at |date:'short'}}</span>
-
           </li>
+
         </ul>
 
       </div>
     </li>
   </ul>
 </header>
-
-
 
 
 <!--<div *ngIf="message;">-->

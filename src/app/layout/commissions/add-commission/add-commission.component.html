@@ -54,6 +54,19 @@
         </div>
       </div>
 
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required"> Gold member commission</label>
+        <input class="form-control" formControlName="gold_member_commision" appAmount
+               type="text" placeholder="Enter gold member commission"/>
+        <div class="text-error" *ngIf="form.controls['gold_member_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['gold_member_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
     </div>
 
   </div>

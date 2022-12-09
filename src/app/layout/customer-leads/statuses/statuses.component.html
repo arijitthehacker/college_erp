@@ -36,6 +36,7 @@
             <app-see-more [msg]="data?.description"></app-see-more>
           </td>
           <td>{{data?.managed_by_name || '-'}}</td>
+<!--          <td>Admin</td>-->
           <td>
             <ng-container *ngIf="data.status_data !== 'PENDING' else showEmpty">
               {{data?.managed_at |date:'short'}}
@@ -67,3 +68,7 @@
   <button (click)="bsModalRef.hide()" type="button" class="btn btn-default mr-3">Cancel</button>
   <!--      <button type="submit" class="btn btn-blue">{{!modalData ? 'Submit' : 'Update'}}</button>-->
 </div>
+
+
+
+

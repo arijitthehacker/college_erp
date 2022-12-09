@@ -18,10 +18,10 @@ export class TransactionHistoryComponent implements OnInit {
   allData: any = [];
   date = '';
   pagination = new PaginationControls();
-  search = new FormControl('');
-
-  constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
-              private modalService: BsModalService, public router: Router, public lightbox: Lightbox) {
+  search = '';
+  type=''
+  constructor(private http: HttpService, public commonService: CommonService,
+               public router: Router, public lightbox: Lightbox) {
   }
 
   ngOnInit() {
@@ -34,8 +34,11 @@ export class TransactionHistoryComponent implements OnInit {
       skip: this.pagination.skip,
       type: 'COMPLETED'
     };
-    if (this.search.value) {
-      obj.search = this.search.value;
+    if (this.search) {
+      obj.search = this.search;
+    }
+    if (this.type) {
+      obj.type = this.type;
     }
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
       this.allData = res.data.data;
