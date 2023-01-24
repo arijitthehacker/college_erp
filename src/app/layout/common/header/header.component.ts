@@ -43,8 +43,6 @@ export class HeaderComponent implements OnInit {
       {vapidKey: environment.firebase.vapidKey}).then(
       (currentToken) => {
         if (currentToken) {
-          console.log('Hurraaa!!! we got the token.....');
-          console.log(currentToken);
           this.device_token = currentToken;
           localStorage.setItem('device_token', currentToken);
           this.saveToken();
@@ -78,7 +76,6 @@ export class HeaderComponent implements OnInit {
   getProfileData() {
     this.http.getData(ApiUrl.access_token_login, {}, true).subscribe(res => {
       this.profileData = res.data;
-      console.log(this.profileData, '56666666666666666666666666666');
     });
   }
 
@@ -92,14 +89,12 @@ export class HeaderComponent implements OnInit {
   }
 
   onShown() {
-    console.log('aaaaaa', 'isOpenChangeisOpenChangeisOpenChange');
     this.getNotifications();
   }
 
   getNotifications() {
     this.http.getData(ApiUrl.list_notification, {}, true).subscribe(res => {
       this.notifications = res.data;
-      console.log(this.notifications);
     });
   }
 

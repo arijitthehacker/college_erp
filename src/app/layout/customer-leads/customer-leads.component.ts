@@ -66,7 +66,7 @@ export class CustomerLeadsComponent implements OnInit {
       skip: this.pagination.skip
     };
     if (this.status) {
-      obj.status = this.status;
+      obj.last_status = this.status;
     }
     if (this.search) {
       obj.search = this.search;

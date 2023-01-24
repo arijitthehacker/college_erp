@@ -64,11 +64,13 @@ export class PaymentComponent implements OnInit {
       }
 
       if (this.advancePage) {
-        let leftAmount = this.modalData?.total_price - this.modalData?.advanced_price;
-        if (obj.advanced_payment >= leftAmount) {
-          this.message.toast('error', 'Advance payment should be less than pending payment');
-          return;
-        }
+        // let leftAmount = this.modalData?.total_price - this.modalData?.advanced_price;
+        // if (obj.advanced_payment >= leftAmount) {
+        //   this.message.toast('error', 'Advance payment should be less than pending payment');
+        //   return;
+        // }
+        obj.advanced_payment = this.modalData?.total_price;
+
       }
 
       this.http.putData(ApiUrl.managed_payment_request, obj).subscribe(() => {

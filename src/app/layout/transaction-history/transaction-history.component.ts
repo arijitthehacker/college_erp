@@ -8,6 +8,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Lightbox } from 'ngx-lightbox';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-accounts',
@@ -19,13 +20,24 @@ export class TransactionHistoryComponent implements OnInit {
   date = '';
   pagination = new PaginationControls();
   search = '';
-  type=''
+  type = '';
+  currentDate = new Date();
+  dates = new FormControl([]);
+
   constructor(private http: HttpService, public commonService: CommonService,
-               public router: Router, public lightbox: Lightbox) {
+              public router: Router, public lightbox: Lightbox) {
+    this.dates.patchValue([new Date(this.currentDate.setMonth(this.currentDate.getMonth() - 1)), new Date()]);
+    this.dates.valueChanges.subscribe(res => {
+      this.getData();
+    });
   }
 
   ngOnInit() {
     this.getData();
+  }
+
+  emptyDate() {
+    this.dates.patchValue([]);
   }
 
   getData() {
@@ -40,11 +52,61 @@ export class TransactionHistoryComponent implements OnInit {
     if (this.type) {
       obj.type = this.type;
     }
+    if (this.dates.value) {
+      const data: any = this.dates.value;
+      obj.start_date = moment(data[0]).format('yyyy-MM-DD');
+      obj.end_date = moment(data[1]).format('yyyy-MM-DD');
+    }
+
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
     }, () => {
     });
+  }
+
+  exportData() {
+    let obj: any = {
+      skip: this.pagination.skip,
+      type: 'COMPLETED',
+      is_pagination: false
+    };
+    this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
+
+      let temp: any = [];
+      res.data.data.forEach((data) => {
+        temp.push({
+          'Name': data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name,
+          'Date & Time': moment(data?.time).format('DD-MM-yyyy, hh:mm a'),
+          'Property Name': data?.booking_id?.peroperty_id?.name,
+          'Developer Name': data?.booking_id?.peroperty_id?.developer_id?.name,
+          'Transferred To(Name)': data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name,
+          'Transferred To(Phone No.)': data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number,
+          'Completed On': moment(data?.time).format('DD-MM-yyyy, hh:mm a'),
+          'Member Name': data?.booking_id?.member_id?.name,
+          'Member Phone No.': data?.booking_id?.member_id?.phone_number,
+          'Group Owner Name': data?.booking_id?.group_owner_id?.name,
+          'Group Owner Phone No.': data?.booking_id?.group_owner_id?.phone_number,
+          'Agent Name': data?.booking_id?.agent_id?.name,
+          'Agent Phone No.': data?.booking_id?.agent_id?.phone_number,
+          'Customer Name': data?.booking_id?.name,
+          'Customer Phone No': data?.booking_id?.phone_number,
+          'Transaction Image': data.transaction_image,
+          'Transaction Id': data?.transaction_id,
+          'Transaction Comment': data?.transaction_comment,
+          'Property Price': data?.commission_price,
+          'Advance Payment': data?.advanced_price,
+          'Pending Payment': data?.total_price - data?.advanced_price
+        });
+      });
+      this.http.postData(ApiUrl.export_json_csv, {data: temp}).subscribe(res1 => {
+        console.log(res1, 'temptemptemptemptemptemptemp  ', res1.data);
+        this.commonService.goToLink(res1.data);
+      });
+
+    }, () => {
+    });
+
   }
 
 }

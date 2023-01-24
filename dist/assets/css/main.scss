@@ -2209,14 +2209,14 @@ ul.list-main li:last-child {
 }
 
 .theme-green .bs-datepicker-head {
-  background-color: #7c51a0 !important;
+  background-color: $main-color !important;
 }
 
 .theme-green .bs-datepicker-body table td span.selected,
 .theme-green .bs-datepicker-body table td.selected span,
 .theme-green .bs-datepicker-body table td span[class*="select-"]:after,
 .theme-green .bs-datepicker-body table td[class*="select-"] span:after {
-  background-color: #7c51a0 !important;
+  background-color: $main-color !important;
 }
 
 .bs-datepicker-container {

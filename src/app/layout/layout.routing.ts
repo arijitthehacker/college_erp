@@ -44,6 +44,10 @@ const routes: Routes = [
         path: 'purposes',
         loadChildren: () => import('./purposes/purposes.module').then(m => m.PurposesModule),
         data: {breadcrumb: 'Property Purposes', title: 'purpose'}
+      },{
+        path: 'recycle-bin',
+        loadChildren: () => import('./recycle-bin/recycle-bin.module').then(m => m.RecycleBinModule),
+        data: {breadcrumb: 'Recycle Bin', title: 'Recycle Bin'}
       }, {
         path: 'reasons',
         loadChildren: () => import('./reasons/reasons.module').then(m => m.ReasonsModule),

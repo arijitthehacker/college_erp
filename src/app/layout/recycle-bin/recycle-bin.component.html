@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-box box-header">
+      <div class="row">
+        <div class="col-md-9">
+          <h4 class="card-title  float-left">
+            Recycle Bin
+          </h4>
+        </div>
+
+        <div class="col-md-3 text-right">
+          <div class="sm-input-space">
+
+            <select class="form-control" [(ngModel)]="model_name" (change)="getData()">
+              <option [value]="data.id" *ngFor="let data of models">{{data?.name}}</option>
+            </select>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3 mb-2">
+  <div class="col-md-12">
+    <div class="my-box ">
+
+      <div class="recycle-area row">
+        <div class=" col-md-3 mb-4"
+             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
+
+          <div class="tabs">
+            <h5>{{data?.name}}</h5>
+            <h6>Deleted At:{{data.created_at|date:'dd-MM-yyyy'}}</h6>
+            <div class="modal-footer">
+
+              <button class="btn-cancel mr-3 btn-sm" (click)="action(data,'REMOVE')">Delete</button>
+              <button class="btn btn-blue-outline btn-sm" (click)="action(data,'RECOVER')">Recover</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row" *ngIf="pagination.count">
+        <div class="col-sm-6">
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
+        </div>
+        <div class="col-sm-6 text-right">
+          <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
+                               nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                               screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

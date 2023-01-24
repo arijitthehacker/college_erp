@@ -19,13 +19,24 @@
         </div>
         <div class="col-md-3 text-right sm-input-space">
           <select class="form-control" [(ngModel)]="status" (change)="pagination.pageNo =1;getData()">
+            <!--            <option value="">All Status</option>-->
+            <!--            <option value="PENDING">PENDING</option>-->
+            <!--            <option value="ACCEPTED">ACCEPTED</option>-->
+            <!--            <option value="NOT_ASSIGNED">NOT ASSIGNED</option>-->
+            <!--            <option value="IN_PROGRESS">IN PROGRESS</option>-->
+            <!--            <option value="REJECTED">REJECTED</option>-->
+            <!--            <option value="COMPLETED">COMPLETED</option>-->
+
+
             <option value="">All Status</option>
-            <option value="PENDING">PENDING</option>
-            <option value="ACCEPTED">ACCEPTED</option>
-            <option value="NOT_ASSIGNED">NOT ASSIGNED</option>
-            <option value="IN_PROGRESS">IN PROGRESS</option>
-            <option value="REJECTED">REJECTED</option>
-            <option value="COMPLETED">COMPLETED</option>
+            <option value="pending">waiting for customer confirmation</option>
+            <option value="accepted_buy_customer">waiting to agent assign</option>
+            <option value="assigned_agent">contact lead</option>
+            <option value="appointment">Appointment</option>
+            <option value="loan_approved">Loan approval</option>
+            <option value="spa_signed">Payout complete</option>
+            <option value="pay_completed">Close</option>
+
           </select>
         </div>
       </div>
@@ -102,13 +113,28 @@
             <td>
               <label class="">
 
-<!--                <ng-container *ngIf="data?.booking_status === 'PENDING'">Waiting for owner acceptance</ng-container>-->
-                <ng-container *ngIf="data?.booking_status === 'PENDING'">Pending</ng-container>
-                <ng-container *ngIf="data?.booking_status === 'ACCEPTED'">In progress</ng-container>
-<!--                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected by team member</ng-container>-->
-                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected</ng-container>
-                <ng-container *ngIf="data?.booking_status === 'IN_PROGRESS'">In progress</ng-container>
-                <ng-container *ngIf="data?.booking_status === 'COMPLETED'">Status Completed</ng-container>
+                <!--                {{data?.last_status_name |replaceUnderscore}}-->
+
+
+                <ng-container *ngIf="data?.last_status_name === 'pending'">waiting for customer confirmation
+                </ng-container>
+                <ng-container *ngIf="data?.last_status_name === 'accepted_buy_customer'"> waiting to agent assign
+                </ng-container>
+                <ng-container *ngIf="data?.last_status_name === 'assigned_agent'"> contact lead</ng-container>
+                <ng-container *ngIf="data?.last_status_name === 'contact_lead'">Appointment</ng-container>
+                <ng-container *ngIf="data?.last_status_name === 'appointment'">Booking</ng-container>
+                <ng-container *ngIf="data?.last_status_name === 'loan_approved'">Loan approval</ng-container>
+                <ng-container *ngIf="data?.last_status_name === 'spa_signed'">Payout complete</ng-container>
+                <ng-container *ngIf="data?.last_status_name === 'pay_completed'">Close</ng-container>
+                <!--                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected by team member</ng-container>-->
+
+                <!--                <ng-container *ngIf="data?.booking_status === 'PENDING'">Pending</ng-container>-->
+                <!--                <ng-container *ngIf="data?.booking_status === 'ACCEPTED'">In progress</ng-container>-->
+
+                <!--                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected</ng-container>-->
+                <!--                <ng-container *ngIf="data?.booking_status === 'IN_PROGRESS'">In progress</ng-container>-->
+                <!--                <ng-container *ngIf="data?.booking_status === 'COMPLETED'">Status Completed</ng-container>-->
+                <!--                -->
                 <!--                {{data?.booking_status |replaceUnderscore}}-->
 
 
@@ -135,7 +161,7 @@
 
                   <li role="menuitem"><a class="dropdown-item" (click)="openLogs(data)">
                     View Change Log</a></li>
-<!--                  !data?.agent_id?._id &&-->
+                  <!--                  !data?.agent_id?._id &&-->
                   <li role="menuitem" *ngIf="
                   (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'IN_PROGRESS')">
                     <a class="dropdown-item" (click)="assignBooking(data)">Assign to agent</a>

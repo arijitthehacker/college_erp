@@ -2,12 +2,25 @@
   <div class="col-md-12">
     <div class="my-box">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
           <h4 class="card-title  float-left">
             {{commonService?.breadcrumb}}
           </h4>
         </div>
 
+          <div class="col-md-3 sm-input-space">
+            <div class="date-filter">
+              <div class="input-group ">
+                <input type="text" class="form-control" [formControl]="dates"
+                       bsDaterangepicker placeholder="Select Dates"
+                       [bsConfig]="{ rangeInputFormat : 'DD-MM-YYYY', dateInputFormat: 'DD-MM-YYYY', showWeekNumbers: false }">
+                <span class="input-group-text" (click)="emptyDate()">
+                <i class="fa fa-close"></i>
+              </span>
+              </div>
+            </div>
+
+        </div>
         <div class="col-md-3 text-right">
           <div class="sm-input-space">
             <div class="input-group mb-3">
@@ -30,6 +43,12 @@
           </select>
         </div>
 
+      </div>
+
+      <div class="row text-right">
+        <div class="col-md-12">
+          <button class="btn-blue-outline" (click)="exportData()">Export</button>
+        </div>
       </div>
     </div>
   </div>

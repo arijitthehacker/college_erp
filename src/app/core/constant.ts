@@ -31,6 +31,10 @@ export const SIDEBAR = [
   },
 
   {
+    path: 'recycle-bin', name: 'Recycle Bin', icon: 'fa-recycle'
+  },
+
+  {
     path: '', name: 'Control Management', icon: 'fa-sliders', children: [
       {path: 'settings', name: 'Settings', icon: 'fa fa-cog'},
       {path: 'purposes', name: 'Property Purposes', icon: 'fa fa-user-secret'},

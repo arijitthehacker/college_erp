@@ -91,7 +91,11 @@
            class="app-menu__item sub-menu">
           <i class="fa fa-fw" [ngClass]="data.icon"></i>
           <span class="app-menu__label">{{data?.name}}</span>
-          <i class="fa " [ngClass]="data?.isCollapsed ? 'fa-chevron-up':'fa-chevron-down'"></i>
+<!--          <i class="fa " [ngClass]="data?.isCollapsed ? 'fa-chevron-up':'fa-chevron-down'"></i>-->
+
+          <i class="fa fa-chevron-down" [ngClass]="data?.isCollapsed ? 'rotate1':'rotate2'"></i>
+
+
         </a>
         <div [id]="'collapseBasic'" [collapse]="!data.isCollapsed" [isAnimated]="true"
              *ngFor="let val of data.children;let j =index">
