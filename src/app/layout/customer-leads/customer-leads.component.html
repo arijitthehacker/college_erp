@@ -29,13 +29,24 @@
 
 
             <option value="">All Status</option>
-            <option value="pending">waiting for customer confirmation</option>
-            <option value="accepted_buy_customer">waiting to agent assign</option>
-            <option value="assigned_agent">contact lead</option>
-            <option value="appointment">Appointment</option>
-            <option value="loan_approved">Loan approval</option>
+            <option value="pending">Waiting for customer confirmation</option>
+            <option value="accepted_buy_customer">Waiting to agent assign</option>
+            <option value="assigned_agent">Assigned Agent</option>
+            <option value="contact_lead">Contact lead</option>
+<!--            <option value="">Appointment</option>-->
+            <option value="appointment">Booking</option>
+            <option value="booking">Loan approval</option>
+            <option value="loan_approved_rejected">Loan Approved Rejected</option>
+            <option value="loan_approved">SPA Signed</option>
             <option value="spa_signed">Payout complete</option>
             <option value="pay_completed">Close</option>
+
+<!--            <ng-container *ngIf="data?.last_status_name === 'Contact Lead'">Waiting for customer confirmation-->
+<!--            </ng-container>-->
+<!--            <ng-container *ngIf="data?.last_status_name === 'accepted_buy_customer'">Waiting to agent assign-->
+<!--            </ng-container>-->
+<!--            <ng-container *ngIf="data?.last_status_name === 'assigned_agent'"> Contact lead</ng-container>-->
+<!--            <ng-container *ngIf="data?.last_status_name === 'contact_lead'">Rejected</ng-container>-->
 
           </select>
         </div>
@@ -116,6 +127,9 @@
                 <!--                {{data?.last_status_name |replaceUnderscore}}-->
 
 
+
+
+
                 <ng-container *ngIf="data?.last_status_name === 'Contact Lead'">Waiting for customer confirmation
                 </ng-container>
                 <ng-container *ngIf="data?.last_status_name === 'accepted_buy_customer'">Waiting to agent assign
@@ -128,6 +142,11 @@
                 <ng-container *ngIf="data?.last_status_name === 'loan_approved'">SPA Signed</ng-container>
                 <ng-container *ngIf="data?.last_status_name === 'spa_signed'">Payout complete</ng-container>
                 <ng-container *ngIf="data?.last_status_name === 'pay_completed'">Close</ng-container>
+
+
+
+
+
                 <!--                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected by team member</ng-container>-->
 
                 <!--                <ng-container *ngIf="data?.booking_status === 'PENDING'">Pending</ng-container>-->

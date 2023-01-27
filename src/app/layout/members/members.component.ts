@@ -97,7 +97,6 @@ export class MembersComponent implements OnInit {
   }
 
   openChangePassword(modalData?: any) {
-    console.log(modalData,'modalData');
     const modalRef = this.modalService.show(ChangeMemberPasswordComponent, {
       initialState: {modalData: modalData},
       backdrop: 'static',

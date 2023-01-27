@@ -8,28 +8,28 @@
           </h4>
         </div>
 
-          <div class="col-md-3 sm-input-space">
-            <div class="date-filter">
-              <div class="input-group ">
-                <input type="text" class="form-control" [formControl]="dates"
-                       bsDaterangepicker placeholder="Select Dates"
-                       [bsConfig]="{ rangeInputFormat : 'DD-MM-YYYY', dateInputFormat: 'DD-MM-YYYY', showWeekNumbers: false }">
-                <span class="input-group-text" (click)="emptyDate()">
+        <div class="col-md-3 sm-input-space">
+          <div class="date-filter">
+            <div class="input-group ">
+              <input type="text" class="form-control" [formControl]="dates"
+                     bsDaterangepicker placeholder="Select Dates" [maxDate]="currentDate"
+                     [bsConfig]="{ rangeInputFormat : 'DD-MM-YYYY', dateInputFormat: 'DD-MM-YYYY', showWeekNumbers: false }">
+              <span class="input-group-text" (click)="emptyDate()">
                 <i class="fa fa-close"></i>
               </span>
-              </div>
             </div>
-
+          </div>
         </div>
+
         <div class="col-md-3 text-right">
           <div class="sm-input-space">
             <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search"
-                   [(ngModel)]="search" (keyup.enter)="getData()">
-            <span class="input-group-text" (click)="getData()">
+              <input type="text" class="form-control" placeholder="Search"
+                     [(ngModel)]="search" (keyup.enter)="getData()">
+              <span class="input-group-text" (click)="getData()">
                 <i class="fa fa-search"></i>
               </span>
-          </div>
+            </div>
           </div>
         </div>
 
@@ -46,7 +46,16 @@
       </div>
 
       <div class="row text-right">
-        <div class="col-md-12">
+        <div class="col-md-6 text-right sm-input-space"></div>
+        <div class="col-md-3 text-right ">
+          <select class="form-control" [(ngModel)]="history_type" (change)="pagination.pageNo =1;getData()">
+            <option value="">All Types</option>
+            <option value="EARLY_REJECTED">Advance Rejected</option>
+            <option value="EARLY_COMPLETED">Advance Approved</option>
+            <option value="COMPLETED">Payout Complete</option>
+          </select>
+        </div>
+        <div class="col-md-3 sm-input-space">
           <button class="btn-blue-outline" (click)="exportData()">Export</button>
         </div>
       </div>
@@ -136,7 +145,7 @@
               <br>
             </td>
             <td>
-              <b>Property Price:</b> {{data?.commission_price}}<br>
+              <b>Property Price:</b> {{data?.booking_id?.commission_price}}<br>
               <b>Advance Payment:</b> {{data?.advanced_price}}<br>
               <b>Pending Payment:</b> {{data?.total_price - data?.advanced_price}}<br>
             </td>

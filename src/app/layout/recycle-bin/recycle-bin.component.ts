@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { Lightbox } from 'ngx-lightbox';
 import { ApiUrl } from '../../core/apiUrl';
 import { PaginationControls } from '../../shared/models/pagination-model';
+import { DetailsDataComponent } from './details-data/details-data.component';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { ProDetailsComponent } from '../properties/pro-details/pro-details.component';
 
 @Component({
   selector: 'app-accounts',
@@ -16,23 +19,24 @@ export class RecycleBinComponent implements OnInit {
   pagination = new PaginationControls();
 
   models: any = [
+    {name: 'All', id: 'All'},
     {name: 'Agents', id: 'Agents'},
     {name: 'Group Owners', id: 'GroupOwnwers'},
-    {name: 'Users', id: 'Users'},
+    {name: 'Members', id: 'Users'},
     {name: 'Properties', id: 'Peroperties'},
     {name: 'Properties Category', id: 'PeropertiesCategory'},
     {name: 'Properties Address', id: 'PeropertiesAddress'},
     {name: 'Properties Purpose', id: 'PeropertiesPupose'},
     {name: 'Properties Budgets', id: 'Peropertiesbudgets'},
-    {name: 'Properties reason', id: 'Peropertiesreason'},
-    {name: 'Developers', id: 'Developers'},
-    {name: 'Commissions', id: 'Commissions'}
+    {name: 'Properties reason', id: 'Peropertiesreason'}
+    // {name: 'Developers', id: 'Developers'},
+    // {name: 'Commissions', id: 'Commissions'}
   ];
 
   model_name = this.models[0].id;
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
-              public router: Router, public lightbox: Lightbox) {
+              public router: Router, public lightbox: Lightbox, private modalService: BsModalService) {
   }
 
   ngOnInit() {
@@ -64,6 +68,19 @@ export class RecycleBinComponent implements OnInit {
       this.getData();
       this.message.toast('success', 'Done successfully!');
     }));
+  }
+
+  openDetails(data) {
+    if (data.category_id) {
+      const modalRef = this.modalService.show(ProDetailsComponent, {
+        initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
+      });
+    } else {
+      const modalRef = this.modalService.show(DetailsDataComponent, {
+        initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+      });
+    }
+
   }
 
 }

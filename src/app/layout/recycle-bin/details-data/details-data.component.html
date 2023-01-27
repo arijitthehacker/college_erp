@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{showLabel}} Details
+  </h4>
+  <button class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+
+<div class="modal-body">
+
+  <table class="table details-table">
+
+    <tr>
+      <td>
+        <h5>Name</h5>
+        <p>{{modalData?.name || '-'}}</p>
+      </td>
+      <td>
+        <h5>Email</h5>
+        <p>{{modalData?.email || '-'}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h5>Phone number</h5>
+        <p>{{modalData?.country_code}} {{modalData?.phone_number || '-'}}</p>
+      </td>
+    </tr>
+  </table>
+
+
+</div>
+
+<div class="modal-footer">
+  <button (click)="bsModalRef.hide()" type="button" class="btn btn-default mr-3">Close</button>
+</div>

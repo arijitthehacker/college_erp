@@ -8,7 +8,6 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { AddOwnerComponent } from './add-owner/add-owner.component';
-import { Lightbox } from 'ngx-lightbox';
 
 @Component({
   selector: 'app-accounts',
@@ -22,7 +21,7 @@ export class OwnersComponent implements OnInit {
   pagination = new PaginationControls();
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
-              private modalService: BsModalService, public router: Router, public lightbox: Lightbox) {
+              private modalService: BsModalService, public router: Router) {
   }
 
   ngOnInit() {

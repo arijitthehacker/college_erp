@@ -34,7 +34,7 @@ export class ProDetailsComponent implements OnInit {
     let obj: any = {
       property_id: this.modalData._id
     };
-    this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
+    this.http.getData(ApiUrl.list_property_address, obj, true).subscribe(res => {
       this.addresses = res.data.data;
     });
   }
@@ -44,8 +44,10 @@ export class ProDetailsComponent implements OnInit {
       skip: 0,
       _id: this.modalData._id
     };
-    this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
-      this.modalData = res.data.data[0];
+    this.http.getData(ApiUrl.list_properties, obj, true).subscribe(res => {
+      if (res.data.data?.length) {
+        this.modalData = res.data.data[0];
+      }
     }, () => {
     });
   }

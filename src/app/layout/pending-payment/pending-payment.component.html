@@ -2,17 +2,37 @@
   <div class="col-md-12">
     <div class="my-box">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
           <h4 class="card-title  float-left">
             {{commonService?.breadcrumb}}
           </h4>
         </div>
 
-        <div class="col-md-9 text-right">
-          <div class="sm-input-space">
-
+        <div class="col-md-3 sm-input-space">
+          <div class="date-filter">
+            <div class="input-group ">
+              <input type="text" class="form-control" [formControl]="dates"
+                     bsDaterangepicker placeholder="Select Dates" [maxDate]="currentDate"
+                     [bsConfig]="{ rangeInputFormat : 'DD-MM-YYYY', dateInputFormat: 'DD-MM-YYYY', showWeekNumbers: false }">
+              <span class="input-group-text" (click)="emptyDate()">
+                <i class="fa fa-close"></i>
+              </span>
+            </div>
           </div>
         </div>
+
+        <div class="col-md-3 text-right">
+          <div class="sm-input-space">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search"
+                     [(ngModel)]="search" (keyup.enter)="getData()">
+              <span class="input-group-text" (click)="getData()">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -114,7 +134,7 @@
             </td>
 
             <td>
-              <b>Property Price:</b> {{data?.commission_price}}<br>
+              <b>Property Price:</b> {{data?.booking_id?.commission_price}}<br>
               <b>Advance Payment:</b> {{data?.advanced_price}}<br>
               <b>Pending Payment:</b> {{data?.total_price - data?.advanced_price}}<br>
             </td>

@@ -152,6 +152,14 @@
                 </div>
               </div>
 
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Display Order</label>
+                <input [autofocus]="true" class="form-control" formControlName="se_no"
+                       type="text" placeholder="Display Order" appNumberOnly/>
+                <div class="text-error" *ngIf="form1.controls['se_no'].errors?.required && show1Error">
+                  This field is required.
+                </div>
+              </div>
 
               <!--              <div class="col-md-4 form-group mt-4">-->
               <!--                <div class="form-check-inline" style="margin-left: 21px">-->

@@ -34,8 +34,8 @@ export class ChangeMemberPasswordComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      // password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      password: ['', Validators.compose([Validators.required])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      // password: ['', Validators.compose([Validators.required])],
       confirmPassword: ['', Validators.required]
     });
 
@@ -56,9 +56,6 @@ export class ChangeMemberPasswordComponent implements OnInit {
         password: JSON.parse(JSON.stringify(this.form.value.password)),
         _id: this.modalData._id
       };
-
-      console.log(this.modalData,'ddasdas');
-
       this.http.putData(ApiUrl.managed_members, obj).subscribe(() => {
         this.message.toast('success', ConstMsg.updatedSuccess);
 

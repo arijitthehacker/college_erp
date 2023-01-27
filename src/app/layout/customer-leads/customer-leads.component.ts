@@ -113,8 +113,12 @@ export class CustomerLeadsComponent implements OnInit {
   }
 
   openLogs(data) {
-    this.modalService.show(LogsComponent, {
+    this.pagination.count = 0;
+    const modalRef = this.modalService.show(LogsComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
+    });
+    modalRef.content.onClose.subscribe((res: any) => {
+      this.getData();
     });
   }
 
@@ -131,6 +135,7 @@ export class CustomerLeadsComponent implements OnInit {
     const modalRef = this.modalService.show(ProDetailsComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
     });
+
   }
 
   // openPaymentModal(data?: any, type?: number) {

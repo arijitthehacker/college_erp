@@ -21,6 +21,7 @@ export class TransactionHistoryComponent implements OnInit {
   pagination = new PaginationControls();
   search = '';
   type = '';
+  history_type = '';
   currentDate = new Date();
   dates = new FormControl([]);
 
@@ -51,6 +52,9 @@ export class TransactionHistoryComponent implements OnInit {
     }
     if (this.type) {
       obj.type = this.type;
+    }
+    if (this.history_type) {
+      obj.history_type = this.history_type;
     }
     if (this.dates.value) {
       const data: any = this.dates.value;
@@ -100,7 +104,6 @@ export class TransactionHistoryComponent implements OnInit {
         });
       });
       this.http.postData(ApiUrl.export_json_csv, {data: temp}).subscribe(res1 => {
-        console.log(res1, 'temptemptemptemptemptemptemp  ', res1.data);
         this.commonService.goToLink(res1.data);
       });
 

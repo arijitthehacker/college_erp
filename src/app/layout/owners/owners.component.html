@@ -42,6 +42,7 @@
             <th>Email</th>
             <th>Contact Number</th>
             <th>Codes</th>
+            <th>Bank Details</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -69,6 +70,15 @@
               <!--                </span>-->
               <!--                <a (click)="openInviteCodes(data)" class="my-link">Codes</a>-->
             </td>
+
+            <td>
+              <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
+              <b>Account Name:</b> {{data?.account_name  || '-'}}<br>
+              <b>Bank Account:</b> {{data?.account_number || '-'}}<br>
+              <b>Sort Code:</b> {{data?.sort_code || '-'}}
+              <br>
+            </td>
+
 
             <td class="edit-section">
               <div (click)="blockUnblock(data)">

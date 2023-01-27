@@ -7,8 +7,8 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Lightbox } from 'ngx-lightbox';
 import { PaymentComponent } from '../../shared/components/payment/payment.component';
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-accounts',
@@ -19,14 +19,24 @@ export class PendingPaymentComponent implements OnInit {
   allData: any = [];
   date = '';
   pagination = new PaginationControls();
-  search = new FormControl('');
+  search;
+  dates = new FormControl([]);
+  currentDate = new Date();
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
-              private modalService: BsModalService, public router: Router, public lightbox: Lightbox) {
+              private modalService: BsModalService, public router: Router) {
   }
 
   ngOnInit() {
+    this.dates.patchValue([new Date(this.currentDate.setMonth(this.currentDate.getMonth() - 1)), new Date()]);
+    this.dates.valueChanges.subscribe(res => {
+      this.getData();
+    });
     this.getData();
+  }
+
+  emptyDate() {
+    this.dates.patchValue([]);
   }
 
   getData() {
@@ -35,8 +45,13 @@ export class PendingPaymentComponent implements OnInit {
       skip: this.pagination.skip,
       type: 'PENDING'
     };
-    if (this.search.value) {
-      obj.search = this.search.value;
+    if (this.search) {
+      obj.search = this.search;
+    }
+    if (this.dates.value) {
+      const data: any = this.dates.value;
+      obj.start_date = moment(data[0]).format('yyyy-MM-DD');
+      obj.end_date = moment(data[1]).format('yyyy-MM-DD');
     }
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
       this.allData = res.data.data;
@@ -44,8 +59,6 @@ export class PendingPaymentComponent implements OnInit {
     }, () => {
     });
   }
-
-
 
   openPaymentModal(data?: any) {
     const modalRef = this.modalService.show(PaymentComponent, {

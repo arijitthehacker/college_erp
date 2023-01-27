@@ -35,7 +35,6 @@ export class LogsComponent implements OnInit {
     this.http.getData(ApiUrl.list_lead_logs, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination1.count = res.data.total_count;
-      console.log(this.pagination1.count, 'this.pagination.count');
     }, () => {
     });
   }

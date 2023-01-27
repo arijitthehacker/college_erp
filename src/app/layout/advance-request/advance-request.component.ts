@@ -9,7 +9,9 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Lightbox } from 'ngx-lightbox';
 import { PaymentComponent } from '../../shared/components/payment/payment.component';
-import { skipLast } from 'rxjs';
+import * as moment from 'moment/moment';
+import { AddReasonComponent } from '../reasons/add-reasons/add-reason.component';
+import { RejectReasonComponent } from './reject-reason/reject-reason.component';
 
 @Component({
   selector: 'app-accounts',
@@ -20,14 +22,24 @@ export class AdvanceRequestComponent implements OnInit {
   allData: any = [];
   date = '';
   pagination = new PaginationControls();
-  search = new FormControl('');
+  search = '';
+  dates = new FormControl([]);
+  currentDate = new Date();
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
               private modalService: BsModalService, public router: Router, public lightbox: Lightbox) {
   }
 
   ngOnInit() {
+    this.dates.patchValue([new Date(this.currentDate.setMonth(this.currentDate.getMonth() - 1)), new Date()]);
+    this.dates.valueChanges.subscribe(res => {
+      this.getData();
+    });
     this.getData();
+  }
+
+  emptyDate() {
+    this.dates.patchValue([]);
   }
 
   getData() {
@@ -36,8 +48,13 @@ export class AdvanceRequestComponent implements OnInit {
       skip: this.pagination.skip,
       type: 'EARLY'
     };
-    if (this.search.value) {
-      obj.search = this.search.value;
+    if (this.search) {
+      obj.search = this.search;
+    }
+    if (this.dates.value) {
+      const data: any = this.dates.value;
+      obj.start_date = moment(data[0]).format('yyyy-MM-DD');
+      obj.end_date = moment(data[1]).format('yyyy-MM-DD');
     }
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
       this.allData = res.data.data;
@@ -56,17 +73,18 @@ export class AdvanceRequestComponent implements OnInit {
   }
 
   cancelRequest(data) {
-    this.message.confirm(`cancel this request`).then(res => {
-      if (res.isConfirmed) {
-        const obj: any = {
-          _id: data._id
-        };
-        this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
-          this.message.toast('success', 'Cancelled Successfully!');
-          this.getData();
-        }, () => {
-        });
-      }
+    const modalRef = this.modalService.show(RejectReasonComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+    });
+    modalRef.content.onClose.subscribe(() => {
+      // const obj: any = {
+      //   _id: data._id
+      // };
+      // this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
+      //   this.message.toast('success', 'Cancelled Successfully!');
+      //   this.getData();
+      // }, () => {
+      // });
     });
   }
 }

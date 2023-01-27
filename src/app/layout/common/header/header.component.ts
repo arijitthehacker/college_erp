@@ -100,14 +100,12 @@ export class HeaderComponent implements OnInit {
 
   readNotifications() {
     this.http.putData(ApiUrl.read_notification, true).subscribe(res => {
-      console.log(res, 'res');
       this.getProfileData();
     });
   }
 
   clearNotifications() {
     this.http.putData(ApiUrl.clear_notification).subscribe(res => {
-      console.log(res, 'res');
     });
   }
 
@@ -117,7 +115,6 @@ export class HeaderComponent implements OnInit {
       message: 'hiiiii'
     };
     this.http.postData(ApiUrl.send_custom_notification, obj).subscribe(res => {
-      console.log(res, 'http');
     });
   }
 
