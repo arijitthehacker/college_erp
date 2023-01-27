@@ -18,7 +18,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let data of allData ;let i = index;">
+        <tr
+          *ngFor="let data of allData | paginate: { itemsPerPage: pagination1.pageSize, currentPage: pagination1.pageNo, totalItems: pagination1.count };let i = index;">
           <td>{{ i + 1}}</td>
           <td>
             {{data?.message}}
@@ -30,6 +31,20 @@
         </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="row" *ngIf="pagination1.count">
+      <div class="col-sm-6">
+        <p> Showing {{ pagination1.count === 0 ? 0 : pagination1.skip + 1}} to
+          {{commonService.cal(pagination1.pageNo, pagination1.limit, pagination1.count)}} out
+          of {{pagination1.count}} entries </p>
+      </div>
+      <div class="col-sm-6 text-right">
+        <pagination-controls (pageChange)="pagination1.pageNo = $event;getData()" previousLabel="Previous"
+                             nextLabel="Next"
+                             screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                             screenReaderCurrentLabel="You're on page"></pagination-controls>
+      </div>
     </div>
 
   </div>

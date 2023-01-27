@@ -27,6 +27,9 @@
     <div class="my-box ">
 
       <div class="recycle-area row">
+
+        <app-no-record *ngIf="!pagination.count"></app-no-record>
+
         <div class=" col-md-3 mb-4"
              *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
 

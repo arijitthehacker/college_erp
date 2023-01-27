@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "office": {
+    "admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -103,10 +103,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "office:build:production"
+              "browserTarget": "admin:build:production"
             },
             "development": {
-              "browserTarget": "office:build:development"
+              "browserTarget": "admin:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -114,7 +114,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "office:build"
+            "browserTarget": "admin:build"
           }
         },
         "test": {
