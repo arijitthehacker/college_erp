@@ -38,6 +38,7 @@
           <thead>
           <tr>
             <th>Sr. No.</th>
+            <th>Display Order</th>
             <th>Cover Image</th>
             <th>Name</th>
             <th>Start Price</th>
@@ -51,7 +52,14 @@
           <tbody>
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-            <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+            <td>
+
+             {{( pagination.pageNo - 1 ) * 10 + i + 1}}
+            </td>
+
+            <td>
+              {{data?.se_no}}
+            </td>
 
             <td>
               <img [src]="data.cover_image || commonService.CONSTANT.no_image" class="small-img"

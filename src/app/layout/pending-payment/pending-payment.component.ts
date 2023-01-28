@@ -22,13 +22,14 @@ export class PendingPaymentComponent implements OnInit {
   search;
   dates = new FormControl([]);
   currentDate = new Date();
+  prevDate = new Date();
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
               private modalService: BsModalService, public router: Router) {
   }
 
   ngOnInit() {
-    this.dates.patchValue([new Date(this.currentDate.setMonth(this.currentDate.getMonth() - 1)), new Date()]);
+    this.dates.patchValue([new Date(this.prevDate.setMonth(this.prevDate.getMonth() - 1)), new Date()]);
     this.dates.valueChanges.subscribe(res => {
       this.getData();
     });
@@ -50,8 +51,10 @@ export class PendingPaymentComponent implements OnInit {
     }
     if (this.dates.value) {
       const data: any = this.dates.value;
-      obj.start_date = moment(data[0]).format('yyyy-MM-DD');
-      obj.end_date = moment(data[1]).format('yyyy-MM-DD');
+      if (data?.length) {
+        obj.start_date = moment(data[0]).format('yyyy-MM-DD');
+        obj.end_date = moment(data[1]).format('yyyy-MM-DD');
+      }
     }
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
       this.allData = res.data.data;

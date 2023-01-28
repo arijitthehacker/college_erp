@@ -20,7 +20,10 @@
         <tbody>
         <tr
           *ngFor="let data of allData | paginate: { itemsPerPage: pagination1.pageSize, currentPage: pagination1.pageNo, totalItems: pagination1.count };let i = index;">
-          <td>{{ i + 1}}</td>
+<!--          <td>{{ i + 1}}</td>-->
+          <td> {{( pagination1.pageNo - 1 ) * 10 + i + 1}} </td>
+
+
           <td>
             {{data?.message}}
           </td>
