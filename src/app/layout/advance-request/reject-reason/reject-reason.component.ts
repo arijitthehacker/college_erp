@@ -30,7 +30,7 @@ export class RejectReasonComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      name: ['', Validators.required]
+      rejected_comment: ['', Validators.required]
     });
     if (this.modalData) {
       this.patchData(this.modalData);

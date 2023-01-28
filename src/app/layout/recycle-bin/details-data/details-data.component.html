@@ -4,6 +4,9 @@
     <ng-container *ngIf="modalData?.value_type == 'Agents'">Agent</ng-container>
     <ng-container *ngIf="modalData?.value_type == 'GroupOwnwers'">Group Owner</ng-container>
     <ng-container *ngIf="modalData?.value_type == 'Peropertiesbudgets'">Budget</ng-container>
+    <ng-container *ngIf="modalData?.value_type == 'Peropertiesreason'">Reason</ng-container>
+    <ng-container *ngIf="modalData?.value_type == 'PeropertiesPupose'">Purpose</ng-container>
+    <ng-container *ngIf="modalData?.value_type == 'Users'">Member</ng-container>
     Details
 
   </h4>
@@ -12,26 +15,70 @@
 
 <div class="modal-body">
 
-  <table class="table details-table">
+  <table class="table details-table" *ngIf="modalData?.value_type == 'Agents' || modalData?.value_type == 'GroupOwnwers'
+|| modalData?.value_type == 'Users'">
 
     <tr>
       <td>
         <h5>Name</h5>
         <p>{{modalData?.name || '-'}}</p>
       </td>
-      <td *ngIf="modalData?.email">
+      <td>
         <h5>Email</h5>
         <p>{{modalData?.email || '-'}}</p>
       </td>
     </tr>
 
     <tr>
-      <td *ngIf="modalData?.phone_number">
+      <td>
         <h5>Phone number</h5>
         <p>{{modalData?.country_code}} {{modalData?.phone_number || '-'}}</p>
       </td>
+
+      <td>
+        <h5>Bank Name</h5>
+        <p>{{modalData?.bank_name || '-'}}</p>
+      </td>
     </tr>
 
+    <tr>
+      <td>
+        <h5>Account Name</h5>
+        <p>{{modalData?.account_name || '-'}}</p>
+      </td>
+      <td>
+        <h5>Bank Account</h5>
+        <p>{{modalData?.account_number || '-'}}</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h5>Sort Code</h5>
+        <p>{{modalData?.sort_code || '-'}}</p>
+      </td>
+    </tr>
+
+  </table>
+
+  <table class="table details-table" *ngIf="modalData?.value_type == 'Peropertiesbudgets'">
+    <tr>
+      <td>
+        <h5>Currency</h5>
+        <p>{{modalData?.currency}} ({{modalData?.currency_code}})</p>
+      </td>
+      <td>
+        <h5>Min Price</h5>
+        <p>{{modalData?.min_price}}</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h5>Max Price</h5>
+        <p>{{modalData?.max_price}}</p>
+      </td>
+    </tr>
   </table>
 
 
