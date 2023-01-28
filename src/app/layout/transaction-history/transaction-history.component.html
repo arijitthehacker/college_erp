@@ -34,27 +34,28 @@
         </div>
 
         <div class="col-md-3 text-right sm-input-space">
-          <select class="form-control" [(ngModel)]="type" (change)="pagination.pageNo =1;getData()">
-            <option value="">All Transactions</option>
-            <option value="EARLY">Advanced</option>
-            <option value="PENDING">Pending</option>
-            <option value="COMPLETED">Completed</option>
-            <option value="DECLINED">Declined</option>
-          </select>
-        </div>
+          <!--          <select class="form-control" [(ngModel)]="type" (change)="pagination.pageNo =1;getData()">-->
+          <!--            <option value="">All Transactions</option>-->
+          <!--            <option value="EARLY">Advanced</option>-->
+          <!--            <option value="PENDING">Pending</option>-->
+          <!--            <option value="COMPLETED">Completed</option>-->
+          <!--            <option value="DECLINED">Declined</option>-->
+          <!--          </select>-->
 
-      </div>
-
-      <div class="row text-right">
-        <div class="col-md-6 text-right sm-input-space"></div>
-        <div class="col-md-3 text-right ">
           <select class="form-control" [(ngModel)]="history_type" (change)="pagination.pageNo =1;getData()">
             <option value="">All Types</option>
             <option value="EARLY_REJECTED">Advance Rejected</option>
             <option value="EARLY_COMPLETED">Advance Approved</option>
             <option value="COMPLETED">Payout Complete</option>
           </select>
+
         </div>
+
+      </div>
+
+      <div class="row text-right">
+        <div class="col-md-9 text-right sm-input-space"></div>
+
         <div class="col-md-3 sm-input-space">
           <button class="btn-blue-outline" (click)="exportData()">Export</button>
         </div>
@@ -137,7 +138,9 @@
 
             <td>
               <img [src]="data.transaction_image || '/assets/images/no-img.webp'" class="proof-img"
+                   *ngIf="data.transaction_image"
                    (click)="commonService.openLightBox(data.transaction_image)">
+              <ng-container *ngIf="!data.transaction_image">-</ng-container>
             </td>
             <td>
               <b>Transaction id:</b> {{data?.transaction_id || '-'}}<br>

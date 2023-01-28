@@ -6,6 +6,7 @@
     <ng-container *ngIf="modalData?.value_type == 'Peropertiesbudgets'">Budget</ng-container>
     <ng-container *ngIf="modalData?.value_type == 'Peropertiesreason'">Reason</ng-container>
     <ng-container *ngIf="modalData?.value_type == 'PeropertiesPupose'">Purpose</ng-container>
+    <ng-container *ngIf="modalData?.value_type == 'PeropertiesCategory'">Category</ng-container>
     <ng-container *ngIf="modalData?.value_type == 'Users'">Member</ng-container>
     Details
 
@@ -77,6 +78,39 @@
       <td>
         <h5>Max Price</h5>
         <p>{{modalData?.max_price}}</p>
+      </td>
+    </tr>
+  </table>
+
+  <table class="table details-table" *ngIf="modalData?.value_type == 'PeropertiesPupose'">
+    <tr>
+      <td>
+        <h5>Name</h5>
+        <p>{{modalData?.name}}</p>
+      </td>
+    </tr>
+  </table>
+  <table class="table details-table" *ngIf="modalData?.value_type == 'Peropertiesreason'">
+    <tr>
+      <td>
+        <h5>Name</h5>
+        <p>{{modalData?.name}}</p>
+      </td>
+    </tr>
+  </table>
+  <table class="table details-table" *ngIf="modalData?.value_type == 'PeropertiesCategory'">
+    <tr>
+      <td>
+        <h5>Image</h5>
+        <img [src]="modalData.image" class="details-img"
+             (click)="commonService.openLightBox(modalData.image)">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h5>Name</h5>
+        <p>{{modalData?.name}}</p>
       </td>
     </tr>
   </table>

@@ -25,7 +25,7 @@ export class RecycleBinComponent implements OnInit {
     {name: 'Members', id: 'Users'},
     {name: 'Properties', id: 'Peroperties'},
     {name: 'Properties Category', id: 'PeropertiesCategory'},
-    {name: 'Properties Address', id: 'PeropertiesAddress'},
+    // {name: 'Properties Address', id: 'PeropertiesAddress'},
     {name: 'Properties Purpose', id: 'PeropertiesPupose'},
     {name: 'Properties Budgets', id: 'Peropertiesbudgets'},
     {name: 'Properties reason', id: 'Peropertiesreason'}
@@ -53,7 +53,7 @@ export class RecycleBinComponent implements OnInit {
 
     this.http.getData(ApiUrl.list_trash_data, obj).subscribe(res => {
       this.allData = res.data.data;
-      console.log(this.allData,' this.allData ');
+      console.log(this.allData, ' this.allData ');
       this.pagination.count = res.data.total_count;
     });
   }
@@ -65,6 +65,10 @@ export class RecycleBinComponent implements OnInit {
       _id: data._id,
       model_name: this.model_name
     };
+    if (this.model_name == 'All') {
+      obj.model_name = data.value_type;
+    }
+
     this.http.putData(ApiUrl.delete_trash_data, obj).subscribe((res => {
       this.getData();
       this.message.toast('success', 'Done successfully!');
@@ -77,6 +81,11 @@ export class RecycleBinComponent implements OnInit {
         initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
       });
     } else {
+      if (this.model_name) {
+        if (this.model_name != 'All') {
+          data.value_type = this.model_name;
+        }
+      }
       const modalRef = this.modalService.show(DetailsDataComponent, {
         initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
       });

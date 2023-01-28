@@ -1074,9 +1074,15 @@ select {
     border: 1px solid $border-color;
     padding: 14px;
     border-radius: 7px;
-    h6{
+
+    h6 {
       margin-bottom: 35px;
 
     }
   }
+}
+
+.details-img{
+  width: 90px;
+  height: auto;
 }

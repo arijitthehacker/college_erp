@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'src/app/services/message/message.service';
-import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { CommonService } from '../../../services/commonService/common.service';
 
@@ -17,6 +16,7 @@ export class DetailsDataComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.modalData, 'modalDatamodalData');
   }
 
 }

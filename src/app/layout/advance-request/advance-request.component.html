@@ -62,14 +62,13 @@
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
-            <td>{{(data?.time || data?.advanced_date) |date:'short'}}</td>
+            <td>{{(data?.advanced_date || data?.time) |date:'short'}}</td>
             <td>
               <b>Property Name:</b> {{data?.booking_id?.peroperty_id?.name || '-'}}<br>
               <b>Developer Name:</b> {{data?.booking_id?.peroperty_id?.developer_id?.name || '-'}}
             </td>
             <td>
-              <b>Transfer to: </b>
-
+              <b>Request By: </b>
               <span class="highlighted-text">
               <ng-container *ngIf="data?.group_owner_id?.name">Group Owner</ng-container>
               <ng-container *ngIf="data?.agent_id?.name">Agent</ng-container>
@@ -82,7 +81,7 @@
               {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code}}
               {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number}}
               <br>
-              <b class="highlighted-text">Request On:</b> {{data?.time |date:'short'}}
+              <b class="highlighted-text">Request On:</b> {{(data?.advanced_date || data?.time) |date:'short'}}
             </td>
 
             <td>
