@@ -6,6 +6,7 @@ export const CONSTANT = {
   no_image: '/assets/images/no-img.webp'
 };
 
+
 export const SIDEBAR = [
   {
     path: '', name: 'User\'s Profile', icon: 'fa-users', children: [
