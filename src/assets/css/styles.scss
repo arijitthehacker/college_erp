@@ -1077,12 +1077,59 @@ select {
 
     h6 {
       margin-bottom: 35px;
-
     }
   }
 }
 
-.details-img{
+.details-img {
   width: 90px;
   height: auto;
+}
+
+.Contact_Lead {
+  background: $main-color;
+}
+
+.accepted_buy_customer {
+  background: rgba(12, 42, 12, 0.32);
+}
+
+.assigned_agent {
+  background: rgba(128, 98, 0, 0.32);
+}
+
+.contact_lead {
+  background: rgba(87, 0, 128, 0.47);
+}
+
+.loan_approved {
+  background: rgba(92, 0, 128, 0.24);
+}
+
+.spa_signed {
+  background: rgba(42, 66, 42, 0.32);
+}
+
+.pay_completed {
+  background: #00800052;
+}
+
+.contact_lead_rejected {
+  background: #ff000059;
+}
+
+.spa_signed_rejected {
+  background: #ff000059;
+}
+
+.loan_approved_rejected {
+  background: #ff000059;
+}
+
+.booking_rejected {
+  background: #ff000059;
+}
+
+.booking {
+  background: #ffa500ab;
 }

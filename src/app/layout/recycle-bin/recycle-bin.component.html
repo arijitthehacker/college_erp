@@ -34,7 +34,7 @@
              *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
 
           <div class="tabs">
-            <h5 class="my-link" (click)="openDetails(data)" *ngIf="data?.currency">{{(data?.min_price - data?.max_price)}}</h5>
+            <h5 class="my-link" (click)="openDetails(data)" *ngIf="data?.currency">{{data?.min_price}} - {{data?.max_price}}</h5>
             <h5 class="my-link" (click)="openDetails(data)" *ngIf="!data?.currency">{{data?.name}}</h5>
 
             <h6>Deleted At: {{(data.deleted_at)|date:'dd-MM-yyyy'}}</h6>

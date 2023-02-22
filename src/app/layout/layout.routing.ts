@@ -25,6 +25,10 @@ const routes: Routes = [
         loadChildren: () => import('./agents/agents.module').then(m => m.AgentsModule),
         data: {breadcrumb: 'Agents', title: 'agent'}
       }, {
+        path: 'banners',
+        loadChildren: () => import('./banners/banners.module').then(m => m.BannersModule),
+        data: {breadcrumb: 'Banners', title: 'banner'}
+      }, {
         path: 'members',
         loadChildren: () => import('./members/members.module').then(m => m.MembersModule),
         data: {breadcrumb: 'Members', title: 'member'}

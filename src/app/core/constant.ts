@@ -21,7 +21,8 @@ export const SIDEBAR = [
       {path: 'property-categories', name: 'Property Categories', icon: 'fa fa-rocket'},
       {path: 'properties', name: 'Property List', icon: 'fa fa-building'},
       {path: 'add-new-property', name: 'Create Property', icon: 'fa fa-plus-square-o'},
-      {path: 'commissions', name: 'Commissions', icon: 'fa fa-money'}
+      {path: 'commissions', name: 'Commissions', icon: 'fa fa-money'},
+      {path: 'banners', name: 'Banners', icon: 'fa fa-image'}
     ]
   },
 

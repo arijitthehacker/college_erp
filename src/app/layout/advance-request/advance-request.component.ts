@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { Lightbox } from 'ngx-lightbox';
 import { PaymentComponent } from '../../shared/components/payment/payment.component';
 import * as moment from 'moment/moment';
-import { AddReasonComponent } from '../reasons/add-reasons/add-reason.component';
 import { RejectReasonComponent } from './reject-reason/reject-reason.component';
 
 @Component({
@@ -23,9 +22,11 @@ export class AdvanceRequestComponent implements OnInit {
   date = '';
   pagination = new PaginationControls();
   search = '';
+  category = 'ALL';
   dates = new FormControl([]);
   currentDate = new Date();
   prevDate = new Date();
+
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
               private modalService: BsModalService, public router: Router, public lightbox: Lightbox) {
   }
@@ -50,6 +51,9 @@ export class AdvanceRequestComponent implements OnInit {
     };
     if (this.search) {
       obj.search = this.search;
+    }
+    if (this.category) {
+      obj.category =  this.category;
     }
     if (this.dates.value) {
       const data: any = this.dates.value;
@@ -84,7 +88,7 @@ export class AdvanceRequestComponent implements OnInit {
       // };
       // this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
       //   this.message.toast('success', 'Cancelled Successfully!');
-      //   this.getData();
+      this.getData();
       // }, () => {
       // });
     });

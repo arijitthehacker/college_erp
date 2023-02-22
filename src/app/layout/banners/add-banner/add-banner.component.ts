@@ -7,21 +7,24 @@ import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../../services/commonService/common.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-add-account',
-  templateUrl: './reject-reason.component.html'
+  templateUrl: './add-banner.component.html'
 })
-export class RejectReasonComponent implements OnInit {
+export class AddBannerComponent implements OnInit {
 
   showError = false;
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  editorConfig: AngularEditorConfig = {
+    editable: true
+  };
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
-              public bsModalRef: BsModalRef, public commonService: CommonService
-  ) {
+              public bsModalRef: BsModalRef, public commonService: CommonService) {
   }
 
   ngOnInit() {
@@ -30,16 +33,16 @@ export class RejectReasonComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      rejected_comment: ['', Validators.required]
+      image: ['', Validators.required],
     });
-    // if (this.modalData) {
-    //   this.patchData(this.modalData);
-    // }
+    if (this.modalData) {
+      this.patchData(this.modalData);
+    }
   }
 
   patchData(data) {
     this.form.patchValue({
-      rejected_comment: data.rejected_comment
+      image: data.image,
     });
   }
 
@@ -49,15 +52,28 @@ export class RejectReasonComponent implements OnInit {
       if (this.modalData) {
         obj[`_id`] = this.modalData._id;
       }
-      this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
-        this.message.toast('success', 'Cancelled Successfully!');
+      this.http.postData(ApiUrl.add_edit_banners, obj).subscribe(() => {
         this.onClose.next(null);
+        this.message.toast('success',
+          this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.bsModalRef.hide();
       }, () => {
       });
     } else {
       this.showError = true;
     }
+  }
+
+  selectImage(event: any, id) {
+    this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
+      this.form.controls.image.patchValue(response.data.original);
+    }, () => {
+    });
+  }
+
+  removeImage(id) {
+    document.getElementById(id)[`value`] = '';
+    this.form.controls.image.patchValue('');
   }
 
 }

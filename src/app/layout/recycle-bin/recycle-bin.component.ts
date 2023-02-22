@@ -28,7 +28,7 @@ export class RecycleBinComponent implements OnInit {
     // {name: 'Properties Address', id: 'PeropertiesAddress'},
     {name: 'Properties Purpose', id: 'PeropertiesPupose'},
     {name: 'Properties Budgets', id: 'Peropertiesbudgets'},
-    {name: 'Properties reason', id: 'Peropertiesreason'}
+    {name: 'Reject Reasons', id: 'Peropertiesreason'}
     // {name: 'Developers', id: 'Developers'},
     // {name: 'Commissions', id: 'Commissions'}
   ];

@@ -43,6 +43,10 @@ export class AssignBookingComponent implements OnInit {
       const obj: any = {};
       if (this.form?.value?.assignType === 'agent') {
         if (this.form.value.agent_id) {
+          if (this.modalData?.agent_id?._id === this.form.value.agent_id) {
+            this.message.toast('error', 'This agent is already assigned.');
+            return;
+          }
           obj.agent_id = this.form.value.agent_id;
         } else {
           this.message.toast('error', 'Please select at least 1 agent');

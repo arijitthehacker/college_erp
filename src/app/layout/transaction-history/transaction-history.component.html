@@ -88,19 +88,25 @@
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
-            <td>{{data?.time |date:'short'}}</td>
+            <td>{{data?.advanced_rejected_date || data?.time |date:'short'}}</td>
             <td>
               <b>Property Name:</b> {{data?.booking_id?.peroperty_id?.name || '-'}}<br>
               <b>Developer Name:</b> {{data?.booking_id?.peroperty_id?.developer_id?.name || '-'}}
             </td>
             <td>
+                 <span class="highlighted-text">
+              <ng-container *ngIf="data?.group_owner_id?.name">Group Owner</ng-container>
+              <ng-container *ngIf="data?.agent_id?.name">Agent</ng-container>
+              <ng-container *ngIf="data?.member_id?.name">Member</ng-container>
+              </span>
+              <br>
               <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name}}<br>
               <b>Phone No.</b>
               {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code}}
               {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number}}
               <br>
               <b class="highlighted-text">Completed On:</b> {{data?.time |date:'short'}}
-              {{data?.advanced_request ? 'Advanced Paid' : 'Paid After completion '}}
+              {{data?.advanced_request ? 'Advanced Paid' : 'Paid After completion'}}
             </td>
 
             <td>
@@ -143,8 +149,15 @@
               <ng-container *ngIf="!data.transaction_image">-</ng-container>
             </td>
             <td>
-              <b>Transaction id:</b> {{data?.transaction_id || '-'}}<br>
-              <b>Transaction Comment:</b> {{data?.transaction_comment || '-'}}
+              <ng-container *ngIf="data?.transaction_id">
+                <b>Transaction id:</b> {{data?.transaction_id || '-'}}<br>
+                <b>Transaction Comment:</b> {{data?.transaction_comment || '-'}}
+              </ng-container>
+
+              <ng-container *ngIf="!data?.transaction_id">
+                <b>Rejection Comment:</b> {{data?.rejected_comment || '-'}}
+              </ng-container>
+
               <br>
             </td>
             <td>

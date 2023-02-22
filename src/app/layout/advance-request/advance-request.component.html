@@ -2,10 +2,20 @@
   <div class="col-md-12">
     <div class="my-box">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
           <h4 class="card-title  float-left">
             {{commonService?.breadcrumb}}
           </h4>
+        </div>
+
+
+        <div class="col-md-3 sm-input-space">
+          <select class="form-control" [(ngModel)]="category" (change)="pagination.pageNo =1;getData()">
+            <option value="ALL">All Types</option>
+            <option value="AGENT">Agent</option>
+            <option value="MEMEBER">Member</option>
+            <option value="GROUP_OWNER">Group Owner</option>
+          </select>
         </div>
 
         <div class="col-md-3 sm-input-space">
@@ -62,7 +72,7 @@
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
-            <td>{{(data?.advanced_date || data?.time) |date:'short'}}</td>
+            <td>{{( data?.advanced_date || data?.time ) |date:'short'}}</td>
             <td>
               <b>Property Name:</b> {{data?.booking_id?.peroperty_id?.name || '-'}}<br>
               <b>Developer Name:</b> {{data?.booking_id?.peroperty_id?.developer_id?.name || '-'}}
@@ -73,7 +83,7 @@
               <ng-container *ngIf="data?.group_owner_id?.name">Group Owner</ng-container>
               <ng-container *ngIf="data?.agent_id?.name">Agent</ng-container>
               <ng-container *ngIf="data?.member_id?.name">Member</ng-container>
-              </span>              <br>
+              </span> <br>
 
 
               <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name}}<br>
@@ -81,7 +91,7 @@
               {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code}}
               {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number}}
               <br>
-              <b class="highlighted-text">Request On:</b> {{(data?.advanced_date || data?.time) |date:'short'}}
+              <b class="highlighted-text">Request On:</b> {{( data?.advanced_date || data?.time ) |date:'short'}}
             </td>
 
             <td>
@@ -118,10 +128,17 @@
             </td>
 
             <td>
-              <b>Bank Name:</b> {{data?.group_owner_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}<br>
-              <b>Account Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || '-'}}<br>
-              <b>Bank Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || '-'}}<br>
-              <b>Sort Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || '-'}}
+              <b>Bank
+                Name:</b> {{data?.group_owner_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
+              <br>
+              <b>Account
+                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || '-'}}
+              <br>
+              <b>Bank
+                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || '-'}}
+              <br>
+              <b>Sort
+                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || '-'}}
               <br>
             </td>
 
