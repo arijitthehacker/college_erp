@@ -8,12 +8,15 @@
     <ng-container *ngIf="modalData?.value_type == 'PeropertiesPupose'">Property Purpose</ng-container>
     <ng-container *ngIf="modalData?.value_type == 'PeropertiesCategory'">Category</ng-container>
     <ng-container *ngIf="modalData?.value_type == 'Users'">Member</ng-container>
+    <ng-container *ngIf="modalData?.value_type == 'Banners'">Banner</ng-container>
     Details
   </h4>
   <button class="btn-close" (click)="bsModalRef.hide()"></button>
 </div>
 
 <div class="modal-body">
+
+
 
   <table class="table details-table" *ngIf="modalData?.value_type == 'Agents' || modalData?.value_type == 'GroupOwnwers'
 || modalData?.value_type == 'Users'">
