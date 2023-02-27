@@ -29,9 +29,21 @@ export class AddFinalPriceComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       commission_price: ['', Validators.required],
+      unit_no: ['', Validators.required],
       _id: [this.modalData._id]
     });
 
+    if(this.modalData){
+      this.patchData(this.modalData)
+    }
+
+  }
+
+  patchData(data){
+    this.form.patchValue({
+      commission_price: data.commission_price,
+      unit_no: data.unit_no
+    });
   }
 
   formSubmit() {

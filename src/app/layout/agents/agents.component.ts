@@ -8,6 +8,9 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { AddAgentComponent } from './add-agent/add-agent.component';
+import {
+  ChangeMemberPasswordComponent
+} from '../../shared/components/change-member-password/change-member-password.component';
 
 @Component({
   selector: 'app-accounts',
@@ -98,6 +101,16 @@ export class AgentsComponent implements OnInit {
     });
     modalRef.content.onClose.subscribe(() => {
       this.getData();
+    });
+  }
+
+
+  openChangePassword(modalData?: any) {
+    const modalRef = this.modalService.show(ChangeMemberPasswordComponent, {
+      initialState: {modalData: modalData,apiUrl : ApiUrl.managed_agents},
+      backdrop: 'static',
+      keyboard: false,
+      class: 'modal-md'
     });
   }
 

@@ -146,7 +146,7 @@ export class AddNewPropertyComponent implements OnInit {
       developer_id: ['', Validators.required],
       peropert_type: ['', Validators.required],
       tensure: ['', Validators.required],
-      se_no: ['', Validators.required],
+      se_no: [null],
       category_type: [''],
       completion_year: ['', Validators.required],
       status: ['', Validators.required],
@@ -159,7 +159,7 @@ export class AddNewPropertyComponent implements OnInit {
         is_featured: this.modalData.is_featured,
         developer_id: this.modalData.developer_id._id,
         category_type: this.modalData.category_type,
-        se_no: this.modalData.se_no,
+        se_no: parseInt(this.modalData.se_no) || null,
         completion_year: this.modalData.completion_year,
         peropert_type: this.modalData.peropert_type,
         status: this.modalData.status,
@@ -177,9 +177,9 @@ export class AddNewPropertyComponent implements OnInit {
         obj[`_id`] = this.modalData._id;
       }
 
-      // if (!obj.category_type) {
-      //   delete obj.category_type;
-      // }
+      if (!obj.se_no) {
+        obj.se_no = null;
+      }
 
       this.http.postData(ApiUrl.add_edit_peroperties, obj).subscribe(res => {
         this.message.toast('success',
@@ -294,7 +294,7 @@ export class AddNewPropertyComponent implements OnInit {
 
   makeForm4() {
     this.form4 = this.fb.group({
-      currency: ['', Validators.required],
+      currency: ['MYR', Validators.required],
       comission_id: ['', Validators.required],
       start_price: [null, Validators.required],
       end_price: [null],
@@ -391,12 +391,14 @@ export class AddNewPropertyComponent implements OnInit {
   makeForm6() {
     this.form6 = this.fb.group({
       brochure: ['', Validators.required],
+      video: ['', Validators.required],
       cover_image: ['', Validators.required]
     });
 
     if (this.modalData) {
       this.form6.patchValue({
         brochure: this.modalData.brochure,
+        video: this.modalData.video,
         cover_image: this.modalData.cover_image
       });
       this.images = this.modalData.images;
@@ -434,6 +436,8 @@ export class AddNewPropertyComponent implements OnInit {
     this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
       if (flag == 1) {
         this.form6.controls.cover_image.patchValue(response.data.original);
+      }else  if (flag == 6) {
+        this.form6.controls.video.patchValue(response.data.original);
       } else if (flag == 3) {
         this.form6.controls.brochure.patchValue(response.data.original);
       } else {
@@ -446,6 +450,8 @@ export class AddNewPropertyComponent implements OnInit {
   removeImage(id, flag) {
     if (flag === 3) {
       this.form6.controls.brochure.patchValue('');
+    } else if (flag === 6) {
+      this.form6.controls.video.patchValue('');
     } else {
       this.form6.controls.cover_image.patchValue('');
     }

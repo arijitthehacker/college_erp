@@ -29,10 +29,11 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ProDetailsComponent } from '../layout/properties/pro-details/pro-details.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { PaymentComponent } from './components/payment/payment.component';
+import { ChangeMemberPasswordComponent } from './components/change-member-password/change-member-password.component';
 
 const directives = [NumberOnlyDirective, AmountDirective, NoRecordComponent, ReplaceUnderscorePipe,
   SeeMoreComponent, HHMMSSPipe, CapitalizeFirstDirective, ProDetailsComponent,
-  PaymentComponent];
+  PaymentComponent,ChangeMemberPasswordComponent];
 
 const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPaginationModule,
   NgSelectModule, FormsModule, NgxIntlTelInputModule, AutocompleteLibModule,
@@ -62,7 +63,8 @@ const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPagin
   schemas: [NO_ERRORS_SCHEMA],
   entryComponents: [
     ProDetailsComponent,
-    PaymentComponent
+    PaymentComponent,
+    ChangeMemberPasswordComponent
   ]
 })
 export class SharedModule {

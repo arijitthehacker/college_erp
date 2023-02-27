@@ -34,7 +34,7 @@ export class AddBudgetComponent implements OnInit {
     this.form = this.fb.group({
       max_price: [''],
       min_price: ['', Validators.required],
-      currency: ['', Validators.required]
+      currency: ['MYR', Validators.required]
     });
     if (this.modalData) {
       this.patchData(this.modalData);

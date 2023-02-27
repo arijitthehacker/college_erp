@@ -153,12 +153,11 @@
               </div>
 
               <div class="col-md-4 form-group">
-                <label class="required set-label">Display Order</label>
-                <input [autofocus]="true" class="form-control" formControlName="se_no"
-                       type="text" placeholder="Display Order" appNumberOnly/>
-                <div class="text-error" *ngIf="form1.controls['se_no'].errors?.required && show1Error">
-                  This field is required.
-                </div>
+                <label class="set-label">Display Order</label>
+                <input class="form-control" formControlName="se_no" type="text" placeholder="Display Order" appNumberOnly/>
+<!--                <div class="text-error" *ngIf="form1.controls['se_no'].errors?.required && show1Error">-->
+<!--                  This field is required.-->
+<!--                </div>-->
               </div>
 
               <!--              <div class="col-md-4 form-group mt-4">-->
@@ -429,7 +428,7 @@
           <form [formGroup]="form6"  *ngIf="form6">
 
             <div class="row">
-              <div class="col-md-6 form-group">
+              <div class="col-md-4 form-group">
                 <label class="required">Brochure</label>
                 <div class="product-images">
                   <input type="file" class="file-upload" id="brochure"
@@ -461,7 +460,7 @@
                 </div>
               </div>
 
-              <div class="col-md-6 form-group">
+              <div class="col-md-4 form-group">
                 <label class="required">Cover Image</label>
                 <div class="product-images">
                   <input type="file" class="file-upload" id="cover_image"
@@ -478,6 +477,35 @@
                 <div class="text-error"
                      *ngIf="form6.controls['cover_image'].errors?.required && show6Error">
                   Please select image.
+                </div>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required">Video</label>
+                <div class="product-images">
+                  <input type="file" class="file-upload" id="video"
+                         accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'video',6)">
+                  <label for="video">
+<!--                    <img src="/assets/images/ic_camera.png">-->
+                    <i class="fa fa-video-camera" style="font-size: 25px"></i>
+                  </label>
+<!--                  <img class="ml-4 uploaded-img multiple-images" height="72" for="video"-->
+<!--                       [src]="form6?.value?.video"-->
+<!--                       *ngIf='form6?.value?.video'>-->
+
+                  <ng-container   *ngIf='form6?.value?.video'>
+                  <a class="my-link"
+                     (click)="commonService.goToLink(form6?.value?.video)">
+                    <i class="fa fa-play video-icons" aria-hidden="true"></i>
+                  </a>
+
+                  <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('video',6)"
+                   ></i>
+                  </ng-container>
+                </div>
+                <div class="text-error"
+                     *ngIf="form6.controls['video'].errors?.required && show6Error">
+                  Please select video.
                 </div>
               </div>
 

@@ -217,8 +217,10 @@
                   <li role="menuitem">
                     <a class="dropdown-item" (click)="openStatus(data)">View Status</a>
                   </li>
-                  <li role="menuitem" *ngIf="!data?.commission_price">
-                    <a class="dropdown-item" (click)="addFinal(data)">Add final property price</a>
+                  <!--                  *ngIf="!data?.commission_price"-->
+                  <li role="menuitem">
+                    <a class="dropdown-item" (click)="addFinal(data)">{{data?.commission_price ? 'Edit' : 'Add'}} final
+                      property price</a>
                   </li>
                 </ul>
               </div>

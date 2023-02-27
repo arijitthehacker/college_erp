@@ -18,6 +18,15 @@
         </div>
       </div>
 
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Unit No.</label>
+        <input class="form-control" formControlName="unit_no"
+               type="text" placeholder="Enter unit no">
+        <div class="text-error" *ngIf="form.controls['unit_no'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
     </div>
 
   </div>

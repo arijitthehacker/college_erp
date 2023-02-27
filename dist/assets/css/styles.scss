@@ -1115,21 +1115,33 @@ select {
 }
 
 .contact_lead_rejected {
-  background: #ff000059;
+  background: rgba(180, 4, 4, 0.78);
 }
 
 .spa_signed_rejected {
-  background: #ff000059;
+  background: rgba(232, 66, 66, 0.35);
 }
 
 .loan_approved_rejected {
-  background: #ff000059;
+  background: rgba(239, 37, 37, 0.87);
 }
 
 .booking_rejected {
-  background: #ff000059;
+  background: rgba(255, 0, 0, 0.85);
 }
 
 .booking {
   background: #ffa500ab;
+}
+
+
+.video-icons{
+  font-size: 31px;
+  padding: 15px 8px;
+  border: 1px solid;
+  height: 71px;
+  margin-left: 13px;
+  vertical-align: bottom;
+  min-width: 71px;
+  text-align: center;
 }

@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../../services/commonService/common.service';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-add-account',
@@ -19,9 +18,6 @@ export class AddBannerComponent implements OnInit {
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
-  editorConfig: AngularEditorConfig = {
-    editable: true
-  };
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
@@ -34,6 +30,7 @@ export class AddBannerComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       image: ['', Validators.required],
+      se_no: ['', Validators.required]
     });
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -43,6 +40,7 @@ export class AddBannerComponent implements OnInit {
   patchData(data) {
     this.form.patchValue({
       image: data.image,
+      se_no: data.se_no
     });
   }
 

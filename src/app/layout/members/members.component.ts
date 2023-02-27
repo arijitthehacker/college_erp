@@ -8,7 +8,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { ForgotPasswordComponent } from '../../public/login/forgot-password/forgot-password.component';
-import { ChangeMemberPasswordComponent } from './change-member-password/change-member-password.component';
+import { ChangeMemberPasswordComponent } from '../../shared/components/change-member-password/change-member-password.component';
 
 @Component({
   selector: 'app-accounts',
@@ -98,7 +98,7 @@ export class MembersComponent implements OnInit {
 
   openChangePassword(modalData?: any) {
     const modalRef = this.modalService.show(ChangeMemberPasswordComponent, {
-      initialState: {modalData: modalData},
+      initialState: {modalData: modalData,apiUrl : ApiUrl.managed_members},
       backdrop: 'static',
       keyboard: false,
       class: 'modal-md'

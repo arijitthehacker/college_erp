@@ -18,6 +18,7 @@ export class ChangeMemberPasswordComponent implements OnInit {
   form: FormGroup;
   type;
   profileData;
+  apiUrl;
   modalData: any = {};
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
@@ -56,7 +57,7 @@ export class ChangeMemberPasswordComponent implements OnInit {
         password: JSON.parse(JSON.stringify(this.form.value.password)),
         _id: this.modalData._id
       };
-      this.http.putData(ApiUrl.managed_members, obj).subscribe(() => {
+      this.http.putData(this.apiUrl, obj).subscribe(() => {
         this.message.toast('success', ConstMsg.updatedSuccess);
 
         this.bsModalRef.hide()

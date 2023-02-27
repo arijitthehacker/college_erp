@@ -8,6 +8,9 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { AddOwnerComponent } from './add-owner/add-owner.component';
+import {
+  ChangeMemberPasswordComponent
+} from '../../shared/components/change-member-password/change-member-password.component';
 
 @Component({
   selector: 'app-accounts',
@@ -104,4 +107,13 @@ export class OwnersComponent implements OnInit {
     });
   }
 
+
+  openChangePassword(modalData?: any) {
+    const modalRef = this.modalService.show(ChangeMemberPasswordComponent, {
+      initialState: {modalData: modalData,apiUrl : ApiUrl.managed_group_owner},
+      backdrop: 'static',
+      keyboard: false,
+      class: 'modal-md'
+    });
+  }
 }
