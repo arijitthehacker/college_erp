@@ -15,7 +15,6 @@ export class ResetPasswordComponent implements OnInit {
 
   show = false;
   form: FormGroup;
-  token = '';
   showPass = false;
   showSuccess = false;
   passwordResetToken;

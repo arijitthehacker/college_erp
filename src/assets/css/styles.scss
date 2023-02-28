@@ -1027,6 +1027,7 @@ select {
 
 .noti-list {
   padding: 0 9px;
+  position: relative;
 
   h5 {
     margin-top: 3px;
@@ -1044,6 +1045,15 @@ select {
   p {
 
     color: $sec1;
+  }
+
+  .close-icon {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    font-weight: 100;
+    font-size: 18px;
+    color: $main-color;
   }
 }
 
@@ -1074,11 +1084,19 @@ select {
     border: 1px solid $border-color;
     padding: 14px;
     border-radius: 7px;
+    min-height: 181px;
+    position: relative;
+
+    .recycle-btns {
+      position: absolute;
+      bottom: 13px;
+      right: 13px;
+    }
 
     h6 {
-      margin-bottom: 35px;
     }
   }
+
 }
 
 .details-img {
@@ -1115,19 +1133,23 @@ select {
 }
 
 .contact_lead_rejected {
-  background: rgba(180, 4, 4, 0.78);
+  background: $red-color;
 }
 
 .spa_signed_rejected {
-  background: rgba(232, 66, 66, 0.35);
+  background: $red-color;
+}
+
+.appointment_rejected {
+  background: $red-color;
 }
 
 .loan_approved_rejected {
-  background: rgba(239, 37, 37, 0.87);
+  background: $red-color;
 }
 
 .booking_rejected {
-  background: rgba(255, 0, 0, 0.85);
+  background: $red-color;
 }
 
 .booking {
@@ -1150,3 +1172,5 @@ select {
   height: auto;
   margin-bottom: 10px;
 }
+
+

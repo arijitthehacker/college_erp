@@ -41,7 +41,7 @@ export class AddFinalPriceComponent implements OnInit {
 
   patchData(data){
     this.form.patchValue({
-      commission_price: data.commission_price,
+      commission_price: data.commission_price || '',
       unit_no: data.unit_no
     });
   }

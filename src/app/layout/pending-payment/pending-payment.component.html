@@ -2,12 +2,23 @@
   <div class="col-md-12">
     <div class="my-box">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
           <h4 class="card-title  float-left">
             {{commonService?.breadcrumb}}
 <!--            {{currentDate}}-->
           </h4>
         </div>
+
+
+        <div class="col-md-3 sm-input-space">
+          <select class="form-control" [(ngModel)]="category" (change)="pagination.pageNo =1;getData()">
+            <option value="ALL">All Types</option>
+            <option value="AGENT">Agent</option>
+            <option value="MEMEBER">Member</option>
+            <option value="GROUP_OWNER">Group Owner</option>
+          </select>
+        </div>
+
 
         <div class="col-md-3 sm-input-space">
           <div class="date-filter">

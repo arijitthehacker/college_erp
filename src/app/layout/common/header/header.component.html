@@ -6,7 +6,7 @@
     <!--    <button class="btn btn-primary" (click)="apiHit()">Push</button>-->
 
     <li class="item_btn header-right-side">
-      <div dropdown placement="bottom left" (onShown)="onShown()">
+      <div dropdown placement="bottom left" (onShown)="onShown()" [insideClick]="true">
         <img src="/assets/images/noti-icon.png"
              href id="basic-link" dropdownToggle aria-controls="basic-link-dropdown" (click)="readNotifications()">
         <span class="show-count" *ngIf="profileData?.notification_count">{{profileData?.notification_count}}</span>
@@ -15,7 +15,11 @@
 
           <li *ngFor="let data of notifications" class="noti-list row">
 
-            <h5 class="col-md-12">{{data?.title}}</h5>
+            <h5 class="col-md-12">{{data?.title}}
+
+              <i class="fa fa-times close-icon" (click)="clearNotifications(data)"></i>
+
+            </h5>
 
             <p class="col-md-12">{{data?.message}}</p>
 

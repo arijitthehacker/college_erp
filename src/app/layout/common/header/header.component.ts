@@ -104,8 +104,13 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  clearNotifications() {
-    this.http.putData(ApiUrl.clear_notification).subscribe(res => {
+  clearNotifications(data?) {
+    let obj: any = {};
+    if (data) {
+      obj._id = data._id;
+    }
+    this.http.putData(ApiUrl.clear_notification,obj).subscribe(res => {
+      this.getNotifications();
     });
   }
 

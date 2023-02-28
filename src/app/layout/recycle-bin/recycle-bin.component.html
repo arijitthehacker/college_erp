@@ -34,18 +34,32 @@
              *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
 
           <div class="tabs">
-            <h5 class="my-link" (click)="openDetails(data)" *ngIf="data?.currency">{{data?.min_price}} - {{data?.max_price}}</h5>
-            <h5 class="my-link" (click)="openDetails(data)" *ngIf="!data?.currency">{{data?.name}}</h5>
 
 
-            <ng-container *ngIf="data?.value_type === 'Banners'">
+            <h5 class="my-link" (click)="openDetails(data)"
+                *ngIf="data?.value_type === 'Peropertiesbudgets' || model_name === 'Peropertiesbudgets'">{{data?.min_price}}
+              - {{data?.max_price}}</h5>
+
+            <h5 class="my-link" (click)="openDetails(data)" *ngIf="data?.value_type === 'Agents' || model_name === 'Agents' ||
+        data?.value_type === 'Agents' || model_name === 'Agents' ||
+        data?.value_type === 'GroupOwnwers' || model_name === 'GroupOwnwers' ||
+        data?.value_type === 'Users' || model_name === 'Users' ||
+        data?.value_type === 'Peroperties' || model_name === 'Peroperties' ||
+        data?.value_type === 'PeropertiesCategory' || model_name === 'PeropertiesCategory' ||
+        data?.value_type === 'PeropertiesPupose' || model_name === 'PeropertiesPupose' ||
+        data?.value_type === 'Peropertiesreason' || model_name === 'Peropertiesreason'
+">
+              {{data?.name}}</h5>
+
+
+            <ng-container *ngIf="data?.value_type === 'Banners' || model_name === 'Banners'">
               <img [src]="data.image" class="banner-img" (click)="commonService.openLightBox(data.image)">
             </ng-container>
 
-            <h6>Deleted At: {{(data.deleted_at)|date:'dd-MM-yyyy'}}</h6>
-            <div class="modal-footer">
+            <h6>Deleted At: {{( data.deleted_at )|date:'dd-MM-yyyy'}}</h6>
+            <div class="recycle-btns">
 
-              <button class="btn-cancel mr-3 btn-sm" (click)="action(data,'REMOVE')">Delete</button>
+              <button class="btn btn-cancel mr-3 btn-sm" (click)="action(data,'REMOVE')">Delete</button>
               <button class="btn btn-blue-outline btn-sm" (click)="action(data,'RECOVER')">Recover</button>
             </div>
 

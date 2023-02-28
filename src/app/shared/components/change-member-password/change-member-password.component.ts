@@ -16,6 +16,7 @@ export class ChangeMemberPasswordComponent implements OnInit {
 
   showError = false;
   form: FormGroup;
+  showPass = false
   type;
   profileData;
   apiUrl;

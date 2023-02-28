@@ -25,7 +25,7 @@ export class TransactionHistoryComponent implements OnInit {
   dates = new FormControl([]);
   currentDate = new Date();
   prevDate = new Date();
-
+  category = 'ALL';
 
   constructor(private http: HttpService, public commonService: CommonService,
               public router: Router, public lightbox: Lightbox) {
@@ -57,6 +57,9 @@ export class TransactionHistoryComponent implements OnInit {
     }
     if (this.history_type) {
       obj.history_type = this.history_type;
+    }
+    if (this.category) {
+      obj.category =  this.category;
     }
     if (this.dates.value) {
       const data: any = this.dates.value;

@@ -365,9 +365,9 @@
               </div>
 
 
-              <div class="col-md-4 form-group ">
+              <div class="col-md-4 form-group">
                 <label class="required set-label">Select commission</label>
-                <select class="form-control" formControlName="comission_id">
+                <select class="form-control" formControlName="comission_id" id="select-box">
                   <option value="">Please select commission</option>
                   <option [value]="data._id" *ngFor="let data of commissions">
                     {{data?.name}}

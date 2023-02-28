@@ -29,9 +29,9 @@
           <tr>
             <th>Sr. No.</th>
             <th>Name</th>
-            <th>Member Commission</th>
-            <th>Agent Commission</th>
             <th>Group Owner Commission</th>
+            <th>Agent Commission</th>
+            <th>Member Commission</th>
             <th>Gold Member Commission</th>
             <th>Action</th>
           </tr>
@@ -41,9 +41,10 @@
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
             <td>{{data?.name}}</td>
-            <td>{{data?.member_commision}}</td>
-            <td>{{data?.agent_commision}}</td>
             <td>{{data?.group_owner_commision}}</td>
+
+            <td>{{data?.agent_commision}}</td>
+            <td>{{data?.member_commision}}</td>
             <td>{{data?.gold_member_commision}}</td>
             <td class="edit-section">
 <!--              <div (click)="blockUnblock(data)">-->

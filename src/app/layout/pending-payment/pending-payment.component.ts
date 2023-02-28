@@ -20,6 +20,7 @@ export class PendingPaymentComponent implements OnInit {
   date = '';
   pagination = new PaginationControls();
   search;
+  category = 'ALL';
   dates = new FormControl([]);
   currentDate = new Date();
   prevDate = new Date();
@@ -48,6 +49,9 @@ export class PendingPaymentComponent implements OnInit {
     };
     if (this.search) {
       obj.search = this.search;
+    }
+    if (this.category) {
+      obj.category =  this.category;
     }
     if (this.dates.value) {
       const data: any = this.dates.value;

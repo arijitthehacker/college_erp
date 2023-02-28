@@ -54,8 +54,16 @@
       </div>
 
       <div class="row text-right">
-        <div class="col-md-9 text-right sm-input-space"></div>
+        <div class="col-md-6 text-right sm-input-space"></div>
 
+        <div class="col-md-3 sm-input-space">
+          <select class="form-control" [(ngModel)]="category" (change)="pagination.pageNo =1;getData()">
+            <option value="ALL">All</option>
+            <option value="AGENT">Agent</option>
+            <option value="MEMEBER">Member</option>
+            <option value="GROUP_OWNER">Group Owner</option>
+          </select>
+        </div>
         <div class="col-md-3 sm-input-space">
           <button class="btn-blue-outline" (click)="exportData()">Export</button>
         </div>
@@ -157,6 +165,8 @@
               <ng-container *ngIf="!data?.transaction_id">
                 <b>Rejection Comment:</b> {{data?.rejected_comment || '-'}}
               </ng-container>
+              <br>
+              <b>Unit No.:</b> {{data?.unit_no || '-'}}
 
               <br>
             </td>
