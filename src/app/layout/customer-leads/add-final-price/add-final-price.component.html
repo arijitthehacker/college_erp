@@ -33,6 +33,6 @@
 
   <div class="modal-footer">
     <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
-    <button type="submit" class="btn btn-blue-outline">Submit</button>
+    <button type="submit" class="btn btn-blue-outline">{{modalData ? "Update" : 'Submit'}}</button>
   </div>
 </form>

@@ -84,6 +84,7 @@
                  'contact_lead':data?.last_status_name === 'contact_lead',
                  'contact_lead_rejected':data?.last_status_name === 'contact_lead_rejected',
                  'booking':data?.last_status_name === 'booking',
+                 'appointment':data?.last_status_name === 'appointment',
                  'booking_rejected':data?.last_status_name === 'booking_rejected',
                  'appointment_rejected':data?.last_status_name === 'appointment_rejected',
                  'loan_approved':data?.last_status_name === 'loan_approved',
@@ -219,7 +220,7 @@
                     <a class="dropdown-item" (click)="openStatus(data)">View Status</a>
                   </li>
                   <!--                  *ngIf="!data?.commission_price"-->
-                  <li role="menuitem">
+                  <li role="menuitem" *ngIf="data?.last_status_name !== 'pay_completed' && data?.last_status_name !== 'Contact Lead'">
                     <a class="dropdown-item" (click)="addFinal(data)">{{data?.commission_price ? 'Edit' : 'Add'}} final
                       property price</a>
                   </li>

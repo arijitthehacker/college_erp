@@ -39,6 +39,7 @@ export const SIDEBAR = [
   {
     path: '', name: 'Control Management', icon: 'fa-sliders', children: [
       {path: 'settings', name: 'Settings', icon: 'fa fa-cog'},
+      {path: 'admins', name: 'Admins', icon: 'fa fa-user'},
       {path: 'purposes', name: 'Property Purposes', icon: 'fa fa-user-secret'},
       {path: 'reasons', name: 'Reject Reasons', icon: 'fa fa-usb'},
       {path: 'budgets', name: 'Property Budgets', icon: 'fa fa-h-square'}
@@ -66,6 +67,71 @@ export const SIDEBAR = [
       {path: 'profile', name: 'Update Profile', icon: 'fa-id-card-o'},
       {path: 'change-password', name: 'Change Password', icon: 'fa-key'},
       {path: '', name: 'Logout', icon: 'fa-sign-out'}
+    ]
+  }
+];
+
+
+
+export const ROLES = [
+  {
+    path: 'users_profiles', name: 'User\'s Profile', isSelected:false, icon: 'fa-users', children: [
+      {path: 'users_profiles_owners', name: 'Owners', icon: 'fa fa-connectdevelop', isSelected:false},
+      {path: 'users_profiles_agents', name: 'Agents', icon: 'fa fa-user', isSelected:false},
+      {path: 'users_profiles_members', name: 'Members', icon: 'fa fa-user-o', isSelected:false},
+      {path: 'users_profiles_developers', name: 'Developers', icon: 'fa fa-gavel', isSelected:false}
+    ]
+  },
+  {
+    path: 'properties', name: 'Property Management', icon: 'fa-building', isSelected:false, children: [
+      {path: 'property_category', name: 'Property Categories', icon: 'fa fa-rocket', isSelected:false},
+      {path: 'property_list', name: 'Property List', icon: 'fa fa-building', isSelected:false},
+      {path: 'property_create', name: 'Create Property', icon: 'fa fa-plus-square-o', isSelected:false},
+      {path: 'property_commission', name: 'Commissions', icon: 'fa fa-money', isSelected:false},
+      {path: 'property_banners', name: 'Banners', icon: 'fa fa-image', isSelected:false}
+    ]
+  },
+  {
+    path: 'customer_management', name: 'Customer Management', icon: 'fa-bar-chart', isSelected:false, children: [
+      {path: 'customer_management_leads', name: 'Customer Leads', icon: 'fa fa-windows', isSelected:false}
+    ]
+  },
+
+  {
+    path: 'recycle_bin', name: 'Recycle Bin', icon: 'fa-recycle', isSelected:false
+  },
+
+  {
+    path: 'controle_management', name: 'Control Management', icon: 'fa-sliders', isSelected:false, children: [
+      {path: 'controle_management_settings', name: 'Settings', icon: 'fa fa-cog', isSelected:false},
+      {path: 'admins', name: 'Admins', icon: 'fa fa-user', isSelected:false},
+      {path: 'controle_management_peroperty_pupose', name: 'Property Purposes', icon: 'fa fa-user-secret', isSelected:false},
+      {path: 'controle_management_reject_reason', name: 'Reject Reasons', icon: 'fa fa-usb', isSelected:false},
+      {path: 'controle_management_property_budgets', name: 'Property Budgets', icon: 'fa fa-h-square', isSelected:false}
+
+    ]
+  },
+
+  {
+    path: 'accounts', name: 'Accounts', icon: 'fa-money', isSelected:false, children: [
+      {path: 'accounts_advanced', name: 'Advance request', icon: 'fa fa-shopping-cart', isSelected:false},
+      {path: 'accounts_pending', name: 'Pending payment', icon: 'fa fa-money', isSelected:false},
+      {path: 'accounts_history', name: 'History transactions', icon: 'fa fa-history', isSelected:false}
+    ]
+  },
+
+  {
+    path: 'content_management', name: 'Content Management', icon: 'fa-info-circle', isSelected:false, children: [
+      {path: 'content_management_privacy', name: 'Privacy Policy', isSelected:false},
+      {path: 'content_management_terms_condition', name: 'Terms & Conditions', isSelected:false},
+      {path: 'content_management_about', name: 'About Us', isSelected:false}
+      // {path: 'info-pages/privacy-settings', name: 'Privacy Settings'}
+    ]
+  }, {
+    path: 'profile', name: 'Profile', icon: 'fa-id-card-o', isSelected:false, children: [
+      {path: 'profile_update', name: 'Update Profile', icon: 'fa-id-card-o', isSelected:false},
+      {path: 'profile_change_password', name: 'Change Password', icon: 'fa-key', isSelected:false},
+      {path: 'profile_logout', name: 'Logout', icon: 'fa-sign-out', isSelected:false}
     ]
   }
 ];

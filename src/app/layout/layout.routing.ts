@@ -9,6 +9,7 @@ import { MembersModule } from './members/members.module';
 import { ReasonsModule } from './reasons/reasons.module';
 import { InfoPagesModule } from './info-pages/info-pages.module';
 import { ProfileModule } from './profile/profile.module';
+import { AdminsModule } from './admins/admins.module';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
         path: 'banners',
         loadChildren: () => import('./banners/banners.module').then(m => m.BannersModule),
         data: {breadcrumb: 'Banners', title: 'banner'}
+      },{
+        path: 'admins',
+        loadChildren: () => import('./admins/admins.module').then(m => m.AdminsModule),
+        data: {breadcrumb: 'Admins', title: 'admin'}
       }, {
         path: 'members',
         loadChildren: () => import('./members/members.module').then(m => m.MembersModule),

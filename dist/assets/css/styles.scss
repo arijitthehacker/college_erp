@@ -1053,6 +1053,7 @@ select {
     top: 10px;
     font-weight: 100;
     font-size: 18px;
+    cursor: pointer;
     color: $main-color;
   }
 }
@@ -1144,6 +1145,11 @@ select {
   background: $red-color;
 }
 
+.appointment {
+  background: rgba(189, 116, 199, 0.76);
+
+}
+
 .loan_approved_rejected {
   background: $red-color;
 }
@@ -1171,6 +1177,48 @@ select {
   width: 80px;
   height: auto;
   margin-bottom: 10px;
+}
+
+.main-area {
+  border: 1px solid $border-color;
+  padding: 10px;
+  border-radius: 7px;
+  margin-bottom: 10px;
+
+  label {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .form-check-input {
+    margin-top: 6px;
+    font-size: 14px;
+  }
+
+  .form-check {
+    border-bottom: 1px solid $border-color;
+  }
+
+  .row {
+
+    .sub-area {
+      margin-top: 5px;
+
+      .form-check {
+        border-bottom: none !important;
+
+        label {
+          font-size: 15px;
+          font-weight: 500;
+        }
+
+        .form-check-input {
+
+        }
+
+      }
+    }
+  }
 }
 
 

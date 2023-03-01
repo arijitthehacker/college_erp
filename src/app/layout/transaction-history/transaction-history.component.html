@@ -58,7 +58,7 @@
 
         <div class="col-md-3 sm-input-space">
           <select class="form-control" [(ngModel)]="category" (change)="pagination.pageNo =1;getData()">
-            <option value="ALL">All</option>
+            <option value="ALL">All Users</option>
             <option value="AGENT">Agent</option>
             <option value="MEMEBER">Member</option>
             <option value="GROUP_OWNER">Group Owner</option>
@@ -113,8 +113,19 @@
               {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code}}
               {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number}}
               <br>
+
+              <ng-container *ngIf="!data?.advanced_rejected_date">
               <b class="highlighted-text">Completed On:</b> {{data?.time |date:'short'}}
               {{data?.advanced_request ? 'Advanced Paid' : 'Paid After completion'}}
+              </ng-container>
+
+              <ng-container *ngIf="data?.advanced_rejected_date">
+              <b class="highlighted-text">Rejected On:</b> {{data?.advanced_rejected_date |date:'short'}}
+                <br>
+              Advance request rejected
+              </ng-container>
+
+
             </td>
 
             <td>
