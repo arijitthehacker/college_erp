@@ -53,7 +53,7 @@
 
 
             <ng-container *ngIf="data?.value_type === 'Banners' || model_name === 'Banners'">
-              <img [src]="data.image" class="banner-img" (click)="commonService.openLightBox(data.image)">
+              <img [src]="data.image" class="banner-img" (click)="openDetails(data)">
             </ng-container>
 
             <h6>Deleted At: {{( data.deleted_at )|date:'dd-MM-yyyy'}}</h6>

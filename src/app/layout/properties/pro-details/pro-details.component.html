@@ -191,7 +191,15 @@
           <h5>Images</h5>
           <div class="detail-images">
             <ng-container *ngFor="let data of modalData?.images">
-              <img [src]="data">
+
+              <ng-container *ngIf="!commonService.checkVideoLink(data)">
+                <img [src]="data">
+              </ng-container>
+
+              <ng-container *ngIf="commonService.checkVideoLink(data)">
+                <img src="assets/images/video-icon.png" (click)="commonService.goToLink(data)">
+              </ng-container>
+
             </ng-container>
           </div>
         </td>
@@ -222,6 +230,19 @@
           </div>
         </td>
       </tr>
+
+      <tr>
+        <td>
+          <h5>Video</h5>
+          <div class="detail-images">
+
+            <img src="assets/images/video-icon.png"  (click)="commonService.goToLink(modalData?.video)">
+            <a class="my-link">
+            </a>
+          </div>
+        </td>
+      </tr>
+
     </ng-container>
 
   </table>

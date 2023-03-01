@@ -134,7 +134,16 @@ export class AddNewPropertyComponent implements OnInit {
         property_id: this.id
       };
       this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
-        this.addresses = res.data.data;
+
+        this.addresses = [];
+        if (res?.data?.data?.length) {
+          this.addresses = res.data.data[0];
+          this.form2.patchValue({
+            name: this.addresses.name,
+            lng: this.addresses.location.coordinates[0],
+            lat: this.addresses.location.coordinates[1]
+          });
+        }
       });
     }
   }
@@ -436,7 +445,7 @@ export class AddNewPropertyComponent implements OnInit {
     this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
       if (flag == 1) {
         this.form6.controls.cover_image.patchValue(response.data.original);
-      }else  if (flag == 6) {
+      } else if (flag == 6) {
         this.form6.controls.video.patchValue(response.data.original);
       } else if (flag == 3) {
         this.form6.controls.brochure.patchValue(response.data.original);

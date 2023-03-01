@@ -17,7 +17,6 @@
 <div class="modal-body">
 
 
-
   <table class="table details-table" *ngIf="modalData?.value_type == 'Agents' || modalData?.value_type == 'GroupOwnwers'
 || modalData?.value_type == 'Users'">
 
@@ -100,6 +99,7 @@
       </td>
     </tr>
   </table>
+
   <table class="table details-table" *ngIf="modalData?.value_type == 'PeropertiesCategory'">
     <tr>
       <td>
@@ -115,6 +115,25 @@
         <p>{{modalData?.name}}</p>
       </td>
     </tr>
+  </table>
+
+  <table class="table details-table" *ngIf="modalData?.value_type == 'Banners'">
+    <tr>
+
+      <td>
+        <h5>Image</h5>
+        <img [src]="modalData.image" class="details-img"
+             (click)="commonService.openLightBox(modalData.image)">
+      </td>
+
+      <td style="vertical-align: baseline;">
+        <h5>Display Order</h5>
+        <p>{{modalData?.se_no}}</p>
+      </td>
+
+
+    </tr>
+
   </table>
 
 

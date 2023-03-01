@@ -76,8 +76,8 @@
 
     <ng-container *ngFor="let data of sideBar;let i =index">
 
-      <li *ngIf="!data?.children">
-        <a [routerLinkActive]="'active'" [routerLink]="['/'+data?.path]" href="javascript://"
+      <li *ngIf="!data?.children && !data?.children1">
+        <a [routerLinkActive]="''" [routerLink]="['/'+data?.path]" href="javascript://"
            (click)="optionClick(i,1);"
            class="app-menu__item" #rla="routerLinkActive">
           <i class="fa fa-fw" [ngClass]="data.icon" [ngStyle]="{'font-size': data.fontSize}"></i>
@@ -86,7 +86,7 @@
         </a>
       </li>
 
-      <li *ngIf="data?.children">
+      <li *ngIf="data?.children || data?.children1">
         <a (click)="optionClick(i,2);" [attr.aria-expanded]="!data?.isCollapsed" aria-controls="collapseBasic"
            class="app-menu__item sub-menu">
           <i class="fa fa-fw" [ngClass]="data.icon"></i>
@@ -98,7 +98,7 @@
 
         </a>
         <div [id]="'collapseBasic'" [collapse]="!data.isCollapsed" [isAnimated]="true"
-             *ngFor="let val of data.children;let j =index">
+             *ngFor="let val of data.children || data.children1;let j =index">
           <div class="sub-menu-item  animate__animated animate__slideInDown">
 
 

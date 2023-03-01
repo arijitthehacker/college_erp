@@ -88,6 +88,16 @@ export class CommonService {
     return isPdf;
   }
 
+  checkVideoLink(url) {
+    let isVideo = false;
+    if (url) {
+      if (url.includes('mp4', '3gp', 'ogg')) {
+        isVideo = true;
+      }
+    }
+    return isVideo;
+  }
+
   removeEmptyKeys(obj) {
     Object.keys(obj).forEach((k) => {
       if (obj[k] == false) {

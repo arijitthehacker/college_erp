@@ -8,6 +8,7 @@ export const ApiUrl = {
   list_banners: 'Admin/list_banners',
   add_edit_peroperties: 'Admin/add_edit_peroperties',
   resetPassword: 'user/resetPassword',
+  update_password: 'OpenApi/update_password',
   list_agents: 'Admin/list_agents',
   list_property_budgets: 'Admin/list_property_budgets',
   getResetPasswordToken: 'user/getResetPasswordToken',

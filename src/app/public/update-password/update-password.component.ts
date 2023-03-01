@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../../services/http/http.service';
 import { MessageService } from '../../services/message/message.service';
 import { ApiUrl } from '../../core/apiUrl';
@@ -17,7 +15,7 @@ export class UpdatePasswordComponent implements OnInit {
   form: FormGroup;
   showPass = false;
   showSuccess = false;
-  passwordResetToken;
+  email;
 
   constructor(
     private fb: FormBuilder, private message: MessageService, private router: Router,
@@ -28,7 +26,7 @@ export class UpdatePasswordComponent implements OnInit {
   ngOnInit() {
     localStorage.clear();
     this.activatedRoute.queryParams.subscribe(data => {
-      this.passwordResetToken = data.passwordResetToken;
+      this.email = data.email;
     });
     this.makeForm();
   }
@@ -45,10 +43,10 @@ export class UpdatePasswordComponent implements OnInit {
     if (this.form.valid) {
       if (this.form.value.password === this.form.value.confirmPassword) {
         const obj = {
-          newPassword: this.form.value.password,
-          passwordResetToken: this.passwordResetToken
+          password: this.form.value.password,
+          email: this.email
         };
-        this.http.putData(ApiUrl.resetPassword, obj).subscribe(res => {
+        this.http.postData(ApiUrl.update_password, obj).subscribe(res => {
           this.showSuccess = true;
         }, () => {
         });

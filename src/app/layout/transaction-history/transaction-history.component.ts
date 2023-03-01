@@ -47,7 +47,7 @@ export class TransactionHistoryComponent implements OnInit {
     this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
     let obj: any = {
       skip: this.pagination.skip,
-      type: 'COMPLETED'
+      type: 'ALL'
     };
     if (this.search) {
       obj.search = this.search;
@@ -59,7 +59,7 @@ export class TransactionHistoryComponent implements OnInit {
       obj.history_type = this.history_type;
     }
     if (this.category) {
-      obj.category =  this.category;
+      obj.category = this.category;
     }
     if (this.dates.value) {
       const data: any = this.dates.value;
@@ -79,7 +79,7 @@ export class TransactionHistoryComponent implements OnInit {
   exportData() {
     let obj: any = {
       skip: this.pagination.skip,
-      type: 'COMPLETED',
+      type: 'ALL',
       is_pagination: false
     };
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
@@ -107,7 +107,9 @@ export class TransactionHistoryComponent implements OnInit {
           'Transaction Comment': data?.transaction_comment,
           'Property Price': data?.commission_price,
           'Advance Payment': data?.advanced_price,
-          'Pending Payment': data?.total_price - data?.advanced_price
+          'Pending Payment': data?.total_price - data?.advanced_price,
+          'Unit No.': data?.unit_no,
+          'Rejected Comment': data?.rejected_comment
         });
       });
       this.http.postData(ApiUrl.export_json_csv, {data: temp}).subscribe(res1 => {

@@ -154,10 +154,11 @@
 
               <div class="col-md-4 form-group">
                 <label class="set-label">Display Order</label>
-                <input class="form-control" formControlName="se_no" type="text" placeholder="Display Order" appNumberOnly/>
-<!--                <div class="text-error" *ngIf="form1.controls['se_no'].errors?.required && show1Error">-->
-<!--                  This field is required.-->
-<!--                </div>-->
+                <input class="form-control" formControlName="se_no" type="text" placeholder="Display Order"
+                       appNumberOnly/>
+                <!--                <div class="text-error" *ngIf="form1.controls['se_no'].errors?.required && show1Error">-->
+                <!--                  This field is required.-->
+                <!--                </div>-->
               </div>
 
               <!--              <div class="col-md-4 form-group mt-4">-->
@@ -218,50 +219,48 @@
 
           </form>
 
-          <ng-container *ngIf="addresses?.length">
-            <label class="add-table"> Address List</label>
-            <div class="table-responsive mt-2">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th>Sr. No.</th>
-                  <th>Address</th>
-                  <th>Longitude</th>
-                  <th>Latitude</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let data of addresses;let i =index">
-                  <td>{{i + 1}}</td>
-                  <td>{{data?.name}}</td>
-                  <td>{{data.location.coordinates[0]}}</td>
-                  <td>{{data.location.coordinates[1]}}</td>
-                  <td class="edit-section">
-                    <div (click)="blockUnblock(data)">
-                      <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
-                      <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
-                    </div>
+          <!--          <ng-container *ngIf="addresses?.length">-->
+          <!--            <label class="add-table"> Address List</label>-->
+          <!--            <div class="table-responsive mt-2">-->
+          <!--              <table class="table">-->
+          <!--                <thead>-->
+          <!--                <tr>-->
+          <!--                  <th>Sr. No.</th>-->
+          <!--                  <th>Address</th>-->
+          <!--                  <th>Longitude</th>-->
+          <!--                  <th>Latitude</th>-->
+          <!--                  <th>Action</th>-->
+          <!--                </tr>-->
+          <!--                </thead>-->
+          <!--                <tbody>-->
+          <!--                <tr *ngFor="let data of addresses;let i =index">-->
+          <!--                  <td>{{i + 1}}</td>-->
+          <!--                  <td>{{data?.name}}</td>-->
+          <!--                  <td>{{data.location.coordinates[0]}}</td>-->
+          <!--                  <td>{{data.location.coordinates[1]}}</td>-->
+          <!--                  <td class="edit-section">-->
+          <!--                    <div (click)="blockUnblock(data)">-->
+          <!--                      <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>-->
+          <!--                      <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>-->
+          <!--                    </div>-->
 
-                    <div>
-                      <i (click)="deleteData(data)" class="fa fa-trash"></i>
-                    </div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-
-
-            <div class="btn-area">
-              <button type="button" class="btn btn-blue-outline" (click)="gotoPrev(1)">Previous</button>
-              <button type="button" class="btn btn-blue-outline" (click)="gotoNext(3)">Next</button>
-            </div>
+          <!--                    <div>-->
+          <!--                      <i (click)="deleteData(data)" class="fa fa-trash"></i>-->
+          <!--                    </div>-->
+          <!--                  </td>-->
+          <!--                </tr>-->
+          <!--                </tbody>-->
+          <!--              </table>-->
+          <!--            </div>-->
 
 
-          </ng-container>
+          <!--          </ng-container>-->
 
 
+          <div class="btn-area">
+            <button type="button" class="btn btn-blue-outline" (click)="gotoPrev(1)">Previous</button>
+            <button type="button" class="btn btn-blue-outline" (click)="gotoNext(3)">Next</button>
+          </div>
         </ng-container>
 
         <ng-container *ngIf="selectedTab === 3">
@@ -425,7 +424,7 @@
 
         <ng-container *ngIf="selectedTab === 6">
 
-          <form [formGroup]="form6"  *ngIf="form6">
+          <form [formGroup]="form6" *ngIf="form6">
 
             <div class="row">
               <div class="col-md-4 form-group">
@@ -484,23 +483,23 @@
                 <label class="required">Video</label>
                 <div class="product-images">
                   <input type="file" class="file-upload" id="video"
-                         accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'video',6)">
+                         accept="video/*" (change)="selectImage($event, 'video',6)">
                   <label for="video">
-<!--                    <img src="/assets/images/ic_camera.png">-->
+                    <!--                    <img src="/assets/images/ic_camera.png">-->
                     <i class="fa fa-video-camera" style="font-size: 25px"></i>
                   </label>
-<!--                  <img class="ml-4 uploaded-img multiple-images" height="72" for="video"-->
-<!--                       [src]="form6?.value?.video"-->
-<!--                       *ngIf='form6?.value?.video'>-->
 
-                  <ng-container   *ngIf='form6?.value?.video'>
-                  <a class="my-link"
-                     (click)="commonService.goToLink(form6?.value?.video)">
-                    <i class="fa fa-play video-icons" aria-hidden="true"></i>
-                  </a>
+                  <ng-container *ngIf='form6?.value?.video'>
+                    <img class="ml-4 uploaded-img multiple-images" height="72" for="video"
+                         src="assets/images/video-icon.png"
+                         *ngIf='form6?.value?.video'>
 
-                  <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('video',6)"
-                   ></i>
+                    <!--                    <a class="my-link"-->
+                    <!--                       (click)="commonService.goToLink(form6?.value?.video)">-->
+                    <!--                      <i class="fa fa-play video-icons" aria-hidden="true"></i>-->
+                    <!--                    </a>-->
+
+                    <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('video',6)"></i>
                   </ng-container>
                 </div>
                 <div class="text-error"
@@ -510,24 +509,38 @@
               </div>
 
               <div class="col-md-12 form-group">
-                <label class="required">Images</label>
+                <label class="required">Images/Videos</label>
                 <div class="product-images">
                   <input type="file" class="file-upload" id="image"
-                         accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'image',2)">
+                         accept="video/*, image/*" (change)="selectImage($event, 'image',2)">
                   <label for="image">
                     <img src="/assets/images/ic_camera.png">
                   </label>
                   <ng-container *ngFor="let data of images;let i =index">
-                    <img class="ml-4 multiple-images"
-                         [src]="data"
-                         *ngIf='data'>
+
+                    <ng-container *ngIf="!commonService.checkVideoLink(data)">
+                      <img class="ml-4 multiple-images" [src]="data" *ngIf='data'>
+                    </ng-container>
+
+                    <ng-container *ngIf="commonService.checkVideoLink(data)">
+                      <img class="ml-4 multiple-images" src="assets/images/video-icon.png" *ngIf='data'
+                           (click)="commonService.goToLink(data)">
+                    </ng-container>
+
+                    <!--                    <ng-container *ngIf="commonService.checkVideoLink(data)">-->
+                    <!--                      <a class="my-link"-->
+                    <!--                         (click)="commonService.goToLink(data)">-->
+                    <!--                        <i class="fa fa-play video-icons" aria-hidden="true"></i>-->
+                    <!--                      </a>-->
+                    <!--                    </ng-container>-->
+
                     <i class="fa fa-times-circle fa-trash-css" (click)="removeImageFromArr(i)"
                        *ngIf='data'></i>
                   </ng-container>
 
                   <div class="text-error"
                        *ngIf="!images?.length && show6Error">
-                    Please select image.
+                    Please select image/video.
                   </div>
 
                 </div>
@@ -538,7 +551,8 @@
             <div class="btn-area">
               <button type="button" (click)="form6Submit()" class="btn btn-blue-outline">Save</button>
               <button type="button" class="btn btn-blue-outline ml-3" (click)="form6Submit(true)"
-              *ngIf="!modalData?.publish">Save & Publish</button>
+                      *ngIf="!modalData?.publish">Save & Publish
+              </button>
             </div>
 
           </form>

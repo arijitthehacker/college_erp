@@ -30,6 +30,21 @@ export class SideBarComponent implements OnInit {
       }
     }
 
+    this.selectedRoute = this.router.url;
+    this.setSelectedIndex();
+    let openedIndex = 0;
+    this.sideBar.forEach((val, key) => {
+      if (val.children) {
+        val.children.forEach((val1) => {
+          if (this.router.url === '/' + val1.path) {
+            openedIndex = key;
+          }
+        });
+      }
+    });
+    console.log(openedIndex,'openedIndex');
+    this.optionClick(openedIndex, 2);
+
   }
 
   setSideBar(data) {
@@ -62,20 +77,7 @@ export class SideBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedRoute = this.router.url;
-    this.setSelectedIndex();
-    let openedIndex = 0;
-    this.sideBar.forEach((val, key) => {
-      if (val.children) {
-        val.children.forEach((val1) => {
-          if (this.router.url === '/' + val1.path) {
-            openedIndex = key;
-          }
-        });
-      }
-    });
 
-    this.optionClick(openedIndex, 2);
   }
 
   setSelectedIndex() {
