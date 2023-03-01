@@ -35,6 +35,16 @@ const routes: Routes = [
       title: 'Reset Password',
       breadcrumb: 'Reset Password '
     }
+  }, {
+    path: 'update-password',
+    loadChildren: () =>
+      import('./public/update-password/update-password.module').then(
+        (m) => m.UpdatePasswordModule
+      ),
+    data: {
+      title: 'Update Password',
+      breadcrumb: 'Update Password '
+    }
   },
   {
     path: '**',

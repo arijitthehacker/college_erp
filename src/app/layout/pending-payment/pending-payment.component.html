@@ -151,6 +151,8 @@
               <b>Pending Payment:</b> {{data?.total_price - data?.advanced_price}}<br>
             </td>
             <td>
+              <button class="btn btn-danger small-btn" (click)="cancelRequest(data)"> Decline</button>
+
               <button class="btn btn-success small-btn" (click)="openPaymentModal(data)">Approve</button>
             </td>
           </tr>

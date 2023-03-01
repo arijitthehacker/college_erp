@@ -93,4 +93,21 @@ export class AdvanceRequestComponent implements OnInit {
       // });
     });
   }
+
+  //
+  // cancelRequest(data) {
+  //   const modalRef = this.modalService.show(RejectReasonComponent, {
+  //     initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+  //   });
+  //   modalRef.content.onClose.subscribe(() => {
+  //     // const obj: any = {
+  //     //   _id: data._id
+  //     // };
+  //     // this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
+  //     //   this.message.toast('success', 'Cancelled Successfully!');
+  //     this.getData();
+  //     // }, () => {
+  //     // });
+  //   });
+  // }
 }

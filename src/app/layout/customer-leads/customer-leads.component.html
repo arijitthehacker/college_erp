@@ -69,7 +69,7 @@
             <th>Group Owner</th>
             <th>Agent Info</th>
             <th>Commission Status</th>
-            <th>Property final price</th>
+            <th>Property final price/Unit No.</th>
             <th style="min-width: 130px">Status</th>
             <th>Action</th>
           </tr>
@@ -130,7 +130,9 @@
               <b>Agent:</b> {{data?.agent_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}<br>
               <b>Member:</b> {{data?.member_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}
             </td>
-            <td>{{data?.commission_price || '-'}}</td>
+            <td>
+              <b>Final Price.:</b> {{data?.commission_price }}<br>
+              <b>Unit No.:</b> {{data?.unit_no }}<br></td>
 
             <td>
               <label class="">

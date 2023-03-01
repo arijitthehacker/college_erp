@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PaymentComponent } from '../../shared/components/payment/payment.component';
 import * as moment from 'moment/moment';
+import { RejectReasonComponent } from '../advance-request/reject-reason/reject-reason.component';
 
 @Component({
   selector: 'app-accounts',
@@ -76,18 +77,35 @@ export class PendingPaymentComponent implements OnInit {
     });
   }
 
+  // cancelRequest(data) {
+  //   this.message.confirm(`rejcet this request`).then(res => {
+  //     if (res.isConfirmed) {
+  //       const obj: any = {
+  //         _id: data._id
+  //       };
+  //       this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
+  //         this.message.toast('success', 'Cancelled Successfully!');
+  //         this.getData();
+  //       }, () => {
+  //       });
+  //     }
+  //   });
+  // }
+
+
   cancelRequest(data) {
-    this.message.confirm(`cancel this request`).then(res => {
-      if (res.isConfirmed) {
-        const obj: any = {
-          _id: data._id
-        };
-        this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
-          this.message.toast('success', 'Cancelled Successfully!');
-          this.getData();
-        }, () => {
-        });
-      }
+    const modalRef = this.modalService.show(RejectReasonComponent, {
+      initialState: {modalData: data, type:'pending'}, backdrop: 'static', keyboard: false, class: 'modal-md'
+    });
+    modalRef.content.onClose.subscribe(() => {
+      // const obj: any = {
+      //   _id: data._id
+      // };
+      // this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
+      //   this.message.toast('success', 'Cancelled Successfully!');
+      this.getData();
+      // }, () => {
+      // });
     });
   }
 

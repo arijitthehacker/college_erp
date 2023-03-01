@@ -1110,7 +1110,7 @@ select {
 }
 
 .accepted_buy_customer {
-  background: rgba(12, 42, 12, 0.32);
+  background: rgba(188, 127, 215, 0.24);
 }
 
 .assigned_agent {
@@ -1218,6 +1218,24 @@ select {
 
       }
     }
+  }
+}
+
+.noti-header {
+  padding: 10px;
+  border-bottom: 1px solid $border-color;
+  h3 {
+  }
+
+  a {
+    font-size: 12px;
+    color: #FA6400 !important;
+    text-align: right;
+    position: absolute;
+    right: 14px;
+    top: 22px;
+    font-weight: 700;
+    cursor: pointer;
   }
 }
 

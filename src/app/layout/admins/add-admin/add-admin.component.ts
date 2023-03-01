@@ -97,13 +97,13 @@ export class AddAdminComponent implements OnInit {
           val?.children?.forEach((val1) => {
             if (val1.isSelected) {
               sub_modules.push({
-                name: val1.path,
+                name: val1.id,
                 permissions: ['read', 'write', 'delete', 'block', 'update']
               });
             }
           });
           roles.push({
-            name: val.path,
+            name: val.id,
             type: val?.children?.length ? 'SUB' : 'MAIN',
             sub_modules,
             permissions: ['read', 'write', 'delete', 'block', 'update']

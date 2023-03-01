@@ -89,6 +89,7 @@
             <th class="col-width">Customer Info</th>
             <th class="col-width">Proof of Transaction</th>
             <th class="col-width">Transaction Details</th>
+            <th class="col-width">Bank Details</th>
             <th class="col-width">Payment Details</th>
           </tr>
           </thead>
@@ -116,7 +117,7 @@
 
               <ng-container *ngIf="!data?.advanced_rejected_date">
               <b class="highlighted-text">Completed On:</b> {{data?.time |date:'short'}}
-              {{data?.advanced_request ? 'Advanced Paid' : 'Paid After completion'}}
+              {{data?.advanced_date ? 'Advanced Paid' : 'Paid After completion'}}
               </ng-container>
 
               <ng-container *ngIf="data?.advanced_rejected_date">
@@ -181,6 +182,22 @@
 
               <br>
             </td>
+
+            <td>
+              <b>Bank
+                Name:</b> {{data?.group_owner_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
+              <br>
+              <b>Account
+                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || '-'}}
+              <br>
+              <b>Bank
+                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || '-'}}
+              <br>
+              <b>Sort
+                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || '-'}}
+              <br>
+            </td>
+
             <td>
               <b>Property Price:</b> {{data?.booking_id?.commission_price}}<br>
               <b>Advance Payment:</b> {{data?.advanced_price}}<br>

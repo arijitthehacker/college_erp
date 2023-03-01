@@ -18,6 +18,7 @@ export class RejectReasonComponent implements OnInit {
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  type;
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService
@@ -49,12 +50,22 @@ export class RejectReasonComponent implements OnInit {
       if (this.modalData) {
         obj[`_id`] = this.modalData._id;
       }
-      this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
-        this.message.toast('success', 'Cancelled Successfully!');
-        this.onClose.next(null);
-        this.bsModalRef.hide();
-      }, () => {
-      });
+      if (this.type == 'pending') {
+        obj.status = 'REJECTED';
+        this.http.putData(ApiUrl.managed_payment_request, obj).subscribe(() => {
+          this.message.toast('success', 'Cancelled Successfully!');
+          this.onClose.next(null);
+          this.bsModalRef.hide();
+        }, () => {
+        });
+      } else {
+        this.http.putData(ApiUrl.decline_advance_request, obj).subscribe(() => {
+          this.message.toast('success', 'Cancelled Successfully!');
+          this.onClose.next(null);
+          this.bsModalRef.hide();
+        }, () => {
+        });
+      }
     } else {
       this.showError = true;
     }

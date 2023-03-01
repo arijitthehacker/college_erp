@@ -18,6 +18,7 @@ export class ChangePasswordComponent implements OnInit {
   form: FormGroup;
   type;
   profileData;
+  showPass = false;
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService, public activatedRoute: ActivatedRoute) {

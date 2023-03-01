@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { MessageService } from 'src/app/services/message/message.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
-import { SIDEBAR } from '../../../core/constant';
+import { ROLES } from '../../../core/constant';
 import { CommonService } from '../../../services/commonService/common.service';
 
 @Component({
@@ -12,13 +12,53 @@ import { CommonService } from '../../../services/commonService/common.service';
 })
 export class SideBarComponent implements OnInit {
 
-  sideBar: any = SIDEBAR;
+  sideBar: any = ROLES;
   selectedIndex = 0;
   selectedRoute = 'appointments';
   showSideBar = false;
+  profileData: any = {};
 
   constructor(private message: MessageService, private modalService: BsModalService, private router: Router,
               public activatedRoute: ActivatedRoute, public commonService: CommonService) {
+
+    if (localStorage.getItem('profileData')) {
+      this.profileData = JSON.parse(localStorage.getItem('profileData'));
+      if (this.profileData.admin_type === 'SUB_ADMIN') {
+        this.setSideBar(this.profileData.web_roles);
+      } else {
+        this.sideBar = ROLES;
+      }
+    }
+
+  }
+
+  setSideBar(data) {
+    console.log(data, 'data');
+
+    let sideBar: any = [];
+    this.sideBar.forEach((val, key) => {
+      let children: any = [];
+      data?.forEach((val1, key1) => {
+
+        val?.children?.forEach((val2, key2) => {
+          val1?.sub_modules?.forEach((val3, key3) => {
+            if (val2.path == val3.name) {
+              console.log(val2.path, val3.name, '777777777', val2);
+              children.push(val2);
+            }
+          });
+        });
+        console.log(children, 'children');
+        val.children1 = children;
+        if (val.id === val1.name) {
+          sideBar.push(val);
+        }
+      });
+    });
+
+    this.sideBar = sideBar;
+
+    console.log(sideBar, 'roles');
   }
 
   ngOnInit() {
@@ -34,7 +74,6 @@ export class SideBarComponent implements OnInit {
         });
       }
     });
-
 
     this.optionClick(openedIndex, 2);
   }
