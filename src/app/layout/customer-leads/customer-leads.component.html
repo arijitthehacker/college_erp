@@ -68,6 +68,7 @@
             <th>Member Name</th>
             <th>Group Owner</th>
             <th>Agent Info</th>
+            <th>Gold Member Info</th>
             <th>Commission Status</th>
             <th>Property final price/Unit No.</th>
             <th style="min-width: 130px">Status</th>
@@ -125,14 +126,38 @@
                    class="my-link">{{data?.group_owner_id?.name || '-'}}</a>
               </ng-container>
             </td>
+
             <td>
-              <b>Group Owner:</b> {{data?.group_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}<br>
-              <b>Agent:</b> {{data?.agent_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}<br>
-              <b>Member:</b> {{data?.member_payment_status === 'PENDING' ? 'PENDING' : 'Transferred' }}
+
+              <a (click)="openMemberDetails(data?.gold_member_id, 'Gold Member',6)"
+                 class="my-link">{{data?.gold_member_id?.name || '-'}}</a>
+
+<!--              <ng-container *ngIf="data?.gold_member_id?.name ; else noData">-->
+<!--                <b>Name:</b> {{data?.gold_member_id?.name || '-'}}<br>-->
+<!--                <b>Phone No.</b>-->
+<!--                {{data?.gold_member_id?.country_code}}{{data?.gold_member_id?.phone_number || '-'}}-->
+<!--                <br>-->
+                <!--                <b>Email:</b> {{data?.gold_member_id?.email || '-'}}<br>-->
+                <!--                <b>Age:</b> {{data?.gold_member_id?.age || '-'}}<br>-->
+                <!--                <b>Account Name:</b> {{data?.gold_member_id?.account_name || '-'}}<br>-->
+                <!--                <b>Account Number:</b> {{data?.gold_member_id?.account_number || '-'}}<br>-->
+                <!--                <b>Bank Name:</b> {{data?.gold_member_id?.bank_name || '-'}}<br>-->
+                <!--                <b>Sort Code:</b> {{data?.gold_member_id?.sort_code || '-'}}<br>-->
+
+<!--              </ng-container>-->
+            </td>
+
+            <td>
+              <b>Group Owner:</b> {{data?.group_payment_status|titlecase }}
+              <br>
+              <b>Agent:</b> {{data?.agent_payment_status|titlecase}}<br>
+              <b>Member:</b> {{data?.member_payment_status |titlecase}}<br>
+              <b>Gold Member:</b> {{data?.gold_member_payment_status |titlecase }}
+
             </td>
             <td>
-              <b>Final Price.:</b> {{data?.commission_price }}<br>
-              <b>Unit No.:</b> {{data?.unit_no }}<br></td>
+              <b>Final Price.:</b> {{data?.commission_price || '-'}}<br>
+              <b>Unit No.:</b> {{data?.unit_no || '-'}}<br></td>
 
             <td>
               <label class="">
@@ -222,9 +247,10 @@
                     <a class="dropdown-item" (click)="openStatus(data)">View Status</a>
                   </li>
                   <!--                  *ngIf="!data?.commission_price"-->
-                  <li role="menuitem" *ngIf="data?.last_status_name !== 'pay_completed' && data?.last_status_name !== 'Contact Lead'">
+                  <li role="menuitem"
+                      *ngIf="data?.last_status_name !== 'pay_completed' && data?.last_status_name !== 'Contact Lead'">
                     <a class="dropdown-item" (click)="addFinal(data)">{{data?.commission_price ? 'Edit' : 'Add'}} final
-                      property price</a>
+                      property price/Unit No.</a>
                   </li>
                 </ul>
               </div>
@@ -268,3 +294,8 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #noData>
+  -
+</ng-template>

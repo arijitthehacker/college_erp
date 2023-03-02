@@ -43,7 +43,7 @@ export class AddNewPropertyComponent implements OnInit {
   addresses: any = [];
   id;
   savedData: any;
-
+  addressData: any = {};
   categories: any = [];
   developers: any = [];
   commissions: any = [];
@@ -138,6 +138,7 @@ export class AddNewPropertyComponent implements OnInit {
         this.addresses = [];
         if (res?.data?.data?.length) {
           this.addresses = res.data.data[0];
+          this.addressData = res.data.data[0];
           this.form2.patchValue({
             name: this.addresses.name,
             lng: this.addresses.location.coordinates[0],
@@ -222,7 +223,11 @@ export class AddNewPropertyComponent implements OnInit {
       if (this.modalData) {
         obj[`property_id`] = this.modalData._id;
       }
-      this.http.postData(ApiUrl.add_edit_peroperty_address, obj).subscribe(() => {
+      if (this.addressData) {
+        obj[`_id`] = this.addressData._id;
+      }
+      this.http.postData(ApiUrl.add_edit_peroperty_address, obj).subscribe(res => {
+        this.addressData = res.data;
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.form2.reset();

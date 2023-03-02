@@ -47,6 +47,7 @@
             <option value="EARLY_REJECTED">Advance Rejected</option>
             <option value="EARLY_COMPLETED">Advance Approved</option>
             <option value="COMPLETED">Payout Complete</option>
+            <option value="REJECTED">Payout Rejected</option>
           </select>
 
         </div>
@@ -62,6 +63,7 @@
             <option value="AGENT">Agent</option>
             <option value="MEMEBER">Member</option>
             <option value="GROUP_OWNER">Group Owner</option>
+            <option value="GOLD_MEMEBER">Gold Member</option>
           </select>
         </div>
         <div class="col-md-3 sm-input-space">
@@ -83,10 +85,12 @@
             <th style="width:60px">Date & Time</th>
             <th class="col-width">Property Info</th>
             <th class="col-width">Transferred To</th>
+
             <th class="col-width">Member Info</th>
             <th class="col-width">Group Info</th>
             <th class="col-width">Agent Info</th>
             <th class="col-width">Customer Info</th>
+            <th class="col-width">Gold Member Info</th>
             <th class="col-width">Proof of Transaction</th>
             <th class="col-width">Transaction Details</th>
             <th class="col-width">Bank Details</th>
@@ -107,27 +111,37 @@
               <ng-container *ngIf="data?.group_owner_id?.name">Group Owner</ng-container>
               <ng-container *ngIf="data?.agent_id?.name">Agent</ng-container>
               <ng-container *ngIf="data?.member_id?.name">Member</ng-container>
+                   <ng-container *ngIf="data?.gold_member_id?.name">Gold Member</ng-container>
               </span>
               <br>
-              <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name}}<br>
+              <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name}}
+              <br>
               <b>Phone No.</b>
-              {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code}}
-              {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number}}
+              {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code || data?.gold_member_id?.country_code}}
+              {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number || data?.gold_member_id?.phone_number}}
               <br>
 
               <ng-container *ngIf="!data?.advanced_rejected_date">
-              <b class="highlighted-text">Completed On:</b> {{data?.time |date:'short'}}
-              {{data?.advanced_date ? 'Advanced Paid' : 'Paid After completion'}}
+                <b class="highlighted-text">Completed On:</b> {{data?.time |date:'short'}}
+
+                <br>
+                <ng-container *ngIf="data?.status != 'REJECTED'">
+                  {{data?.advanced_date ? 'Advanced Paid' : 'Paid After completion'}}
+                </ng-container>
+
+                <ng-container *ngIf="!data?.advanced_date && data?.status == 'REJECTED'">
+                  Payout Rejected
+                </ng-container>
+
               </ng-container>
 
               <ng-container *ngIf="data?.advanced_rejected_date">
-              <b class="highlighted-text">Rejected On:</b> {{data?.advanced_rejected_date |date:'short'}}
+                <b class="highlighted-text">Rejected On:</b> {{data?.advanced_rejected_date |date:'short'}}
                 <br>
-              Advance request rejected
+                Advance request rejected
               </ng-container>
-
-
             </td>
+
 
             <td>
               <ng-container *ngIf="data?.booking_id?.member_id?.name ; else noData">
@@ -137,6 +151,7 @@
                 <br>
               </ng-container>
             </td>
+
             <td>
               <ng-container *ngIf="data?.booking_id?.group_owner_id?.name ; else noData">
                 <b>Name:</b> {{data?.booking_id?.group_owner_id?.name || '-'}}<br>
@@ -161,6 +176,21 @@
                 <br>
               </ng-container>
             </td>
+            <td>
+              <ng-container *ngIf="data?.gold_member_id?.name ; else noData">
+                <b>Name:</b> {{data?.gold_member_id?.name || '-'}}<br>
+                <b>Phone No.</b>
+                {{data?.gold_member_id?.country_code}}{{data?.gold_member_id?.phone_number || '-'}}
+                <br>
+                <!--                <b>Email:</b> {{data?.gold_member_id?.email || '-'}}<br>-->
+                <!--                <b>Age:</b> {{data?.gold_member_id?.age || '-'}}<br>-->
+                <!--                <b>Account Name:</b> {{data?.gold_member_id?.account_name || '-'}}<br>-->
+                <!--                <b>Account Number:</b> {{data?.gold_member_id?.account_number || '-'}}<br>-->
+                <!--                <b>Bank Name:</b> {{data?.gold_member_id?.bank_name || '-'}}<br>-->
+                <!--                <b>Sort Code:</b> {{data?.gold_member_id?.sort_code || '-'}}<br>-->
+
+              </ng-container>
+            </td>
 
             <td>
               <img [src]="data.transaction_image || '/assets/images/no-img.webp'" class="proof-img"
@@ -168,6 +198,7 @@
                    (click)="commonService.openLightBox(data.transaction_image)">
               <ng-container *ngIf="!data.transaction_image">-</ng-container>
             </td>
+
             <td>
               <ng-container *ngIf="data?.transaction_id">
                 <b>Transaction id:</b> {{data?.transaction_id || '-'}}<br>
@@ -178,23 +209,22 @@
                 <b>Rejection Comment:</b> {{data?.rejected_comment || '-'}}
               </ng-container>
               <br>
-              <b>Unit No.:</b> {{data?.unit_no || '-'}}
 
               <br>
             </td>
 
             <td>
               <b>Bank
-                Name:</b> {{data?.group_owner_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
+                Name:</b> {{data?.group_owner_id?.bank_name || data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
               <br>
               <b>Account
-                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || '-'}}
+                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || data?.gold_member_id?.account_name || '-'}}
               <br>
               <b>Bank
-                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || '-'}}
+                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || data?.gold_member_id?.account_number || '-'}}
               <br>
               <b>Sort
-                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || '-'}}
+                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || data?.gold_member_id?.sort_code || '-'}}
               <br>
             </td>
 
@@ -202,6 +232,7 @@
               <b>Property Price:</b> {{data?.booking_id?.commission_price}}<br>
               <b>Advance Payment:</b> {{data?.advanced_price}}<br>
               <b>Pending Payment:</b> {{data?.total_price - data?.advanced_price}}<br>
+              <b>Unit No.:</b> {{data?.unit_no || '-'}}
             </td>
 
           </tr>

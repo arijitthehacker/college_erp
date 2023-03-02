@@ -73,10 +73,32 @@ export class CustomerLeadsComponent implements OnInit {
     }
 
     this.http.getData(ApiUrl.list_customer_request, obj).subscribe(res => {
+
+      // res.data.data.forEach((val) => {
+      //   val.agent_payment_status = this.checkStatus(val.agent_payment_status);
+      // });
+
       this.allData = res.data.data;
+
       this.pagination.count = res.data.total_count;
     }, () => {
     });
+  }
+
+  checkStatus(data) {
+    let returnValue = '';
+    switch (data) {
+      case 'PENDING':
+        returnValue = 'Pending';
+        break;
+      case 'REJECTED':
+        returnValue = 'Rejected';
+        break;
+      default:
+        returnValue = 'Pending';
+        break;
+    }
+    return data;
   }
 
   blockUnblock(data: any) {

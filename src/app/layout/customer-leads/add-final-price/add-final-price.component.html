@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    {{modalData ? 'Edit' : 'Add'}} final property price
+    {{modalData?.commission_price ? 'Edit' : 'Add'}} final property price
   </h4>
 </div>
 
@@ -33,6 +33,6 @@
 
   <div class="modal-footer">
     <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
-    <button type="submit" class="btn btn-blue-outline">{{modalData ? "Update" : 'Submit'}}</button>
+    <button type="submit" class="btn btn-blue-outline">{{modalData?.commission_price ? "Update" : 'Submit'}}</button>
   </div>
 </form>

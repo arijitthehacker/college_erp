@@ -80,6 +80,7 @@ export class TransactionHistoryComponent implements OnInit {
     let obj: any = {
       skip: this.pagination.skip,
       type: 'ALL',
+      category: 'ALL',
       is_pagination: false
     };
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
@@ -98,18 +99,21 @@ export class TransactionHistoryComponent implements OnInit {
           'Member Phone No.': data?.booking_id?.member_id?.phone_number,
           'Group Owner Name': data?.booking_id?.group_owner_id?.name,
           'Group Owner Phone No.': data?.booking_id?.group_owner_id?.phone_number,
+          'Gold Member Name': data?.booking_id?.gold_member_id?.name,
+          'Gold Member Phone No.': data?.booking_id?.gold_member_id?.phone_number,
           'Agent Name': data?.booking_id?.agent_id?.name,
           'Agent Phone No.': data?.booking_id?.agent_id?.phone_number,
           'Customer Name': data?.booking_id?.name,
           'Customer Phone No': data?.booking_id?.phone_number,
+          // 'Property Price': data?.commission_price,
           'Transaction Image': data.transaction_image,
           'Transaction Id': data?.transaction_id,
           'Transaction Comment': data?.transaction_comment,
-          'Property Price': data?.commission_price,
+          'Rejected Comment': data?.rejected_comment,
+          'Property final price': data?.booking_id?.commission_price,
           'Advance Payment': data?.advanced_price,
           'Pending Payment': data?.total_price - data?.advanced_price,
-          'Unit No.': data?.unit_no,
-          'Rejected Comment': data?.rejected_comment
+          'Unit No.': data?.unit_no
         });
       });
       this.http.postData(ApiUrl.export_json_csv, {data: temp}).subscribe(res1 => {

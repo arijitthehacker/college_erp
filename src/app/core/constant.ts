@@ -100,7 +100,7 @@ export const ROLES = [
   },
 
   {
-    path: '', id: 'recycle_bin', name: 'Recycle Bin', icon: 'fa-recycle', isSelected: false
+    path: 'recycle-bin', id: 'recycle_bin', name: 'Recycle Bin', icon: 'fa-recycle', isSelected: false
   },
 
   {

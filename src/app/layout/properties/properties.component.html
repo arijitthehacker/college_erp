@@ -52,15 +52,8 @@
           <tbody>
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-            <td>
-
-             {{( pagination.pageNo - 1 ) * 10 + i + 1}}
-            </td>
-
-            <td>
-              {{data?.se_no}}
-            </td>
-
+            <td>{{( pagination.pageNo - 1 ) * 10 + i + 1}}</td>
+            <td>{{data?.se_no || '-'}}</td>
             <td>
               <img [src]="data.cover_image || commonService.CONSTANT.no_image" class="small-img"
                    (click)="commonService.openLightBox(data.cover_image)">
@@ -76,13 +69,10 @@
             <td>
               <a class="my-link" (click)="openProDetails(data)">View Property Details</a>
             </td>
-
             <!--            <td class="edit-section">-->
 
             <td class="dots-area">
               <div class="btn-group" dropdown>
-
-
                 <i dropdownToggle class=" fa fa-ellipsis-v"
                    aria-controls="dropdown-animated" aria-hidden="true" style="cursor: pointer;">
                 </i>
