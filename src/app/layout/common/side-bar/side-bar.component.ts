@@ -62,7 +62,7 @@ export class SideBarComponent implements OnInit {
             }
           });
         });
-        val.children1 = children;
+        val.children1 = children?.length ? children : null;
         if (val.id === val1.name) {
           sideBar.push(val);
         }
@@ -78,7 +78,7 @@ export class SideBarComponent implements OnInit {
     console.log(data, 'data1111');
     let sideBar: any = [];
     this.sideBar.forEach((val, key) => {
-              val.children1 = val?.children;
+      val.children1 = val?.children;
     });
     console.log(sideBar, 'roles');
   }
