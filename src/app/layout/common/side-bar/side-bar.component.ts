@@ -75,30 +75,11 @@ export class SideBarComponent implements OnInit {
   }
 
   setSuperAdminSideBar(data) {
-    console.log(data, 'data');
-
+    console.log(data, 'data1111');
     let sideBar: any = [];
     this.sideBar.forEach((val, key) => {
-      let children: any = [];
-      data?.forEach((val1, key1) => {
-
-        // val?.children?.forEach((val2, key2) => {
-        //   val1?.sub_modules?.forEach((val3, key3) => {
-        //     if (val2.id == val3.name) {
-        //       console.log(val2.path, val3.name, '777777777', val2);
-        //       children.push(val2);
-        //     }
-        //   });
-        // });
-        val.children1 = val?.children;
-        if (val.id === val1.name) {
-          sideBar.push(val);
-        }
-      });
+              val.children1 = val?.children;
     });
-
-    this.sideBar = sideBar;
-
     console.log(sideBar, 'roles');
   }
 
