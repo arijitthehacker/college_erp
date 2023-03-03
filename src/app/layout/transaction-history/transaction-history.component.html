@@ -43,7 +43,7 @@
           <!--          </select>-->
 
           <select class="form-control" [(ngModel)]="history_type" (change)="pagination.pageNo =1;getData()">
-            <option value="">All Types</option>
+            <option value="ALL">All Types</option>
             <option value="EARLY_REJECTED">Advance Rejected</option>
             <option value="EARLY_COMPLETED">Advance Approved</option>
             <option value="COMPLETED">Payout Complete</option>
@@ -89,8 +89,8 @@
             <th class="col-width">Member Info</th>
             <th class="col-width">Group Info</th>
             <th class="col-width">Agent Info</th>
-            <th class="col-width">Customer Info</th>
             <th class="col-width">Gold Member Info</th>
+            <th class="col-width">Customer Info</th>
             <th class="col-width">Proof of Transaction</th>
             <th class="col-width">Transaction Details</th>
             <th class="col-width">Bank Details</th>
@@ -169,26 +169,20 @@
               </ng-container>
             </td>
             <td>
-              <ng-container *ngIf="data?.booking_id?.name ; else noData">
-                <b>Name:</b> {{data?.booking_id?.name || '-'}}<br>
-                <b>Phone
-                  No.:</b> {{data?.booking_id?.country_code || '-'}}{{data?.booking_id?.phone_number || '-'}}
-                <br>
-              </ng-container>
-            </td>
-            <td>
               <ng-container *ngIf="data?.gold_member_id?.name ; else noData">
                 <b>Name:</b> {{data?.gold_member_id?.name || '-'}}<br>
                 <b>Phone No.</b>
                 {{data?.gold_member_id?.country_code}}{{data?.gold_member_id?.phone_number || '-'}}
                 <br>
-                <!--                <b>Email:</b> {{data?.gold_member_id?.email || '-'}}<br>-->
-                <!--                <b>Age:</b> {{data?.gold_member_id?.age || '-'}}<br>-->
-                <!--                <b>Account Name:</b> {{data?.gold_member_id?.account_name || '-'}}<br>-->
-                <!--                <b>Account Number:</b> {{data?.gold_member_id?.account_number || '-'}}<br>-->
-                <!--                <b>Bank Name:</b> {{data?.gold_member_id?.bank_name || '-'}}<br>-->
-                <!--                <b>Sort Code:</b> {{data?.gold_member_id?.sort_code || '-'}}<br>-->
+              </ng-container>
+            </td>
 
+            <td>
+              <ng-container *ngIf="data?.booking_id?.name ; else noData">
+                <b>Name:</b> {{data?.booking_id?.name || '-'}}<br>
+                <b>Phone
+                  No.:</b> {{data?.booking_id?.country_code || '-'}}{{data?.booking_id?.phone_number || '-'}}
+                <br>
               </ng-container>
             </td>
 

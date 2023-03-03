@@ -21,7 +21,7 @@ export class TransactionHistoryComponent implements OnInit {
   pagination = new PaginationControls();
   search = '';
   type = '';
-  history_type = '';
+  history_type = 'ALL';
   dates = new FormControl([]);
   currentDate = new Date();
   prevDate = new Date();
@@ -47,14 +47,14 @@ export class TransactionHistoryComponent implements OnInit {
     this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
     let obj: any = {
       skip: this.pagination.skip,
-      type: 'ALL'
+      type: 'COMPLETED'
     };
     if (this.search) {
       obj.search = this.search;
     }
-    if (this.type) {
-      obj.type = this.type;
-    }
+    // if (this.type) {
+    //   obj.type = this.type;
+    // }
     if (this.history_type) {
       obj.history_type = this.history_type;
     }
@@ -81,6 +81,7 @@ export class TransactionHistoryComponent implements OnInit {
       skip: this.pagination.skip,
       type: 'COMPLETED',
       category: 'ALL',
+      history_type: 'ALL',
       is_pagination: false
     };
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
@@ -99,17 +100,22 @@ export class TransactionHistoryComponent implements OnInit {
           'Member Phone No.': data?.booking_id?.member_id?.phone_number,
           'Group Owner Name': data?.booking_id?.group_owner_id?.name,
           'Group Owner Phone No.': data?.booking_id?.group_owner_id?.phone_number,
-          'Gold Member Name': data?.booking_id?.gold_member_id?.name,
-          'Gold Member Phone No.': data?.booking_id?.gold_member_id?.phone_number,
           'Agent Name': data?.booking_id?.agent_id?.name,
           'Agent Phone No.': data?.booking_id?.agent_id?.phone_number,
+          'Gold Member Name': data?.booking_id?.gold_member_id?.name || '',
+          'Gold Member Phone No.': data?.booking_id?.gold_member_id?.phone_number || '',
           'Customer Name': data?.booking_id?.name,
           'Customer Phone No': data?.booking_id?.phone_number,
+
           // 'Property Price': data?.commission_price,
           'Transaction Image': data.transaction_image,
           'Transaction Id': data?.transaction_id,
           'Transaction Comment': data?.transaction_comment,
           'Rejected Comment': data?.rejected_comment,
+          'Bank Name': data?.group_owner_id?.bank_name || data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '',
+          'Account Name': data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || data?.gold_member_id?.account_name || '',
+          'Bank Account': data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || data?.gold_member_id?.account_number || '',
+          'Sort Code': data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || data?.gold_member_id?.sort_code || '',
           'Property final price': data?.booking_id?.commission_price,
           'Advance Payment': data?.advanced_price,
           'Pending Payment': data?.total_price - data?.advanced_price,
