@@ -3,7 +3,6 @@ import { Location } from '@angular/common';
 import { CONSTANT } from '../../core/constant';
 import { MessageService } from '../message/message.service';
 import { Lightbox } from 'ngx-lightbox';
-import * as CryptoJS from 'crypto-js';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 

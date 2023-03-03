@@ -35,7 +35,7 @@ export class AddAdminComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required,Validators.email])],
       name: ['', Validators.required],
       password: ['', this.savedData ? Validators.required : '']
     });

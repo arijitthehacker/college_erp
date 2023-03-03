@@ -25,11 +25,11 @@ import { HHMMSSPipe } from './pipe/hhmmss/hhmmss.pipe';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { TagInputModule } from 'ngx-chips';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { TextMaskModule } from 'angular2-text-mask';
 import { ProDetailsComponent } from '../layout/properties/pro-details/pro-details.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ChangeMemberPasswordComponent } from './components/change-member-password/change-member-password.component';
+
 
 const directives = [NumberOnlyDirective, AmountDirective, NoRecordComponent, ReplaceUnderscorePipe,
   SeeMoreComponent, HHMMSSPipe, CapitalizeFirstDirective, ProDetailsComponent,
@@ -37,7 +37,7 @@ const directives = [NumberOnlyDirective, AmountDirective, NoRecordComponent, Rep
 
 const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPaginationModule,
   NgSelectModule, FormsModule, NgxIntlTelInputModule, AutocompleteLibModule,
-  TagInputModule, TooltipModule, TextMaskModule,AngularEditorModule
+  TagInputModule, TooltipModule,AngularEditorModule
 ];
 
 @NgModule({
