@@ -49,7 +49,14 @@
 
           <div class="form-group col-md-4">
             <label class="login-label required">Password</label>
-            <input class="form-control" formControlName="password" type="password"
+
+            <div class="eye-icons">
+              <img src="/assets/images/eye-on.jpg" *ngIf="showPass" (click)="showPass =false">
+              <img src="/assets/images/eye-off.png" *ngIf="!showPass" (click)="showPass =true">
+            </div>
+
+            <input class="form-control" formControlName="password"
+                   [type]="showPass ? 'text' :'password'"
                    placeholder="Enter password"/>
             <div class="text-error" *ngIf="form.controls['password'].errors?.required && showError">
               This field is required.

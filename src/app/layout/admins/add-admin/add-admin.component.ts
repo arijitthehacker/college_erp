@@ -18,6 +18,7 @@ export class AddAdminComponent implements OnInit {
   showError = false;
   form: FormGroup;
   savedData;
+  showPass = false;
   roles: any = JSON.parse(JSON.stringify(ROLES));
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
@@ -49,7 +50,7 @@ export class AddAdminComponent implements OnInit {
     this.roles.forEach((val, key) => {
 
       let index = findIndex(data, (e: any) => {
-        return e.name == val.path;
+        return e.name == val.id;
       }, 0);
       // console.log(index, 'index');
 
@@ -57,12 +58,14 @@ export class AddAdminComponent implements OnInit {
         val.isSelected = true;
       }
       if (val.isSelected) {
+
+        console.log(val?.children,'11111');
         val?.children?.forEach((val1) => {
 
           console.log(this.savedData.roles[index].sub_modules, 'val.sub_modules');
 
           let index1 = findIndex(this.savedData.roles[index].sub_modules, (e: any) => {
-            return e.name == val1.path;
+            return e.name == val1.id;
           }, 0);
           console.log(index1, 'index1');
 

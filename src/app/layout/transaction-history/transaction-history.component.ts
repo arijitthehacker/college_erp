@@ -79,7 +79,7 @@ export class TransactionHistoryComponent implements OnInit {
   exportData() {
     let obj: any = {
       skip: this.pagination.skip,
-      type: 'ALL',
+      type: 'COMPLETED',
       category: 'ALL',
       is_pagination: false
     };

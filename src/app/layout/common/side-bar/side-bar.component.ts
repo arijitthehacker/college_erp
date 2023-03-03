@@ -24,9 +24,10 @@ export class SideBarComponent implements OnInit {
     if (localStorage.getItem('profileData')) {
       this.profileData = JSON.parse(localStorage.getItem('profileData'));
       if (this.profileData.admin_type === 'SUB_ADMIN') {
-        this.setSideBar(this.profileData.web_roles);
+        this.setSubSideBar(this.profileData.web_roles);
       } else {
-        this.sideBar = ROLES;
+        // this.sideBar = ROLES;
+        this.setSuperAdminSideBar(this.profileData.web_roles);
       }
     }
 
@@ -42,12 +43,10 @@ export class SideBarComponent implements OnInit {
         });
       }
     });
-    console.log(openedIndex,'openedIndex');
     this.optionClick(openedIndex, 2);
-
   }
 
-  setSideBar(data) {
+  setSubSideBar(data) {
     console.log(data, 'data');
 
     let sideBar: any = [];
@@ -57,14 +56,41 @@ export class SideBarComponent implements OnInit {
 
         val?.children?.forEach((val2, key2) => {
           val1?.sub_modules?.forEach((val3, key3) => {
-            if (val2.path == val3.name) {
+            if (val2.id == val3.name) {
               console.log(val2.path, val3.name, '777777777', val2);
               children.push(val2);
             }
           });
         });
-        console.log(children, 'children');
         val.children1 = children;
+        if (val.id === val1.name) {
+          sideBar.push(val);
+        }
+      });
+    });
+
+    this.sideBar = sideBar;
+
+    console.log(sideBar, 'roles');
+  }
+
+  setSuperAdminSideBar(data) {
+    console.log(data, 'data');
+
+    let sideBar: any = [];
+    this.sideBar.forEach((val, key) => {
+      let children: any = [];
+      data?.forEach((val1, key1) => {
+
+        // val?.children?.forEach((val2, key2) => {
+        //   val1?.sub_modules?.forEach((val3, key3) => {
+        //     if (val2.id == val3.name) {
+        //       console.log(val2.path, val3.name, '777777777', val2);
+        //       children.push(val2);
+        //     }
+        //   });
+        // });
+        val.children1 = val?.children;
         if (val.id === val1.name) {
           sideBar.push(val);
         }
