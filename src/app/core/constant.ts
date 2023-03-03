@@ -124,7 +124,7 @@ export const ROLES = [
   {
     path: '', id: 'controle_management', name: 'Control Management', icon: 'fa-sliders', isSelected: false, children: [
       {path: 'settings', id: 'controle_management_settings', name: 'Settings', icon: 'fa fa-cog', isSelected: false},
-      {path: 'admins', id: 'admins', name: 'Admins', icon: 'fa fa-user', isSelected: false},
+      {path: 'admins', id: 'admins', name: 'Admins', icon: 'fa fa-user', isSelected: false, notShowInAdd:true},
       {
         path: 'purposes', id: 'controle_management_peroperty_pupose', name: 'Property Purposes',
         icon: 'fa fa-user-secret', isSelected: false
