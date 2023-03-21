@@ -62,6 +62,10 @@
               <br>
             </td>
             <td class="edit-section">
+              <div>
+                <i (click)="addEditModalOpen(data)" class="fa fa-edit"></i>
+              </div>
+
               <div (click)="blockUnblock(data)">
                 <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
                 <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>

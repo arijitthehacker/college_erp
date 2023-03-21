@@ -7,8 +7,11 @@ import { ConstMsg } from 'src/app/core/ConstMsg';
 import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
-import { ForgotPasswordComponent } from '../../public/login/forgot-password/forgot-password.component';
-import { ChangeMemberPasswordComponent } from '../../shared/components/change-member-password/change-member-password.component';
+import {
+  ChangeMemberPasswordComponent
+} from '../../shared/components/change-member-password/change-member-password.component';
+import { AddOwnerComponent } from '../owners/add-owner/add-owner.component';
+import { EditMemberComponent } from './edit-member/edit-member.component';
 
 @Component({
   selector: 'app-accounts',
@@ -98,10 +101,19 @@ export class MembersComponent implements OnInit {
 
   openChangePassword(modalData?: any) {
     const modalRef = this.modalService.show(ChangeMemberPasswordComponent, {
-      initialState: {modalData: modalData,apiUrl : ApiUrl.managed_members},
+      initialState: {modalData: modalData, apiUrl: ApiUrl.managed_members},
       backdrop: 'static',
       keyboard: false,
       class: 'modal-md'
+    });
+  }
+
+  addEditModalOpen(data?: any) {
+    const modalRef = this.modalService.show(EditMemberComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+    });
+    modalRef.content.onClose.subscribe(() => {
+      this.getData();
     });
   }
 

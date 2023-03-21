@@ -7,20 +7,20 @@ import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../../services/commonService/common.service';
+import { CountryISO } from 'ngx-intl-tel-input';
+import { CONSTANT } from '../../../core/constant';
 
 @Component({
   selector: 'app-add-account',
-  templateUrl: './add-pro-address.component.html'
+  templateUrl: './edit-member.component.html'
 })
-export class AddProAddressComponent implements OnInit {
+export class EditMemberComponent implements OnInit {
 
   showError = false;
+  CountryISO = CountryISO;
   form: FormGroup;
-  public onClose: Subject<any> = new Subject();
+  public onClose: Subject<{}> = new Subject();
   modalData: any;
-  propertyData: any;
-  cities: any = [];
-  states: any = [];
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
@@ -28,17 +28,14 @@ export class AddProAddressComponent implements OnInit {
 
   ngOnInit() {
     this.makeForm();
-    this.getStateData();
-    this.getCityData();
   }
 
   makeForm() {
     this.form = this.fb.group({
-      lng: ['', Validators.required],
-      name: ['', Validators.required],
-      state_id: ['', Validators.required],
-      city_id: ['', Validators.required],
-      lat: ['', Validators.required]
+      email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
+      phone_number: ['', Validators.required],
+      image: ['', Validators.required],
+      name: ['', [Validators.required]]
     });
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -47,11 +44,10 @@ export class AddProAddressComponent implements OnInit {
 
   patchData(data) {
     this.form.patchValue({
-      lng: data.location.coordinates[0],
-      state_id: this.propertyData.state_id._id,
-      city_id: this.propertyData.city_id._id,
+      email: data.email,
       name: data.name,
-      lat: data.location.coordinates[1]
+      image: data.image,
+      phone_number: data.phone_number
     });
   }
 
@@ -61,10 +57,13 @@ export class AddProAddressComponent implements OnInit {
       if (this.modalData) {
         obj[`_id`] = this.modalData._id;
       }
-      obj[`property_id`] = this.propertyData._id;
 
-      this.http.postData(ApiUrl.add_edit_peroperty_address, obj).subscribe(() => {
-        this.onClose.next({type: 'openAddressList'});
+      obj.iso_code = obj.phone_number.countryCode;
+      obj.country_code = obj.phone_number.dialCode;
+      obj.phone_number = obj.phone_number.number;
+
+      this.http.putData(ApiUrl.managed_members, obj).subscribe(() => {
+        this.onClose.next(null);
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.bsModalRef.hide();
@@ -75,20 +74,17 @@ export class AddProAddressComponent implements OnInit {
     }
   }
 
-  getStateData() {
-    this.http.getData(ApiUrl.list_states).subscribe(res => {
-      this.states = res.data.data;
+  selectImage(event: any, id) {
+    this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
+      this.form.controls.image.patchValue(response.data.original);
+    }, () => {
     });
   }
 
-  getCityData() {
-    if (this.form?.value?.state_id) {
-      this.http.getData(ApiUrl.list_cities, {state_id: this.form.value.state_id}).subscribe(res => {
-        this.cities = res.data.data;
-      });
-    }
+  removeImage(id) {
+    document.getElementById(id)[`value`] = '';
+    this.form.controls.image.patchValue('');
   }
-
 }
 
 

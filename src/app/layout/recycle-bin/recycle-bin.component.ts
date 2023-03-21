@@ -53,7 +53,6 @@ export class RecycleBinComponent implements OnInit {
 
     this.http.getData(ApiUrl.list_trash_data, obj).subscribe(res => {
       this.allData = res.data.data;
-      console.log(this.allData, ' this.allData ');
       this.pagination.count = res.data.total_count;
     });
   }

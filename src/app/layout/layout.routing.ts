@@ -29,7 +29,7 @@ const routes: Routes = [
         path: 'banners',
         loadChildren: () => import('./banners/banners.module').then(m => m.BannersModule),
         data: {breadcrumb: 'Banners', title: 'banner'}
-      },{
+      }, {
         path: 'admins',
         loadChildren: () => import('./admins/admins.module').then(m => m.AdminsModule),
         data: {breadcrumb: 'Admins', title: 'admin'}
@@ -37,6 +37,10 @@ const routes: Routes = [
         path: 'members',
         loadChildren: () => import('./members/members.module').then(m => m.MembersModule),
         data: {breadcrumb: 'Members', title: 'member'}
+      }, {
+        path: 'location',
+        loadChildren: () => import('./location/location.module').then(m => m.LocationModule),
+        data: {breadcrumb: 'Locations', title: 'location'}
       }, {
         path: 'properties',
         loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule),
@@ -53,7 +57,7 @@ const routes: Routes = [
         path: 'purposes',
         loadChildren: () => import('./purposes/purposes.module').then(m => m.PurposesModule),
         data: {breadcrumb: 'Property Purposes', title: 'purpose'}
-      },{
+      }, {
         path: 'recycle-bin',
         loadChildren: () => import('./recycle-bin/recycle-bin.module').then(m => m.RecycleBinModule),
         data: {breadcrumb: 'Recycle Bin', title: 'Recycle Bin'}

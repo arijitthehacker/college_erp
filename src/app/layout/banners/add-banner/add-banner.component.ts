@@ -18,6 +18,7 @@ export class AddBannerComponent implements OnInit {
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  properties: any = [];
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
@@ -25,11 +26,19 @@ export class AddBannerComponent implements OnInit {
 
   ngOnInit() {
     this.makeForm();
+    this.getProperties();
+  }
+
+  getProperties() {
+    this.http.getData(ApiUrl.list_properties, {is_pagination: false}).subscribe(res => {
+      this.properties = res.data.data;
+    });
   }
 
   makeForm() {
     this.form = this.fb.group({
       image: ['', Validators.required],
+      property_id: ['', Validators.required],
       se_no: ['', Validators.required]
     });
     if (this.modalData) {
@@ -40,6 +49,7 @@ export class AddBannerComponent implements OnInit {
   patchData(data) {
     this.form.patchValue({
       image: data.image,
+      property_id: data.property_id._id,
       se_no: data.se_no
     });
   }

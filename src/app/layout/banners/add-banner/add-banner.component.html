@@ -19,6 +19,19 @@
       </div>
 
       <div class="col-md-12 form-group">
+        <label class="required set-label"> Select Property</label>
+        <select class="form-control" formControlName="property_id">
+          <option value="">Select Property</option>
+          <option *ngFor="let data of properties" [value]="data._id">
+            {{data?.name}}
+          </option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['property_id'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
         <label class="required">Image</label>
         <div class="product-images">
           <input type="file" class="file-upload" id="image"

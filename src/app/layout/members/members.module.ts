@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MembersComponent } from './members.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EditMemberComponent } from './edit-member/edit-member.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     MembersComponent,
+    EditMemberComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   entryComponents: [
-
+    EditMemberComponent
   ]
 })
 export class MembersModule {

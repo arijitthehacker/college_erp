@@ -44,6 +44,8 @@ export class AddNewPropertyComponent implements OnInit {
   id;
   savedData: any;
   addressData: any = {};
+  states: any = [];
+  cities: any = [];
   categories: any = [];
   developers: any = [];
   commissions: any = [];
@@ -100,6 +102,7 @@ export class AddNewPropertyComponent implements OnInit {
     this.makeForm5();
     this.makeForm6();
     this.categoryList();
+    this.getStateData();
     this.devsList();
     this.commissionList();
 
@@ -110,6 +113,15 @@ export class AddNewPropertyComponent implements OnInit {
   }
 
   gotoNext(flag) {
+    if (flag === 3) {
+      if (this.form2.valid) {
+        this.form2Submit();
+      } else {
+        this.form2Submit();
+        return;
+      }
+
+    }
     this.selectedTab = flag;
   }
 
@@ -211,10 +223,26 @@ export class AddNewPropertyComponent implements OnInit {
 
   makeForm2() {
     this.form2 = this.fb.group({
+      state_id: ['', Validators.required],
+      city_id: ['', Validators.required],
       lng: ['', Validators.required],
       name: ['', Validators.required],
       lat: ['', Validators.required]
     });
+  }
+
+  getStateData() {
+    this.http.getData(ApiUrl.list_states).subscribe(res => {
+      this.states = res.data.data;
+    });
+  }
+
+  getCityData() {
+    if (this.form2?.value?.state_id) {
+      this.http.getData(ApiUrl.list_cities, {state_id: this.form2.value.state_id}).subscribe(res => {
+        this.cities = res.data.data;
+      });
+    }
   }
 
   form2Submit() {

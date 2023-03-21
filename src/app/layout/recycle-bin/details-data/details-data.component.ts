@@ -16,7 +16,6 @@ export class DetailsDataComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.modalData, 'modalDatamodalData');
   }
 
 }

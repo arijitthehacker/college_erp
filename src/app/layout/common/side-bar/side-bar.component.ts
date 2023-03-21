@@ -47,17 +47,13 @@ export class SideBarComponent implements OnInit {
   }
 
   setSubSideBar(data) {
-    console.log(data, 'data');
-
     let sideBar: any = [];
     this.sideBar.forEach((val, key) => {
       let children: any = [];
       data?.forEach((val1, key1) => {
-
         val?.children?.forEach((val2, key2) => {
           val1?.sub_modules?.forEach((val3, key3) => {
             if (val2.id == val3.name) {
-              console.log(val2.path, val3.name, '777777777', val2);
               children.push(val2);
             }
           });
@@ -68,19 +64,14 @@ export class SideBarComponent implements OnInit {
         }
       });
     });
-
     this.sideBar = sideBar;
-
-    console.log(sideBar, 'roles');
   }
 
   setSuperAdminSideBar(data) {
-    console.log(data, 'data1111');
     let sideBar: any = [];
     this.sideBar.forEach((val, key) => {
       val.children1 = val?.children;
     });
-    console.log(sideBar, 'roles');
   }
 
   ngOnInit() {

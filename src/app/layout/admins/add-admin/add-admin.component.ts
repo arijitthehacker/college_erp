@@ -52,23 +52,15 @@ export class AddAdminComponent implements OnInit {
       let index = findIndex(data, (e: any) => {
         return e.name == val.id;
       }, 0);
-      // console.log(index, 'index');
 
       if (index >= 0) {
         val.isSelected = true;
       }
       if (val.isSelected) {
-
-        console.log(val?.children,'11111');
         val?.children?.forEach((val1) => {
-
-          console.log(this.savedData.roles[index].sub_modules, 'val.sub_modules');
-
           let index1 = findIndex(this.savedData.roles[index].sub_modules, (e: any) => {
             return e.name == val1.id;
           }, 0);
-          console.log(index1, 'index1');
-
           if (index1 >= 0) {
             val1.isSelected = true;
           }
@@ -144,8 +136,6 @@ export class AddAdminComponent implements OnInit {
   }
 
   clickMain(data) {
-    console.log(data);
-
     data?.children?.forEach((val) => {
       val.isSelected = data.isSelected;
     });

@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    {{!modalData ? 'Create New' : 'Edit'}} Address
+    {{!modalData ? 'Create New' : 'Edit'}} State
   </h4>
 </div>
 
@@ -11,7 +11,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Select State</label>
-        <select class="form-control" formControlName="state_id" (change)="getCityData()">
+        <select class="form-control" formControlName="state_id">
           <option value="">Select State</option>
           <option *ngFor="let data of states" [value]="data._id">
             {{data?.name}}
@@ -23,46 +23,34 @@
       </div>
 
       <div class="col-md-12 form-group">
-        <label class="required set-label">Select City</label>
-        <select class="form-control" formControlName="city_id">
-          <option value="">Select City</option>
-          <option *ngFor="let data of cities" [value]="data._id">
-            {{data?.name}}
-          </option>
-        </select>
-        <div class="text-error" *ngIf="form.controls['city_id'].errors?.required && showError">
-          This field is required.
-        </div>
-      </div>
-
-      <div class="col-md-12 form-group">
-        <label class="required set-label">Address</label>
+        <label class="required set-label"> name</label>
         <input [autofocus]="true" class="form-control" formControlName="name"
-               type="text" placeholder="Enter Address"/>
+               placeholder="Enter name"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
           This field is required.
         </div>
       </div>
 
       <div class="col-md-12 form-group">
-        <label class="required set-label">Latitude</label>
-        <input class="form-control" formControlName="lat"
-               type="number" placeholder="Enter latitude"/>
-        <div class="text-error" *ngIf="form.controls['lat'].errors?.required && showError">
-          This field is required.
-        </div>
-      </div>
-
-      <div class="col-md-12 form-group">
-        <label class="required set-label">Longitude</label>
-        <input class="form-control" formControlName="lng"
-               type="number" placeholder="Enter Longitude"/>
+        <label class="set-label required"> longitude</label>
+        <input class="form-control" formControlName="lng" appAmount
+               type="text" placeholder="Enter longitude"/>
         <div class="text-error" *ngIf="form.controls['lng'].errors?.required && showError">
           This field is required.
         </div>
       </div>
 
+      <div class="col-md-12 form-group">
+        <label class="set-label required"> latitude</label>
+        <input class="form-control" formControlName="lat" appAmount
+               type="text" placeholder="Enter latitude"/>
+        <div class="text-error" *ngIf="form.controls['lat'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
     </div>
+
   </div>
 
   <div class="modal-footer">

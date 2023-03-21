@@ -116,6 +116,29 @@ export const ROLES = [
       }
     ]
   },
+  {
+    path: '',
+    id: 'location_managemant',
+    name: 'Location Management',
+    icon: 'fa-map-marker',
+    isSelected: false,
+    children: [
+      {
+        path: 'location/states',
+        id: 'location_managemant_states',
+        name: 'States',
+        icon: 'fa fa-location-arrow',
+        isSelected: false
+      },
+      {
+        path: 'location/cities',
+        id: 'location_managemant_cities',
+        name: 'Cities',
+        icon: 'fa fa-database',
+        isSelected: false
+      }
+    ]
+  },
 
   {
     path: 'recycle-bin', id: 'recycle_bin', name: 'Recycle Bin', icon: 'fa-recycle', isSelected: false

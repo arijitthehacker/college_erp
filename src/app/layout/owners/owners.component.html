@@ -41,8 +41,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Contact Number</th>
-            <th>Codes</th>
             <th>Bank Details</th>
+            <th>Invite Codes</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -61,6 +61,14 @@
             <!--              <td>-->
             <!--                <app-see-more [msg]="data?.description"></app-see-more>-->
             <!--              </td>-->
+
+            <td>
+              <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
+              <b>Account Name:</b> {{data?.account_name  || '-'}}<br>
+              <b>Bank Account:</b> {{data?.account_number || '-'}}<br>
+              <b>Sort Code:</b> {{data?.sort_code || '-'}}
+              <br>
+            </td>
             <td>
               <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>
 
@@ -69,14 +77,6 @@
               <!--                  <ng-container *ngIf="!last">, </ng-container>-->
               <!--                </span>-->
               <!--                <a (click)="openInviteCodes(data)" class="my-link">Codes</a>-->
-            </td>
-
-            <td>
-              <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
-              <b>Account Name:</b> {{data?.account_name  || '-'}}<br>
-              <b>Bank Account:</b> {{data?.account_number || '-'}}<br>
-              <b>Sort Code:</b> {{data?.sort_code || '-'}}
-              <br>
             </td>
 
 

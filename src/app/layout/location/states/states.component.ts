@@ -8,15 +8,14 @@ import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AddBannerComponent } from './add-banner/add-banner.component';
+import { AddStateComponent } from './add-state/add-state.component';
 import { Lightbox } from 'ngx-lightbox';
-import { ProDetailsComponent } from '../properties/pro-details/pro-details.component';
 
 @Component({
   selector: 'app-accounts',
-  templateUrl: './banners.component.html'
+  templateUrl: './states.component.html'
 })
-export class BannersComponent implements OnInit {
+export class StatesComponent implements OnInit {
 
   allData: any = [];
   date = '';
@@ -39,7 +38,7 @@ export class BannersComponent implements OnInit {
     if (this.search.value) {
       obj.search = this.search.value;
     }
-    this.http.getData(ApiUrl.list_banners, obj).subscribe(res => {
+    this.http.getData(ApiUrl.list_states, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
     }, () => {
@@ -47,13 +46,13 @@ export class BannersComponent implements OnInit {
   }
 
   deleteData(data: any) {
-    this.message.confirm(`delete this ${this.commonService.title}`).then(res => {
+    this.message.confirm(`delete this state`).then(res => {
       if (res.isConfirmed) {
         const obj: any = {
           _id: data._id,
           is_deleted: true
         };
-        this.http.putData(ApiUrl.managed_banners, obj).subscribe(() => {
+        this.http.putData(ApiUrl.managed_states, obj).subscribe(() => {
           this.message.toast('success', ConstMsg.deleteSuccess);
           this.getData();
         }, () => {
@@ -62,8 +61,19 @@ export class BannersComponent implements OnInit {
     });
   }
 
+  blockUnblock(data: any) {
+    const obj: any = {
+      _id: data._id,
+      is_blocked: !data.is_blocked
+    };
+    this.http.putData(ApiUrl.managed_comission, obj).subscribe(() => {
+      this.commonService.checkBlockUnblock(data);
+    }, () => {
+    });
+  }
+
   addEditModalOpen(data?: any) {
-    const modalRef = this.modalService.show(AddBannerComponent, {
+    const modalRef = this.modalService.show(AddStateComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
     modalRef.content.onClose.subscribe(() => {
@@ -71,9 +81,4 @@ export class BannersComponent implements OnInit {
     });
   }
 
-  openProDetails(modalData) {
-    const modalRef = this.modalService.show(ProDetailsComponent, {
-      initialState: {modalData}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
-    });
-  }
 }

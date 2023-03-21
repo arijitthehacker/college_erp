@@ -16,7 +16,7 @@ export class ChangeMemberPasswordComponent implements OnInit {
 
   showError = false;
   form: FormGroup;
-  showPass = false
+  showPass = false;
   type;
   profileData;
   apiUrl;
@@ -45,7 +45,7 @@ export class ChangeMemberPasswordComponent implements OnInit {
 
   formSubmit() {
     if (this.form.valid) {
-      let len = (this.form.value.password).toString();
+      let len = ((this.form.value.password).toString()).length;
       if (len.length > 6) {
         this.message.toast('error', 'Password should be minimum of 6 characters.');
         return;
@@ -60,8 +60,7 @@ export class ChangeMemberPasswordComponent implements OnInit {
       };
       this.http.putData(this.apiUrl, obj).subscribe(() => {
         this.message.toast('success', ConstMsg.updatedSuccess);
-
-        this.bsModalRef.hide()
+        this.bsModalRef.hide();
       }, () => {
       });
     } else {

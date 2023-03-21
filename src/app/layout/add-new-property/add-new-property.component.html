@@ -83,7 +83,7 @@
                 <label class="required set-label">Select tenure</label>
                 <select class="form-control" formControlName="tensure">
                   <option value="">Please select tenure</option>
-                  <option value="BOTH"> BOTH</option>
+                  <option value="BOTH"> ANY</option>
                   <option value="FREEHOLD"> FREEHOLD</option>
                   <option value="LEASEHOLD"> LEASEHOLD</option>
                 </select>
@@ -184,6 +184,32 @@
 
 
             <div class="row">
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Select State</label>
+                <select class="form-control" formControlName="state_id" (change)="getCityData()">
+                  <option value="">Select State</option>
+                  <option *ngFor="let data of states" [value]="data._id">
+                    {{data?.name}}
+                  </option>
+                </select>
+                <div class="text-error" *ngIf="form2.controls['state_id'].errors?.required && show2Error">
+                  This field is required.
+                </div>
+              </div>
+
+              <div class="col-md-4 form-group">
+                <label class="required set-label">Select City</label>
+                <select class="form-control" formControlName="city_id">
+                  <option value="">Select City</option>
+                  <option *ngFor="let data of cities" [value]="data._id">
+                    {{data?.name}}
+                  </option>
+                </select>
+                <div class="text-error" *ngIf="form2.controls['city_id'].errors?.required && show2Error">
+                  This field is required.
+                </div>
+              </div>
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">Address</label>
