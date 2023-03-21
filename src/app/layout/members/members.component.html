@@ -31,10 +31,10 @@
             <th>Image</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Invite Codes</th>
             <th>Contact Number</th>
-            <th>Gold Member</th>
             <th>Bank Details</th>
+            <th>Invite Codes</th>
+            <th>Gold Member</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -49,18 +49,21 @@
             </td>
             <td>{{data?.name || '-'}}</td>
             <td>{{data?.email || '-'}}</td>
-            <td>
-              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>
-            </td>
+
             <td>{{data?.country_code}} {{data?.phone_number }}</td>
-            <td>{{data?.is_gold ? 'Gold' : '-'}} </td>
+
             <td>
               <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
-              <b>Account Name:</b> {{data?.account_name  || '-'}}<br>
+              <b>Account Name:</b> {{data?.account_name || '-'}}<br>
               <b>Bank Account:</b> {{data?.account_number || '-'}}<br>
               <b>Sort Code:</b> {{data?.sort_code || '-'}}
               <br>
             </td>
+            <td>
+              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>
+            </td>
+            <td>{{data?.is_gold ? 'Gold' : '-'}} </td>
+
             <td class="edit-section">
               <div>
                 <i (click)="addEditModalOpen(data)" class="fa fa-edit"></i>

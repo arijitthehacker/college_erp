@@ -1106,60 +1106,60 @@ select {
 }
 
 .Contact_Lead {
-  background: $main-color;
+  background: #ed680f
 }
 
 .accepted_buy_customer {
-  background: rgba(188, 127, 215, 0.24);
+  background: #ed680f
 }
 
 .assigned_agent {
-  background: rgba(128, 98, 0, 0.32);
+  background: #ed680f
 }
 
 .contact_lead {
-  background: rgba(87, 0, 128, 0.47);
+  background: #ed680f;
 }
 
 .loan_approved {
-  background: rgba(92, 0, 128, 0.24);
+  background: #ed680f
 }
 
 .spa_signed {
-  background: rgba(42, 66, 42, 0.32);
+  background: #ffd00b;
 }
 
 .pay_completed {
-  background: #00800052;
+  background: #5bcdbe;
 }
 
 .contact_lead_rejected {
-  background: $red-color;
+  background: #ed3835;
 }
 
 .spa_signed_rejected {
-  background: $red-color;
+  background: #ed3835;
 }
 
 .appointment_rejected {
-  background: $red-color;
+  background: #ed3835;
 }
 
 .appointment {
-  background: rgba(189, 116, 199, 0.76);
+  background: #ed680f;
 
 }
 
 .loan_approved_rejected {
-  background: $red-color;
+  background: #ed3835;
 }
 
 .booking_rejected {
-  background: $red-color;
+  background: #ed3835;
 }
 
 .booking {
-  background: #ffa500ab;
+  background: #ed680f
 }
 
 .video-icons {
@@ -1224,6 +1224,7 @@ select {
 .noti-header {
   padding: 10px;
   border-bottom: 1px solid $border-color;
+
   h3 {
   }
 
