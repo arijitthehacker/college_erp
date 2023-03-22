@@ -74,9 +74,16 @@ export class CustomerLeadsComponent implements OnInit {
 
     this.http.getData(ApiUrl.list_customer_request, obj).subscribe(res => {
 
-      // res.data.data.forEach((val) => {
-      //   val.agent_payment_status = this.checkStatus(val.agent_payment_status);
-      // });
+      res.data.data.forEach((val) => {
+        if(val.group_payment_status === 'REJECTED' ||
+          val.agent_payment_status === 'REJECTED' ||
+          val.member_payment_status === 'REJECTED'||
+        val.gold_member_payment_status === 'REJECTED'
+      ){
+          val.last_status_name = 'payout_rejected';
+        }
+
+      });
 
       this.allData = res.data.data;
 

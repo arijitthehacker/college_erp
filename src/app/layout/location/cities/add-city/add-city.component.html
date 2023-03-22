@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    {{!modalData ? 'Create New' : 'Edit'}} State
+    {{!modalData ? 'Create New' : 'Edit'}} City
   </h4>
 </div>
 
@@ -33,8 +33,8 @@
 
       <div class="col-md-12 form-group">
         <label class="set-label required"> longitude</label>
-        <input class="form-control" formControlName="lng" appAmount
-               type="text" placeholder="Enter longitude"/>
+        <input class="form-control" formControlName="lng"
+               type="number" placeholder="Enter longitude"/>
         <div class="text-error" *ngIf="form.controls['lng'].errors?.required && showError">
           This field is required.
         </div>
@@ -42,8 +42,8 @@
 
       <div class="col-md-12 form-group">
         <label class="set-label required"> latitude</label>
-        <input class="form-control" formControlName="lat" appAmount
-               type="text" placeholder="Enter latitude"/>
+        <input class="form-control" formControlName="lat"
+               type="number" placeholder="Enter latitude"/>
         <div class="text-error" *ngIf="form.controls['lat'].errors?.required && showError">
           This field is required.
         </div>

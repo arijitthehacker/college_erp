@@ -1106,11 +1106,11 @@ select {
 }
 
 .Contact_Lead {
-  background: #ed680f
+  background: #ffd00b
 }
 
 .accepted_buy_customer {
-  background: #ed680f
+  background: #ffd00b
 }
 
 .assigned_agent {
@@ -1126,7 +1126,7 @@ select {
 }
 
 .spa_signed {
-  background: #ffd00b;
+  background: #ed680f;
 }
 
 .pay_completed {
@@ -1142,6 +1142,10 @@ select {
 }
 
 .appointment_rejected {
+  background: #ed3835;
+}
+
+.payout_rejected {
   background: #ed3835;
 }
 

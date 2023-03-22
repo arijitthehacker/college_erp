@@ -44,7 +44,7 @@ export class AddCityComponent implements OnInit {
   patchData(data) {
     this.form.patchValue({
       name: data.name,
-      state_id: data.state_id,
+      state_id: data.state_id._id,
       lat: data.location.coordinates[1],
       lng: data.location.coordinates[0]
     });

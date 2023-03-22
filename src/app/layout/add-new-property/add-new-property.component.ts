@@ -81,7 +81,6 @@ export class AddNewPropertyComponent implements OnInit {
       this.modalData = res.data.data[0];
       this.createForms();
     });
-
   }
 
   getProgress() {
@@ -91,7 +90,6 @@ export class AddNewPropertyComponent implements OnInit {
     this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
       this.progress = parseInt(res.data.data[0].progress);
     });
-
   }
 
   createForms() {
@@ -103,9 +101,9 @@ export class AddNewPropertyComponent implements OnInit {
     this.makeForm6();
     this.categoryList();
     this.getStateData();
+    this.getCityData();
     this.devsList();
     this.commissionList();
-
   }
 
   gotoPrev(flag) {
@@ -120,7 +118,6 @@ export class AddNewPropertyComponent implements OnInit {
         this.form2Submit();
         return;
       }
-
     }
     this.selectedTab = flag;
   }
@@ -132,7 +129,9 @@ export class AddNewPropertyComponent implements OnInit {
       }
       switch (flag) {
         case 2:
-          this.getAddress();
+          // this.getStateData();
+          // this.getCityData();
+          // this.getAddress();
           break;
       }
     } else {
@@ -148,15 +147,15 @@ export class AddNewPropertyComponent implements OnInit {
       this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
 
         this.addresses = [];
-        if (res?.data?.data?.length) {
-          this.addresses = res.data.data[0];
-          this.addressData = res.data.data[0];
-          this.form2.patchValue({
-            name: this.addresses.name,
-            lng: this.addresses.location.coordinates[0],
-            lat: this.addresses.location.coordinates[1]
-          });
-        }
+        // if (res?.data?.data?.length) {
+        //   this.addresses = res.data.data[0];
+        //   this.addressData = res.data.data[0];
+        //   this.form2.patchValue({
+        //     name: this.addresses.name,
+        //     lng: this.addresses.location.coordinates[0],
+        //     lat: this.addresses.location.coordinates[1]
+        //   });
+        // }
       });
     }
   }
@@ -229,6 +228,15 @@ export class AddNewPropertyComponent implements OnInit {
       name: ['', Validators.required],
       lat: ['', Validators.required]
     });
+    if (this.modalData) {
+      this.form2.patchValue({
+        state_id: this.modalData.state_id._id,
+        name: this.modalData.address,
+        city_id: this.modalData.city_id._id
+        //     lng: this.addresses.location.coordinates[0],
+        //     lat: this.addresses.location.coordinates[1]
+      });
+    }
   }
 
   getStateData() {
@@ -258,8 +266,9 @@ export class AddNewPropertyComponent implements OnInit {
         this.addressData = res.data;
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
-        this.form2.reset();
-        this.getAddress();
+        // this.form2.reset();
+        // this.getAddress();
+        // this.getData();
         this.getProgress();
 
       }, () => {
@@ -433,14 +442,14 @@ export class AddNewPropertyComponent implements OnInit {
   makeForm6() {
     this.form6 = this.fb.group({
       brochure: ['', Validators.required],
-      video: ['', Validators.required],
+      // video: ['', Validators.required],
       cover_image: ['', Validators.required]
     });
 
     if (this.modalData) {
       this.form6.patchValue({
         brochure: this.modalData.brochure,
-        video: this.modalData.video,
+        // video: this.modalData.video,
         cover_image: this.modalData.cover_image
       });
       this.images = this.modalData.images;
@@ -478,8 +487,8 @@ export class AddNewPropertyComponent implements OnInit {
     this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
       if (flag == 1) {
         this.form6.controls.cover_image.patchValue(response.data.original);
-      } else if (flag == 6) {
-        this.form6.controls.video.patchValue(response.data.original);
+        // } else if (flag == 6) {
+        //   this.form6.controls.video.patchValue(response.data.original);
       } else if (flag == 3) {
         this.form6.controls.brochure.patchValue(response.data.original);
       } else {
@@ -492,8 +501,8 @@ export class AddNewPropertyComponent implements OnInit {
   removeImage(id, flag) {
     if (flag === 3) {
       this.form6.controls.brochure.patchValue('');
-    } else if (flag === 6) {
-      this.form6.controls.video.patchValue('');
+      // } else if (flag === 6) {
+      //   this.form6.controls.video.patchValue('');
     } else {
       this.form6.controls.cover_image.patchValue('');
     }

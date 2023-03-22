@@ -43,7 +43,11 @@
         </td>
         <td>
           <h5>Tenure</h5>
-          <p>{{modalData?.tensure || '-'}}</p>
+          <p>
+            <ng-container *ngIf="modalData?.tensure == 'BOTH'"> ANY</ng-container>
+            <ng-container *ngIf="modalData?.tensure == 'FREEHOLD'"> FREEHOLD</ng-container>
+            <ng-container *ngIf="modalData?.tensure == 'LEASEHOLD'"> LEASEHOLD</ng-container>
+          </p>
         </td>
       </tr>
 
@@ -235,17 +239,17 @@
         </td>
       </tr>
 
-      <tr>
-        <td>
-          <h5>Video</h5>
-          <div class="detail-images">
+<!--      <tr>-->
+<!--        <td>-->
+<!--          <h5>Video</h5>-->
+<!--          <div class="detail-images">-->
 
-            <img src="assets/images/video-icon.png" (click)="commonService.goToLink(modalData?.video)">
-            <a class="my-link">
-            </a>
-          </div>
-        </td>
-      </tr>
+<!--            <img src="assets/images/video-icon.png" (click)="commonService.goToLink(modalData?.video)">-->
+<!--            <a class="my-link">-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </td>-->
+<!--      </tr>-->
 
     </ng-container>
 

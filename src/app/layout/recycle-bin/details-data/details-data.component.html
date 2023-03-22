@@ -9,8 +9,8 @@
     <ng-container *ngIf="modalData?.value_type == 'PeropertiesCategory'">Category</ng-container>
     <ng-container *ngIf="modalData?.value_type == 'Users'">Member</ng-container>
     <ng-container *ngIf="modalData?.value_type == 'Banners'">Banner</ng-container>
-    <ng-container *ngIf="modalData?.value_type == 'Cities'">Cities</ng-container>
-    <ng-container *ngIf="modalData?.value_type == 'States'">States</ng-container>
+    <ng-container *ngIf="modalData?.value_type == 'Cities'">City</ng-container>
+    <ng-container *ngIf="modalData?.value_type == 'States'">State</ng-container>
     Details
   </h4>
   <button class="btn-close" (click)="bsModalRef.hide()"></button>
@@ -165,19 +165,22 @@
 
   <table class="table details-table" *ngIf="modalData?.value_type == 'Banners'">
     <tr>
-
       <td>
         <h5>Image</h5>
         <img [src]="modalData.image" class="details-img"
              (click)="commonService.openLightBox(modalData.image)">
       </td>
-
       <td style="vertical-align: baseline;">
         <h5>Display Order</h5>
         <p>{{modalData?.se_no}}</p>
       </td>
+    </tr>
 
-
+    <tr>
+      <td style="vertical-align: baseline;">
+        <h5>Property Name</h5>
+        <p>{{modalData?.property_id?.name}}</p>
+      </td>
     </tr>
 
   </table>

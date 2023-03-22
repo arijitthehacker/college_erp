@@ -18,9 +18,10 @@ import { Lightbox } from 'ngx-lightbox';
 export class CitiesComponent implements OnInit {
 
   allData: any = [];
-  date = '';
+  states: any = [];
   pagination = new PaginationControls();
   search = new FormControl('');
+  state_id = '';
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
               private modalService: BsModalService, public router: Router, public lightbox: Lightbox) {
@@ -28,6 +29,7 @@ export class CitiesComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.getStateList();
   }
 
   getData() {
@@ -37,6 +39,9 @@ export class CitiesComponent implements OnInit {
     };
     if (this.search.value) {
       obj.search = this.search.value;
+    }
+    if (this.state_id) {
+      obj.state_id = this.state_id;
     }
     this.http.getData(ApiUrl.list_cities, obj).subscribe(res => {
       this.allData = res.data.data;
@@ -78,6 +83,18 @@ export class CitiesComponent implements OnInit {
     });
     modalRef.content.onClose.subscribe(() => {
       this.getData();
+    });
+  }
+
+
+  getStateList() {
+    let obj: any = {
+      skip: 0,
+      is_pagination: false
+    };
+    this.http.getData(ApiUrl.list_states, obj).subscribe(res => {
+      this.states = res.data.data;
+    }, () => {
     });
   }
 

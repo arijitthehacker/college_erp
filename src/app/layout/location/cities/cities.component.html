@@ -2,13 +2,21 @@
   <div class="col-md-12">
     <div class="my-box">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
           <h4 class="card-title  float-left">
             Cities
           </h4>
         </div>
 
-        <div class="col-md-9 text-right">
+        <div class="col-md-3 sm-input-space">
+          <select class="form-control" [(ngModel)]="state_id" (change)="pagination.pageNo =1;getData()">
+            <option value="">All States</option>
+            <option  *ngFor="let data of states" [value]="data._id">{{data?.name}}</option>
+          </select>
+        </div>
+
+
+        <div class="col-md-3 text-right">
           <div class="sm-input-space">
             <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
               Create New city
@@ -30,8 +38,8 @@
             <th>Sr. No.</th>
             <th>State Name</th>
             <th>City Name</th>
-            <th>Latitude</th>
             <th>Longitude</th>
+            <th>Latitude</th>
             <th>Action</th>
           </tr>
           </thead>
@@ -43,6 +51,7 @@
             <td>{{data?.name}}</td>
             <td>{{data.location.coordinates[0]}}</td>
             <td>{{data.location.coordinates[1]}}</td>
+
             <td class="edit-section">
               <div>
                 <i (click)="addEditModalOpen(data)" class="fa fa-edit"></i>
