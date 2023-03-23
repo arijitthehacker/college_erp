@@ -232,9 +232,9 @@ export class AddNewPropertyComponent implements OnInit {
       this.form2.patchValue({
         state_id: this.modalData.state_id._id,
         name: this.modalData.address,
-        city_id: this.modalData.city_id._id
-        //     lng: this.addresses.location.coordinates[0],
-        //     lat: this.addresses.location.coordinates[1]
+        city_id: this.modalData.city_id._id,
+        lng: this.modalData.location.coordinates[0],
+        lat: this.modalData.location.coordinates[1]
       });
     }
   }

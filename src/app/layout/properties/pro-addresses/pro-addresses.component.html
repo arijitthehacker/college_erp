@@ -11,7 +11,7 @@
     <table class="table">
       <thead>
       <tr>
-        <th>Sr. No.</th>
+        <!--        <th>Sr. No.</th>-->
         <th>State</th>
         <th>City</th>
         <th>Address</th>
@@ -21,13 +21,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of allData;let i =index">
-        <td>{{i + 1}}</td>
-        <td>{{data?.state_id?.name}}</td>
-        <td>{{data?.city_id?.name}}</td>
-        <td>{{data?.name}}</td>
-        <td>{{data.location.coordinates[0]}}</td>
-        <td>{{data.location.coordinates[1]}}</td>
+      <!--      *ngFor="let data of allData;let i =index"-->
+      <tr>
+        <!--        <td>{{i + 1}}</td>-->
+        <td>{{modalData?.state_id?.name}}</td>
+        <td>{{modalData?.city_id?.name}}</td>
+        <td>{{modalData?.address}}</td>
+        <td>{{modalData.location.coordinates[0]}}</td>
+        <td>{{modalData.location.coordinates[1]}}</td>
         <td class="edit-section">
           <!--          <div (click)="blockUnblock(data)">-->
           <!--            <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>-->
@@ -35,7 +36,7 @@
           <!--          </div>-->
 
           <div>
-            <i (click)="openAddAddress(data)" class="fa fa-edit"></i>
+            <i (click)="openAddAddress(modalData)" class="fa fa-edit"></i>
           </div>
 
           <!--          <div>-->
@@ -45,9 +46,8 @@
       </tr>
       </tbody>
     </table>
-    <app-no-record *ngIf="!allData.length"></app-no-record>
+    <app-no-record *ngIf="!modalData"></app-no-record>
   </div>
-
 </div>
 
 <div class="modal-footer">
