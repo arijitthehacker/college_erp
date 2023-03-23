@@ -32,10 +32,10 @@ export class EditMemberComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
-      phone_number: ['', Validators.required],
-      image: ['', Validators.required],
-      name: ['', [Validators.required]]
+      email: ['', [Validators.pattern(CONSTANT.email_pattern)]],
+      phone_number: [''],
+      image: [''],
+      name: ['']
     });
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -44,10 +44,10 @@ export class EditMemberComponent implements OnInit {
 
   patchData(data) {
     this.form.patchValue({
-      email: data.email,
-      name: data.name,
-      image: data.image,
-      phone_number: data.phone_number
+      email: data.email || '',
+      name: data.name || '',
+      image: data.image || '',
+      phone_number: data.phone_number || ''
     });
   }
 
@@ -58,9 +58,24 @@ export class EditMemberComponent implements OnInit {
         obj[`_id`] = this.modalData._id;
       }
 
-      obj.iso_code = obj.phone_number.countryCode;
-      obj.country_code = obj.phone_number.dialCode;
-      obj.phone_number = obj.phone_number.number;
+      if (!obj.email) {
+        delete obj.email;
+      }
+
+      if (!obj.name) {
+        delete obj.name;
+      }
+      if (!obj.image) {
+        delete obj.image;
+      }
+
+      if (obj.phone_number) {
+        obj.iso_code = obj.phone_number.countryCode;
+        obj.country_code = obj.phone_number.dialCode;
+        obj.phone_number = obj.phone_number.number;
+      } else {
+        delete obj.phone_number;
+      }
 
       this.http.putData(ApiUrl.managed_members, obj).subscribe(() => {
         this.onClose.next(null);

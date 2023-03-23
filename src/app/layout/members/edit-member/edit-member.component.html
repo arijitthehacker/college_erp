@@ -10,7 +10,7 @@
     <div class="row">
 
       <div class="col-md-12 form-group">
-        <label class="required set-label">name</label>
+        <label class="set-label">name</label>
         <input [autofocus]="true" class="form-control" formControlName="name"
                type="text" placeholder="Enter name"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
@@ -19,7 +19,7 @@
       </div>
 
       <div class="col-md-12 form-group">
-        <label class="required set-label">Email</label>
+        <label class="set-label">Email</label>
         <input [autofocus]="true" class="form-control" formControlName="email"
                type="text" placeholder="Enter Email"/>
         <div class="text-error" *ngIf="form.controls['email'].errors?.required && showError">
@@ -32,7 +32,7 @@
 
 
       <div class="col-md-12 form-group">
-        <label class="required set-label">Contact Number</label>
+        <label class="set-label">Contact Number</label>
 
         <ngx-intl-tel-input
           [cssClass]="'my-phone'"
@@ -41,7 +41,7 @@
           [enablePlaceholder]="false"
           [searchCountryFlag]="true"
           [selectFirstCountry]="false"
-          [selectedCountryISO]="CountryISO.Malaysia"
+          [selectedCountryISO]="modalData?.iso_code || CountryISO.Malaysia"
           [maxLength]="15"
           [customPlaceholder]="'Enter Contact Number'"
           [phoneValidation]="false"
@@ -55,7 +55,7 @@
       </div>
 
       <div class="col-md-12 form-group">
-        <label class="required">Image</label>
+        <label class="">Image</label>
         <div class="product-images">
           <input type="file" class="file-upload" id="image"
                  accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'image')">
