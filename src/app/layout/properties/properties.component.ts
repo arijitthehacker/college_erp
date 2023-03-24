@@ -134,6 +134,9 @@ export class PropertiesComponent implements OnInit {
       if (res.type === 'openAddressList') {
         this.openProAddresses(propertyData);
       }
+      if (res.type === 'listUpdate') {
+        this.getData();
+      }
     });
   }
 

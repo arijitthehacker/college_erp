@@ -50,7 +50,7 @@ export class AddProAddressComponent implements OnInit {
       lng: data.location.coordinates[0],
       state_id: this.propertyData.state_id._id,
       city_id: this.propertyData.city_id._id,
-      name: data.name,
+      name: data.address,
       lat: data.location.coordinates[1]
     });
   }
