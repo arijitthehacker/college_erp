@@ -1110,7 +1110,8 @@ select {
 }
 
 .accepted_buy_customer {
-  background: #ffd00b
+  background: #ffd00b;
+  color: black !important;
 }
 
 .assigned_agent {
@@ -1244,4 +1245,12 @@ select {
   }
 }
 
+.set-status-tab {
+  padding: 6px 12px;
+  color: white;
+  border-radius: 9px;
+  width: 168px;
+  text-align: center;
+  line-height: 22px;
+}
 

@@ -78,23 +78,7 @@
           <tbody>
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;"
-            [ngClass]="{
-                'Contact_Lead':data?.last_status_name === 'Contact Lead',
-                'accepted_buy_customer':data?.last_status_name === 'accepted_buy_customer',
-                'assigned_agent': data?.last_status_name === 'assigned_agent',
-                 'contact_lead':data?.last_status_name === 'contact_lead',
-                 'contact_lead_rejected':data?.last_status_name === 'contact_lead_rejected',
-                 'booking':data?.last_status_name === 'booking',
-                 'appointment':data?.last_status_name === 'appointment',
-                 'booking_rejected':data?.last_status_name === 'booking_rejected',
-                 'appointment_rejected':data?.last_status_name === 'appointment_rejected',
-                 'loan_approved':data?.last_status_name === 'loan_approved',
-                 'loan_approved_rejected':data?.last_status_name === 'loan_approved_rejected',
-                 'spa_signed':data?.last_status_name === 'spa_signed',
-                 'payout_rejected':data?.last_status_name === 'payout_rejected',
-                 'spa_signed_rejected':data?.last_status_name === 'spa_signed_rejected',
-                 'pay_completed':data?.last_status_name === 'pay_completed'
-            }">
+          >
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
             <td>
               <a (click)="openMemberDetails(data, 'Customer',1)"
@@ -150,23 +134,25 @@
               <b>Unit No.:</b> {{data?.unit_no || '-'}}<br></td>
 
             <td>
-              <label class="">
+              <label class="set-status-tab"
 
-                <!--                {{data?.last_status_name |replaceUnderscore}}-->
-
-
-                <!--                <option value="">All Status</option>-->
-                <!--                <option value="pending">Waiting for customer confirmation</option>-->
-                <!--                <option value="accepted_buy_customer">Waiting to agent assign</option>-->
-                <!--                <option value="assigned_agent">Contact lead</option>-->
-                <!--                <option value="contact_lead">Appointment</option>-->
-                <!--                <option value="appointment">Booking</option>-->
-                <!--                <option value="booking">Loan approval</option>-->
-                <!--                &lt;!&ndash;            <option value="loan_approved_rejected">Loan Approved Rejected</option>&ndash;&gt;-->
-                <!--                <option value="loan_approved">SPA Signed</option>-->
-                <!--                <option value="spa_signed">Payout complete</option>-->
-                <!--                <option value="pay_completed">Close</option>-->
-                <!--                -->
+                     [ngClass]="{
+                'Contact_Lead':data?.last_status_name === 'Contact Lead',
+                'accepted_buy_customer':data?.last_status_name === 'accepted_buy_customer',
+                'assigned_agent': data?.last_status_name === 'assigned_agent',
+                 'contact_lead':data?.last_status_name === 'contact_lead',
+                 'contact_lead_rejected':data?.last_status_name === 'contact_lead_rejected',
+                 'booking':data?.last_status_name === 'booking',
+                 'appointment':data?.last_status_name === 'appointment',
+                 'booking_rejected':data?.last_status_name === 'booking_rejected',
+                 'appointment_rejected':data?.last_status_name === 'appointment_rejected',
+                 'loan_approved':data?.last_status_name === 'loan_approved',
+                 'loan_approved_rejected':data?.last_status_name === 'loan_approved_rejected',
+                 'spa_signed':data?.last_status_name === 'spa_signed',
+                 'payout_rejected':data?.last_status_name === 'payout_rejected',
+                 'spa_signed_rejected':data?.last_status_name === 'spa_signed_rejected',
+                 'pay_completed':data?.last_status_name === 'pay_completed'
+            }">
 
 
                 <ng-container *ngIf="data?.last_status_name === 'Contact Lead'">Waiting for customer confirmation
@@ -190,19 +176,6 @@
                 <ng-container *ngIf="data?.last_status_name === 'spa_signed_rejected'">SPA Signed Rejected
                 </ng-container>
                 <ng-container *ngIf="data?.last_status_name === 'pay_completed'">Close</ng-container>
-
-
-                <!--                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected by team member</ng-container>-->
-
-                <!--                <ng-container *ngIf="data?.booking_status === 'PENDING'">Pending</ng-container>-->
-                <!--                <ng-container *ngIf="data?.booking_status === 'ACCEPTED'">In progress</ng-container>-->
-
-                <!--                <ng-container *ngIf="data?.booking_status === 'REJECTED'">Rejected</ng-container>-->
-                <!--                <ng-container *ngIf="data?.booking_status === 'IN_PROGRESS'">In progress</ng-container>-->
-                <!--                <ng-container *ngIf="data?.booking_status === 'COMPLETED'">Status Completed</ng-container>-->
-                <!--                -->
-                <!--                {{data?.booking_status |replaceUnderscore}}-->
-
 
               </label>
             </td>

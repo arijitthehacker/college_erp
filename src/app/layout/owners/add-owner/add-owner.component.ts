@@ -52,15 +52,17 @@ export class AddOwnerComponent implements OnInit {
   formSubmit() {
     if (this.form.valid) {
       const obj = JSON.parse(JSON.stringify(this.form.value));
+      let apiUrl = ApiUrl.add_edit_group_owner
       if (this.modalData) {
         obj[`_id`] = this.modalData._id;
+        apiUrl = ApiUrl.add_edit_group_owner
       }
 
       obj.iso_code = obj.phone_number.countryCode;
       obj.country_code = obj.phone_number.dialCode;
       obj.phone_number = obj.phone_number.number;
 
-      this.http.postData(ApiUrl.add_edit_group_owner, obj).subscribe(() => {
+      this.http.postData(apiUrl, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);

@@ -31,7 +31,6 @@
       </div>
 
 
-
       <div class="col-md-12 form-group">
         <label class="required set-label">Contact Number</label>
 
@@ -42,7 +41,7 @@
           [enablePlaceholder]="false"
           [searchCountryFlag]="true"
           [selectFirstCountry]="false"
-          [selectedCountryISO]="CountryISO.Malaysia"
+          [selectedCountryISO]="modalData?.iso_code || CountryISO.Malaysia"
           [maxLength]="15"
           [customPlaceholder]="'Enter Contact Number'"
           [phoneValidation]="false"

@@ -127,10 +127,10 @@
               </ng-container>
             </td>
             <td>
-              <ng-container *ngIf="data?.gold_member_id?.name ; else noData">
-                <b>Name:</b> {{data?.gold_member_id?.name || '-'}}<br>
+              <ng-container *ngIf="data?.booking_id?.gold_member_id?.name ; else noData">
+                <b>Name:</b> {{data?.booking_id?.gold_member_id?.name || '-'}}<br>
                 <b>Phone No.</b>
-                {{data?.gold_member_id?.country_code}}{{data?.gold_member_id?.phone_number || '-'}}
+                {{data?.booking_id?.gold_member_id?.country_code}}{{data?.booking_id?.gold_member_id?.phone_number || '-'}}
                 <br>
                 <!--                <b>Email:</b> {{data?.gold_member_id?.email || '-'}}<br>-->
                 <!--                <b>Age:</b> {{data?.gold_member_id?.age || '-'}}<br>-->

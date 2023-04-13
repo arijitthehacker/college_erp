@@ -59,7 +59,7 @@
 
             <td>
               <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
-              <b>Account Name:</b> {{data?.account_name  || '-'}}<br>
+              <b>Account Name:</b> {{data?.account_name || '-'}}<br>
               <b>Bank Account:</b> {{data?.account_number || '-'}}<br>
               <b>Sort Code:</b> {{data?.sort_code || '-'}}
               <br>
@@ -73,9 +73,9 @@
                 <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
                 <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
               </div>
-              <!--                <span class="fa-span  ml-3">-->
-              <!--                    <i (click)="addEditModalOpen(data)" class="cursor-pointer action-fa fa fa-edit"></i>-->
-              <!--                  </span>-->
+              <div (click)="addEditModalOpen(data)">
+                <i class="cursor-pointer action-fa fa fa-edit"></i>
+              </div>
               <div>
                 <i (click)="deleteData(data)" class="fa fa-trash"></i>
               </div>

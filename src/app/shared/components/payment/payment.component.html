@@ -44,13 +44,13 @@
                type="text" placeholder="Enter Comment"/>
       </div>
 
-<!--      <div class="col-md-12 form-group" *ngIf="advancePage">-->
-<!--        <label class="set-label">Advanced Payment-->
-<!--&lt;!&ndash;          (<small> <b>Pending Amount:</b>{{modalData?.total_price - modalData?.advanced_price}}</small>&ndash;&gt;-->
-<!--        </label>-->
-<!--        <input class="form-control" formControlName="advanced_payment"-->
-<!--               type="text" placeholder="Enter Advanced Payment"/>-->
-<!--      </div>-->
+      <div class="col-md-12 form-group" *ngIf="!advancePage">
+        <label class="set-label">Advanced Payment
+<!--          (<small> <b>Pending Amount:</b>{{modalData?.total_price - modalData?.advanced_price}}</small>-->
+        </label>
+        <input class="form-control" formControlName="advanced_payment"
+               type="text" placeholder="Enter Advanced Payment"/>
+      </div>
 
     </div>
 
