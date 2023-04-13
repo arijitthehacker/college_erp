@@ -3,7 +3,7 @@
     <div class="my-box box-header">
       <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
           </h4>
         </div>
@@ -50,6 +50,13 @@
 
           </select>
         </div>
+
+        <div class="col-md-2 text-right sm-input-space">
+          <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
+            Create New Customer Lead
+          </button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -215,6 +222,9 @@
                       *ngIf="data?.last_status_name !== 'pay_completed' && data?.last_status_name !== 'Contact Lead'">
                     <a class="dropdown-item" (click)="addFinal(data)">{{data?.commission_price ? 'Edit' : 'Add'}} final
                       property price/Unit No.</a>
+                  </li>
+                  <li role="menuitem" (click)="deleteData(data)">
+                    <a class="dropdown-item">Delete</a>
                   </li>
                 </ul>
               </div>

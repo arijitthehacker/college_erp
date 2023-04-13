@@ -9,6 +9,7 @@ import { PaidComponent } from './paid/paid.component';
 import { AssignBookingComponent } from './assign-booking/assign-booking.component';
 import { LogsComponent } from './logs/logs.component';
 import { AddFinalPriceComponent } from './add-final-price/add-final-price.component';
+import { AddCustomerLeadComponent } from './add-customer-lead/add-customer-lead.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     PaidComponent,
     AssignBookingComponent,
     LogsComponent,
-    AddFinalPriceComponent
+    AddFinalPriceComponent,
+    AddCustomerLeadComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ const routes: Routes = [
     PaidComponent,
     AssignBookingComponent,
     LogsComponent,
-    AddFinalPriceComponent
+    AddFinalPriceComponent,
+    AddCustomerLeadComponent
   ]
 })
 export class CustomerLeadsModule {

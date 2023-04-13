@@ -19,6 +19,8 @@ export const ApiUrl = {
   list_trash_data: 'Admin/list_trash_data',
   delete_trash_data: 'Admin/delete_trash_data',
   list_developers: 'Admin/list_developers',
+  edit_customer_request: 'Admin/edit_customer_request',
+  add_customer_request: 'Admin/add_customer_request',
   update_request_commsion: 'Admin/update_request_commsion',
   managed_developers: 'Admin/managed_developers',
   managed_banners: 'Admin/managed_banners',

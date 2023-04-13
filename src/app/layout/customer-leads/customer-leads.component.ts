@@ -15,6 +15,8 @@ import { PaidComponent } from './paid/paid.component';
 import { AssignBookingComponent } from './assign-booking/assign-booking.component';
 import { LogsComponent } from './logs/logs.component';
 import { AddFinalPriceComponent } from './add-final-price/add-final-price.component';
+import { AddAgentComponent } from '../agents/add-agent/add-agent.component';
+import { AddCustomerLeadComponent } from './add-customer-lead/add-customer-lead.component';
 
 @Component({
   selector: 'app-accounts',
@@ -120,13 +122,13 @@ export class CustomerLeadsComponent implements OnInit {
   }
 
   deleteData(data: any) {
-    this.message.confirm(`delete this ${this.commonService.title}`).then(res => {
+    this.message.confirm(`delete this customer lead`).then(res => {
       if (res.isConfirmed) {
         const obj: any = {
           _id: data._id,
           is_deleted: true
         };
-        this.http.putData(ApiUrl.managed_members, obj).subscribe(() => {
+        this.http.postData(ApiUrl.edit_customer_request, obj).subscribe(() => {
           this.message.toast('success', ConstMsg.deleteSuccess);
           this.getData();
         }, () => {
@@ -218,5 +220,16 @@ export class CustomerLeadsComponent implements OnInit {
     }, () => {
     });
   }
+
+  addEditModalOpen(data?: any) {
+    const modalRef = this.modalService.show(AddCustomerLeadComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-lg'
+    });
+    modalRef.content.onClose.subscribe(() => {
+      this.getData();
+    });
+  }
+
+
 
 }
