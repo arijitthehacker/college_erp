@@ -110,7 +110,7 @@ export class MembersComponent implements OnInit {
 
   addEditModalOpen(data?: any) {
     const modalRef = this.modalService.show(EditMemberComponent, {
-      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-lg'
     });
     modalRef.content.onClose.subscribe(() => {
       this.getData();

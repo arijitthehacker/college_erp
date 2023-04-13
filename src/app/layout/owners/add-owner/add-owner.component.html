@@ -9,7 +9,7 @@
 
     <div class="row">
 
-      <div class="col-md-12 form-group">
+      <div class="col-md-6 form-group">
         <label class="required set-label">name</label>
         <input [autofocus]="true" class="form-control" formControlName="name"
                type="text" placeholder="Enter name"/>
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="col-md-12 form-group">
+      <div class="col-md-6 form-group">
         <label class="required set-label">Email</label>
         <input [autofocus]="true" class="form-control" formControlName="email"
                type="text" placeholder="Enter Email"/>
@@ -30,23 +30,14 @@
         </div>
       </div>
 
-
-      <div class="col-md-12 form-group">
+      <div class="col-md-6 form-group">
         <label class="required set-label">Contact Number</label>
-
-        <ngx-intl-tel-input
-          [cssClass]="'my-phone'"
-          [preferredCountries]="[CountryISO.Malaysia]"
-          [enableAutoCountrySelect]="false"
-          [enablePlaceholder]="false"
-          [searchCountryFlag]="true"
-          [selectFirstCountry]="false"
-          [selectedCountryISO]="modalData?.iso_code || CountryISO.Malaysia"
-          [maxLength]="15"
-          [customPlaceholder]="'Enter Contact Number'"
-          [phoneValidation]="false"
-          formControlName="phone_number"
-        ></ngx-intl-tel-input>
+        <ngx-intl-tel-input [cssClass]="'my-phone'" [preferredCountries]="[CountryISO.Malaysia]"
+                            [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                            [selectFirstCountry]="false"
+                            [selectedCountryISO]="modalData?.iso_code || CountryISO.Malaysia"
+                            [maxLength]="15" [customPlaceholder]="'Enter Contact Number'"
+                            [phoneValidation]="false" formControlName="phone_number"></ngx-intl-tel-input>
 
         <div class="text-error"
              *ngIf="form.controls['phone_number'].errors?.required && showError">
@@ -54,6 +45,27 @@
         </div>
       </div>
 
+      <h3>Bank Details</h3>
+
+      <div class="col-md-6 form-group">
+        <label class="set-label">Bank Name</label>
+        <input class="form-control" formControlName="bank_name" type="text" placeholder="Enter bank name"/>
+      </div>
+      <div class="col-md-6 form-group">
+        <label class="set-label">Account Number</label>
+        <input class="form-control" formControlName="account_number" type="text" appNumberOnly placeholder="Enter account number"/>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="set-label">Account Name</label>
+        <input class="form-control" formControlName="account_name" type="text" placeholder="Enter account name"/>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="set-label">Sort code</label>
+        <input class="form-control" formControlName="sort_code" type="text"
+               placeholder="Enter Sort code"/>
+      </div>
 
     </div>
   </div>

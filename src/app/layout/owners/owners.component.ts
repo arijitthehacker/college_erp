@@ -100,7 +100,7 @@ export class OwnersComponent implements OnInit {
 
   addEditModalOpen(data?: any) {
     const modalRef = this.modalService.show(AddOwnerComponent, {
-      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-lg'
     });
     modalRef.content.onClose.subscribe(() => {
       this.getData();

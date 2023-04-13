@@ -35,6 +35,10 @@ export class AddAgentComponent implements OnInit {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
       name: ['', Validators.required],
+      bank_name: [''],
+      account_name: [''],
+      account_number: [''],
+      sort_code: [''],
       phone_number: ['', [Validators.required]]
     });
     if (this.modalData) {
@@ -45,6 +49,10 @@ export class AddAgentComponent implements OnInit {
   patchData(data) {
     this.form.patchValue({
       email: data.email,
+      bank_name: data.bank_name,
+      sort_code: data.sort_code,
+      account_number: data.account_number,
+      account_name: data.account_name,
       name: data.name,
       phone_number: data.phone_number
     });

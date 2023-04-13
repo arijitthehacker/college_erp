@@ -9,7 +9,7 @@
 
     <div class="row">
 
-      <div class="col-md-12 form-group">
+      <div class="col-md-6 form-group">
         <label class="set-label">name</label>
         <input [autofocus]="true" class="form-control" formControlName="name"
                type="text" placeholder="Enter name"/>
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="col-md-12 form-group">
+      <div class="col-md-6 form-group">
         <label class="set-label">Email</label>
         <input [autofocus]="true" class="form-control" formControlName="email"
                type="text" placeholder="Enter Email"/>
@@ -31,7 +31,7 @@
       </div>
 
 
-      <div class="col-md-12 form-group">
+      <div class="col-md-6 form-group">
         <label class="set-label">Contact Number</label>
 
         <ngx-intl-tel-input
@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <div class="col-md-12 form-group">
+      <div class="col-md-6 form-group">
         <label class="">Image</label>
         <div class="product-images">
           <input type="file" class="file-upload" id="image"
@@ -73,6 +73,31 @@
           Please select image.
         </div>
       </div>
+
+
+      <h3>Bank Details</h3>
+
+      <div class="col-md-6 form-group">
+        <label class="set-label">Bank Name</label>
+        <input class="form-control" formControlName="bank_name" type="text" placeholder="Enter bank name"/>
+      </div>
+      <div class="col-md-6 form-group">
+        <label class="set-label">Account Number</label>
+        <input class="form-control" formControlName="account_number" type="text" appNumberOnly placeholder="Enter account number"/>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="set-label">Account Name</label>
+        <input class="form-control" formControlName="account_name" type="text" placeholder="Enter account name"/>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <label class="set-label">Sort code</label>
+        <input class="form-control" formControlName="sort_code" type="text"
+               placeholder="Enter Sort code"/>
+      </div>
+
+
     </div>
 
   </div>

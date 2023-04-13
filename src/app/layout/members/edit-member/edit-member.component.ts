@@ -35,6 +35,10 @@ export class EditMemberComponent implements OnInit {
       email: ['', [Validators.pattern(CONSTANT.email_pattern)]],
       phone_number: [''],
       image: [''],
+      bank_name: [''],
+      account_name: [''],
+      account_number: [''],
+      sort_code: [''],
       name: ['']
     });
     if (this.modalData) {
@@ -47,6 +51,10 @@ export class EditMemberComponent implements OnInit {
       email: data.email || '',
       name: data.name || '',
       image: data.image || '',
+      bank_name: data.bank_name || '',
+      sort_code: data.sort_code || '',
+      account_number: data.account_number || '',
+      account_name: data.account_name || '',
       phone_number: data.phone_number || ''
     });
   }
