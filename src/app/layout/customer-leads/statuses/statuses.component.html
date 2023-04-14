@@ -35,7 +35,13 @@
           <td>
             <app-see-more [msg]="data?.description"></app-see-more>
           </td>
-          <td>{{data?.managed_by_name || '-'}}</td>
+          <td>
+           <ng-container *ngIf="data?.managed_by === 'REFEREE'">Referee</ng-container>
+
+            <ng-container *ngIf="data?.managed_by !== 'REFEREE'">
+              {{data?.managed_by_name || '-'}}
+            </ng-container>
+           </td>
 <!--          <td>Admin</td>-->
           <td>
             <ng-container *ngIf="data.status_data !== 'PENDING' else showEmpty">

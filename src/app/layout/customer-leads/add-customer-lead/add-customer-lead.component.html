@@ -75,7 +75,7 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">Age</label>
-        <input [autofocus]="true" class="form-control" formControlName="age" appNumberOnly
+        <input [autofocus]="true" class="form-control" formControlName="age" appNumberOnly maxlength="2"
                type="text" placeholder="Enter age"/>
         <div class="text-error" *ngIf="form.controls['age'].errors?.required && showError">
           This field is required.
@@ -105,18 +105,18 @@
         </div>
       </div>
 
-      <div class="col-md-4 form-group">
-        <label class="required set-label"> Select Agent</label>
-        <select class="form-control" formControlName="agent_id">
-          <option value="">Select Agent</option>
-          <option *ngFor="let data of agents" [value]="data._id">
-            {{data?.name}}
-          </option>
-        </select>
-        <div class="text-error" *ngIf="form.controls['agent_id'].errors?.required && showError">
-          This field is required.
-        </div>
-      </div>
+<!--      <div class="col-md-4 form-group">-->
+<!--        <label class="required set-label"> Select Agent</label>-->
+<!--        <select class="form-control" formControlName="agent_id">-->
+<!--          <option value="">Select Agent</option>-->
+<!--          <option *ngFor="let data of agents" [value]="data._id">-->
+<!--            {{data?.name}}-->
+<!--          </option>-->
+<!--        </select>-->
+<!--        <div class="text-error" *ngIf="form.controls['agent_id'].errors?.required && showError">-->
+<!--          This field is required.-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
 
 
@@ -143,7 +143,7 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">Target Location </label>
-        <input [autofocus]="true" class="form-control" formControlName="peropert_location" appNumberOnly
+        <input [autofocus]="true" class="form-control" formControlName="peropert_location"
                type="text" placeholder="Enter Target Location "/>
         <div class="text-error" *ngIf="form.controls['peropert_location'].errors?.required && showError">
           This field is required.
@@ -178,12 +178,12 @@
       </div>
 
       <div class="col-md-4 form-group">
-        <label class="required set-label">Notes </label>
+        <label class="set-label">Notes </label>
         <textarea class="form-control" formControlName="note"
                   type="text" placeholder="Enter Notes"></textarea>
-        <div class="text-error" *ngIf="form.controls['note'].errors?.required && showError">
-          This field is required.
-        </div>
+<!--        <div class="text-error" *ngIf="form.controls['note'].errors?.required && showError">-->
+<!--          This field is required.-->
+<!--        </div>-->
       </div>
     </div>
 
