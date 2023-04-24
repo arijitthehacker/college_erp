@@ -63,14 +63,15 @@
             <!--              </td>-->
 
             <td>
-              <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
               <b>Account Name:</b> {{data?.account_name  || '-'}}<br>
-              <b>Bank Account:</b> {{data?.account_number || '-'}}<br>
+              <b>Account Number:</b> {{data?.account_number || '-'}}<br>
+              <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
               <b>Sort Code:</b> {{data?.sort_code || '-'}}
               <br>
             </td>
             <td>
-              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>
+              {{data?.showCode}}
+<!--              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>-->
 
               <!--                <span *ngFor="let val of data?.invite_codes;let last=last">-->
               <!--                  {{val?.invite_code}}-->

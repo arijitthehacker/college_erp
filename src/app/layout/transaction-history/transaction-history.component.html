@@ -208,19 +208,36 @@
             </td>
 
             <td>
-              <b>Bank
-                Name:</b> {{data?.group_owner_id?.bank_name || data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
-              <br>
               <b>Account
-                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || data?.gold_member_id?.account_name || '-'}}
+                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name|| data?.gold_member_id?.account_name || '-'}}
+              <br>
+
+              <b>Account Number:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number|| data?.gold_member_id?.account_number || '-'}}
               <br>
               <b>Bank
-                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || data?.gold_member_id?.account_number || '-'}}
+                Name:</b> {{data?.group_owner_id?.bank_name ||data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
               <br>
+
               <b>Sort
-                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || data?.gold_member_id?.sort_code || '-'}}
+                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code|| data?.gold_member_id?.sort_code || '-'}}
               <br>
             </td>
+
+
+<!--            <td>-->
+<!--              <b>Bank-->
+<!--                Name:</b> {{data?.group_owner_id?.bank_name || data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}-->
+<!--              <br>-->
+<!--              <b>Account-->
+<!--                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || data?.gold_member_id?.account_name || '-'}}-->
+<!--              <br>-->
+<!--              <b>Bank-->
+<!--                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || data?.gold_member_id?.account_number || '-'}}-->
+<!--              <br>-->
+<!--              <b>Sort-->
+<!--                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || data?.gold_member_id?.sort_code || '-'}}-->
+<!--              <br>-->
+<!--            </td>-->
 
             <td>
               <b>Property Price:</b> {{data?.booking_id?.commission_price}}<br>

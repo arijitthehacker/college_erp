@@ -58,10 +58,11 @@
             <td>{{data?.country_code}} {{data?.phone_number }}</td>
 
             <td>
+              <b>Account Name:</b> {{data?.account_name  || '-'}}<br>
+              <b>Account Number:</b> {{data?.account_number || '-'}}<br>
               <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
-              <b>Account Name:</b> {{data?.account_name || '-'}}<br>
-              <b>Bank Account:</b> {{data?.account_number || '-'}}<br>
               <b>Sort Code:</b> {{data?.sort_code || '-'}}
+              <br>
               <br>
             </td>
             <td>

@@ -2163,8 +2163,12 @@ ul.list-main li:last-child {
 
 .product-images img {
   width: 72px;
-  //margin-top: 8px;
 }
+
+ .set-size {
+  margin-top: -7px !important;
+}
+
 
 .product-images [type="file"] {
   height: 0;

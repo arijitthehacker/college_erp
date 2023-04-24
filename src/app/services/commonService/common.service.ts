@@ -22,6 +22,15 @@ export class CommonService {
 
   }
 
+  getContactNo(data) {
+    let obj: any = {
+      iso: data.countryCode,
+      countryCode: data.dialCode,
+      phoneNo: data.number
+    };
+    return obj;
+  }
+
   getMessage(): Observable<any> {
     return this.subject.asObservable();
   }

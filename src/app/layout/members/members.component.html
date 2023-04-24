@@ -42,7 +42,7 @@
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td>
-              {{ i + ( pagination.pageSize * ( pagination.pageNo - 1 ) ) + 1}}</td>
+              {{ i + (pagination.pageSize * (pagination.pageNo - 1)) + 1}}</td>
             <td>
               <img [src]="data.image || '/assets/images/no-img.webp'" class="small-img"
                    (click)="commonService.openLightBox(data.image)">
@@ -53,14 +53,14 @@
             <td>{{data?.country_code}} {{data?.phone_number }}</td>
 
             <td>
-              <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
               <b>Account Name:</b> {{data?.account_name || '-'}}<br>
-              <b>Bank Account:</b> {{data?.account_number || '-'}}<br>
-              <b>Sort Code:</b> {{data?.sort_code || '-'}}
-              <br>
+              <b>Account Number:</b> {{data?.account_number || '-'}}<br>
+              <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
+              <b>Sort Code:</b> {{data?.sort_code || '-'}}              <br>
             </td>
             <td>
-              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>
+              {{data?.showCode}}
+<!--              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>-->
             </td>
             <td>{{data?.is_gold ? 'Gold' : '-'}} </td>
 

@@ -46,6 +46,28 @@
       </div>
 
       <ng-container *ngIf="modalData">
+      <div class="col-md-6 form-group">
+        <label class="">Image</label>
+        <div class="product-images">
+          <input type="file" class="file-upload" id="image"
+                 accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'image')">
+          <label for="image">
+            <img src="/assets/images/ic_camera.png">
+          </label>
+          <img class="ml-4 uploaded-img set-size" height="72" for="image"
+               [src]="form?.value?.image"
+               *ngIf='form?.value?.image'>
+          <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('image')"
+             *ngIf='form?.value?.image'></i>
+        </div>
+        <div class="text-error"
+             *ngIf="form.controls['image'].errors?.required && showError">
+          Please select image.
+        </div>
+      </div>
+
+
+
         <h3>Bank Details</h3>
         <div class="col-md-6 form-group">
           <label class="set-label">Account Name</label>

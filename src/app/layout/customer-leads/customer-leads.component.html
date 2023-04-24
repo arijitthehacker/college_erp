@@ -223,9 +223,13 @@
                     <a class="dropdown-item" (click)="addFinal(data)">{{data?.commission_price ? 'Edit' : 'Add'}} final
                       property price/Unit No.</a>
                   </li>
+                  <li role="menuitem" (click)="addEditModalOpen(data)">
+                    <a class="dropdown-item">Edit</a>
+                  </li>
                   <li role="menuitem" (click)="deleteData(data)">
                     <a class="dropdown-item">Delete</a>
                   </li>
+
                 </ul>
               </div>
             </td>

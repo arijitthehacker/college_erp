@@ -61,14 +61,15 @@ export class AddCustomerLeadComponent implements OnInit {
   }
 
   patchData(data) {
+    console.log(data,'data');
     this.form.patchValue({
       email: data.email,
-      peroperty_id: data.peroperty_id,
+      peroperty_id: data.peroperty_id?._id,
       peropert_location: data.peropert_location,
-      pupose_id: data.pupose_id,
+      pupose_id: data.pupose_id?._id,
       gender: data.gender,
-      budget_id: data.budget_id,
-      member_id: data.member_id,
+      budget_id: data.budget_id?._id,
+      member_id: data.member_id?._id,
       // agent_id: data.agent_id,
       note: data.note,
       age: data.age,

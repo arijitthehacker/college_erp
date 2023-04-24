@@ -545,12 +545,13 @@
                   <ng-container *ngFor="let data of images;let i =index">
 
                     <ng-container *ngIf="!commonService.checkVideoLink(data)">
-                      <img class="ml-4 multiple-images" [src]="data" *ngIf='data'>
+                      <img class="ml-4 multiple-images" [src]="data" *ngIf='data'
+                           style="margin-top: 6px;">
                     </ng-container>
 
                     <ng-container *ngIf="commonService.checkVideoLink(data)">
                       <img class="ml-4 multiple-images" src="assets/images/video-icon.png" *ngIf='data'
-                           (click)="commonService.goToLink(data)">
+                           (click)="commonService.goToLink(data)" style="margin-top: 6px;">
                     </ng-container>
 
                     <!--                    <ng-container *ngIf="commonService.checkVideoLink(data)">-->

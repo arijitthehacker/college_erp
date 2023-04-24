@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'src/app/services/message/message.service';
-import { ApiUrl } from 'src/app/core/apiUrl';
-import { HttpService } from 'src/app/services/http/http.service';
-import { Subject } from 'rxjs';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { CommonService } from '../../../services/commonService/common.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MessageService} from 'src/app/services/message/message.service';
+import {ApiUrl} from 'src/app/core/apiUrl';
+import {HttpService} from 'src/app/services/http/http.service';
+import {Subject} from 'rxjs';
+import {BsModalRef} from 'ngx-bootstrap/modal';
+import {CommonService} from '../../../services/commonService/common.service';
 
 @Component({
   selector: 'app-add-account',
@@ -39,14 +39,18 @@ export class PaymentComponent implements OnInit {
       _id: ['']
     });
 
+    if (this.advancePage) {
+      this.form.controls['advanced_payment'].setValidators([Validators.required]);
+      this.form.controls['advanced_payment'].updateValueAndValidity();
+    }
   }
 
   patchData(data) {
     this.form.patchValue({
-      transaction_id: data.transaction_id,
-      transaction_image: data.transaction_image,
-      transaction_comment: data.transaction_comment,
-      advanced_payment: data.advanced_payment,
+      // transaction_id: data.transaction_id,
+      // transaction_image: data.transaction_image,
+      // transaction_comment: data.transaction_comment,
+      // advanced_payment: data.advanced_payment,
       _id: data._id
     });
   }
@@ -65,7 +69,9 @@ export class PaymentComponent implements OnInit {
 
       if (this.advancePage) {
         let leftAmount = this.modalData?.total_price - this.modalData?.advanced_price;
-        if (obj.advanced_payment >= leftAmount) {
+        console.log('111111111111',leftAmount );
+        if (obj.advanced_payment > leftAmount) {
+          console.log('11111111111');
           this.message.toast('error', 'Advance payment should be less than pending payment');
           return;
         }

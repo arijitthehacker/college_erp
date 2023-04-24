@@ -44,12 +44,17 @@
                type="text" placeholder="Enter Comment"/>
       </div>
 
-      <div class="col-md-12 form-group" *ngIf="advancePage">
-        <label class="set-label">Advanced Payment
+      <div class="col-md-12 form-group " *ngIf="advancePage">
+        <label class="set-label required">Advanced Payment
 <!--          (<small> <b>Pending Amount:</b>{{modalData?.total_price - modalData?.advanced_price}}</small>-->
         </label>
         <input class="form-control" formControlName="advanced_payment"
-               type="text" placeholder="Enter Advanced Payment"/>
+               type="text" placeholder="Enter Advanced Payment" appAmount/>
+
+        <div class="text-error" *ngIf="form.controls['advanced_payment'].errors?.required && showError">
+          This field is required.
+        </div>
+
       </div>
 
     </div>

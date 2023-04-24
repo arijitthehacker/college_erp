@@ -29,13 +29,25 @@ export class AddAgentComponent implements OnInit {
 
   ngOnInit() {
     this.makeForm();
+  }  selectImage(event: any, id) {
+    this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
+      this.form.controls.image.patchValue(response.data.original);
+    }, () => {
+    });
   }
+
+  removeImage(id) {
+    document.getElementById(id)[`value`] = '';
+    this.form.controls.image.patchValue('');
+  }
+
 
   makeForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
       name: ['', Validators.required],
       bank_name: [''],
+      image: [''],
       account_name: [''],
       account_number: [''],
       sort_code: [''],
@@ -50,6 +62,7 @@ export class AddAgentComponent implements OnInit {
     this.form.patchValue({
       email: data.email,
       bank_name: data.bank_name,
+      image: data.image,
       sort_code: data.sort_code,
       account_number: data.account_number,
       account_name: data.account_name,
@@ -63,6 +76,10 @@ export class AddAgentComponent implements OnInit {
       const obj = JSON.parse(JSON.stringify(this.form.value));
       if (this.modalData) {
         obj[`_id`] = this.modalData._id;
+      }
+
+      if (!obj.image) {
+        delete obj.image;
       }
 
       obj.iso_code = obj.phone_number.countryCode;
