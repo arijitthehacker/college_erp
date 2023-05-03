@@ -71,7 +71,7 @@ export class AddCustomerLeadComponent implements OnInit {
       budget_id: data.budget_id?._id,
       member_id: data.member_id?._id,
       // agent_id: data.agent_id,
-      note: data.note,
+      note: data.note || '',
       age: data.age,
       name: data.name,
       phone_number: data.phone_number

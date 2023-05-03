@@ -48,54 +48,56 @@
         ></ngx-intl-tel-input>
 
         <div class="text-error"
-             *ngIf="form.controls['phone_number'].errors?.required && showError">
+             *ngIf="(form.controls['phone_number'].errors?.required && showError) ||
+              (form?.value?.phone_number == null && showError1)">
           {{message.message.required}}
         </div>
       </div>
 
       <ng-container *ngIf="modalData">
-      <div class="col-md-6 form-group">
-        <label class="">Image</label>
-        <div class="product-images">
-          <input type="file" class="file-upload" id="image"
-                 accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'image')">
-          <label for="image">
-            <img src="/assets/images/ic_camera.png">
-          </label>
-          <img class="ml-4 uploaded-img set-size" height="72" for="image"
-               [src]="form?.value?.image"
-               *ngIf='form?.value?.image'>
-          <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('image')"
-             *ngIf='form?.value?.image'></i>
+        <div class="col-md-6 form-group">
+          <label class="">Image</label>
+          <div class="product-images">
+            <input type="file" class="file-upload" id="image"
+                   accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'image')">
+            <label for="image">
+              <img src="/assets/images/ic_camera.png">
+            </label>
+            <img class="ml-4 uploaded-img set-size" height="72" for="image"
+                 [src]="form?.value?.image"
+                 *ngIf='form?.value?.image'>
+            <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('image')"
+               *ngIf='form?.value?.image'></i>
+          </div>
+          <div class="text-error"
+               *ngIf="form.controls['image'].errors?.required && showError">
+            Please select image.
+          </div>
         </div>
-        <div class="text-error"
-             *ngIf="form.controls['image'].errors?.required && showError">
-          Please select image.
+
+
+        <h3>Bank Details</h3>
+
+        <div class="col-md-6 form-group">
+          <label class="set-label">Account Name</label>
+          <input class="form-control" formControlName="account_name" type="text" placeholder="Enter account name"/>
         </div>
-      </div>
+        <div class="col-md-6 form-group">
+          <label class="set-label">Account Number</label>
+          <input class="form-control" formControlName="account_number" type="text" appNumberOnly
+                 placeholder="Enter account number"/>
+        </div>
 
+        <div class="col-md-6 form-group">
+          <label class="set-label">Bank Name</label>
+          <input class="form-control" formControlName="bank_name" type="text" placeholder="Enter bank name"/>
+        </div>
 
-      <h3>Bank Details</h3>
-
-      <div class="col-md-6 form-group">
-        <label class="set-label">Account Name</label>
-        <input class="form-control" formControlName="account_name" type="text" placeholder="Enter account name"/>
-      </div>
-      <div class="col-md-6 form-group">
-        <label class="set-label">Account Number</label>
-        <input class="form-control" formControlName="account_number" type="text" appNumberOnly placeholder="Enter account number"/>
-      </div>
-
-      <div class="col-md-6 form-group">
-        <label class="set-label">Bank Name</label>
-        <input class="form-control" formControlName="bank_name" type="text" placeholder="Enter bank name"/>
-      </div>
-
-      <div class="col-md-6 form-group">
-        <label class="set-label">Sort code</label>
-        <input class="form-control" formControlName="sort_code" type="text"
-               placeholder="Enter Sort code"/>
-      </div>
+        <div class="col-md-6 form-group">
+          <label class="set-label">Sort code</label>
+          <input class="form-control" formControlName="sort_code" type="text"
+                 placeholder="Enter Sort code"/>
+        </div>
       </ng-container>
 
     </div>

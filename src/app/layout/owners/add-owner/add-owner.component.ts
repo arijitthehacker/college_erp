@@ -17,6 +17,7 @@ import {CONSTANT} from '../../../core/constant';
 export class AddOwnerComponent implements OnInit {
 
   showError = false;
+  showError1 = false;
   CountryISO = CountryISO;
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
@@ -33,7 +34,7 @@ export class AddOwnerComponent implements OnInit {
   makeForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
-      phone_number: ['', Validators.required],
+      phone_number: ['', Validators.compose([Validators.required])],
       bank_name: [''],
       image: [''],
       account_name: [''],
@@ -74,6 +75,12 @@ export class AddOwnerComponent implements OnInit {
   formSubmit() {
 
     console.log(this.form);
+    console.log(this.form.value.phone_number, '1111111111111111111111');
+    // if (this.form.value.phone_number) {
+    // } else {
+    //   this.form.controls.phone_number.patchValue('');
+    // }
+
     if (this.form.valid) {
       const obj = JSON.parse(JSON.stringify(this.form.value));
       let apiUrl = ApiUrl.add_edit_group_owner;
@@ -82,23 +89,22 @@ export class AddOwnerComponent implements OnInit {
         apiUrl = ApiUrl.add_edit_group_owner;
       }
 
-      if (this.form.value?.phone_number) {
-        obj.phone_number = this.commonService.getContactNo(this.form.value.phone_number).phoneNo;
-        obj.iso_code = this.commonService.getContactNo(this.form.value.phone_number).iso;
-        obj.country_code = this.commonService.getContactNo(this.form.value.phone_number).countryCode;
+      if (obj.phone_number) {
+        obj.iso_code = obj.phone_number.countryCode;
+        obj.country_code = obj.phone_number.dialCode;
+        obj.phone_number = obj.phone_number.number;
       } else {
-        this.form.controls.phone_number.patchValue('');
+        this.form.patchValue({
+          phone_number: ''
+        });
         this.showError = true;
-        // this.formSubmit();
+        this.showError1 = true;
+        return;
       }
 
       if (!obj.image) {
         delete obj.image;
       }
-
-      // obj.iso_code = obj.phone_number.countryCode;
-      // obj.country_code = obj.phone_number.dialCode;
-      // obj.phone_number = obj.phone_number.number;
 
       this.http.postData(apiUrl, obj).subscribe(() => {
         this.onClose.next(null);

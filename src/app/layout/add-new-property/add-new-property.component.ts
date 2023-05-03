@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { PaginationControls } from 'src/app/shared/models/pagination-model';
-import { HttpService } from 'src/app/services/http/http.service';
-import { CommonService } from 'src/app/services/commonService/common.service';
-import { MessageService } from 'src/app/services/message/message.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Lightbox } from 'ngx-lightbox';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiUrl } from '../../core/apiUrl';
-import { ConstMsg } from '../../core/ConstMsg';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { Currencies } from '../../core/constant';
+import {Component, OnInit} from '@angular/core';
+import {PaginationControls} from 'src/app/shared/models/pagination-model';
+import {HttpService} from 'src/app/services/http/http.service';
+import {CommonService} from 'src/app/services/commonService/common.service';
+import {MessageService} from 'src/app/services/message/message.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Lightbox} from 'ngx-lightbox';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ApiUrl} from '../../core/apiUrl';
+import {ConstMsg} from '../../core/ConstMsg';
+import {AngularEditorConfig} from '@kolkov/angular-editor';
+import {Currencies} from '../../core/constant';
 
 @Component({
   selector: 'app-accounts',
@@ -65,9 +65,11 @@ export class AddNewPropertyComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.queryParams.id;
     this.isEdit = this.activatedRoute.snapshot.queryParams.isEdit;
     if (this.id) {
+      console.log('111111111');
       this.getData();
       this.getProgress();
     } else {
+      console.log('22222');
       this.createForms();
     }
 
@@ -139,26 +141,26 @@ export class AddNewPropertyComponent implements OnInit {
     }
   }
 
-  getAddress() {
-    if (this.id) {
-      let obj: any = {
-        property_id: this.id
-      };
-      this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
-
-        this.addresses = [];
-        // if (res?.data?.data?.length) {
-        //   this.addresses = res.data.data[0];
-        //   this.addressData = res.data.data[0];
-        //   this.form2.patchValue({
-        //     name: this.addresses.name,
-        //     lng: this.addresses.location.coordinates[0],
-        //     lat: this.addresses.location.coordinates[1]
-        //   });
-        // }
-      });
-    }
-  }
+  // getAddress() {
+  //   if (this.id) {
+  //     let obj: any = {
+  //       property_id: this.id
+  //     };
+  //     this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
+  //
+  //       this.addresses = [];
+  //       // if (res?.data?.data?.length) {
+  //       //   this.addresses = res.data.data[0];
+  //       //   this.addressData = res.data.data[0];
+  //       //   this.form2.patchValue({
+  //       //     name: this.addresses.name,
+  //       //     lng: this.addresses.location.coordinates[0],
+  //       //     lat: this.addresses.location.coordinates[1]
+  //       //   });
+  //       // }
+  //     });
+  //   }
+  // }
 
   makeForm1() {
     this.form1 = this.fb.group({
@@ -206,12 +208,16 @@ export class AddNewPropertyComponent implements OnInit {
         this.message.toast('success',
           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.id = res.data._id;
-        this.router.navigate([], {
-          queryParams: {id: this.id},
-          queryParamsHandling: 'merge'
-        });
-        this.getData();
-        this.getProgress();
+
+        if(!this.isEdit) {
+          this.router.navigate([], {
+            queryParams: {id: this.id},
+            queryParamsHandling: 'merge'
+          });
+          this.getData();
+          this.getProgress();
+        }
+
         this.selectedTab = 2;
       }, () => {
       });
@@ -229,13 +235,16 @@ export class AddNewPropertyComponent implements OnInit {
       lat: ['', Validators.required]
     });
     if (this.modalData) {
+      console.log('3333333333', this.modalData);
       this.form2.patchValue({
         state_id: this.modalData.state_id?._id || '',
         name: this.modalData.address,
         city_id: this.modalData.city_id?._id || '',
-        lng: this.modalData.location?.coordinates[0],
-        lat: this.modalData.location?.coordinates[1]
+        lng: (this.modalData.location?.coordinates[0] != 1) ? this.modalData.location?.coordinates[0] : '',
+        lat: (this.modalData.location?.coordinates[1] != 0) ? this.modalData.location?.coordinates[1] : ''
       });
+
+      console.log('44444444444', this.form2.value);
     }
   }
 
@@ -532,7 +541,7 @@ export class AddNewPropertyComponent implements OnInit {
         };
         this.http.putData(ApiUrl.managed_peroperty_address, obj).subscribe(() => {
           this.message.toast('success', ConstMsg.deleteSuccess);
-          this.getAddress();
+          // this.getAddress();
         }, () => {
         });
       }
@@ -546,7 +555,7 @@ export class AddNewPropertyComponent implements OnInit {
 
     this.http.getData(ApiUrl.list_peroperty_categories, obj, true).subscribe(res => {
       this.categories = res.data.data;
-      this.getAddress();
+      // this.getAddress();
     });
   }
 
