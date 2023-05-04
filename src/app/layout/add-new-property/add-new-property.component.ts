@@ -256,7 +256,7 @@ export class AddNewPropertyComponent implements OnInit {
       this.http.getData(ApiUrl.list_cities, {state_id: this.form2.value.state_id}).subscribe(res => {
         this.cities = res.data.data;
       });
-      this.form2.controls.city_id.patchValue('');
+      // this.form2.controls.city_id.patchValue('');
     }
   }
 
