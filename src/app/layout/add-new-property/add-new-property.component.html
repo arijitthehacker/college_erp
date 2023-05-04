@@ -184,8 +184,7 @@
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">Select State</label>
-                <select class="form-control" formControlName="state_id" (change)="getCityData()"
-                *ngIf="this.form2?.value?.state_id">
+                <select class="form-control" formControlName="state_id" (change)="getCityData()">
                   <option value="">Select State</option>
                   <option *ngFor="let data of states" [value]="data._id">
                     {{data?.name}}
@@ -463,34 +462,34 @@
                 </div>
               </div>
 
-<!--              <div class="col-md-4 form-group">-->
-<!--                <label class="required">Video</label>-->
-<!--                <div class="product-images">-->
-<!--                  <input type="file" class="file-upload" id="video"-->
-<!--                         accept="video/*" (change)="selectImage($event, 'video',6)">-->
-<!--                  <label for="video">-->
-<!--                    &lt;!&ndash;                    <img src="/assets/images/ic_camera.png">&ndash;&gt;-->
-<!--                    <i class="fa fa-video-camera" style="font-size: 25px"></i>-->
-<!--                  </label>-->
+              <!--              <div class="col-md-4 form-group">-->
+              <!--                <label class="required">Video</label>-->
+              <!--                <div class="product-images">-->
+              <!--                  <input type="file" class="file-upload" id="video"-->
+              <!--                         accept="video/*" (change)="selectImage($event, 'video',6)">-->
+              <!--                  <label for="video">-->
+              <!--                    &lt;!&ndash;                    <img src="/assets/images/ic_camera.png">&ndash;&gt;-->
+              <!--                    <i class="fa fa-video-camera" style="font-size: 25px"></i>-->
+              <!--                  </label>-->
 
-<!--                  <ng-container *ngIf='form6?.value?.video'>-->
-<!--                    <img class="ml-4 uploaded-img multiple-images" height="72" for="video"-->
-<!--                         src="assets/images/video-icon.png"-->
-<!--                         *ngIf='form6?.value?.video'>-->
+              <!--                  <ng-container *ngIf='form6?.value?.video'>-->
+              <!--                    <img class="ml-4 uploaded-img multiple-images" height="72" for="video"-->
+              <!--                         src="assets/images/video-icon.png"-->
+              <!--                         *ngIf='form6?.value?.video'>-->
 
-<!--                    &lt;!&ndash;                    <a class="my-link"&ndash;&gt;-->
-<!--                    &lt;!&ndash;                       (click)="commonService.goToLink(form6?.value?.video)">&ndash;&gt;-->
-<!--                    &lt;!&ndash;                      <i class="fa fa-play video-icons" aria-hidden="true"></i>&ndash;&gt;-->
-<!--                    &lt;!&ndash;                    </a>&ndash;&gt;-->
+              <!--                    &lt;!&ndash;                    <a class="my-link"&ndash;&gt;-->
+              <!--                    &lt;!&ndash;                       (click)="commonService.goToLink(form6?.value?.video)">&ndash;&gt;-->
+              <!--                    &lt;!&ndash;                      <i class="fa fa-play video-icons" aria-hidden="true"></i>&ndash;&gt;-->
+              <!--                    &lt;!&ndash;                    </a>&ndash;&gt;-->
 
-<!--                    <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('video',6)"></i>-->
-<!--                  </ng-container>-->
-<!--                </div>-->
-<!--                <div class="text-error"-->
-<!--                     *ngIf="form6.controls['video'].errors?.required && show6Error">-->
-<!--                  Please select video.-->
-<!--                </div>-->
-<!--              </div>-->
+              <!--                    <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('video',6)"></i>-->
+              <!--                  </ng-container>-->
+              <!--                </div>-->
+              <!--                <div class="text-error"-->
+              <!--                     *ngIf="form6.controls['video'].errors?.required && show6Error">-->
+              <!--                  Please select video.-->
+              <!--                </div>-->
+              <!--              </div>-->
 
               <div class="col-md-12 form-group">
                 <label class="required">Images/Videos</label>
