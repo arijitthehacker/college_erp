@@ -72,7 +72,7 @@ export class AddNewPropertyComponent implements OnInit {
       console.log('22222');
       this.createForms();
     }
-
+    this.getDropdownData();
   }
 
   getData() {
@@ -94,13 +94,7 @@ export class AddNewPropertyComponent implements OnInit {
     });
   }
 
-  createForms() {
-    this.makeForm1();
-    this.makeForm2();
-    this.makeForm3();
-    this.makeForm4();
-    this.makeForm5();
-    this.makeForm6();
+  getDropdownData() {
     this.categoryList();
     this.getStateData();
     this.getCityData();
@@ -108,8 +102,31 @@ export class AddNewPropertyComponent implements OnInit {
     this.commissionList();
   }
 
+  createForms() {
+    this.makeForm1();
+    this.makeForm2();
+    this.makeForm3();
+    this.makeForm4();
+    this.makeForm5();
+    this.makeForm6();
+
+  }
+
   gotoPrev(flag) {
     this.selectedTab = flag;
+  }
+
+  resetAddressData(){
+    this.form2.patchValue({
+      state_id: this.modalData.state_id?._id || '',
+      // name: this.modalData.address,
+      city_id: this.modalData.city_id?._id || '',
+      // lng: (this.modalData.location?.coordinates[0] != 1) ? this.modalData.location?.coordinates[0] : '',
+      // lat: (this.modalData.location?.coordinates[1] != 0) ? this.modalData.location?.coordinates[1] : ''
+    });
+
+    this.getCityData()
+
   }
 
   gotoNext(flag) {
@@ -140,27 +157,6 @@ export class AddNewPropertyComponent implements OnInit {
       this.form1Submit();
     }
   }
-
-  // getAddress() {
-  //   if (this.id) {
-  //     let obj: any = {
-  //       property_id: this.id
-  //     };
-  //     this.http.getData(ApiUrl.list_property_address, obj).subscribe(res => {
-  //
-  //       this.addresses = [];
-  //       // if (res?.data?.data?.length) {
-  //       //   this.addresses = res.data.data[0];
-  //       //   this.addressData = res.data.data[0];
-  //       //   this.form2.patchValue({
-  //       //     name: this.addresses.name,
-  //       //     lng: this.addresses.location.coordinates[0],
-  //       //     lat: this.addresses.location.coordinates[1]
-  //       //   });
-  //       // }
-  //     });
-  //   }
-  // }
 
   makeForm1() {
     this.form1 = this.fb.group({
@@ -209,14 +205,14 @@ export class AddNewPropertyComponent implements OnInit {
             this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.id = res.data._id;
 
-        if(!this.isEdit) {
-          this.router.navigate([], {
-            queryParams: {id: this.id},
-            queryParamsHandling: 'merge'
-          });
-          this.getData();
-          // this.getProgress();
-        }
+        // if(!this.isEdit) {
+        this.router.navigate([], {
+          queryParams: {id: this.id},
+          queryParamsHandling: 'merge'
+        });
+        this.getData();
+        // this.getProgress();
+        // }
 
         this.selectedTab = 2;
       }, () => {
@@ -251,6 +247,7 @@ export class AddNewPropertyComponent implements OnInit {
   getStateData() {
     this.http.getData(ApiUrl.list_states).subscribe(res => {
       this.states = res.data.data;
+      this.getCityData();
     });
   }
 
