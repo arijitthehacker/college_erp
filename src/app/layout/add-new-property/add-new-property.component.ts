@@ -209,14 +209,14 @@ export class AddNewPropertyComponent implements OnInit {
             this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.id = res.data._id;
 
-        // if(!this.isEdit) {
-        //   this.router.navigate([], {
-        //     queryParams: {id: this.id},
-        //     queryParamsHandling: 'merge'
-        //   });
-        //   this.getData();
-        //   this.getProgress();
-        // }
+        if(!this.isEdit) {
+          this.router.navigate([], {
+            queryParams: {id: this.id},
+            queryParamsHandling: 'merge'
+          });
+          this.getData();
+          // this.getProgress();
+        }
 
         this.selectedTab = 2;
       }, () => {
