@@ -186,7 +186,8 @@
                 <label class="required set-label">Select State
 
                 </label>
-                <select class="form-control" formControlName="state_id" (change)="getCityData()">
+                <select class="form-control" formControlName="state_id"
+                        (change)="getCityData();form2.controls.city_id.patchValue('')">
                   <option value="">Select State</option>
                   <option *ngFor="let data of states" [value]="data._id">
                     {{data?.name}}
@@ -243,7 +244,8 @@
 
 
           <div class="btn-area">
-            <button type="button" class="btn btn-blue-outline" (click)="resetAddressData();gotoPrev(1)">Previous</button>
+            <button type="button" class="btn btn-blue-outline" (click)="resetAddressData();gotoPrev(1)">Previous
+            </button>
             <button type="button" class="btn btn-blue-outline" (click)="gotoNext(3)">Next</button>
           </div>
         </ng-container>
