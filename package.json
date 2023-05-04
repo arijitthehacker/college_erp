@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:dev": "ng build --configuration=dev",
-    "dev-push": "npm run build:dev && git add . && git commit -am 'client issues done' && git push origin master && npm run server",
+    "dev-push": "npm run build:dev && git add . && git commit -am 'client issues done' && git push origin master && npm run dev-server",
     "dev-server": "sudo ssh -i ../pem/DeveloperKey.pem ubuntu@54.251.227.44",
     "push": "npm run build && git add . && git commit -am 'client issues done' && git push origin master && npm run server",
     "server": "sudo ssh -i ../pem/DeveloperKey.pem ubuntu@23.21.27.243"

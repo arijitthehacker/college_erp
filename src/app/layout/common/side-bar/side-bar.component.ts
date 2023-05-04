@@ -102,6 +102,8 @@ export class SideBarComponent implements OnInit {
     }
     this.selectedIndex = index;
 
+    console.log(flag,'11111111111');
+
     switch (flag) {
       case 1:
         this.showSideBar = false;

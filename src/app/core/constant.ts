@@ -182,7 +182,7 @@ export const ROLES = [
   },
 
   {
-    path: '', id: 'content_management', name: 'Content Management',
+    path: 'info-pages', id: 'content_management', name: 'Content Management',
     icon: 'fa-info-circle', isSelected: false, children: [
       {path: 'privacy', id: 'content_management_privacy', name: 'Privacy Policy', isSelected: false},
       {path: 'terms', id: 'content_management_terms_condition', name: 'Terms & Conditions', isSelected: false},
