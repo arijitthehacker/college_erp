@@ -184,7 +184,8 @@
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">Select State</label>
-                <select class="form-control" formControlName="state_id" (change)="getCityData()">
+                <select class="form-control" formControlName="state_id" (change)="getCityData()"
+                *ngIf="this.form2?.value?.state_id">
                   <option value="">Select State</option>
                   <option *ngFor="let data of states" [value]="data._id">
                     {{data?.name}}
@@ -234,50 +235,10 @@
                   This field is required.
                 </div>
               </div>
-
               <div class="col-md-4 form-group" style="margin-top:26px;">
-<!--                <button type="submit" class="btn btn-blue-outline">save</button>-->
               </div>
             </div>
-
           </form>
-
-          <!--          <ng-container *ngIf="addresses?.length">-->
-          <!--            <label class="add-table"> Address List</label>-->
-          <!--            <div class="table-responsive mt-2">-->
-          <!--              <table class="table">-->
-          <!--                <thead>-->
-          <!--                <tr>-->
-          <!--                  <th>Sr. No.</th>-->
-          <!--                  <th>Address</th>-->
-          <!--                  <th>Longitude</th>-->
-          <!--                  <th>Latitude</th>-->
-          <!--                  <th>Action</th>-->
-          <!--                </tr>-->
-          <!--                </thead>-->
-          <!--                <tbody>-->
-          <!--                <tr *ngFor="let data of addresses;let i =index">-->
-          <!--                  <td>{{i + 1}}</td>-->
-          <!--                  <td>{{data?.name}}</td>-->
-          <!--                  <td>{{data.location.coordinates[0]}}</td>-->
-          <!--                  <td>{{data.location.coordinates[1]}}</td>-->
-          <!--                  <td class="edit-section">-->
-          <!--                    <div (click)="blockUnblock(data)">-->
-          <!--                      <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>-->
-          <!--                      <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>-->
-          <!--                    </div>-->
-
-          <!--                    <div>-->
-          <!--                      <i (click)="deleteData(data)" class="fa fa-trash"></i>-->
-          <!--                    </div>-->
-          <!--                  </td>-->
-          <!--                </tr>-->
-          <!--                </tbody>-->
-          <!--              </table>-->
-          <!--            </div>-->
-
-
-          <!--          </ng-container>-->
 
 
           <div class="btn-area">
@@ -403,7 +364,7 @@
               <div class="col-md-4 form-group">
                 <label class="required set-label">total units</label>
                 <input class="form-control" formControlName="total_units"
-                       type="text" placeholder="Enter total units"/>
+                       type="text" placeholder="Enter total units" appNumberOnly/>
                 <div class="text-error" *ngIf="form4.controls['total_units'].errors?.required && show4Error">
                   This field is required.
                 </div>
