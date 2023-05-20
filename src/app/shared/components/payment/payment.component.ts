@@ -69,9 +69,7 @@ export class PaymentComponent implements OnInit {
 
       if (this.advancePage) {
         let leftAmount = this.modalData?.total_price - this.modalData?.advanced_price;
-        console.log('111111111111',leftAmount );
         if (obj.advanced_payment > leftAmount) {
-          console.log('11111111111');
           this.message.toast('error', 'Advance payment should be less than pending payment');
           return;
         }

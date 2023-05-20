@@ -99,8 +99,6 @@ export class AddAgentComponent implements OnInit {
         return;
       }
 
-      console.log(this.form);
-
       this.http.postData(ApiUrl.add_edit_agents, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',

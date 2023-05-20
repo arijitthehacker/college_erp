@@ -65,11 +65,9 @@ export class AddNewPropertyComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.queryParams.id;
     this.isEdit = this.activatedRoute.snapshot.queryParams.isEdit;
     if (this.id) {
-      console.log('111111111');
       this.getData();
       this.getProgress();
     } else {
-      console.log('22222');
       this.createForms();
     }
     this.getDropdownData();
@@ -97,9 +95,12 @@ export class AddNewPropertyComponent implements OnInit {
   getDropdownData() {
     this.categoryList();
     this.getStateData();
-    this.getCityData();
+
     this.devsList();
     this.commissionList();
+    setTimeout(() => {
+      this.getCityData();
+    }, 1000);
   }
 
   createForms() {
@@ -116,16 +117,16 @@ export class AddNewPropertyComponent implements OnInit {
     this.selectedTab = flag;
   }
 
-  resetAddressData(){
+  resetAddressData() {
     this.form2.patchValue({
       state_id: this.modalData.state_id?._id || '',
       // name: this.modalData.address,
-      city_id: this.modalData.city_id?._id || '',
+      city_id: this.modalData.city_id?._id || ''
       // lng: (this.modalData.location?.coordinates[0] != 1) ? this.modalData.location?.coordinates[0] : '',
       // lat: (this.modalData.location?.coordinates[1] != 0) ? this.modalData.location?.coordinates[1] : ''
     });
 
-    this.getCityData()
+    this.getCityData();
 
   }
 
@@ -202,7 +203,7 @@ export class AddNewPropertyComponent implements OnInit {
 
       this.http.postData(ApiUrl.add_edit_peroperties, obj).subscribe(res => {
         this.message.toast('success',
-            this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.id = res.data._id;
 
         // if(!this.isEdit) {
@@ -231,7 +232,6 @@ export class AddNewPropertyComponent implements OnInit {
       lat: ['', Validators.required]
     });
     if (this.modalData) {
-      console.log('3333333333', this.modalData);
       this.form2.patchValue({
         state_id: this.modalData.state_id?._id || '',
         name: this.modalData.address,
@@ -239,14 +239,13 @@ export class AddNewPropertyComponent implements OnInit {
         lng: (this.modalData.location?.coordinates[0] != 1) ? this.modalData.location?.coordinates[0] : '',
         lat: (this.modalData.location?.coordinates[1] != 0) ? this.modalData.location?.coordinates[1] : ''
       });
-
-      console.log('44444444444', this.form2.value);
     }
   }
 
   getStateData() {
     this.http.getData(ApiUrl.list_states).subscribe(res => {
       this.states = res.data.data;
+      console.log('2222222222222');
       this.getCityData();
     });
   }
@@ -272,7 +271,7 @@ export class AddNewPropertyComponent implements OnInit {
       this.http.postData(ApiUrl.add_edit_peroperty_address, obj).subscribe(res => {
         this.addressData = res.data;
         this.message.toast('success',
-            this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         // this.form2.reset();
         // this.getAddress();
         // this.getData();
@@ -340,7 +339,7 @@ export class AddNewPropertyComponent implements OnInit {
       }
       this.http.postData(ApiUrl.add_peroperties_step_3, obj).subscribe(() => {
         this.message.toast('success',
-            this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.selectedTab = 4;
         this.getProgress();
       }, () => {
@@ -405,7 +404,7 @@ export class AddNewPropertyComponent implements OnInit {
       });
       this.http.postData(ApiUrl.add_peroperties_step_4, obj).subscribe(() => {
         this.message.toast('success',
-            this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.selectedTab = 5;
         this.getProgress();
       }, () => {
@@ -437,7 +436,7 @@ export class AddNewPropertyComponent implements OnInit {
 
       this.http.postData(ApiUrl.add_peroperties_step_5, obj).subscribe(() => {
         this.message.toast('success',
-            this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.getProgress();
         this.selectedTab = 6;
       }, () => {
@@ -479,7 +478,7 @@ export class AddNewPropertyComponent implements OnInit {
 
       this.http.postData(ApiUrl.add_peroperties_step_6, obj).subscribe(() => {
         this.message.toast('success',
-            this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.getProgress();
         if (isPublish) {
           this.publishApi();

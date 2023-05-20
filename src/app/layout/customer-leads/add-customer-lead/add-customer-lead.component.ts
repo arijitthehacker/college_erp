@@ -9,6 +9,7 @@ import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../../services/commonService/common.service';
 import { CountryISO } from 'ngx-intl-tel-input';
 import { CONSTANT } from '../../../core/constant';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-add-account',
@@ -26,7 +27,15 @@ export class AddCustomerLeadComponent implements OnInit {
   agents: any = [];
   purposes: any = [];
   budgets: any = [];
+  dropdownSettings:IDropdownSettings = {
+    singleSelection: true,
+    closeDropDownOnSelection: true,
+    idField: '_id',
+    textField: 'name',
 
+    itemsShowLimit: 1,
+    allowSearchFilter: true
+  };
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
   }
@@ -61,7 +70,6 @@ export class AddCustomerLeadComponent implements OnInit {
   }
 
   patchData(data) {
-    console.log(data,'data');
     this.form.patchValue({
       email: data.email,
       peroperty_id: data.peroperty_id?._id,
@@ -117,6 +125,7 @@ export class AddCustomerLeadComponent implements OnInit {
       obj.iso_code = obj.phone_number.countryCode;
       obj.country_code = obj.phone_number.dialCode;
       obj.phone_number = obj.phone_number.number;
+      obj.member_id = obj.member_id[0]._id;
 
       this.http.postData(ApiUrl.add_customer_request, obj).subscribe(() => {
         this.onClose.next(null);

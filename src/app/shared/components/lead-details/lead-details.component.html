@@ -1,0 +1,100 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Customer Lead Details
+  </h4>
+  <button class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+
+<div class="modal-body">
+
+  <div class="tables-area mb-3">
+    <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 1}" (click)="clickTab(1)">
+      Customer Details
+    </div>
+    <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 2}" (click)="clickTab(2)">
+      User Details
+    </div>
+    <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 3}" (click)="clickTab(3)">
+      Project & location
+    </div>
+  </div>
+
+
+  <table class="table details-table">
+
+    <ng-container *ngIf="selectedTab === 1">
+      <tr>
+        <td>
+          <h5>Name</h5>
+          <p>{{modalData?.name || '-'}}</p>
+        </td>
+        <td>
+          <h5>category</h5>
+          <p>{{modalData?.country_code || '-'}} {{modalData?.phone_number || '-'}}</p>
+        </td>
+        <td>
+          <h5>Tenure</h5>
+          <p>{{modalData?.email || '-'}}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h5>Gender</h5>
+          <p>{{modalData?.gender}}</p>
+        </td>
+        <td>
+          <h5>Age</h5>
+          <p>{{modalData?.age}}</p>
+        </td>
+      </tr>
+
+    </ng-container>
+
+    <ng-container *ngIf="selectedTab === 2">
+      <tr>
+        <td>
+          <h5>Member Name</h5>
+          <p>{{modalData?.member_id?.name || '-'}}</p>
+        </td>
+      </tr>
+    </ng-container>
+
+
+    <ng-container *ngIf="selectedTab === 3">
+      <tr>
+        <td>
+          <h5>Project Interested</h5>
+          <p>{{modalData?.peroperty_id?.name || '-'}}</p>
+        </td>
+        <td>
+          <h5>Target Location</h5>
+          <p>{{modalData?.peropert_location || '-'}}</p>
+        </td>
+        <td>
+          <h5>Purpose</h5>
+          <p>{{modalData?.pupose_id?.name || '-'}}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h5>Budget</h5>
+          <p>{{modalData?.budget_id?.currency}} {{modalData?.budget_id?.min_price}}
+            - {{modalData?.budget_id?.max_price}} </p>
+        </td>
+        <td>
+          <h5>note</h5>
+          <p>{{modalData?.note}} </p>
+        </td>
+      </tr>
+    </ng-container>
+
+
+  </table>
+
+</div>
+
+<div class="modal-footer">
+  <button (click)="bsModalRef.hide()" type="button" class="btn btn-default mr-3">Close</button>
+</div>

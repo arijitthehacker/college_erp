@@ -73,9 +73,6 @@ export class AddOwnerComponent implements OnInit {
   }
 
   formSubmit() {
-
-    console.log(this.form);
-    console.log(this.form.value.phone_number, '1111111111111111111111');
     // if (this.form.value.phone_number) {
     // } else {
     //   this.form.controls.phone_number.patchValue('');
