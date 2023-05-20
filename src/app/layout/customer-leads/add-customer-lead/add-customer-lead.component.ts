@@ -27,15 +27,16 @@ export class AddCustomerLeadComponent implements OnInit {
   agents: any = [];
   purposes: any = [];
   budgets: any = [];
-  dropdownSettings:IDropdownSettings = {
+  dropdownSettings: IDropdownSettings = {
     singleSelection: true,
     closeDropDownOnSelection: true,
     idField: '_id',
     textField: 'name',
-
+    noDataAvailablePlaceholderText:'No member available',
     itemsShowLimit: 1,
     allowSearchFilter: true
   };
+
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
   }
@@ -70,6 +71,7 @@ export class AddCustomerLeadComponent implements OnInit {
   }
 
   patchData(data) {
+
     this.form.patchValue({
       email: data.email,
       peroperty_id: data.peroperty_id?._id,
@@ -84,6 +86,7 @@ export class AddCustomerLeadComponent implements OnInit {
       name: data.name,
       phone_number: data.phone_number
     });
+
   }
 
   getProperties() {
@@ -95,8 +98,17 @@ export class AddCustomerLeadComponent implements OnInit {
   getMembers() {
     this.http.getData(ApiUrl.list_members, {is_pagination: false}).subscribe(res => {
       this.members = res.data.data;
+
+      if (this.modalData) {
+        this.members.forEach((val) => {
+          if (val.member_id?._id) {
+            this.form.controls.member_id.patchValue([val.member_id]);
+          }
+        });
+      }
     });
   }
+
   getAgents() {
     this.http.getData(ApiUrl.list_agents, {is_pagination: false}).subscribe(res => {
       this.agents = res.data.data;
@@ -130,7 +142,7 @@ export class AddCustomerLeadComponent implements OnInit {
       this.http.postData(ApiUrl.add_customer_request, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',
-          this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.bsModalRef.hide();
       }, () => {
       });
