@@ -1259,3 +1259,11 @@ select {
   font-size: 20px;
 }
 
+
+.set-td-width {
+  tr {
+    td {
+      width: 33% !important;
+    }
+  }
+}
