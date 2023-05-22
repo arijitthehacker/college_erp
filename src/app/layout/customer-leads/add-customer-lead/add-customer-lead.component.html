@@ -93,40 +93,39 @@
 
     <div class="row">
       <div class="col-md-4 form-group">
-        <label class="required set-label"> Select Member</label>
-
+        <label class="required set-label"> Select Member </label>
         <ng-multiselect-dropdown
-           [placeholder]="'Select Member'"
-           [settings]="dropdownSettings"
-           [data]="members"
-           formControlName="member_id"
+          [placeholder]="'Select Member'"
+          [settings]="dropdownSettings"
+          [data]="members"
+          formControlName="member_id"
         >
         </ng-multiselect-dropdown>
 
-<!--        <select class="form-control" formControlName="member_id">-->
-<!--          <option value="">Select Member</option>-->
-<!--          <option *ngFor="let data of members" [value]="data._id">-->
-<!--            {{data?.name}}-->
-<!--          </option>-->
-<!--        </select>-->
+        <!--        <select class="form-control" formControlName="member_id">-->
+        <!--          <option value="">Select Member</option>-->
+        <!--          <option *ngFor="let data of members" [value]="data._id">-->
+        <!--            {{data?.name}}-->
+        <!--          </option>-->
+        <!--        </select>-->
 
         <div class="text-error" *ngIf="form.controls['member_id'].errors?.required && showError">
           This field is required.
         </div>
       </div>
 
-<!--      <div class="col-md-4 form-group">-->
-<!--        <label class="required set-label"> Select Agent</label>-->
-<!--        <select class="form-control" formControlName="agent_id">-->
-<!--          <option value="">Select Agent</option>-->
-<!--          <option *ngFor="let data of agents" [value]="data._id">-->
-<!--            {{data?.name}}-->
-<!--          </option>-->
-<!--        </select>-->
-<!--        <div class="text-error" *ngIf="form.controls['agent_id'].errors?.required && showError">-->
-<!--          This field is required.-->
-<!--        </div>-->
-<!--      </div>-->
+      <!--      <div class="col-md-4 form-group">-->
+      <!--        <label class="required set-label"> Select Agent</label>-->
+      <!--        <select class="form-control" formControlName="agent_id">-->
+      <!--          <option value="">Select Agent</option>-->
+      <!--          <option *ngFor="let data of agents" [value]="data._id">-->
+      <!--            {{data?.name}}-->
+      <!--          </option>-->
+      <!--        </select>-->
+      <!--        <div class="text-error" *ngIf="form.controls['agent_id'].errors?.required && showError">-->
+      <!--          This field is required.-->
+      <!--        </div>-->
+      <!--      </div>-->
     </div>
 
 
@@ -191,9 +190,9 @@
         <label class="set-label">Notes </label>
         <textarea class="form-control" formControlName="note"
                   type="text" placeholder="Enter Notes"></textarea>
-<!--        <div class="text-error" *ngIf="form.controls['note'].errors?.required && showError">-->
-<!--          This field is required.-->
-<!--        </div>-->
+        <!--        <div class="text-error" *ngIf="form.controls['note'].errors?.required && showError">-->
+        <!--          This field is required.-->
+        <!--        </div>-->
       </div>
     </div>
 
