@@ -84,9 +84,9 @@
           </thead>
           <tbody>
           <tr
-            *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;"
+             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;"
           >
-            <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+            <td> {{(pagination.pageNo - 1) * 10 + i + 1}} </td>
             <td>
               <a (click)="openMemberDetails(data, 'Customer',1)"
                  class="my-link">{{data?.name || '-'}}</a>
@@ -133,7 +133,7 @@
               <b>Agent:</b> {{data?.agent_payment_status|titlecase}}<br>
               <b>Member:</b> {{data?.member_payment_status |titlecase}}<br>
               <b>Gold
-                Member:</b> {{data?.gold_member_payment_id ? ( data?.gold_member_payment_status |titlecase ) : '-' }}
+                Member:</b> {{data?.gold_member_payment_id ? (data?.gold_member_payment_status |titlecase) : '-' }}
 
             </td>
             <td>
@@ -141,9 +141,10 @@
               <b>Unit No.:</b> {{data?.unit_no || '-'}}<br></td>
 
             <td>
-              <label class="set-status-tab"
 
-                     [ngClass]="{
+              <ng-container *ngIf="!data?.reject_reason">
+                <label class="set-status-tab"
+                       [ngClass]="{
                 'Contact_Lead':data?.last_status_name === 'Contact Lead',
                 'accepted_buy_customer':data?.last_status_name === 'accepted_buy_customer',
                 'assigned_agent': data?.last_status_name === 'assigned_agent',
@@ -160,31 +161,34 @@
                  'spa_signed_rejected':data?.last_status_name === 'spa_signed_rejected',
                  'pay_completed':data?.last_status_name === 'pay_completed'
             }">
-
-
-                <ng-container *ngIf="data?.last_status_name === 'Contact Lead'">Waiting for customer confirmation
-                </ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'accepted_buy_customer'">Waiting to agent assign
-                </ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'assigned_agent'"> Contact lead</ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'contact_lead'">Appointment</ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'contact_lead_rejected'">Contact Lead Rejected
-                </ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'appointment'">Booking</ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'appointment_rejected'">Appointment Rejected
-                </ng-container>
-                <!--                <ng-container *ngIf="data?.last_status_name === 'rejected'">Rejected</ng-container>-->
-                <ng-container *ngIf="data?.last_status_name === 'booking'">Loan approval</ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'booking_rejected'">Booking Rejected</ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'loan_approved'">SPA Signed</ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'loan_approved_rejected'">Loan Rejected</ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'spa_signed'">Payout Pending</ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'payout_rejected'">Payout Rejected</ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'spa_signed_rejected'">SPA Signed Rejected
-                </ng-container>
-                <ng-container *ngIf="data?.last_status_name === 'pay_completed'">Close</ng-container>
-
+                  <ng-container *ngIf="data?.last_status_name === 'Contact Lead'">Waiting for customer confirmation
+                  </ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'accepted_buy_customer'">Waiting to agent assign
+                  </ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'assigned_agent'"> Contact lead</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'contact_lead'">Appointment</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'contact_lead_rejected'">Contact Lead Rejected
+                  </ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'appointment'">Booking</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'appointment_rejected'">Appointment Rejected
+                  </ng-container>
+                  <!--                <ng-container *ngIf="data?.last_status_name === 'rejected'">Rejected</ng-container>-->
+                  <ng-container *ngIf="data?.last_status_name === 'booking'">Loan approval</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'booking_rejected'">Booking Rejected</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'loan_approved'">SPA Signed</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'loan_approved_rejected'">Loan Rejected</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'spa_signed'">Payout Pending</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'payout_rejected'">Payout Rejected</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'spa_signed_rejected'">SPA Signed Rejected
+                  </ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'pay_completed'">Close</ng-container>
               </label>
+              </ng-container>
+
+
+              <ng-container *ngIf="data?.reject_reason">
+                <label class="set-status-tab payout_rejected">{{data?.reject_reason || '-'}}</label>
+              </ng-container>
             </td>
 
             <td class="dots-area">
