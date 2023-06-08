@@ -72,8 +72,8 @@
             <th>Sr. No.</th>
             <th>Customer Name</th>
             <th>Property Name</th>
-            <th>Member Name</th>
-            <th>Founder</th>
+            <th>Member Info</th>
+            <th>Founder Info</th>
             <th>Agent Info</th>
             <th>Ambassador Info</th>
             <th>Commission Status</th>
@@ -132,8 +132,7 @@
               <br>
               <b>Agent:</b> {{data?.agent_payment_status|titlecase}}<br>
               <b>Member:</b> {{data?.member_payment_status |titlecase}}<br>
-              <b>Gold
-                Member:</b> {{data?.gold_member_payment_id ? (data?.gold_member_payment_status |titlecase) : '-' }}
+              <b>Ambassador:</b> {{data?.gold_member_payment_id ? (data?.gold_member_payment_status |titlecase) : '-' }}
 
             </td>
             <td>
