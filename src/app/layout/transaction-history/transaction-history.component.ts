@@ -94,7 +94,7 @@ export class TransactionHistoryComponent implements OnInit {
           'Property Name': data?.booking_id?.peroperty_id?.name,
           'Developer Name': data?.booking_id?.peroperty_id?.developer_id?.name,
           'Transferred To(Name)': data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name,
-          'Transferred To(Phone No.)': data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number || data?.gold_member_id?.name,
+          'Transferred To(Phone No.)': data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number || data?.gold_member_id?.phone_number,
           'Completed On': moment(data?.time).format('DD-MM-yyyy, hh:mm a'),
           'Member Name': data?.booking_id?.member_id?.name,
           'Member Phone No.': data?.booking_id?.member_id?.phone_number,
