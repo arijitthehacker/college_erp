@@ -12,9 +12,9 @@ import {CONSTANT} from '../../../core/constant';
 
 @Component({
   selector: 'app-add-account',
-  templateUrl: './add-owner.component.html'
+  templateUrl: './add-founder.component.html'
 })
-export class AddOwnerComponent implements OnInit {
+export class AddFounderComponent implements OnInit {
 
   showError = false;
   showError1 = false;

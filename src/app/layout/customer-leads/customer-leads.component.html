@@ -30,7 +30,7 @@
 
             <option value="">All Status</option>
             <option value="pending">Waiting for customer confirmation</option>
-            <option value="accepted_buy_customer">Waiting to agent assign</option>
+            <option value="accepted_buy_customer">Waiting for agent assignment</option>
             <option value="assigned_agent">Contact lead</option>
             <option value="contact_lead">Appointment</option>
             <option value="appointment">Booking</option>
@@ -73,9 +73,9 @@
             <th>Customer Name</th>
             <th>Property Name</th>
             <th>Member Name</th>
-            <th>Group Owner</th>
+            <th>Founder</th>
             <th>Agent Info</th>
-            <th>Gold Member Info</th>
+            <th>Ambassador Info</th>
             <th>Commission Status</th>
             <th>Property final price/Unit No.</th>
             <th style="min-width: 130px">Status</th>
@@ -101,7 +101,7 @@
             </td>
 
             <td>
-              <a (click)="openMemberDetails(data?.group_owner_id, 'Group Owner',3)"
+              <a (click)="openMemberDetails(data?.group_owner_id, 'Founder',3)"
                  class="my-link">{{data?.group_owner_id?.name || '-'}}</a>
               <!--              {{data?.group_owner_id?.name || '-'}}-->
             </td>
@@ -121,14 +121,14 @@
 
             <td>
               <ng-container *ngIf="!data?.gold_member_id?.name">-</ng-container>
-              <a (click)="openMemberDetails(data?.gold_member_id, 'Gold Member',6)"
+              <a (click)="openMemberDetails(data?.gold_member_id, 'Ambassador',6)"
                  *ngIf="data?.gold_member_id?.name"
                  class="my-link">{{data?.gold_member_id?.name || '-'}}</a>
 
             </td>
 
             <td>
-              <b>Group Owner:</b> {{data?.group_payment_status|titlecase }}
+              <b>Founder:</b> {{data?.group_payment_status|titlecase }}
               <br>
               <b>Agent:</b> {{data?.agent_payment_status|titlecase}}<br>
               <b>Member:</b> {{data?.member_payment_status |titlecase}}<br>
@@ -163,7 +163,7 @@
             }">
                   <ng-container *ngIf="data?.last_status_name === 'Contact Lead'">Waiting for customer confirmation
                   </ng-container>
-                  <ng-container *ngIf="data?.last_status_name === 'accepted_buy_customer'">Waiting to agent assign
+                  <ng-container *ngIf="data?.last_status_name === 'accepted_buy_customer'">Waiting for agent assignment
                   </ng-container>
                   <ng-container *ngIf="data?.last_status_name === 'assigned_agent'"> Contact lead</ng-container>
                   <ng-container *ngIf="data?.last_status_name === 'contact_lead'">Appointment</ng-container>

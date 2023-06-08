@@ -7,16 +7,16 @@ import { ConstMsg } from 'src/app/core/ConstMsg';
 import { MessageService } from 'src/app/services/message/message.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
-import { AddOwnerComponent } from './add-owner/add-owner.component';
 import {
   ChangeMemberPasswordComponent
 } from '../../shared/components/change-member-password/change-member-password.component';
+import { AddFounderComponent } from './add-founder/add-founder.component';
 
 @Component({
   selector: 'app-accounts',
-  templateUrl: './owners.component.html'
+  templateUrl: './founders.component.html'
 })
-export class OwnersComponent implements OnInit {
+export class FoundersComponent implements OnInit {
 
   allData: any = [];
   search = '';
@@ -99,7 +99,7 @@ export class OwnersComponent implements OnInit {
   }
 
   addEditModalOpen(data?: any) {
-    const modalRef = this.modalService.show(AddOwnerComponent, {
+    const modalRef = this.modalService.show(AddFounderComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-lg'
     });
     modalRef.content.onClose.subscribe(() => {

@@ -62,8 +62,8 @@
             <option value="ALL">All Users</option>
             <option value="AGENT">Agent</option>
             <option value="MEMEBER">Member</option>
-            <option value="GROUP_OWNER">Group Owner</option>
-            <option value="GOLD_MEMEBER">Gold Member</option>
+            <option value="GROUP_OWNER">Founder</option>
+            <option value="GOLD_MEMEBER">Ambassador</option>
           </select>
         </div>
         <div class="col-md-3 sm-input-space">
@@ -87,9 +87,9 @@
             <th class="col-width">Transferred To</th>
 
             <th class="col-width">Member Info</th>
-            <th class="col-width">Group Info</th>
+            <th class="col-width">Founder Info</th>
             <th class="col-width">Agent Info</th>
-            <th class="col-width">Gold Member Info</th>
+            <th class="col-width">Ambassador Info</th>
             <th class="col-width">Customer Info</th>
             <th class="col-width">Proof of Transaction</th>
             <th class="col-width">Transaction Details</th>
@@ -108,10 +108,10 @@
             </td>
             <td>
                  <span class="highlighted-text">
-              <ng-container *ngIf="data?.group_owner_id?.name">Group Owner</ng-container>
+              <ng-container *ngIf="data?.group_owner_id?.name">Founder</ng-container>
               <ng-container *ngIf="data?.agent_id?.name">Agent</ng-container>
               <ng-container *ngIf="data?.member_id?.name">Member</ng-container>
-                   <ng-container *ngIf="data?.gold_member_id?.name">Gold Member</ng-container>
+                   <ng-container *ngIf="data?.gold_member_id?.name">Ambassador</ng-container>
               </span>
               <br>
               <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name}}

@@ -19,9 +19,9 @@
       </div>
 
       <div class="col-md-12 form-group">
-        <label class="set-label required"> group owner commission</label>
+        <label class="set-label required"> Founder commission</label>
         <input class="form-control" formControlName="group_owner_commision" appAmount
-               type="text" placeholder="Enter group owner commission"/>
+               type="text" placeholder="Enter Founder commission"/>
         <div class="text-error" *ngIf="form.controls['group_owner_commision'].errors?.required && showError">
           This field is required.
         </div>
@@ -56,9 +56,9 @@
 
 
       <div class="col-md-12 form-group">
-        <label class="set-label required"> Gold member commission</label>
+        <label class="set-label required">Ambassador commission</label>
         <input class="form-control" formControlName="gold_member_commision" appAmount
-               type="text" placeholder="Enter gold member commission"/>
+               type="text" placeholder="Enter Ambassador commission"/>
         <div class="text-error" *ngIf="form.controls['gold_member_commision'].errors?.required && showError">
           This field is required.
         </div>

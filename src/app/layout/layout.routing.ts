@@ -19,8 +19,8 @@ const routes: Routes = [
       },
       {
         path: 'owners',
-        loadChildren: () => import('./owners/owners.module').then(m => m.OwnersModule),
-        data: {breadcrumb: 'Owners', title: 'owner'}
+        loadChildren: () => import('./founders/founders.module').then(m => m.FoundersModule),
+        data: {breadcrumb: 'Founders', title: 'founder'}
       }, {
         path: 'agents',
         loadChildren: () => import('./agents/agents.module').then(m => m.AgentsModule),

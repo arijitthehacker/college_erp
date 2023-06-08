@@ -73,7 +73,7 @@ export const SIDEBAR = [
 export const ROLES = [
   {
     path: '', id: 'users_profiles', name: 'User\'s Profile', isSelected: false, icon: 'fa-users', children: [
-      {path: 'owners', id: 'users_profiles_owners', name: 'Owners', icon: 'fa fa-connectdevelop', isSelected: false},
+      {path: 'owners', id: 'users_profiles_owners', name: 'Founders', icon: 'fa fa-connectdevelop', isSelected: false},
       {path: 'agents', id: 'users_profiles_agents', name: 'Agents', icon: 'fa fa-user', isSelected: false},
       {path: 'members', id: 'users_profiles_members', name: 'Members', icon: 'fa fa-user-o', isSelected: false},
       {path: 'developers', id: 'users_profiles_developers', name: 'Developers', icon: 'fa fa-gavel', isSelected: false}

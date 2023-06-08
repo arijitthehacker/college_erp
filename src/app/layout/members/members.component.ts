@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import {
   ChangeMemberPasswordComponent
 } from '../../shared/components/change-member-password/change-member-password.component';
-import { AddOwnerComponent } from '../owners/add-owner/add-owner.component';
 import { EditMemberComponent } from './edit-member/edit-member.component';
 
 @Component({

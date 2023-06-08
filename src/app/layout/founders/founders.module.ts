@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OwnersComponent } from './owners.component';
+import { FoundersComponent } from './founders.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AddOwnerComponent } from './add-owner/add-owner.component';
+import { AddFounderComponent } from './add-founder/add-founder.component';
 
 const routes: Routes = [
   {
-    path: '', component: OwnersComponent
+    path: '', component: FoundersComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    OwnersComponent,
-    AddOwnerComponent
+    FoundersComponent,
+    AddFounderComponent
   ],
   imports: [
     CommonModule,
@@ -22,8 +22,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   entryComponents: [
-    AddOwnerComponent,
+    AddFounderComponent,
   ]
 })
-export class OwnersModule {
+export class FoundersModule {
 }

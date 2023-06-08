@@ -22,7 +22,7 @@ export class RecycleBinComponent implements OnInit {
     models: any = [
         {name: 'All', id: 'All'},
         {name: 'Agents', id: 'Agents'},
-        {name: 'Group Owners', id: 'GroupOwnwers'},
+        {name: 'Founder', id: 'GroupOwnwers'},
         {name: 'Members', id: 'Users'},
         {name: 'Properties', id: 'Peroperties'},
         {name: 'Properties Category', id: 'PeropertiesCategory'},
