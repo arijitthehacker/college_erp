@@ -11,8 +11,8 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Comment</label>
-        <input  class="form-control" formControlName="rejected_comment"
-               type="text" placeholder="Enter comment"/>
+        <input  class="form-control" formControlName="rejected_comment"  appTrim
+                type="text" placeholder="Enter comment"/>
         <div class="text-error" *ngIf="form.controls['rejected_comment'].errors?.required && showError">
           This field is required.
         </div>

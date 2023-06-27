@@ -30,11 +30,12 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
 import {PaymentComponent} from './components/payment/payment.component';
 import {ChangeMemberPasswordComponent} from './components/change-member-password/change-member-password.component';
 import {LeadDetailsComponent} from './components/lead-details/lead-details.component';
+import { TrimDirective } from './pipe/trim-space/trim-space.pipe';
 
 const directives = [NumberOnlyDirective, AmountDirective, NoRecordComponent, ReplaceUnderscorePipe,
     SeeMoreComponent, HHMMSSPipe, CapitalizeFirstDirective, ProDetailsComponent,
     PaymentComponent, ChangeMemberPasswordComponent,
-    LeadDetailsComponent];
+    LeadDetailsComponent, TrimDirective];
 
 const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPaginationModule,
     NgSelectModule, FormsModule, NgxIntlTelInputModule, AutocompleteLibModule,

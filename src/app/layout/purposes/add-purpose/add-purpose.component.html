@@ -11,7 +11,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Purpose</label>
-        <input [autofocus]="true" class="form-control" formControlName="name"
+        <input [autofocus]="true" class="form-control" formControlName="name"  appTrim
                type="text" placeholder="Enter Purpose"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
           This field is required.

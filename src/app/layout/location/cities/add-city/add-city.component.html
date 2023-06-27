@@ -24,7 +24,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label"> name</label>
-        <input [autofocus]="true" class="form-control" formControlName="name"
+        <input [autofocus]="true" class="form-control" formControlName="name" appTrim
                placeholder="Enter name"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
           This field is required.
@@ -33,7 +33,7 @@
 
       <div class="col-md-12 form-group">
         <label class="set-label required"> longitude</label>
-        <input class="form-control" formControlName="lng"
+        <input class="form-control" formControlName="lng" appTrim
                type="number" placeholder="Enter longitude"/>
         <div class="text-error" *ngIf="form.controls['lng'].errors?.required && showError">
           This field is required.
@@ -42,7 +42,7 @@
 
       <div class="col-md-12 form-group">
         <label class="set-label required"> latitude</label>
-        <input class="form-control" formControlName="lat"
+        <input class="form-control" formControlName="lat" appTrim
                type="number" placeholder="Enter latitude"/>
         <div class="text-error" *ngIf="form.controls['lat'].errors?.required && showError">
           This field is required.

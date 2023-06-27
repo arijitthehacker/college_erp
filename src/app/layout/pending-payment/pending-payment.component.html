@@ -5,7 +5,7 @@
         <div class="col-md-3">
           <h4 class="card-title  float-left">
             {{commonService?.breadcrumb}}
-<!--            {{currentDate}}-->
+            <!--            {{currentDate}}-->
           </h4>
         </div>
 
@@ -75,8 +75,8 @@
           </thead>
           <tbody>
           <tr
-            *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-            <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
+            <td> {{(pagination.pageNo - 1) * 10 + i + 1}} </td>
             <td>{{data?.time |date:'short'}}</td>
             <td>
               <b>Property Name:</b> {{data?.booking_id?.peroperty_id?.name || '-'}}<br>
@@ -93,7 +93,11 @@
               </span>
 
               <br>
-              <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name}}<br>
+              <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name}}
+              <ng-container *ngIf="data?.member_id?.user_name">, {{data?.member_id?.user_name}}</ng-container>
+              <br>
+
+
               <b>Phone No.</b>
               {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code || data?.gold_member_id?.country_code}}
               {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number || data?.gold_member_id?.phone_number}}
@@ -154,35 +158,36 @@
 
             <td>
               <b>Account
-                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name|| data?.gold_member_id?.account_name || '-'}}
+                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || data?.gold_member_id?.account_name || '-'}}
               <br>
 
-              <b>Account Number:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number|| data?.gold_member_id?.account_number || '-'}}
+              <b>Account
+                Number:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || data?.gold_member_id?.account_number || '-'}}
               <br>
               <b>Bank
-                Name:</b> {{data?.group_owner_id?.bank_name ||data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
+                Name:</b> {{data?.group_owner_id?.bank_name || data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
               <br>
 
               <b>Sort
-                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code|| data?.gold_member_id?.sort_code || '-'}}
+                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || data?.gold_member_id?.sort_code || '-'}}
               <br>
             </td>
 
 
-<!--            <td>-->
-<!--              <b>Bank-->
-<!--                Name:</b> {{data?.group_owner_id?.bank_name ||data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}-->
-<!--              <br>-->
-<!--              <b>Account-->
-<!--                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name|| data?.gold_member_id?.account_name || '-'}}-->
-<!--              <br>-->
-<!--              <b>Bank-->
-<!--                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number|| data?.gold_member_id?.account_number || '-'}}-->
-<!--              <br>-->
-<!--              <b>Sort-->
-<!--                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code|| data?.gold_member_id?.sort_code || '-'}}-->
-<!--              <br>-->
-<!--            </td>-->
+            <!--            <td>-->
+            <!--              <b>Bank-->
+            <!--                Name:</b> {{data?.group_owner_id?.bank_name ||data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}-->
+            <!--              <br>-->
+            <!--              <b>Account-->
+            <!--                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name|| data?.gold_member_id?.account_name || '-'}}-->
+            <!--              <br>-->
+            <!--              <b>Bank-->
+            <!--                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number|| data?.gold_member_id?.account_number || '-'}}-->
+            <!--              <br>-->
+            <!--              <b>Sort-->
+            <!--                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code|| data?.gold_member_id?.sort_code || '-'}}-->
+            <!--              <br>-->
+            <!--            </td>-->
 
             <td>
               <b>Property Price:</b> {{data?.booking_id?.commission_price}}<br>

@@ -90,7 +90,10 @@
               </span> <br>
 
 
-              <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name}}<br>
+              <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name ||  data?.gold_member_id?.name || data?.member_id?.name}}
+              <ng-container *ngIf="data?.member_id?.user_name">, {{data?.member_id?.user_name}}</ng-container>
+
+              <br>
               <b>Phone No.</b>
               {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code|| data?.gold_member_id?.country_code}}
               {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number|| data?.gold_member_id?.phone_number}}
@@ -101,7 +104,7 @@
 
             <td>
               <ng-container *ngIf="data?.booking_id?.member_id?.name ; else noData">
-                <b>Name:</b> {{data?.booking_id?.member_id?.name || '-'}}<br>
+                <b>Name:</b> {{data?.booking_id?.member_id?.name || '-'}}, {{data?.booking_id?.member_id?.user_name}}<br>
                 <b>Phone No.</b>
                 {{data?.booking_id?.member_id?.country_code}}{{data?.booking_id?.member_id?.phone_number || '-'}}
                 <br>

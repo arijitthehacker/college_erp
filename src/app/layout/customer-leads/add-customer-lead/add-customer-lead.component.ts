@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MessageService} from 'src/app/services/message/message.service';
-import {ApiUrl} from 'src/app/core/apiUrl';
-import {HttpService} from 'src/app/services/http/http.service';
-import {Subject} from 'rxjs';
-import {BsModalRef} from 'ngx-bootstrap/modal';
-import {ConstMsg} from 'src/app/core/ConstMsg';
-import {CommonService} from '../../../services/commonService/common.service';
-import {CountryISO} from 'ngx-intl-tel-input';
-import {CONSTANT} from '../../../core/constant';
-import {IDropdownSettings} from 'ng-multiselect-dropdown';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'src/app/services/message/message.service';
+import { ApiUrl } from 'src/app/core/apiUrl';
+import { HttpService } from 'src/app/services/http/http.service';
+import { Subject } from 'rxjs';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ConstMsg } from 'src/app/core/ConstMsg';
+import { CommonService } from '../../../services/commonService/common.service';
+import { CountryISO } from 'ngx-intl-tel-input';
+import { CONSTANT } from '../../../core/constant';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-add-account',
@@ -31,7 +31,8 @@ export class AddCustomerLeadComponent implements OnInit {
     singleSelection: true,
     closeDropDownOnSelection: true,
     idField: '_id',
-    textField: 'name',
+    // textField: 'name',
+    textField: 'fullName',
     noDataAvailablePlaceholderText: 'No member available',
     itemsShowLimit: 1,
     allowSearchFilter: true
@@ -99,16 +100,16 @@ export class AddCustomerLeadComponent implements OnInit {
     this.http.getData(ApiUrl.list_members, {is_pagination: false}).subscribe(res => {
       this.members = res.data.data;
 
-      if (this.modalData) {
-        this.members.forEach((val, key) => {
-
+      this.members.forEach((val, key) => {
+        val.fullName = `${val.name}, ${val.user_name}`
+        if (this.modalData) {
           if (val?._id === this.modalData?.member_id?._id) {
-            console.log(val, '111111');
             this.form.controls.member_id.patchValue([this.members[key]]);
             console.log(this.form.value.member_id);
           }
-        });
-      }
+        }
+      });
+
     });
   }
 
@@ -145,7 +146,7 @@ export class AddCustomerLeadComponent implements OnInit {
       this.http.postData(ApiUrl.add_customer_request, obj).subscribe(() => {
         this.onClose.next(null);
         this.message.toast('success',
-          this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.bsModalRef.hide();
       }, () => {
       });

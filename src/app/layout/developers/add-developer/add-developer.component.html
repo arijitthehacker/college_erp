@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-md-6 form-group">
         <label class="required set-label">Name</label>
-        <input class="form-control" formControlName="name"
+        <input class="form-control" formControlName="name"  appTrim
                type="text" placeholder="Enter name"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
           This field is required.
@@ -19,7 +19,7 @@
 
       <div class="col-md-6 form-group">
         <label class="required set-label">address</label>
-        <input class="form-control" formControlName="address"
+        <input class="form-control" formControlName="address" appTrim 
                type="text" placeholder="Enter address"/>
         <div class="text-error" *ngIf="form.controls['address'].errors?.required && showError">
           This field is required.

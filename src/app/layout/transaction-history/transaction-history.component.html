@@ -115,6 +115,7 @@
               </span>
               <br>
               <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name}}
+              <ng-container *ngIf="data?.member_id?.user_name">, {{data?.member_id?.user_name}}</ng-container>
               <br>
               <b>Phone No.</b>
               {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code || data?.gold_member_id?.country_code}}

@@ -11,7 +11,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Display Order</label>
-        <input [autofocus]="true" class="form-control" formControlName="se_no"
+        <input [autofocus]="true" class="form-control" formControlName="se_no"  appTrim
                type="text" placeholder="Display Order" appNumberOnly/>
         <div class="text-error" *ngIf="form.controls['se_no'].errors?.required && showError">
           This field is required.
