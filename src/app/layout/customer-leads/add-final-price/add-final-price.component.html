@@ -11,7 +11,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Property Price</label>
-        <input class="form-control" formControlName="commission_price" appTrim
+        <input class="form-control" formControlName="commission_price"  trim="blur"
                type="text" placeholder="Enter Property Price" appAmount/>
         <div class="text-error" *ngIf="form.controls['commission_price'].errors?.required && showError">
           This field is required.
@@ -20,7 +20,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Unit No.</label>
-        <input class="form-control" formControlName="unit_no" appTrim
+        <input class="form-control" formControlName="unit_no"  trim="blur"
                type="text" placeholder="Enter unit no">
         <div class="text-error" *ngIf="form.controls['unit_no'].errors?.required && showError">
           This field is required.

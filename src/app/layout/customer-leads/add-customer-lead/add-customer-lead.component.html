@@ -17,7 +17,7 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">name</label>
-        <input [autofocus]="true" class="form-control" formControlName="name"  appTrim
+        <input [autofocus]="true" class="form-control" formControlName="name"   trim="blur"
                type="text" placeholder="Enter name"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
           This field is required.
@@ -34,7 +34,7 @@
           [enableAutoCountrySelect]="false"
           [enablePlaceholder]="true"
           [searchCountryFlag]="true"
-          [selectFirstCountry]="false" appTrim
+          [selectFirstCountry]="false"  trim="blur"
           [selectedCountryISO]="modalData?.iso_code || CountryISO.Malaysia"
           [maxLength]="15"
           [customPlaceholder]="'Enter Contact Number'"
@@ -50,7 +50,7 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">Email</label>
-        <input [autofocus]="true" class="form-control" formControlName="email" appTrim
+        <input [autofocus]="true" class="form-control" formControlName="email"  trim="blur"
                type="text" placeholder="Enter Email"/>
         <div class="text-error" *ngIf="form.controls['email'].errors?.required && showError">
           This field is required.
@@ -152,7 +152,7 @@
 
       <div class="col-md-4 form-group">
         <label class="required set-label">Target Location </label>
-        <input [autofocus]="true" class="form-control" formControlName="peropert_location" appTrim
+        <input [autofocus]="true" class="form-control" formControlName="peropert_location"  trim="blur"
                type="text" placeholder="Enter Target Location "/>
         <div class="text-error" *ngIf="form.controls['peropert_location'].errors?.required && showError">
           This field is required.
@@ -188,7 +188,7 @@
 
       <div class="col-md-4 form-group">
         <label class="set-label">Notes </label>
-        <textarea class="form-control" formControlName="note" appTrim
+        <textarea class="form-control" formControlName="note"  trim="blur"
                   type="text" placeholder="Enter Notes"></textarea>
         <!--        <div class="text-error" *ngIf="form.controls['note'].errors?.required && showError">-->
         <!--          This field is required.-->

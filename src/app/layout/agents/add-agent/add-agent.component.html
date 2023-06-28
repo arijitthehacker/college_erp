@@ -11,7 +11,7 @@
 
       <div class="col-md-6 form-group">
         <label class="required set-label">name</label>
-        <input [autofocus]="true" class="form-control" appTrim formControlName="name"
+        <input [autofocus]="true" class="form-control"  trim="blur"  formControlName="name"
                type="text" placeholder="Enter name"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
           This field is required.
@@ -20,7 +20,7 @@
 
       <div class="col-md-6 form-group">
         <label class="required set-label">Email</label>
-        <input [autofocus]="true" class="form-control" appTrim formControlName="email"
+        <input [autofocus]="true" class="form-control"  trim="blur"  formControlName="email"
                type="text" placeholder="Enter Email"/>
         <div class="text-error" *ngIf="form.controls['email'].errors?.required && showError">
           This field is required.
@@ -33,7 +33,7 @@
       <div class="col-md-6 form-group">
         <label class="required set-label">Contact Number</label>
 
-        <ngx-intl-tel-input appTrim
+        <ngx-intl-tel-input  trim="blur"
           [cssClass]="'my-phone'"
           [preferredCountries]="[CountryISO.Malaysia]"
           [enableAutoCountrySelect]="false"
@@ -80,22 +80,22 @@
 
         <div class="col-md-6 form-group">
           <label class="set-label">Account Name</label>
-          <input class="form-control"  appTrim formControlName="account_name" type="text" placeholder="Enter account name"/>
+          <input class="form-control"   trim="blur"  formControlName="account_name" type="text" placeholder="Enter account name"/>
         </div>
         <div class="col-md-6 form-group">
           <label class="set-label">Account Number</label>
-          <input class="form-control"  appTrim formControlName="account_number" type="text" appNumberOnly
+          <input class="form-control"   trim="blur"  formControlName="account_number" type="text" appNumberOnly
                  placeholder="Enter account number"/>
         </div>
 
         <div class="col-md-6 form-group">
           <label class="set-label">Bank Name</label>
-          <input class="form-control"  appTrim formControlName="bank_name" type="text" placeholder="Enter bank name"/>
+          <input class="form-control"   trim="blur"  formControlName="bank_name" type="text" placeholder="Enter bank name"/>
         </div>
 
         <div class="col-md-6 form-group">
           <label class="set-label">Sort code</label>
-          <input class="form-control" appTrim  formControlName="sort_code" type="text"
+          <input class="form-control"  trim="blur"   formControlName="sort_code" type="text"
                  placeholder="Enter Sort code"/>
         </div>
       </ng-container>

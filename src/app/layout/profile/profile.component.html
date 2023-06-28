@@ -28,7 +28,7 @@
           <div class="form-group col-md-6">
             <label class="login-label required">Email Address</label>
             <input class="form-control" (keydown.space)="$event.preventDefault()" formControlName="email" type="email"
-                   appTrim
+                    trim="blur"
                    placeholder="Enter Email Address"/>
             <div class="text-error" *ngIf="form.controls['email'].errors?.required && showError">
               This field is required.

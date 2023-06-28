@@ -11,7 +11,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Display Order</label>
-        <input [autofocus]="true" class="form-control" formControlName="se_no"  appTrim
+        <input [autofocus]="true" class="form-control" formControlName="se_no"   trim="blur"
                type="text" placeholder="Display Order" appNumberOnly/>
         <div class="text-error" *ngIf="form.controls['se_no'].errors?.required && showError">
           This field is required.
@@ -20,7 +20,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label">Name</label>
-        <input class="form-control" formControlName="name" appTrim
+        <input class="form-control" formControlName="name"  trim="blur"
                type="text" placeholder="Enter name"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
           This field is required.

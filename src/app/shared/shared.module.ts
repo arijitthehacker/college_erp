@@ -30,7 +30,9 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
 import {PaymentComponent} from './components/payment/payment.component';
 import {ChangeMemberPasswordComponent} from './components/change-member-password/change-member-password.component';
 import {LeadDetailsComponent} from './components/lead-details/lead-details.component';
-import { TrimDirective } from './pipe/trim-space/trim-space.pipe';
+import { TrimDirective } from './directives/trim-space.directive';
+import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
+
 
 const directives = [NumberOnlyDirective, AmountDirective, NoRecordComponent, ReplaceUnderscorePipe,
     SeeMoreComponent, HHMMSSPipe, CapitalizeFirstDirective, ProDetailsComponent,
@@ -39,7 +41,7 @@ const directives = [NumberOnlyDirective, AmountDirective, NoRecordComponent, Rep
 
 const imports = [LightboxModule, ReactiveFormsModule, HttpClientModule, NgxPaginationModule,
     NgSelectModule, FormsModule, NgxIntlTelInputModule, AutocompleteLibModule,
-    TagInputModule, TooltipModule, AngularEditorModule
+    TagInputModule, TooltipModule, AngularEditorModule, NgxTrimDirectiveModule
 ];
 
 @NgModule({

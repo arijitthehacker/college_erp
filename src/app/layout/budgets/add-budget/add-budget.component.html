@@ -25,7 +25,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label"> min price</label>
-        <input [autofocus]="true" class="form-control" formControlName="min_price" appTrim
+        <input [autofocus]="true" class="form-control" formControlName="min_price"  trim="blur"
                type="number" placeholder="Enter min price"/>
         <div class="text-error" *ngIf="form.controls['min_price'].errors?.required && showError">
           This field is required.
@@ -34,7 +34,7 @@
 
       <div class="col-md-12 form-group">
         <label class="set-label"> max price</label>
-        <input [autofocus]="true" class="form-control" formControlName="max_price" appTrim
+        <input [autofocus]="true" class="form-control" formControlName="max_price"  trim="blur"
                type="number" placeholder="Enter max price"/>
         <div class="text-error" *ngIf="form.controls['max_price'].errors?.required && showError">
           This field is required.

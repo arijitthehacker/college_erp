@@ -11,7 +11,7 @@
 
       <div class="col-md-12 form-group">
         <label class="required set-label"> name</label>
-        <input [autofocus]="true" class="form-control" formControlName="name"  appTrim
+        <input [autofocus]="true" class="form-control" formControlName="name"   trim="blur"
                placeholder="Enter name"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
           This field is required.
@@ -20,7 +20,7 @@
 
       <div class="col-md-12 form-group">
         <label class="set-label required"> Founder commission</label>
-        <input class="form-control" formControlName="group_owner_commision" appAmount appTrim
+        <input class="form-control" formControlName="group_owner_commision" appAmount  trim="blur"
                type="text" placeholder="Enter Founder commission"/>
         <div class="text-error" *ngIf="form.controls['group_owner_commision'].errors?.required && showError">
           This field is required.
@@ -32,7 +32,7 @@
 
       <div class="col-md-12 form-group">
         <label class="set-label required"> agent commission</label>
-        <input class="form-control" formControlName="agent_commision" appAmount appTrim
+        <input class="form-control" formControlName="agent_commision" appAmount  trim="blur"
                type="text" placeholder="Enter agent commission"/>
         <div class="text-error" *ngIf="form.controls['agent_commision'].errors?.required && showError">
           This field is required.
@@ -44,7 +44,7 @@
 
       <div class="col-md-12 form-group">
         <label class="set-label required"> member commission</label>
-        <input class="form-control" formControlName="member_commision" appAmount appTrim
+        <input class="form-control" formControlName="member_commision" appAmount  trim="blur"
                type="text" placeholder="Enter member commission"/>
         <div class="text-error" *ngIf="form.controls['member_commision'].errors?.required && showError">
           This field is required.
@@ -57,7 +57,7 @@
 
       <div class="col-md-12 form-group">
         <label class="set-label required">Ambassador commission</label>
-        <input class="form-control" formControlName="gold_member_commision" appAmount appTrim 
+        <input class="form-control" formControlName="gold_member_commision" appAmount  trim="blur"
                type="text" placeholder="Enter Ambassador commission"/>
         <div class="text-error" *ngIf="form.controls['gold_member_commision'].errors?.required && showError">
           This field is required.
