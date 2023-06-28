@@ -30,14 +30,13 @@ export class AddAdminComponent implements OnInit {
 
   ngOnInit() {
     this.makeForm();
-
   }
 
   makeForm() {
     this.form = this.fb.group({
       email: ['', Validators.compose([Validators.required,Validators.email])],
       name: ['', Validators.required],
-      password: ['', this.savedData ? Validators.required : '']
+      password: ['', this.savedData ? '' : Validators.required]
     });
 
     if (this.savedData) {

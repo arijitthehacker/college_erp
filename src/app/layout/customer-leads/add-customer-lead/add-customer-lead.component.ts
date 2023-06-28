@@ -38,6 +38,17 @@ export class AddCustomerLeadComponent implements OnInit {
     allowSearchFilter: true
   };
 
+  dropdownSettings1: IDropdownSettings = {
+    singleSelection: true,
+    closeDropDownOnSelection: true,
+    idField: '_id',
+    textField: 'name',
+    // textField: 'fullName',
+    noDataAvailablePlaceholderText: 'No project available',
+    itemsShowLimit: 1,
+    allowSearchFilter: true
+  };
+
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
   }
@@ -93,6 +104,16 @@ export class AddCustomerLeadComponent implements OnInit {
   getProperties() {
     this.http.getData(ApiUrl.list_properties, {is_pagination: false}).subscribe(res => {
       this.properties = res.data.data;
+
+      this.properties?.forEach((val, key) => {
+        if (this.modalData) {
+          if (val?._id === this.modalData?.peroperty_id?._id) {
+            this.form.controls.peroperty_id.patchValue([this.properties[key]]);
+            console.log(this.form.value.peroperty_id);
+          }
+        }
+      });
+
     });
   }
 
@@ -142,6 +163,7 @@ export class AddCustomerLeadComponent implements OnInit {
       obj.country_code = obj.phone_number.dialCode;
       obj.phone_number = obj.phone_number.number;
       obj.member_id = obj.member_id[0]._id;
+      obj.peroperty_id = obj.peroperty_id[0]._id;
 
       this.http.postData(ApiUrl.add_customer_request, obj).subscribe(() => {
         this.onClose.next(null);

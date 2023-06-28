@@ -138,12 +138,21 @@
     <div class="row">
       <div class="col-md-4 form-group">
         <label class="required set-label"> Project Interested</label>
-        <select class="form-control" formControlName="peroperty_id">
-          <option value="">Select Project</option>
-          <option *ngFor="let data of properties" [value]="data._id">
-            {{data?.name}}
-          </option>
-        </select>
+
+        <ng-multiselect-dropdown
+           [placeholder]="'Select Project'"
+           [settings]="dropdownSettings1"
+           [data]="properties"
+           formControlName="peroperty_id"
+        >
+        </ng-multiselect-dropdown>
+
+<!--        <select class="form-control" formControlName="peroperty_id">-->
+<!--          <option value="">Select Project</option>-->
+<!--          <option *ngFor="let data of properties" [value]="data._id">-->
+<!--            {{data?.name}}-->
+<!--          </option>-->
+<!--        </select>-->
         <div class="text-error" *ngIf="form.controls['peroperty_id'].errors?.required && showError">
           This field is required.
         </div>
