@@ -10,7 +10,7 @@
     <div class="row">
 
       <div class="col-md-6 form-group">
-        <label class="required set-label">name={{form.value['name']}}</label>
+        <label class="required set-label">name</label>
         <input  class="form-control" formControlName="name"
                type="text" placeholder="Enter name" trim="blur"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
