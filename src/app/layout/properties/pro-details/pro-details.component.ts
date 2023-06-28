@@ -21,13 +21,15 @@ export class ProDetailsComponent implements OnInit {
               public http: HttpService) {
   }
 
+
   ngOnInit() {
     this.getData();
     this.getAddress();
   }
 
-  setEmptyValue(key) {
-    if (key === 'max_area_size') {
+  setEmptyValue(flag, key) {
+    if (flag === 1) {
+      console.log('11111111111');
       return (key === 9999 || key === 0) ? '-' : key;
     } else {
       return (key === 999 || key === 0) ? '-' : key;

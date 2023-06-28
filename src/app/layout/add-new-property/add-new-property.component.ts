@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { PaginationControls } from 'src/app/shared/models/pagination-model';
-import { HttpService } from 'src/app/services/http/http.service';
-import { CommonService } from 'src/app/services/commonService/common.service';
-import { MessageService } from 'src/app/services/message/message.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Lightbox } from 'ngx-lightbox';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiUrl } from '../../core/apiUrl';
-import { ConstMsg } from '../../core/ConstMsg';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { Currencies } from '../../core/constant';
+import {Component, OnInit} from '@angular/core';
+import {PaginationControls} from 'src/app/shared/models/pagination-model';
+import {HttpService} from 'src/app/services/http/http.service';
+import {CommonService} from 'src/app/services/commonService/common.service';
+import {MessageService} from 'src/app/services/message/message.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Lightbox} from 'ngx-lightbox';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ApiUrl} from '../../core/apiUrl';
+import {ConstMsg} from '../../core/ConstMsg';
+import {AngularEditorConfig} from '@kolkov/angular-editor';
+import {Currencies} from '../../core/constant';
 
 @Component({
   selector: 'app-accounts',
@@ -203,7 +203,7 @@ export class AddNewPropertyComponent implements OnInit {
 
       this.http.postData(ApiUrl.add_edit_peroperties, obj).subscribe(res => {
         this.message.toast('success',
-           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+          this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.id = res.data._id;
 
         // if(!this.isEdit) {
@@ -271,7 +271,7 @@ export class AddNewPropertyComponent implements OnInit {
       this.http.postData(ApiUrl.add_edit_peroperty_address, obj).subscribe(res => {
         this.addressData = res.data;
         this.message.toast('success',
-           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+          this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         // this.form2.reset();
         // this.getAddress();
         // this.getData();
@@ -298,17 +298,17 @@ export class AddNewPropertyComponent implements OnInit {
       this.form3.patchValue({
         area_size_type: this.modalData.area_size_type,
         min_bedroom: this.modalData.min_bedroom,
-        max_bedroom: this.setEmptyValue(this.modalData.max_bedroom),
+        max_bedroom: this.setEmptyValue(2, this.modalData.max_bedroom),
         min_area_size: this.modalData.min_area_size,
-        max_area_size: this.setEmptyValue(this.modalData.max_area_size),
-        max_bathroom: this.setEmptyValue(this.modalData.max_bathroom),
+        max_area_size: this.setEmptyValue(1, this.modalData.max_area_size),
+        max_bathroom: this.setEmptyValue(2, this.modalData.max_bathroom),
         min_bathroom: this.modalData.min_bathroom
       });
     }
   }
 
-  setEmptyValue(key) {
-    if (key === 'max_area_size') {
+  setEmptyValue(flag, key) {
+    if (flag === 1) {
       return (key === 9999 || key === 0) ? '' : key;
     } else {
       return (key === 999 || key === 0) ? '' : key;
@@ -350,7 +350,7 @@ export class AddNewPropertyComponent implements OnInit {
       }
       this.http.postData(ApiUrl.add_peroperties_step_3, obj).subscribe(() => {
         this.message.toast('success',
-           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+          this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.selectedTab = 4;
         this.getProgress();
       }, () => {
@@ -373,7 +373,7 @@ export class AddNewPropertyComponent implements OnInit {
       this.form4.patchValue({
         start_price: this.modalData.start_price,
         // end_price: this.setEmptyValue(this.modalData.end_price),
-        end_price: this.setEmptyValue(this.modalData.end_price),
+        end_price: this.setEmptyValue(2,this.modalData.end_price),
         comission_id: this.modalData?.comission_id?._id || '',
         total_units: this.modalData.total_units
       });
@@ -416,7 +416,7 @@ export class AddNewPropertyComponent implements OnInit {
       });
       this.http.postData(ApiUrl.add_peroperties_step_4, obj).subscribe(() => {
         this.message.toast('success',
-           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+          this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.selectedTab = 5;
         this.getProgress();
       }, () => {
@@ -448,7 +448,7 @@ export class AddNewPropertyComponent implements OnInit {
 
       this.http.postData(ApiUrl.add_peroperties_step_5, obj).subscribe(() => {
         this.message.toast('success',
-           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+          this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.getProgress();
         this.selectedTab = 6;
       }, () => {
@@ -490,7 +490,7 @@ export class AddNewPropertyComponent implements OnInit {
 
       this.http.postData(ApiUrl.add_peroperties_step_6, obj).subscribe(() => {
         this.message.toast('success',
-           this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
+          this.modalData ? ConstMsg.updatedSuccess : ConstMsg.addedSuccess);
         this.getProgress();
         if (isPublish) {
           this.publishApi();
