@@ -26,6 +26,14 @@ export class ProDetailsComponent implements OnInit {
     this.getAddress();
   }
 
+  setEmptyValue(key) {
+    if (key === 'max_area_size') {
+      return (key === 9999 || key === 0) ? '-' : key;
+    } else {
+      return (key === 999 || key === 0) ? '-' : key;
+    }
+  }
+
   clickTab(flag) {
     this.selectedTab = flag;
   }

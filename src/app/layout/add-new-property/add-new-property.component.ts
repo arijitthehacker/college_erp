@@ -298,12 +298,20 @@ export class AddNewPropertyComponent implements OnInit {
       this.form3.patchValue({
         area_size_type: this.modalData.area_size_type,
         min_bedroom: this.modalData.min_bedroom,
-        max_bedroom: this.modalData.max_bedroom,
+        max_bedroom: this.setEmptyValue(this.modalData.max_bedroom),
         min_area_size: this.modalData.min_area_size,
-        max_area_size: this.modalData.max_area_size,
-        max_bathroom: this.modalData.max_bathroom,
+        max_area_size: this.setEmptyValue(this.modalData.max_area_size),
+        max_bathroom: this.setEmptyValue(this.modalData.max_bathroom),
         min_bathroom: this.modalData.min_bathroom
       });
+    }
+  }
+
+  setEmptyValue(key) {
+    if (key === 'max_area_size') {
+      return (key === 9999 || key === 0) ? '' : key;
+    } else {
+      return (key === 999 || key === 0) ? '' : key;
     }
   }
 
@@ -319,7 +327,8 @@ export class AddNewPropertyComponent implements OnInit {
           return;
         }
       } else {
-        delete obj.max_bedroom;
+        // delete obj.max_bedroom = 0;
+        obj.max_bedroom = 0;
       }
       if (this.form3?.value?.max_area_size) {
         if (parseInt(this.form3?.value?.min_area_size, 10) > parseInt(this.form3?.value?.max_area_size, 10)) {
@@ -327,7 +336,8 @@ export class AddNewPropertyComponent implements OnInit {
           return;
         }
       } else {
-        delete obj.max_area_size;
+        obj.max_area_size = 0;
+        // delete obj.max_area_size;
       }
       if (this.form3?.value?.max_bathroom) {
         if (parseInt(this.form3?.value?.min_bathroom, 10) > parseInt(this.form3?.value?.max_bathroom, 10)) {
@@ -335,7 +345,8 @@ export class AddNewPropertyComponent implements OnInit {
           return;
         }
       } else {
-        delete obj.max_bathroom;
+        // delete obj.max_bathroom;
+        obj.max_bathroom = 0;
       }
       this.http.postData(ApiUrl.add_peroperties_step_3, obj).subscribe(() => {
         this.message.toast('success',
@@ -361,7 +372,8 @@ export class AddNewPropertyComponent implements OnInit {
     if (this.modalData && this.modalData.total_units) {
       this.form4.patchValue({
         start_price: this.modalData.start_price,
-        end_price: this.modalData.end_price,
+        // end_price: this.setEmptyValue(this.modalData.end_price),
+        end_price: this.setEmptyValue(this.modalData.end_price),
         comission_id: this.modalData?.comission_id?._id || '',
         total_units: this.modalData.total_units
       });
@@ -392,8 +404,8 @@ export class AddNewPropertyComponent implements OnInit {
           return;
         }
       } else {
-        // obj.end_price = 0;
-        delete obj.end_price;
+        obj.end_price = 0;
+        // delete obj.end_price;
       }
 
       this.currencyList.forEach((val) => {
