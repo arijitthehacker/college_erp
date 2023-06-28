@@ -38,7 +38,7 @@
           <p>{{modalData?.name || '-'}}</p>
         </td>
         <td>
-          <h5>category</h5>
+          <h5>Category</h5>
           <p>{{modalData?.category_id?.name || '-'}}</p>
         </td>
         <td>
@@ -54,7 +54,7 @@
       <tr>
         <td>
           <h5>Category Type</h5>
-          <p>{{modalData?.category_type |replaceUnderscore}}</p>
+          <p>{{modalData?.category_type ? (modalData?.category_type |replaceUnderscore) : '-'}}</p>
         </td>
         <td>
           <h5>Status</h5>
@@ -90,7 +90,7 @@
             <table class="table">
               <thead>
               <tr>
-<!--                <th>Sr. No.</th>-->
+                <!--                <th>Sr. No.</th>-->
                 <th>State</th>
                 <th>City</th>
                 <th>Address</th>
@@ -99,9 +99,9 @@
               </tr>
               </thead>
               <tbody>
-              <tr >
-<!--                *ngFor="let data of addresses;let i =index"-->
-<!--                <td>{{i + 1}}</td>-->
+              <tr>
+                <!--                *ngFor="let data of addresses;let i =index"-->
+                <!--                <td>{{i + 1}}</td>-->
                 <td>{{modalData?.state_id?.name || '-'}}</td>
                 <td>{{modalData?.city_id?.name || '-'}}</td>
                 <td>{{modalData?.address}}</td>
@@ -240,17 +240,17 @@
         </td>
       </tr>
 
-<!--      <tr>-->
-<!--        <td>-->
-<!--          <h5>Video</h5>-->
-<!--          <div class="detail-images">-->
+      <!--      <tr>-->
+      <!--        <td>-->
+      <!--          <h5>Video</h5>-->
+      <!--          <div class="detail-images">-->
 
-<!--            <img src="assets/images/video-icon.png" (click)="commonService.goToLink(modalData?.video)">-->
-<!--            <a class="my-link">-->
-<!--            </a>-->
-<!--          </div>-->
-<!--        </td>-->
-<!--      </tr>-->
+      <!--            <img src="assets/images/video-icon.png" (click)="commonService.goToLink(modalData?.video)">-->
+      <!--            <a class="my-link">-->
+      <!--            </a>-->
+      <!--          </div>-->
+      <!--        </td>-->
+      <!--      </tr>-->
 
     </ng-container>
 

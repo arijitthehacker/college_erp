@@ -34,6 +34,7 @@ export class AddCustomerLeadComponent implements OnInit {
     // textField: 'name',
     textField: 'fullName',
     noDataAvailablePlaceholderText: 'No member available',
+    noFilteredDataAvailablePlaceholderText: 'No member available',
     itemsShowLimit: 1,
     allowSearchFilter: true
   };
@@ -43,8 +44,9 @@ export class AddCustomerLeadComponent implements OnInit {
     closeDropDownOnSelection: true,
     idField: '_id',
     textField: 'name',
-    // textField: 'fullName',
+    maxHeight: 140,
     noDataAvailablePlaceholderText: 'No project available',
+    noFilteredDataAvailablePlaceholderText: 'No project available',
     itemsShowLimit: 1,
     allowSearchFilter: true
   };
@@ -122,7 +124,7 @@ export class AddCustomerLeadComponent implements OnInit {
       this.members = res.data.data;
 
       this.members.forEach((val, key) => {
-        val.fullName = `${val.name}, ${val.user_name}`
+        val.fullName = `${ val.name }, ${ val.user_name }`;
         if (this.modalData) {
           if (val?._id === this.modalData?.member_id?._id) {
             this.form.controls.member_id.patchValue([this.members[key]]);
