@@ -123,7 +123,9 @@
               <ng-container *ngIf="!data?.gold_member_id?.name">-</ng-container>
               <a (click)="openMemberDetails(data?.gold_member_id, 'Ambassador',6)"
                  *ngIf="data?.gold_member_id?.name"
-                 class="my-link">{{data?.gold_member_id?.name || '-'}}</a>
+                 class="my-link">{{data?.gold_member_id?.name || '-'}}<span *ngIf="data?.gold_member_id?.user_name">,
+                {{data?.gold_member_id?.user_name}}</span>
+              </a>
 
             </td>
 

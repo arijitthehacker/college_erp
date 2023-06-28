@@ -1,46 +1,46 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="my-box box-header">
-            <div class="row">
-                <div class="col-md-9">
-                    <h4 class="card-title  float-left">
-                        Recycle Bin
-                    </h4>
-                </div>
-
-                <div class="col-md-3 text-right">
-                    <div class="sm-input-space">
-
-                        <select class="form-control" [(ngModel)]="model_name" (change)="getData()">
-                            <option [value]="data.id" *ngFor="let data of models">{{data?.name}}</option>
-                        </select>
-
-                    </div>
-                </div>
-            </div>
+  <div class="col-md-12">
+    <div class="my-box box-header">
+      <div class="row">
+        <div class="col-md-9">
+          <h4 class="card-title  float-left">
+            Recycle Bin
+          </h4>
         </div>
+
+        <div class="col-md-3 text-right">
+          <div class="sm-input-space">
+
+            <select class="form-control" [(ngModel)]="model_name" (change)="getData()">
+              <option [value]="data.id" *ngFor="let data of models">{{data?.name}}</option>
+            </select>
+
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="row mt-3 mb-2">
-    <div class="col-md-12">
-        <div class="my-box ">
+  <div class="col-md-12">
+    <div class="my-box ">
 
-            <div class="recycle-area row">
+      <div class="recycle-area row">
 
-                <app-no-record *ngIf="!pagination.count"></app-no-record>
+        <app-no-record *ngIf="!pagination.count"></app-no-record>
 
-                <div class=" col-md-3 mb-4"
-                     *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
+        <div class=" col-md-3 mb-4"
+             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
 
-                    <div class="tabs">
+          <div class="tabs">
 
 
-                        <h5 class="my-link" (click)="openDetails(data)"
-                            *ngIf="data?.value_type === 'Peropertiesbudgets' || model_name === 'Peropertiesbudgets'">{{data?.min_price}}
-                            - {{data?.max_price}}</h5>
+<!--            <h5 class="my-link" (click)="openDetails(data)"-->
+<!--                *ngIf="data?.value_type === 'Peropertiesbudgets' || model_name === 'Peropertiesbudgets'">{{data?.min_price}}-->
+<!--              - {{data?.max_price}}</h5>-->
 
-                        <h5 class="my-link" (click)="openDetails(data)" *ngIf="data?.value_type === 'Agents' || model_name === 'Agents' ||
+            <h5 class="my-link" (click)="openDetails(data)" *ngIf="data?.value_type === 'Agents' || model_name === 'Agents' ||
         data?.value_type === 'Agents' || model_name === 'Agents' ||
         data?.value_type === 'GroupOwnwers' || model_name === 'GroupOwnwers' ||
         data?.value_type === 'Users' || model_name === 'Users' ||
@@ -49,52 +49,55 @@
         data?.value_type === 'PeropertiesPupose' || model_name === 'PeropertiesPupose' ||
         data?.value_type === 'Peropertiesreason' || model_name === 'Peropertiesreason' ||
          data?.value_type === 'States' || model_name === 'States' ||
-         data?.value_type === 'Cities' || model_name === 'Cities'
-">
-                            {{data?.name}}</h5>
+         data?.value_type === 'Cities' || model_name === 'Cities'">
+              {{data?.name}}
+              <ng-container *ngIf="data?.user_name">, {{data?.user_name}}</ng-container>
+            </h5>
 
-                        <h5 class="my-link" (click)="openDetails(data)"
-                            *ngIf="data?.value_type === 'CustomerLeades' || model_name === 'CustomerLeades'">
-                            {{data?.name}}</h5>
-
-
-                        <h5 class="my-link" (click)="openDetails(data)"
-                            *ngIf="data?.value_type === 'Peropertiesbudgets' || model_name === 'Peropertiesbudgets'">{{data?.min_price}}
-                            - {{data?.max_price}}</h5>
+            <h5 class="my-link" (click)="openDetails(data)"
+                *ngIf="data?.value_type === 'CustomerLeades' || model_name === 'CustomerLeades'">
+              {{data?.name}}
 
 
+            </h5>
 
-                        <ng-container *ngIf="data?.value_type === 'Banners' || model_name === 'Banners'">
-                            <img [src]="data.image" class="banner-img" (click)="openDetails(data)">
-                        </ng-container>
 
-                        <h6>Deleted At: {{(data.deleted_at)|date:'dd-MM-yyyy'}}</h6>
-                        <div class="recycle-btns">
+            <h5 class="my-link" (click)="openDetails(data)"
+                *ngIf="data?.value_type === 'Peropertiesbudgets' || model_name === 'Peropertiesbudgets'">{{data?.min_price}}
+              - {{data?.max_price}}</h5>
 
-                            <button class="btn btn-cancel mr-3 btn-sm" (click)="action(data,'REMOVE')">Delete</button>
-                            <button class="btn btn-blue-outline btn-sm" (click)="action(data,'RECOVER')">Recover
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
+            <ng-container *ngIf="data?.value_type === 'Banners' || model_name === 'Banners'">
+              <img [src]="data.image" class="banner-img" (click)="openDetails(data)">
+            </ng-container>
+
+            <h6>Deleted At: {{(data.deleted_at)|date:'dd-MM-yyyy'}}</h6>
+            <div class="recycle-btns">
+
+              <button class="btn btn-cancel mr-3 btn-sm" (click)="action(data,'REMOVE')">Delete</button>
+              <button class="btn btn-blue-outline btn-sm" (click)="action(data,'RECOVER')">Recover
+              </button>
             </div>
-
-            <div class="row" *ngIf="pagination.count">
-                <div class="col-sm-6">
-                    <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
-                        {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
-                        of {{pagination.count}} entries </p>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
-                                         nextLabel="Next" screenReaderPaginationLabel="Pagination"
-                                         screenReaderPageLabel="page"
-                                         screenReaderCurrentLabel="You're on page"></pagination-controls>
-                </div>
-            </div>
-
+          </div>
         </div>
+      </div>
 
+      <div class="row" *ngIf="pagination.count">
+        <div class="col-sm-6">
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
+        </div>
+        <div class="col-sm-6 text-right">
+          <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
+                               nextLabel="Next" screenReaderPaginationLabel="Pagination"
+                               screenReaderPageLabel="page"
+                               screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+      </div>
 
     </div>
+
+
+  </div>
 </div>

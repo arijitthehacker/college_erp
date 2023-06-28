@@ -95,6 +95,7 @@
               <br>
               <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name}}
               <ng-container *ngIf="data?.member_id?.user_name">, {{data?.member_id?.user_name}}</ng-container>
+              <ng-container *ngIf="data?.gold_member_id?.user_name">, {{data?.gold_member_id?.user_name}}</ng-container>
               <br>
 
 
@@ -108,7 +109,10 @@
 
             <td>
               <ng-container *ngIf="data?.booking_id?.member_id?.name ; else noData">
-                <b>Name:</b> {{data?.booking_id?.member_id?.name || '-'}}<br>
+                <b>Name:</b> {{data?.booking_id?.member_id?.name || '-'}}
+                <ng-container *ngIf="data?.booking_id?.member_id?.user_name">, {{data?.booking_id?.member_id?.user_name}}</ng-container>
+
+                <br>
                 <b>Phone No.</b>
                 {{data?.booking_id?.member_id?.country_code}}{{data?.booking_id?.member_id?.phone_number || '-'}}
                 <br>
@@ -132,17 +136,12 @@
             </td>
             <td>
               <ng-container *ngIf="data?.booking_id?.gold_member_id?.name ; else noData">
-                <b>Name:</b> {{data?.booking_id?.gold_member_id?.name || '-'}}<br>
+                <b>Name:</b> {{data?.booking_id?.gold_member_id?.name || '-'}}
+                <ng-container *ngIf="data?.booking_id?.gold_member_id?.user_name">, {{data?.booking_id?.gold_member_id?.user_name}}</ng-container>
+                <br>
                 <b>Phone No.</b>
                 {{data?.booking_id?.gold_member_id?.country_code}}{{data?.booking_id?.gold_member_id?.phone_number || '-'}}
                 <br>
-                <!--                <b>Email:</b> {{data?.gold_member_id?.email || '-'}}<br>-->
-                <!--                <b>Age:</b> {{data?.gold_member_id?.age || '-'}}<br>-->
-                <!--                <b>Account Name:</b> {{data?.gold_member_id?.account_name || '-'}}<br>-->
-                <!--                <b>Account Number:</b> {{data?.gold_member_id?.account_number || '-'}}<br>-->
-                <!--                <b>Bank Name:</b> {{data?.gold_member_id?.bank_name || '-'}}<br>-->
-                <!--                <b>Sort Code:</b> {{data?.gold_member_id?.sort_code || '-'}}<br>-->
-
               </ng-container>
             </td>
 
