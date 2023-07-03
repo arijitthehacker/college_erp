@@ -55,7 +55,7 @@
             <div class="row">
               <div class="col-md-4 form-group">
                 <label class="required set-label">name</label>
-                <input class="form-control" formControlName="name"   trim="blur"
+                <input class="form-control" formControlName="name" trim="blur"
                        type="text" placeholder="Enter name"/>
                 <div class="text-error" *ngIf="form1.controls['name'].errors?.required && show1Error">
                   This field is required.
@@ -118,9 +118,17 @@
                 <label class="required set-label">Select property type</label>
                 <select class="form-control" formControlName="peropert_type">
                   <option value="">Please select property type</option>
-                  <option value="HOUSE"> HOUSE</option>
-                  <option value="APARTMENT">APARTMENT</option>
-                  <option value="OFFICE">OFFICE</option>
+
+                  <option *ngFor="let item of PROPERTY_TYPES" [value]="item.id">
+                    {{item?.name}}
+                  </option>
+
+                  <!--                  <option value="HOUSE"> HOUSE</option>-->
+                  <!--                  <option value="APARTMENT">APARTMENT</option>-->
+                  <!--                  <option value="OFFICE">OFFICE</option>-->
+                  <!---->
+
+
                 </select>
                 <div class="text-error" *ngIf="form1.controls['peropert_type'].errors?.required && show1Error">
                   This field is required.
@@ -129,7 +137,7 @@
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">completion year</label>
-                <input class="form-control" formControlName="completion_year" appNumberOnly  trim="blur"
+                <input class="form-control" formControlName="completion_year" appNumberOnly trim="blur"
                        type="text" placeholder="Enter completion year"/>
                 <div class="text-error" *ngIf="form1.controls['completion_year'].errors?.required && show1Error">
                   This field is required.
@@ -151,7 +159,7 @@
 
               <div class="col-md-4 form-group">
                 <label class="set-label">Display Order</label>
-                <input class="form-control" formControlName="se_no" type="text" placeholder="Display Order"  trim="blur"
+                <input class="form-control" formControlName="se_no" type="text" placeholder="Display Order" trim="blur"
                        appNumberOnly/>
                 <!--                <div class="text-error" *ngIf="form1.controls['se_no'].errors?.required && show1Error">-->
                 <!--                  This field is required.-->
@@ -213,7 +221,7 @@
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">Address</label>
-                <input [autofocus]="true" class="form-control" formControlName="name"  trim="blur"
+                <input [autofocus]="true" class="form-control" formControlName="name" trim="blur"
                        type="text" placeholder="Enter Address"/>
                 <div class="text-error" *ngIf="form2.controls['name'].errors?.required && show2Error">
                   This field is required.
@@ -222,7 +230,7 @@
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">Longitude</label>
-                <input class="form-control" formControlName="lng"  trim="blur"
+                <input class="form-control" formControlName="lng" trim="blur"
                        type="number" placeholder="Enter Longitude"/>
                 <div class="text-error" *ngIf="form2.controls['lng'].errors?.required && show2Error">
                   This field is required.
@@ -231,7 +239,7 @@
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">Latitude</label>
-                <input class="form-control" formControlName="lat"  trim="blur"
+                <input class="form-control" formControlName="lat" trim="blur"
                        type="number" placeholder="Enter latitude"/>
                 <div class="text-error" *ngIf="form2.controls['lat'].errors?.required && show2Error">
                   This field is required.
@@ -256,7 +264,7 @@
             <div class="row">
               <div class="col-md-4 form-group">
                 <label class="required set-label">min bedroom</label>
-                <input class="form-control" formControlName="min_bedroom" appNumberOnly  trim="blur"
+                <input class="form-control" formControlName="min_bedroom" appNumberOnly trim="blur"
                        type="text" placeholder="Enter min bedroom"/>
                 <div class="text-error" *ngIf="form3.controls['min_bedroom'].errors?.required && show3Error">
                   This field is required.
@@ -264,13 +272,13 @@
               </div>
               <div class="col-md-4 form-group">
                 <label class="set-label">max bedroom (Optional)</label>
-                <input class="form-control" formControlName="max_bedroom" appNumberOnly  trim="blur"
+                <input class="form-control" formControlName="max_bedroom" appNumberOnly trim="blur"
                        type="text" placeholder="Enter max bedroom"/>
               </div>
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">min bathroom</label>
-                <input class="form-control" formControlName="min_bathroom" appNumberOnly  trim="blur"
+                <input class="form-control" formControlName="min_bathroom" appNumberOnly trim="blur"
                        type="text" placeholder="Enter min bathroom"/>
                 <div class="text-error" *ngIf="form3.controls['min_bathroom'].errors?.required && show3Error">
                   This field is required.
@@ -278,14 +286,14 @@
               </div>
               <div class="col-md-4 form-group">
                 <label class="set-label">max bathroom (optional)</label>
-                <input class="form-control" formControlName="max_bathroom" appNumberOnly  trim="blur"
+                <input class="form-control" formControlName="max_bathroom" appNumberOnly trim="blur"
                        type="text" placeholder="Enter max bathroom"/>
               </div>
 
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">Min area size</label>
-                <input class="form-control" formControlName="min_area_size"  trim="blur"
+                <input class="form-control" formControlName="min_area_size" trim="blur"
                        type="text" placeholder="Enter min area size"/>
                 <div class="text-error" *ngIf="form3.controls['min_area_size'].errors?.required && show3Error">
                   This field is required.
@@ -293,13 +301,13 @@
               </div>
               <div class="col-md-4 form-group">
                 <label class="set-label">Max area size (optional)</label>
-                <input class="form-control" formControlName="max_area_size"  trim="blur"
+                <input class="form-control" formControlName="max_area_size" trim="blur"
                        type="text" placeholder="Enter max area size"/>
               </div>
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">area size type</label>
-                <input class="form-control" formControlName="area_size_type"  trim="blur"
+                <input class="form-control" formControlName="area_size_type" trim="blur"
                        type="text" placeholder="Enter area size type"/>
                 <div class="text-error" *ngIf="form3.controls['area_size_type'].errors?.required && show3Error">
                   This field is required.
@@ -338,7 +346,7 @@
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">start price</label>
-                <input class="form-control" formControlName="start_price" appAmount  trim="blur"
+                <input class="form-control" formControlName="start_price" appAmount trim="blur"
                        type="text" placeholder="Enter start price"/>
                 <div class="text-error" *ngIf="form4.controls['start_price'].errors?.required && show4Error">
                   This field is required.
@@ -346,7 +354,7 @@
               </div>
               <div class="col-md-4 form-group">
                 <label class="set-label">end price (optional)</label>
-                <input class="form-control" formControlName="end_price" appAmount  trim="blur"
+                <input class="form-control" formControlName="end_price" appAmount trim="blur"
                        type="text" placeholder="Enter end price"/>
               </div>
 
@@ -366,7 +374,7 @@
 
               <div class="col-md-4 form-group">
                 <label class="required set-label">total units</label>
-                <input class="form-control" formControlName="total_units"  trim="blur"
+                <input class="form-control" formControlName="total_units" trim="blur"
                        type="text" placeholder="Enter total units" appNumberOnly/>
                 <div class="text-error" *ngIf="form4.controls['total_units'].errors?.required && show4Error">
                   This field is required.

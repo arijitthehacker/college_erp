@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'src/app/services/message/message.service';
-import { Subject } from 'rxjs';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { CommonService } from '../../../services/commonService/common.service';
-import { ApiUrl } from '../../../core/apiUrl';
-import { HttpService } from '../../../services/http/http.service';
+import {Component, OnInit} from '@angular/core';
+import {MessageService} from 'src/app/services/message/message.service';
+import {findIndex, Subject} from 'rxjs';
+import {BsModalRef} from 'ngx-bootstrap/modal';
+import {CommonService} from '../../../services/commonService/common.service';
+import {ApiUrl} from '../../../core/apiUrl';
+import {HttpService} from '../../../services/http/http.service';
+import {PROPERTY_TYPES} from "../../../core/constant";
 
 @Component({
   selector: 'app-add-account',
@@ -16,6 +17,7 @@ export class ProDetailsComponent implements OnInit {
   modalData: any;
   selectedTab = 1;
   addresses: any = [];
+  PROPERTY_TYPES = PROPERTY_TYPES
 
   constructor(public message: MessageService, public bsModalRef: BsModalRef, public commonService: CommonService,
               public http: HttpService) {
@@ -57,6 +59,16 @@ export class ProDetailsComponent implements OnInit {
     this.http.getData(ApiUrl.list_properties, obj, true).subscribe(res => {
       if (res.data.data?.length) {
         this.modalData = res.data.data[0];
+        PROPERTY_TYPES.forEach(value => {
+          if (value.id === this.modalData.peropert_type) {
+            this.modalData.show_peropert_type = value.name
+          }
+        })
+        // PROPERTY_TYPES.forEach(val => {
+        //   val.show_peropert_type = val.peropert_type
+        // })
+
+
       }
     }, () => {
     });

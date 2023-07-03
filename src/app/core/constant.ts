@@ -6,6 +6,21 @@ export const CONSTANT = {
   no_image: '/assets/images/no-img.webp'
 };
 
+export const PROPERTY_TYPES = [
+  {name: 'Bungalow / Villa', id: 'BUNGALOW_VILLA'},
+  {name: 'Terrace / Link House', id: 'TERRACE_LINK_HOUSE'},
+  {name: 'Semi-D', id: 'SEMI_D'},
+  {name: 'Condominium', id: 'CONDOMINIUM'},
+  {name: 'Service Residence', id: 'SERVICE_RESIDENCE'},
+  {name: 'Office', id: 'OFFICE'},
+  {name: 'Sofo/Soho/Sovo', id: 'SOFO_SOHO_SOVO'},
+  {name: 'Factory', id: 'FACTORY'},
+  {name: 'Retail / Shop Lot', id: 'RETAIL_SHOP_LOT'},
+  {name: 'Residential Land', id: 'RESIDENTIAL_LAND'},
+  {name: 'Agricultural Land', id: 'AGRICULTURAL_LAND'},
+  {name: 'Other', id: 'OTHER'},
+]
+
 export const SIDEBAR = [
   {
     path: '', name: 'User\'s Profile', icon: 'fa-users', children: [
@@ -147,7 +162,7 @@ export const ROLES = [
   {
     path: '', id: 'controle_management', name: 'Control Management', icon: 'fa-sliders', isSelected: false, children: [
       {path: 'settings', id: 'controle_management_settings', name: 'Settings', icon: 'fa fa-cog', isSelected: false},
-      {path: 'admins', id: 'admins', name: 'Admins', icon: 'fa fa-user', isSelected: false, notShowInAdd:true},
+      {path: 'admins', id: 'admins', name: 'Admins', icon: 'fa fa-user', isSelected: false, notShowInAdd: true},
       {
         path: 'purposes', id: 'controle_management_peroperty_pupose', name: 'Property Purposes',
         icon: 'fa fa-user-secret', isSelected: false

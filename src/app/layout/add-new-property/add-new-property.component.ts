@@ -9,7 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ApiUrl} from '../../core/apiUrl';
 import {ConstMsg} from '../../core/ConstMsg';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
-import {Currencies} from '../../core/constant';
+import {Currencies, PROPERTY_TYPES} from '../../core/constant';
 
 @Component({
   selector: 'app-accounts',
@@ -51,6 +51,7 @@ export class AddNewPropertyComponent implements OnInit {
   commissions: any = [];
   progress: any = 1;
   isEdit = false;
+  PROPERTY_TYPES = PROPERTY_TYPES
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
               public router: Router, public lightbox: Lightbox,
@@ -373,7 +374,7 @@ export class AddNewPropertyComponent implements OnInit {
       this.form4.patchValue({
         start_price: this.modalData.start_price,
         // end_price: this.setEmptyValue(this.modalData.end_price),
-        end_price: this.setEmptyValue(2,this.modalData.end_price),
+        end_price: this.setEmptyValue(2, this.modalData.end_price),
         comission_id: this.modalData?.comission_id?._id || '',
         total_units: this.modalData.total_units
       });
