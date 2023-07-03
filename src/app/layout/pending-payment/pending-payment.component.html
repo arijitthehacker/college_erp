@@ -190,8 +190,8 @@
 
             <td>
               <b>Property Price:</b> {{data?.booking_id?.commission_price}}<br>
-              <b>Advance Payment:</b> {{data?.advanced_price}}<br>
-              <b>Pending Payment:</b> {{data?.total_price - data?.advanced_price}}<br>
+<!--              <b>Advance Payment:</b> {{data?.advanced_price}}<br>-->
+              <b>Total Commission:</b> {{data?.total_price - data?.advanced_price}}<br>
               <b>Unit No.:</b> {{data?.unit_no || '-'}}
             </td>
             <td>

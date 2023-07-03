@@ -13,6 +13,7 @@ import { ProAddressesComponent } from './pro-addresses/pro-addresses.component';
 import { AddProAddressComponent } from './add-pro-address/add-pro-address.component';
 import { MemberDetailsComponent } from '../customer-leads/member-details/member-details.component';
 import { ProDetailsComponent } from './pro-details/pro-details.component';
+import {PROPERTY_TYPES} from "../../core/constant";
 
 @Component({
   selector: 'app-accounts',
@@ -45,6 +46,17 @@ export class PropertiesComponent implements OnInit {
     this.http.getData(ApiUrl.list_properties, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
+
+      this.allData.forEach((val)=>{
+        PROPERTY_TYPES.forEach(value => {
+          if (value.id === val.peropert_type) {
+            val.show_peropert_type = value.name
+          }
+        })
+      })
+
+
+
       if (res.data.total_count > 0 && !this.allData?.length) {
         this.pagination.pageNo--;
         this.getData();

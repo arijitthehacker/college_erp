@@ -100,7 +100,7 @@
           <tbody>
           <tr
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
-            <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+            <td> {{(pagination.pageNo - 1) * 10 + i + 1}} </td>
             <td>{{data?.advanced_rejected_date || data?.time |date:'short'}}</td>
             <td>
               <b>Property Name:</b> {{data?.booking_id?.peroperty_id?.name || '-'}}<br>
@@ -148,7 +148,8 @@
             <td>
               <ng-container *ngIf="data?.booking_id?.member_id?.name ; else noData">
                 <b>Name:</b> {{data?.booking_id?.member_id?.name || '-'}}
-                <ng-container *ngIf="data?.booking_id?.member_id?.user_name">, {{data?.booking_id?.member_id?.user_name}}</ng-container>
+                <ng-container *ngIf="data?.booking_id?.member_id?.user_name">
+                  , {{data?.booking_id?.member_id?.user_name}}</ng-container>
                 <br>
                 <b>Phone No.</b>
                 {{data?.booking_id?.member_id?.country_code}}{{data?.booking_id?.member_id?.phone_number || '-'}}
@@ -175,21 +176,22 @@
             <td>
               <ng-container *ngIf="data?.booking_id?.gold_member_id?.name ; else noData">
                 <b>Name:</b> {{data?.booking_id?.gold_member_id?.name || '-'}}
-                <ng-container *ngIf="data?.booking_id?.gold_member_id?.user_name">, {{data?.booking_id?.gold_member_id?.user_name}}</ng-container>
+                <ng-container *ngIf="data?.booking_id?.gold_member_id?.user_name">
+                  , {{data?.booking_id?.gold_member_id?.user_name}}</ng-container>
                 <br>
                 <b>Phone No.</b>
                 {{data?.booking_id?.gold_member_id?.country_code}}{{data?.booking_id?.gold_member_id?.phone_number || '-'}}
                 <br>
               </ng-container>
 
-<!--              <ng-container *ngIf="data?.gold_member_id?.name ; else noData">-->
-<!--                <b>Name:</b> {{data?.gold_member_id?.name || '-'}}-->
-<!--                <ng-container *ngIf="data?.gold_member_id?.user_name">, {{data?.gold_member_id?.user_name}}</ng-container>-->
-<!--                <br>-->
-<!--                <b>Phone No.</b>-->
-<!--                {{data?.gold_member_id?.country_code}}{{data?.gold_member_id?.phone_number || '-'}}-->
-<!--                <br>-->
-<!--              </ng-container>-->
+              <!--              <ng-container *ngIf="data?.gold_member_id?.name ; else noData">-->
+              <!--                <b>Name:</b> {{data?.gold_member_id?.name || '-'}}-->
+              <!--                <ng-container *ngIf="data?.gold_member_id?.user_name">, {{data?.gold_member_id?.user_name}}</ng-container>-->
+              <!--                <br>-->
+              <!--                <b>Phone No.</b>-->
+              <!--                {{data?.gold_member_id?.country_code}}{{data?.gold_member_id?.phone_number || '-'}}-->
+              <!--                <br>-->
+              <!--              </ng-container>-->
             </td>
 
             <td>
@@ -224,40 +226,68 @@
 
             <td>
               <b>Account
-                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name|| data?.gold_member_id?.account_name || '-'}}
+                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || data?.gold_member_id?.account_name || '-'}}
               <br>
 
-              <b>Account Number:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number|| data?.gold_member_id?.account_number || '-'}}
+              <b>Account
+                Number:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || data?.gold_member_id?.account_number || '-'}}
               <br>
               <b>Bank
-                Name:</b> {{data?.group_owner_id?.bank_name ||data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
+                Name:</b> {{data?.group_owner_id?.bank_name || data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}
               <br>
 
               <b>Sort
-                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code|| data?.gold_member_id?.sort_code || '-'}}
+                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || data?.gold_member_id?.sort_code || '-'}}
               <br>
             </td>
 
 
-<!--            <td>-->
-<!--              <b>Bank-->
-<!--                Name:</b> {{data?.group_owner_id?.bank_name || data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}-->
-<!--              <br>-->
-<!--              <b>Account-->
-<!--                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || data?.gold_member_id?.account_name || '-'}}-->
-<!--              <br>-->
-<!--              <b>Bank-->
-<!--                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || data?.gold_member_id?.account_number || '-'}}-->
-<!--              <br>-->
-<!--              <b>Sort-->
-<!--                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || data?.gold_member_id?.sort_code || '-'}}-->
-<!--              <br>-->
-<!--            </td>-->
+            <!--            <td>-->
+            <!--              <b>Bank-->
+            <!--                Name:</b> {{data?.group_owner_id?.bank_name || data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}-->
+            <!--              <br>-->
+            <!--              <b>Account-->
+            <!--                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || data?.gold_member_id?.account_name || '-'}}-->
+            <!--              <br>-->
+            <!--              <b>Bank-->
+            <!--                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || data?.gold_member_id?.account_number || '-'}}-->
+            <!--              <br>-->
+            <!--              <b>Sort-->
+            <!--                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || data?.gold_member_id?.sort_code || '-'}}-->
+            <!--              <br>-->
+            <!--            </td>-->
 
             <td>
               <b>Property Price:</b> {{data?.booking_id?.commission_price}}<br>
-              <b>Advance Payment:</b> {{data?.advanced_price}}<br>
-              <b>Pending Payment:</b> {{data?.total_price - data?.advanced_price}}<br>
+
+              <ng-container *ngIf="data?.status != 'REJECTED'">
+                <!--                {{ ? 'Advanced Paid' : 'Paid After completion'}}-->
+                <!--1111-->
+                <ng-container *ngIf="!data?.advanced_date">
+<!--                  3333-->
+                  <b>Paid:</b> {{data?.total_price - data?.advanced_price}}<br>
+                  <b>Fees:</b> {{data?.advanced_price}}<br>
+                </ng-container>
+                <ng-container *ngIf="data?.advanced_date">
+<!--                  4444444444-->
+                  <b>Paid:</b>{{data?.advanced_price}} <br>
+                  <b>Fees:</b> {{data?.total_price - data?.advanced_price}}<br>
+                </ng-container>
+              </ng-container>
+
+              <ng-container *ngIf="!data?.advanced_date && data?.status == 'REJECTED'">
+
+<!--                555555555-->
+                <b>Paid:</b> {{data?.advanced_price}}<br>
+                <b>Fees:</b> 0<br>
+
+
+              </ng-container>
+
+
+              <!--              <b>Paid:</b> {{data?.advanced_price}}<br>-->
+              <!--              <b>Fees:</b> {{data?.total_price - data?.advanced_price}}<br>-->
+
               <b>Unit No.:</b> {{data?.unit_no || '-'}}
             </td>
 

@@ -7,6 +7,7 @@ export const CONSTANT = {
 };
 
 export const PROPERTY_TYPES = [
+  {name: 'Apartment', id: 'APARTMENT'},
   {name: 'Bungalow / Villa', id: 'BUNGALOW_VILLA'},
   {name: 'Terrace / Link House', id: 'TERRACE_LINK_HOUSE'},
   {name: 'Semi-D', id: 'SEMI_D'},

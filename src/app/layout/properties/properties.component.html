@@ -61,7 +61,7 @@
             <td>{{data?.name || '-'}}</td>
             <td>{{data?.start_price ? data?.currency_code : ''}} {{data?.start_price || '-'}}</td>
             <td>{{data?.end_price ? data?.currency_code : ''}} {{data?.end_price || '-'}}</td>
-            <td>{{data?.peropert_type || '-'}}</td>
+            <td>{{data?.show_peropert_type || '-'}}</td>
             <td>
               {{data?.address |slice:0:25 }}
               <a class="my-link" (click)="openProAddresses(data)">..See more</a>
