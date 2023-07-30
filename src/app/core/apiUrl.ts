@@ -12,6 +12,7 @@ export const ApiUrl = {
   list_agents: 'Admin/list_agents',
   list_property_budgets: 'Admin/list_property_budgets',
   getResetPasswordToken: 'user/getResetPasswordToken',
+  manage_customer_status: 'Admin/manage_customer_status',
   manage_plans: 'Admin/manage_plans',
   send_custom_notification: 'Admin/send_custom_notification',
   list_notification: 'Admin/list_notification',

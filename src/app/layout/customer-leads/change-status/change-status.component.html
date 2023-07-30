@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Update Status
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Select Status</label>
+        <select class="form-control" formControlName="status_id">
+          <option value="">All Status</option>
+          <option value="pending">Waiting for customer confirmation</option>
+          <option value="accepted_buy_customer">Waiting for agent assignment</option>
+          <option value="assigned_agent">Contact lead</option>
+          <option value="contact_lead">Appointment</option>
+          <option value="appointment">Booking</option>
+          <option value="booking">Loan approval</option>
+          <option value="loan_approved">SPA Signed</option>
+          <option value="spa_signed">Payout pending</option>
+          <option value="pay_completed">Close</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['status_id'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">Submit</button>
+  </div>
+</form>

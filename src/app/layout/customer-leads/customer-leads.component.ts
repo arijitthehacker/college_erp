@@ -10,13 +10,12 @@ import { Router } from '@angular/router';
 import { StatusesComponent } from './statuses/statuses.component';
 import { MemberDetailsComponent } from './member-details/member-details.component';
 import { ProDetailsComponent } from '../properties/pro-details/pro-details.component';
-import { PaymentComponent } from '../../shared/components/payment/payment.component';
 import { PaidComponent } from './paid/paid.component';
 import { AssignBookingComponent } from './assign-booking/assign-booking.component';
 import { LogsComponent } from './logs/logs.component';
 import { AddFinalPriceComponent } from './add-final-price/add-final-price.component';
-import { AddAgentComponent } from '../agents/add-agent/add-agent.component';
 import { AddCustomerLeadComponent } from './add-customer-lead/add-customer-lead.component';
+import { ChangeStatusComponent } from "./change-status/change-status.component";
 
 @Component({
   selector: 'app-accounts',
@@ -147,6 +146,16 @@ export class CustomerLeadsComponent implements OnInit {
     this.pagination.count = 0;
     const modalRef = this.modalService.show(LogsComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-more-lg'
+    });
+    modalRef.content.onClose.subscribe((res: any) => {
+      this.getData();
+    });
+  }
+
+
+  openChangeStatus(data) {
+    const modalRef = this.modalService.show(ChangeStatusComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
     modalRef.content.onClose.subscribe((res: any) => {
       this.getData();
