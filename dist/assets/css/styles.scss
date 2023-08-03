@@ -1271,3 +1271,149 @@ select {
     }
   }
 }
+
+p.statusName {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.col-md-12.grfr.form-group::before {
+  content: '';
+  width: 2px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  background: #cbd8ea;
+  left: 16px;
+  top: 2px;
+}
+.qwert{
+  position: relative;
+}
+.qwert::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -34px;
+  width: 24px;
+  height: 24px;
+  background: url(../images/tick_grey_ic@3x.png) no-repeat center;
+  background-size: contain;
+  z-index: 2;
+}
+.qwert.bbbbb::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -34px;
+  width: 24px;
+  height: 24px;
+  background: url(../images/tick_ic@3x.png) no-repeat center;
+  background-size: contain;
+}
+.qwert.approve::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -34px;
+  width: 24px;
+  height: 24px;
+  background: url(../images/tick_ic@3x.png) no-repeat center;
+  background-size: contain;
+}
+.qwert.bbbbb::after {
+  content: "";
+  width: 4px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  background: #6be7ac;
+  left: -24px;
+  top: 19px;
+  z-index: 2;
+}
+.qwert.approve::after {
+  content: "";
+  width: 4px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  background: #6be7ac;
+  left: -24px;
+  top: 19px;
+  z-index: 2;
+}
+
+.qwert.rejcvv::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -34px;
+  width: 24px;
+  height: 24px;
+  background: url(../images/MicrosoftTeams-image.png) no-repeat center;
+  background-size: contain;
+}
+.qwert.rejcvv::after {
+  content: "";
+  width: 4px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  background: #dd412b;
+  left: -24px;
+  top: 19px;
+  z-index: 2;
+}
+
+
+.col-md-12.grfr.form-group {
+  padding-left: 40px;
+  position: relative;
+}
+
+p.copm {
+  font-size: 15px;
+  font-family: none;
+  color: #00d4d4;
+}
+p.wedfecd {
+  position: absolute;
+  top: -11px;
+  left: 88px;
+  font-size: 15px;
+  background: #4b4949;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 100%;
+}
+.mypersonalmodal{
+height: 66vh;
+}
+.d-flex.dessert {
+  justify-content: space-between;
+}
+p.undo {
+  font-size: 15px;
+  font-family: none;
+  color: #ef6230;
+}
+
+.col-md-12.grfr.form-group {
+  padding: 0px 24px 0 40px;
+  position: relative;
+}
+p.rejectx {
+  font-size: 15px;
+  font-family: none;
+  color: red;
+}

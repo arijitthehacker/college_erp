@@ -11,7 +11,7 @@ import { LogsComponent } from './logs/logs.component';
 import { AddFinalPriceComponent } from './add-final-price/add-final-price.component';
 import { AddCustomerLeadComponent } from './add-customer-lead/add-customer-lead.component';
 import { ChangeStatusComponent } from "./change-status/change-status.component";
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 const routes: Routes = [
   {
     path: '', component: CustomerLeadsComponent
@@ -33,6 +33,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
+    ModalModule.forRoot(),
     RouterModule.forChild(routes)
   ],
   entryComponents: [
