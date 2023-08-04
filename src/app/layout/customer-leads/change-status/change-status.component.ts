@@ -83,6 +83,20 @@ export class ChangeStatusComponent implements OnInit {
   }
 
 
+
+  StatusRemoveImage(index:any){
+   const obj = {
+    _id:this.modalData._id,
+    status_id:this.allData[index]._id,
+    is_delete_image:true
+   }
+   this.http.putData(ApiUrl.update_steps,obj).subscribe(() =>{
+    this.message.toast('success', 'image removed Successfully!')
+    this.getData();
+  })
+  }
+
+
   submit(index?:any){
    if(!index){
       this.formSubmit();
