@@ -22,6 +22,10 @@ export class ChangeStatusComponent implements OnInit {
   modalRef?: BsModalRef;
   selectedStatus: any;
   selectedStatusId: any;
+  indexSelected: any;
+  RejectAllData: any;
+  selected_reason: any;
+  customReason: boolean = false;
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, private modalService: BsModalService, public commonService: CommonService) {
   }
@@ -29,12 +33,19 @@ export class ChangeStatusComponent implements OnInit {
   ngOnInit() {
     this.getData();
     this.makeForm();
+    this.getRejectReason();
   }
 
   openModal(template: TemplateRef<any>,index:any,status:any) {
     this.modalRef = this.modalService.show(template);
     this.selectedStatusId = this.allData[index]._id;
     this.selectedStatus = status
+    this.indexSelected = index
+    if(index == 4 || index == 6){
+      this.form.controls.image.setValidators([Validators.required])
+    }else{
+      this.form.controls.image.clearValidators();
+    }
   }
 
 
@@ -77,7 +88,7 @@ export class ChangeStatusComponent implements OnInit {
       status:['',Validators.required],
       image:[''],
       description:[''],
-      reject_reason:['']
+      reject_reason:['',Validators.required]
     });
 
   }
@@ -94,6 +105,40 @@ export class ChangeStatusComponent implements OnInit {
     this.message.toast('success', 'image removed Successfully!')
     this.getData();
   })
+  }
+
+
+  getRejectReason() {
+    // this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
+    // let obj: any = {
+    //   skip: this.pagination.skip
+    // };
+    // if (this.search.value) {
+    //   obj.search = this.search.value;
+    // }
+    this.http.getData(ApiUrl.list_rejection_reason).subscribe(res => {
+      this.RejectAllData = res.data.data;
+      console.log(this.RejectAllData,'....this.RejectAllData')
+
+      // if (res.data.total_count > 0 && !this.allData?.length) {
+      //   this.pagination.pageNo--;
+      //   this.getData();
+      // }
+
+    }, () => {
+    });
+  }
+
+
+  selectedReason(index:any){
+    this.customReason = false;
+    console.log(index,'...index')
+    this.selected_reason = this.RejectAllData[index].name
+  }
+
+
+  OtherReason(){
+    this.customReason = true;
   }
 
 
@@ -116,7 +161,12 @@ export class ChangeStatusComponent implements OnInit {
       obj['description'] = this.form.value.description,
       obj['image'] = this.form.value.image,
       obj['_id'] = this.modalData._id
-      obj['reject_reason'] = this.form.value.reject_reason
+
+      if(this.customReason == true){
+        obj['reject_reason'] = this.form.value.reject_reason
+      }else{
+        obj['reject_reason'] = this.selected_reason
+      }
 
       if(obj['status'] == 'APPROVED'){
         delete obj['reject_reason']
@@ -144,6 +194,7 @@ export class ChangeStatusComponent implements OnInit {
         }else{
           this.message.toast('success', 'Assigned Successfully!');
         }
+        this.form.reset();
         this.modalRef.hide();
       }, () => {
       });

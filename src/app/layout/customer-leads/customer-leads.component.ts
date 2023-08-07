@@ -156,7 +156,7 @@ export class CustomerLeadsComponent implements OnInit {
   openChangeStatus(data:any) {
     console.log(data)
      if(!data.is_customer_confirmed){
-      this.message.toast('erorr','Customer not confirmed booking yet')
+      this.message.toast('Error','Customer not confirmed booking yet')
      }else if(!data.agent_id){
         this.message.toast('error','Please assign agent first')
      }else{

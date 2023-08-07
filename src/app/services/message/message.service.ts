@@ -15,6 +15,7 @@ export class MessageService {
 
   /******************* toast messages ********************/
   toast(type, title: string, description?) {
+    console.log(type)
     const Toast = swal.mixin({
       toast: true,
       position: 'top-end',
@@ -32,19 +33,22 @@ export class MessageService {
       title: title
     });
 
-    // const toast = swal.mixin({
-    //   toast: true,
-    //   position: 'top-end',
-    //   showConfirmButton: false,
-    //   showCloseButton: true,
-    //   timer: 6000
-    //   // animation: false,
-    //   // customClass: 'uk-animation-slide-right-small'
-    // });
-    // toast.fire({
-    //   // type,
-    //   title
-    // });
+    // if(type = 'Error'){
+    //   const Toas =  swal.fire({
+    //     icon: 'error',
+    //     title: 'Error',
+    //     text:'Customer not confirmed booking yet',
+    //     toast: true,
+    //     position: 'top-end',
+    //     timer: 3000,
+    //     showConfirmButton: false,
+    //   });
+    // }
+   
+    
+  
+
+ 
   }
 
   /******************* confirmation dialog box (returns a promise) ********************/

@@ -30,27 +30,28 @@
           <div class="d-flex dessert" *ngIf="allData[2]?.status_data == 'APPROVED'">
             <p class="copm" >Completed</p>
             <div class="yuftr" *ngIf="allData[3]?.status_data == 'PENDING'">
-              <p class="undo d-block mb-2" (click)="undoStatus(2)">Undo</p>
-              <p class="undo d-block m-0" (click)="openModal(template,2,'APPROVED')">Add</p>
+              <p class="undo d-block mb-2 crs" (click)="undoStatus(2)">Undo</p>
+              <p class="undo d-block m-0 crs" *ngIf="!allData[2]?.image" (click)="openModal(template,2,'APPROVED')">Add</p>
+              <p class="undo d-block m-0 crs" *ngIf="allData[2]?.image" (click)="StatusRemoveImage(2)">Remove</p>
             </div>
           </div>
           <div class="kjhgfc" style="position: relative;">
             <img *ngIf="allData[2]?.image" [src]="allData[2]?.image" width="100px" height="100px"/>
             <p class="mt-3" *ngIf="allData[2]?.description">{{allData[2]?.description}}</p>
-            <p *ngIf="allData[2]?.image && allData[3]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(2)">x</p>
+            <!-- <p *ngIf="allData[2]?.image && allData[3]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(2)">x</p> -->
           </div>
-          <div class="d-flex dessert" *ngIf="allData[2]?.status_data == 'REJECTED'">
+          <div class="d-flex dessert " *ngIf="allData[2]?.status_data == 'REJECTED'">
             <div>
               <p style="color: #555151;font-size: 14px;">{{allData[2]?.reject_reason}}</p>
               <p class="rejectx" >Rejected</p>
             </div>
               <div class="yuftr">
-                <p class="undo d-block mb-2" (click)="undoStatus(2)">Undo</p>
+                <p class="undo d-block mb-2 crs" (click)="undoStatus(2)">Undo</p>
               </div>
           </div>
           <div *ngIf="allData[2]?.status_data == 'PENDING'">
-            <a (click)="openModal(template,2,'APPROVED')">Complete</a>
-            <a (click)="openRejectModal(template1,2,'REJECTED')" style="margin-left: 20px;">Reject</a>
+            <a class="crs orangf decoration" (click)="openModal(template,2,'APPROVED')">Complete</a>
+            <a class="crs decoration" (click)="openRejectModal(template1,2,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
 
         </div>
@@ -59,14 +60,15 @@
           <div class="d-flex dessert" *ngIf="allData[3]?.status_data == 'APPROVED'">
             <p class="copm" >Completed</p>
             <div class="yuftr" *ngIf="allData[4]?.status_data == 'PENDING'">
-              <p class="undo d-block mb-2" (click)="undoStatus(3)">Undo</p>
-              <p class="undo d-block m-0" (click)="openModal(template,3,'APPROVED')">Add</p>
+              <p class="undo d-block mb-2 crs" (click)="undoStatus(3)">Undo</p>
+              <p class="undo d-block m-0 crs" *ngIf="!allData[3]?.image" (click)="openModal(template,3,'APPROVED')">Add</p>
+              <p class="undo d-block m-0 crs" *ngIf="allData[3]?.image" (click)="StatusRemoveImage(3)">Remove</p>
             </div>
           </div>
           <div class="kjhgfc" style="position: relative;">
             <img *ngIf="allData[3]?.image" [src]="allData[3]?.image" width="100px" height="100px"/>
             <p class="mt-3" *ngIf="allData[3]?.description">{{allData[3]?.description}}</p>
-            <p *ngIf="allData[3]?.image && allData[4]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(3)">x</p>
+            <!-- <p *ngIf="allData[3]?.image && allData[4]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(3)">x</p> -->
           </div>
           <div class="d-flex dessert" *ngIf="allData[3]?.status_data == 'REJECTED'">
             <div>
@@ -74,12 +76,12 @@
               <p class="rejectx" >Rejected</p>
             </div>
               <div class="yuftr">
-                <p class="undo d-block mb-2" (click)="undoStatus(3)">Undo</p>
+                <p class="undo d-block mb-2 crs" (click)="undoStatus(3)">Undo</p>
               </div>
           </div>
           <div *ngIf="allData[2]?.status_data == 'APPROVED' && allData[3]?.status_data == 'PENDING'">
-            <a (click)="openModal(template,3,'APPROVED')">Complete</a>
-            <a (click)="openRejectModal(template1,3,'REJECTED')" style="margin-left: 20px;">Reject</a>
+            <a class="crs orangf decoration" (click)="openModal(template,3,'APPROVED')">Complete</a>
+            <a class="crs decoration" (click)="openRejectModal(template1,3,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
         </div>
         <div class="qwert" [ngClass]="{'approve':allData[4]?.status_data == 'APPROVED','rejcvv':allData[4]?.status_data == 'REJECTED'}">
@@ -87,14 +89,15 @@
           <div class="d-flex dessert" *ngIf="allData[4]?.status_data == 'APPROVED'">
             <p class="copm" >Completed</p>
             <div class="yuftr" *ngIf="allData[5]?.status_data == 'PENDING'">
-              <p class="undo d-block mb-2" (click)="undoStatus(4)">Undo</p>
-              <p class="undo d-block m-0" (click)="openModal(template,4,'APPROVED')">Add</p>
+              <p class="undo d-block mb-2 crs" (click)="undoStatus(4)">Undo</p>
+              <p class="undo d-block m-0 crs" *ngIf="!allData[4]?.image" (click)="openModal(template,4,'APPROVED')">Add</p>
+              <p class="undo d-block m-0 crs" *ngIf="allData[4]?.image" (click)="StatusRemoveImage(4)">Remove</p>
             </div>
           </div>
           <div class="kjhgfc" style="position: relative;">
             <img *ngIf="allData[4]?.image" [src]="allData[4]?.image" width="100px" height="100px"/>
             <p class="mt-3" *ngIf="allData[4]?.description">{{allData[4]?.description}}</p>
-            <p *ngIf="allData[4]?.image && allData[5]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(4)">x</p>
+            <!-- <p *ngIf="allData[4]?.image && allData[5]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(4)">x</p> -->
           </div>
           <div class="d-flex dessert" *ngIf="allData[4]?.status_data == 'REJECTED'">
             <div>
@@ -102,12 +105,12 @@
               <p class="rejectx" >Rejected</p>
             </div>
               <div class="yuftr">
-                <p class="undo d-block mb-2" (click)="undoStatus(4)">Undo</p>
+                <p class="undo d-block mb-2 crs" (click)="undoStatus(4)">Undo</p>
               </div>
           </div>
           <div *ngIf="allData[3]?.status_data == 'APPROVED' && allData[4]?.status_data == 'PENDING'">
-            <a (click)="openModal(template,4,'APPROVED')">Complete</a>
-            <a (click)="openRejectModal(template1,4,'REJECTED')" style="margin-left: 20px;">Reject</a>
+            <a class="crs orangf decoration" (click)="openModal(template,4,'APPROVED')">Complete</a>
+            <a class="crs decoration" (click)="openRejectModal(template1,4,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
         </div>
         <div class="qwert" [ngClass]="{'approve':allData[5]?.status_data == 'APPROVED','rejcvv':allData[5]?.status_data == 'REJECTED'}">
@@ -115,14 +118,15 @@
           <div class="d-flex dessert" *ngIf="allData[5]?.status_data == 'APPROVED'">
           <p class="copm" >Completed</p>
           <div class="yuftr" *ngIf="allData[6]?.status_data == 'PENDING'">
-            <p class="undo d-block mb-2" (click)="undoStatus(5)">Undo</p>
-            <p class="undo d-block m-0" (click)="openModal(template,5,'APPROVED')">Add</p>
+            <p class="undo d-block mb-2 crs" (click)="undoStatus(5)">Undo</p>
+            <p class="undo d-block m-0 crs" *ngIf="!allData[5]?.image" (click)="openModal(template,5,'APPROVED')">Add</p>
+            <p class="undo d-block m-0 crs" *ngIf="allData[5]?.image" (click)="StatusRemoveImage(5)">Remove</p>
           </div>
         </div>
         <div class="kjhgfc" style="position: relative;">
           <img *ngIf="allData[5]?.image" [src]="allData[5]?.image" width="100px" height="100px"/>
           <p class="mt-3" *ngIf="allData[5]?.description">{{allData[5]?.description}}</p>
-          <p *ngIf="allData[5]?.image && allData[6]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(5)">x</p>
+          <!-- <p *ngIf="allData[5]?.image && allData[6]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(5)">x</p> -->
         </div>
         <div class="d-flex dessert" *ngIf="allData[5]?.status_data == 'REJECTED'">
           <div>
@@ -134,23 +138,24 @@
             </div>
         </div>
           <div *ngIf="allData[4]?.status_data == 'APPROVED' && allData[5]?.status_data == 'PENDING'">
-            <a (click)="openModal(template,5,'APPROVED')">Complete</a>
-            <a (click)="openRejectModal(template1,5,'REJECTED')" style="margin-left: 20px;">Reject</a>
+            <a class="crs orangf decoration" (click)="openModal(template,5,'APPROVED')">Complete</a>
+            <a class="crs decoration" (click)="openRejectModal(template1,5,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
         </div>
         <div class="qwert" [ngClass]="{'approve':allData[6]?.status_data == 'APPROVED','rejcvv':allData[6]?.status_data == 'REJECTED'}">
           <p class="statusName">Signing of Sales & Purchase Agreement</p>
           <div class="d-flex dessert" *ngIf="allData[6]?.status_data == 'APPROVED'">
           <p class="copm" >Completed</p>
-          <!-- <div class="yuftr" *ngIf="allData[7]?.status_data == 'PENDING'">
-            <p class="undo d-block mb-2" (click)="undoStatus(6)">Undo</p>
-            <p class="undo d-block m-0" (click)="openModal(template,6,'APPROVED')">Add</p>
-          </div> -->
+          <div class="yuftr" *ngIf="allData[7]?.status_data == 'PENDING'">
+            <p class="undo d-block mb-2 crs" (click)="undoStatus(6)">Undo</p>
+            <p class="undo d-block m-0 crs" *ngIf="!allData[6]?.image" (click)="openModal(template,6,'APPROVED')">Add</p>
+            <p class="undo d-block m-0 crs" *ngIf="allData[6]?.image" (click)="StatusRemoveImage(6)">Remove</p>
+          </div>
         </div>
         <div class="kjhgfc" style="position: relative;">
           <img *ngIf="allData[6]?.image" [src]="allData[6]?.image" width="100px" height="100px"/>
           <p class="mt-3" *ngIf="allData[6]?.description">{{allData[6]?.description}}</p>
-          <p *ngIf="allData[6]?.image && allData[7]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(6)">x</p>
+          <!-- <p *ngIf="allData[6]?.image && allData[7]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(6)">x</p> -->
         </div>
         <div class="d-flex dessert" *ngIf="allData[6]?.status_data == 'REJECTED'">
           <div>
@@ -158,12 +163,12 @@
             <p class="rejectx" >Rejected</p>
           </div>
             <div class="yuftr">
-              <p class="undo d-block mb-2" (click)="undoStatus(6)">Undo</p>
+              <p class="undo d-block mb-2 crs" (click)="undoStatus(6)">Undo</p>
             </div>
         </div>
           <div *ngIf="allData[5]?.status_data == 'APPROVED' && allData[6]?.status_data == 'PENDING'">
-            <a (click)="openModal(template,6,'APPROVED')">Complete</a>
-            <a (click)="openRejectModal(template1,6,'REJECTED')" style="margin-left: 20px;">Reject</a>
+            <a class="crs orangf decoration" (click)="openModal(template,6,'APPROVED')">Complete</a>
+            <a class="crs decoration" (click)="openRejectModal(template1,6,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
         </div>
         <div class="qwert" [ngClass]="{'approve':allData[7]?.status_data == 'APPROVED','rejcvv':allData[7]?.status_data == 'REJECTED'}">
@@ -185,8 +190,8 @@
   </div>
 
   <div class="modal-footer">
-    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
-    <button type="submit" class="btn btn-blue-outline">Submit</button>
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Close</button>
+    <!-- <button type="submit" class="btn btn-blue-outline">Submit</button> -->
   </div>
 </form>
 
@@ -195,10 +200,10 @@
 
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+    <h4 class="modal-title pull-left">Submit Proof</h4>
+    <!-- <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
-    </button>
+    </button> -->
   </div>
   <form [formGroup]="form">
     <div class="modal-body mypersonalmodal">
@@ -212,6 +217,10 @@
           </label>
           <img class="ml-4 uploaded-img" height="72" for="image" [src]="form?.value?.image" *ngIf='form?.value?.image'>
           <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('image')" *ngIf='form?.value?.image'></i>
+        </div>
+        <div  class="text-error"
+             *ngIf="form.controls['image'].errors?.required && showError">
+          Please select image.
         </div>
       </div>
 
@@ -237,17 +246,34 @@
 
 <ng-template #template1>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+    <h4 class="modal-title pull-left">Reject Reason</h4>
+    <!-- <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
-    </button>
+    </button> -->
   </div>
   <form [formGroup]="form">
     <div class="modal-body mypersonalmodal">
 
-      <h5 class="mb-4">Reject Reason </h5>
+      <h5 class="mb-4">Choose Reject Reason </h5>
+      <div class="nkjbgy">
+        <div class="container">
+          <div *ngFor="let data of RejectAllData;let i = index;" (click)="selectedReason(i)">
+            <div class="radio" >
+              <input id="radio-{{i}}" name="radio" type="radio" [checked]="i == 0">
+              <label for="radio-{{i}}" class="radio-label">{{data?.name}}</label>
+            </div>
+          </div>
+          <div (click)="OtherReason()">
+            <div class="radio" >
+              <input id="radio" name="radio" type="radio" >
+              <label for="radio" class="radio-label">Other</label>
+            </div>
+          </div>
+        </div>
+        
+      </div>
 
-      <div class="col-md-12 form-group">
+      <div *ngIf="customReason" class="col-md-12 form-group">
 
         <textarea class="form-control w-100" formControlName="reject_reason" trim="blur" type="text"
           placeholder="Enter Notes"></textarea>
