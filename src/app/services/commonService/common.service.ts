@@ -86,6 +86,15 @@ export class CommonService {
     window.open(url, '_blank');
   }
 
+
+  private modalClosedSubject = new Subject<void>();
+
+  modalClosed$ = this.modalClosedSubject.asObservable();
+
+  closeModal() {
+    this.modalClosedSubject.next();
+  }
+
   checkPDFLink(url) {
     let isPdf = false;
     if (url) {

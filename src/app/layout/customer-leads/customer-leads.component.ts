@@ -28,9 +28,13 @@ export class CustomerLeadsComponent implements OnInit {
   status = '';
   search = '';
   pagination = new PaginationControls();
+  modalClosedSubscription: any;
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
               private modalService: BsModalService, public router: Router) {
+                this.modalClosedSubscription = this.commonService.modalClosed$.subscribe(() => {
+                  this.onModalClosed();
+                });
   }
 
   ngOnInit() {
@@ -169,9 +173,12 @@ export class CustomerLeadsComponent implements OnInit {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
     modalRef.content?.onClose.subscribe(() => {
-          this.getData();
-      console.log('res')  
+    this.getData();
     })
+  }
+
+  onModalClosed() {
+    this.getData();
   }
 
   openMemberDetails(data?: any, showLabel?, type?) {

@@ -12,11 +12,13 @@ import { CommonService } from '../../../services/commonService/common.service';
   templateUrl: './change-status.component.html'
 })
 export class ChangeStatusComponent implements OnInit {
+  private modalClosedSubject = new Subject<void>();
 
+  modalClosed$ = this.modalClosedSubject.asObservable();
   showError = false;
   form: FormGroup;
   Rejectform:FormGroup;
- onClose: Subject<{}>;
+  onClose: Subject<{}>;
   modalData: any;
   allData: any;
   modalRef?: BsModalRef;
@@ -221,7 +223,7 @@ export class ChangeStatusComponent implements OnInit {
 
 
   closeModal(){
-    this.onClose.next(null);
+    this.commonService.closeModal();
     this.bsModalRef.hide()
   }
 
