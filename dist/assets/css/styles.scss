@@ -1330,7 +1330,21 @@ p.statusName {
   height: 100%;
   display: block;
   position: absolute;
-  background: #00d4d4;
+  background: #49E6AC;
+  left: -24px;
+  top: 19px;
+  z-index: 2;
+}
+.qwert.bbbbb.qweqq::after {
+  display: none;
+}
+.qwert.bbbbb.qweqq.approve::after {
+  content: "";
+  width: 4px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  background: #49E6AC;
   left: -24px;
   top: 19px;
   z-index: 2;
@@ -1341,7 +1355,7 @@ p.statusName {
   height: 100%;
   display: block;
   position: absolute;
-  background: #5dd6d5;
+  background: #49E6AC;
   left: -24px;
   top: 19px;
   z-index: 2;
@@ -1379,7 +1393,7 @@ p.statusName {
 p.copm {
   font-size: 15px;
   font-family: none;
-  color: #00d4d4;
+  color: #49E6AC;
 }
 p.wedfecd {
   position: absolute;
@@ -1415,7 +1429,7 @@ p.undo {
 p.rejectx {
   font-size: 15px;
   font-family: none;
-  color: red;
+  color: #DC1917;
 }
 
 .yuftr {
@@ -1427,14 +1441,23 @@ p.rejectx {
 }
 
 .decoration{
-  color: #000;
+  color: #818194;
   text-decoration: none;
 }
 
 .orangf {
-  color: #ef6230;
+  color: #FA6400;
 }
 
+
+.rr.fa-times-circle:before {
+  content: "\f057";
+  position: relative;
+  left: 9px;
+}
+h4.modal-title.rfrf {
+  padding-left: 2px;
+}
 
 
 
@@ -1458,12 +1481,13 @@ p.rejectx {
   width: 1.4em;
   height: 1.4em;
   position: relative;
-  top: -0.2em;
+  top: 1px;
   margin-right: 1em;
   vertical-align: top;
   cursor: pointer;
   text-align: center;
   transition: all 250ms ease;
+  
 }
 .radio input[type=radio]:checked + .radio-label:before {
   background-color: #ed680f;

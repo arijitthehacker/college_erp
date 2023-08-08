@@ -16,7 +16,7 @@ export class ChangeStatusComponent implements OnInit {
   showError = false;
   form: FormGroup;
   Rejectform:FormGroup;
-  public onClose: Subject<{}> = new Subject();
+ onClose: Subject<{}>;
   modalData: any;
   allData: any;
   modalRef?: BsModalRef;
@@ -26,6 +26,8 @@ export class ChangeStatusComponent implements OnInit {
   RejectAllData: any;
   selected_reason: any;
   customReason: boolean = false;
+  customRejected: any;
+  imageValue: any;
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, private modalService: BsModalService, public commonService: CommonService) {
   }
@@ -34,7 +36,7 @@ export class ChangeStatusComponent implements OnInit {
     this.getData();
     this.makeForm();
     this.getRejectReason();
-    
+    this.onClose = new Subject()
   }
 
   openModal(template: TemplateRef<any>,index:any,status:any) {
@@ -42,6 +44,7 @@ export class ChangeStatusComponent implements OnInit {
     this.selectedStatusId = this.allData[index]._id;
     this.selectedStatus = status
     this.indexSelected = index
+    console.log(this.selectedStatus,'....this.selectedStatusthis.selectedStatus')
     if(index == 4 || index == 6){
       this.form.controls.image.setValidators([Validators.required])
     }else{
@@ -55,6 +58,11 @@ export class ChangeStatusComponent implements OnInit {
     this.selectedStatusId = this.allData[index]._id;
     this.selectedStatus = status
     this.selectedReason(0)
+    if(this.selectedStatus == 'REJECTED'){
+      this.form.controls.reject_reason.setValidators([Validators.required])
+    }else{
+      this.form.controls.reject_reason.clearValidators();
+    }
   }
 
   undoStatus(index:any){
@@ -90,7 +98,7 @@ export class ChangeStatusComponent implements OnInit {
       status:['',Validators.required],
       image:[''],
       description:[''],
-      reject_reason:['',Validators.required]
+      reject_reason:['']
     });
 
   }
@@ -111,27 +119,16 @@ export class ChangeStatusComponent implements OnInit {
 
 
   getRejectReason() {
-    // this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
-    // let obj: any = {
-    //   skip: this.pagination.skip
-    // };
-    // if (this.search.value) {
-    //   obj.search = this.search.value;
-    // }
     this.http.getData(ApiUrl.list_rejection_reason).subscribe(res => {
       this.RejectAllData = res.data.data;
       console.log(this.RejectAllData,'....this.RejectAllData')
-
-      // if (res.data.total_count > 0 && !this.allData?.length) {
-      //   this.pagination.pageNo--;
-      //   this.getData();
-      // }
-
+         const filterarr =  this.RejectAllData.filter(item=>!item.is_blocked)
+         this.customRejected = filterarr
     }, () => {
     });
   }
 
-
+  
   selectedReason(index:any){
     this.customReason = false;
     console.log(index,'...index')
@@ -154,14 +151,17 @@ export class ChangeStatusComponent implements OnInit {
   }
 
   formSubmit() {
-    console.log(this.form.value)
+   
     this.form.controls.status.setValue(this.selectedStatus)
     this.form.controls.status_id.setValue(this.selectedStatusId)
+   
     if(this.customReason == true){
      this.form.controls.reject_reason.setValue(this.form.value.reject_reason)
     }else{
-      this.form.controls.reject_reason.setValue(this.selected_reason)
+     this.form.controls.reject_reason.setValue(this.selected_reason)
     }
+  
+  console.log(this.form.valid)
     if (this.form.valid) {
       const obj = {}
       obj['status_id'] = this.selectedStatusId,
@@ -181,10 +181,10 @@ export class ChangeStatusComponent implements OnInit {
       }
 
 
-      if(this.form.value.image == ''){
+      if(this.form.value.image == '' || !this.form.value.image){
         delete obj['image']
       }
-      if(this.form.value.description == ''){
+      if(this.form.value.description == '' || !this.form.value.description){
         delete obj['description']
       }
 
@@ -195,8 +195,8 @@ export class ChangeStatusComponent implements OnInit {
       }
 
       this.http.putData(ApiUrl.manage_customer_status, obj).subscribe(() => {
-        this.onClose.next(null);
-        this.getData();
+        // this.onClose.next(null);
+        this.getData(); 
         if(obj['status'] == 'REJECTED'){
         this.message.toast('success', 'Rejected Successfully!');
         }else{
@@ -219,22 +219,32 @@ export class ChangeStatusComponent implements OnInit {
 
 
   closeModal(){
-    this.bsModalRef.hide()
     this.onClose.next(null);
+    this.bsModalRef.hide()
   }
 
 
 
   selectImage(event: any, id) {
     this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
-    this.form.controls.image.patchValue(response.data.original);
-    }, () => {
+        this.imageValue = response.data.original
+        this.form.controls.image.patchValue(response.data.original); 
+        console.log(response,'...responseresponseresponse')
+    }, (err) => {
+   
     });
   }
 
   removeImage(id) {
     document.getElementById(id)[`value`] = '';
     this.form.controls.image.patchValue('');
+  }
+
+
+
+  hideCustomModal(){
+    this.form.reset()
+    this.modalRef.hide();
   }
 
 

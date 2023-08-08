@@ -168,9 +168,10 @@ export class CustomerLeadsComponent implements OnInit {
     const modalRef = this.modalService.show(ChangeStatusComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });
-    modalRef.content.onClose.subscribe((res: any) => {
-      this.getData();
-    });
+    modalRef.content?.onClose.subscribe(() => {
+          this.getData();
+      console.log('res')  
+    })
   }
 
   openMemberDetails(data?: any, showLabel?, type?) {
