@@ -18,7 +18,7 @@
           </div> -->
         </div>
         <div class="qwert bbbbb">
-          <p class="statusName">Agent/Consultant Assignment</p>
+          <p class="statusName">Agent / Consultant Assignment</p>
           <p class="copm" *ngIf="allData[1]?.status_data == 'APPROVED'">Completed</p>
           <!-- <div *ngIf="allData[1]?.status_data == 'PENDING'">
            <a >Completed</a>
@@ -49,13 +49,13 @@
                 <p class="undo d-block mb-2 crs" (click)="undoStatus(2)">Undo</p>
               </div>
           </div>
-          <div *ngIf="allData[2]?.status_data == 'PENDING'">
+          <div class="mb-3" *ngIf="allData[2]?.status_data == 'PENDING'">
             <a class="crs orangf decoration" (click)="openModal(template,2,'APPROVED')">Complete</a>
             <a class="crs decoration" (click)="openRejectModal(template1,2,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
 
         </div>
-        <div class="qwert" [ngClass]="{'approve':allData[3]?.status_data == 'APPROVED','rejcvv':allData[3]?.status_data == 'REJECTED'}">
+        <div class="qwert " [ngClass]="{'approve':allData[3]?.status_data == 'APPROVED','rejcvv':allData[3]?.status_data == 'REJECTED'}">
           <p class="statusName">Appointment / Sales Gallery Visit</p>
           <div class="d-flex dessert" *ngIf="allData[3]?.status_data == 'APPROVED'">
             <p class="copm" >Completed</p>
@@ -79,7 +79,7 @@
                 <p class="undo d-block mb-2 crs" (click)="undoStatus(3)">Undo</p>
               </div>
           </div>
-          <div *ngIf="allData[2]?.status_data == 'APPROVED' && allData[3]?.status_data == 'PENDING'">
+          <div class="mb-3" *ngIf="allData[2]?.status_data == 'APPROVED' && allData[3]?.status_data == 'PENDING'">
             <a class="crs orangf decoration" (click)="openModal(template,3,'APPROVED')">Complete</a>
             <a class="crs decoration" (click)="openRejectModal(template1,3,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
@@ -108,7 +108,7 @@
                 <p class="undo d-block mb-2 crs" (click)="undoStatus(4)">Undo</p>
               </div>
           </div>
-          <div *ngIf="allData[3]?.status_data == 'APPROVED' && allData[4]?.status_data == 'PENDING'">
+          <div class="mb-3" *ngIf="allData[3]?.status_data == 'APPROVED' && allData[4]?.status_data == 'PENDING'">
             <a class="crs orangf decoration" (click)="openModal(template,4,'APPROVED')">Complete</a>
             <a class="crs decoration" (click)="openRejectModal(template1,4,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
@@ -137,7 +137,7 @@
               <p class="undo d-block mb-2" (click)="undoStatus(5)">Undo</p>
             </div>
         </div>
-          <div *ngIf="allData[4]?.status_data == 'APPROVED' && allData[5]?.status_data == 'PENDING'">
+          <div class="mb-3" *ngIf="allData[4]?.status_data == 'APPROVED' && allData[5]?.status_data == 'PENDING'">
             <a class="crs orangf decoration" (click)="openModal(template,5,'APPROVED')">Complete</a>
             <a class="crs decoration" (click)="openRejectModal(template1,5,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
@@ -166,7 +166,7 @@
               <p class="undo d-block mb-2 crs" (click)="undoStatus(6)">Undo</p>
             </div>
         </div>
-          <div *ngIf="allData[5]?.status_data == 'APPROVED' && allData[6]?.status_data == 'PENDING'">
+          <div class="mb-3" *ngIf="allData[5]?.status_data == 'APPROVED' && allData[6]?.status_data == 'PENDING'">
             <a class="crs orangf decoration" (click)="openModal(template,6,'APPROVED')">Complete</a>
             <a class="crs decoration" (click)="openRejectModal(template1,6,'REJECTED')" style="margin-left: 20px;">Reject</a>
           </div>
@@ -190,7 +190,7 @@
   </div>
 
   <div class="modal-footer">
-    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Close</button>
+    <button (click)="closeModal()" type="button" class="btn-cancel mr-3">Close</button>
     <!-- <button type="submit" class="btn btn-blue-outline">Submit</button> -->
   </div>
 </form>
@@ -224,12 +224,12 @@
         </div>
       </div>
 
-      <h5 class="mb-4">Add A Note </h5>
+      <h5 class="mb-4">Add Notes </h5>
 
       <div class="col-md-12 form-group">
 
         <textarea class="form-control w-100" formControlName="description" trim="blur" type="text"
-          placeholder="Enter Notes"></textarea>
+          placeholder="Write notes here ...."></textarea>
       </div>
 
 
@@ -276,7 +276,7 @@
       <div *ngIf="customReason" class="col-md-12 form-group">
 
         <textarea class="form-control w-100" formControlName="reject_reason" trim="blur" type="text"
-          placeholder="Enter Notes"></textarea>
+          placeholder="Write here ....."></textarea>
       </div>
 
 

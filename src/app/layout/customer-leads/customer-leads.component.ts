@@ -87,7 +87,7 @@ export class CustomerLeadsComponent implements OnInit {
       });
 
       this.allData = res.data.data;
-
+       console.log(this.allData)
       this.pagination.count = res.data.total_count;
     }, () => {
     });
@@ -156,15 +156,15 @@ export class CustomerLeadsComponent implements OnInit {
   openChangeStatus(data:any) {
     console.log(data)
      if(!data.is_customer_confirmed){
-      this.message.toast('Error','Customer not confirmed booking yet')
+      this.message.toast('info','Customer not confirmed booking yet')
      }else if(!data.agent_id){
-        this.message.toast('error','Please assign agent first')
+        this.message.toast('info','Please assign agent first')
      }else{
       this.modalOpen(data)
      }
   }
 
-  modalOpen(data){
+  modalOpen(data:any){
     const modalRef = this.modalService.show(ChangeStatusComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
     });

@@ -34,6 +34,7 @@ export class ChangeStatusComponent implements OnInit {
     this.getData();
     this.makeForm();
     this.getRejectReason();
+    
   }
 
   openModal(template: TemplateRef<any>,index:any,status:any) {
@@ -53,6 +54,7 @@ export class ChangeStatusComponent implements OnInit {
     this.modalRef = this.modalService.show(template1);
     this.selectedStatusId = this.allData[index]._id;
     this.selectedStatus = status
+    this.selectedReason(0)
   }
 
   undoStatus(index:any){
@@ -134,6 +136,7 @@ export class ChangeStatusComponent implements OnInit {
     this.customReason = false;
     console.log(index,'...index')
     this.selected_reason = this.RejectAllData[index].name
+    console.log(this.selected_reason)
   }
 
 
@@ -154,6 +157,11 @@ export class ChangeStatusComponent implements OnInit {
     console.log(this.form.value)
     this.form.controls.status.setValue(this.selectedStatus)
     this.form.controls.status_id.setValue(this.selectedStatusId)
+    if(this.customReason == true){
+     this.form.controls.reject_reason.setValue(this.form.value.reject_reason)
+    }else{
+      this.form.controls.reject_reason.setValue(this.selected_reason)
+    }
     if (this.form.valid) {
       const obj = {}
       obj['status_id'] = this.selectedStatusId,
@@ -192,7 +200,7 @@ export class ChangeStatusComponent implements OnInit {
         if(obj['status'] == 'REJECTED'){
         this.message.toast('success', 'Rejected Successfully!');
         }else{
-          this.message.toast('success', 'Assigned Successfully!');
+          this.message.toast('success', 'Status update successfully!');
         }
         this.form.reset();
         this.modalRef.hide();
@@ -206,6 +214,13 @@ export class ChangeStatusComponent implements OnInit {
 
   updateStatus(index:any){
   
+  }
+
+
+
+  closeModal(){
+    this.bsModalRef.hide()
+    this.onClose.next(null);
   }
 
 

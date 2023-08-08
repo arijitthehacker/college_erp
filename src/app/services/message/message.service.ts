@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import swal, { SweetAlertResult } from 'sweetalert2';
+import swal, { SweetAlertIcon, SweetAlertInput, SweetAlertResult } from 'sweetalert2';
 import { ConstMsg } from '../../core/ConstMsg';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class MessageService {
   }
 
   /******************* toast messages ********************/
-  toast(type, title: string, description?) {
+  toast(type:SweetAlertIcon, title: string, description?) {
     console.log(type)
     const Toast = swal.mixin({
       toast: true,
