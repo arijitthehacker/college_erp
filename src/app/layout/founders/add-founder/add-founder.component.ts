@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MessageService} from 'src/app/services/message/message.service';
 import {ApiUrl} from 'src/app/core/apiUrl';
@@ -25,16 +25,26 @@ export class AddFounderComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
+               
   }
 
   ngOnInit() {
     this.makeForm();
+
+    
   }
+
+  // @HostListener('keydown', ['$event'])
+  // onKeydown(event: KeyboardEvent) {
+  //   if (event.key === '+' || event.key === '-') {
+  //     event.preventDefault();
+  //   }
+  // }
 
   makeForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
-      phone_number: ['', Validators.compose([Validators.required])],
+      phone_number: ['', [Validators.compose([Validators.required])]],
       bank_name: [''],
       image: [''],
       account_name: [''],

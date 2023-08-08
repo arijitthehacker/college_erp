@@ -129,14 +129,22 @@
             </td>
 
             <td>
-              <ng-container *ngIf="data?.gold_member_id?.name ; else noData">
-                <b>Name:</b> {{data?.gold_member_id?.name || '-'}}
+              <ng-container *ngIf="data?.booking_id?.gold_member_id?.name ; else noData">
+                <b>Name:</b> {{data?.booking_id?.gold_member_id?.name || '-'}}
+                <ng-container *ngIf="data?.booking_id?.gold_member_id?.user_name">, {{data?.booking_id?.gold_member_id?.user_name}}</ng-container>
+                <br>
+                <b>Phone No.</b>
+                {{data?.booking_id?.gold_member_id?.country_code}}{{data?.booking_id?.gold_member_id?.phone_number || '-'}}
+                <br>
+              </ng-container>
+              <!-- <ng-container *ngIf="data?.gold_member_id?.name ; else noData"> -->
+                <!-- <b>Name:</b> {{data?.gold_member_id?.name || '-'}}
                 <ng-container *ngIf="data?.gold_member_id?.user_name">, {{data?.gold_member_id?.user_name}}</ng-container>
 
                 <br>
                 <b>Phone No.</b>
                 {{data?.gold_member_id?.country_code}}{{data?.gold_member_id?.phone_number || '-'}}
-                <br>
+                <br> -->
                 <!--                <b>Email:</b> {{data?.gold_member_id?.email || '-'}}<br>-->
                 <!--                <b>Age:</b> {{data?.gold_member_id?.age || '-'}}<br>-->
                 <!--                <b>Account Name:</b> {{data?.gold_member_id?.account_name || '-'}}<br>-->
@@ -144,7 +152,7 @@
                 <!--                <b>Bank Name:</b> {{data?.gold_member_id?.bank_name || '-'}}<br>-->
                 <!--                <b>Sort Code:</b> {{data?.gold_member_id?.sort_code || '-'}}<br>-->
 
-              </ng-container>
+              <!-- </ng-container> -->
             </td>
 
 

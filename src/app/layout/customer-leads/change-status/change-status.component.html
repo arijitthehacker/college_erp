@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="kjhgfc" style="position: relative;">
-            <img *ngIf="allData[2]?.image" [src]="allData[2]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[2]?.image)" />
+            <img class="deimg" *ngIf="allData[2]?.image" [src]="allData[2]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[2]?.image)" />
             <p class="mt-3" *ngIf="allData[2]?.description">{{allData[2]?.description}}</p>
             <!-- <p *ngIf="allData[2]?.image && allData[3]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(2)">x</p> -->
           </div>
@@ -66,7 +66,7 @@
             </div>
           </div>
           <div class="kjhgfc" style="position: relative;">
-            <img *ngIf="allData[3]?.image" [src]="allData[3]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[3]?.image)" />
+            <img class="deimg"  *ngIf="allData[3]?.image" [src]="allData[3]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[3]?.image)" />
             <p class="mt-3" *ngIf="allData[3]?.description">{{allData[3]?.description}}</p>
             <!-- <p *ngIf="allData[3]?.image && allData[4]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(3)">x</p> -->
           </div>
@@ -95,7 +95,7 @@
             </div>
           </div>
           <div class="kjhgfc" style="position: relative;">
-            <img *ngIf="allData[4]?.image" [src]="allData[4]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[4]?.image)" />
+            <img class="deimg"  *ngIf="allData[4]?.image" [src]="allData[4]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[4]?.image)" />
             <p class="mt-3" *ngIf="allData[4]?.description">{{allData[4]?.description}}</p>
             <!-- <p *ngIf="allData[4]?.image && allData[5]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(4)">x</p> -->
           </div>
@@ -124,7 +124,7 @@
           </div>
         </div>
         <div class="kjhgfc" style="position: relative;">
-          <img *ngIf="allData[5]?.image" [src]="allData[5]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[5]?.image)"/>
+          <img class="deimg"  *ngIf="allData[5]?.image" [src]="allData[5]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[5]?.image)"/>
           <p class="mt-3" *ngIf="allData[5]?.description">{{allData[5]?.description}}</p>
           <!-- <p *ngIf="allData[5]?.image && allData[6]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(5)">x</p> -->
         </div>
@@ -134,7 +134,7 @@
             <p class="rejectx" >Rejected</p>
           </div>
             <div class="yuftr">
-              <p class="undo d-block mb-2" (click)="undoStatus(5)">Undo</p>
+              <p class="undo d-block mb-2 crs" (click)="undoStatus(5)">Undo</p>
             </div>
         </div>
           <div class="mb-3" *ngIf="allData[4]?.status_data == 'APPROVED' && allData[5]?.status_data == 'PENDING'">
@@ -153,7 +153,7 @@
           </div>
         </div>
         <div class="kjhgfc" style="position: relative;">
-          <img *ngIf="allData[6]?.image" [src]="allData[6]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[6]?.image)" />
+          <img class="deimg"  *ngIf="allData[6]?.image" [src]="allData[6]?.image" width="100px" height="100px" (click)="commonService.openLightBox(allData[6]?.image)" />
           <p class="mt-3" *ngIf="allData[6]?.description">{{allData[6]?.description}}</p>
           <!-- <p *ngIf="allData[6]?.image && allData[7]?.status_data == 'PENDING'" class="wedfecd" (click)="StatusRemoveImage(6)">x</p> -->
         </div>
@@ -195,8 +195,6 @@
   </div>
 </form>
 
-<!-- <img [src]="data.image || commonService.CONSTANT.no_image" class="small-img"
-                   (click)="commonService.openLightBox(data.image)"> -->
 
 
 <ng-template #template>

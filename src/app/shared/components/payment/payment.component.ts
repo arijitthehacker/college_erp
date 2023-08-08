@@ -26,6 +26,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     this.makeForm();
     if (this.modalData) {
+      console.log(this.modalData)
       this.patchData(this.modalData);
     }
   }
@@ -35,14 +36,15 @@ export class PaymentComponent implements OnInit {
       transaction_id: ['', Validators.required],
       transaction_image: ['', Validators.required],
       transaction_comment: [''],
-      advanced_payment: [''],
+      advanced_payment: [this.modalData.total_price],
       _id: ['']
     });
-
+     
     if (this.advancePage) {
       this.form.controls['advanced_payment'].setValidators([Validators.required]);
       this.form.controls['advanced_payment'].updateValueAndValidity();
     }
+    this.form.controls.advanced_payment.disable()
   }
 
   patchData(data) {

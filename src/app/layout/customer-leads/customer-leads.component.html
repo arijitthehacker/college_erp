@@ -215,8 +215,9 @@
                   <!--                  !data?.agent_id?._id &&-->
                   <!--                  <li role="menuitem" *ngIf="-->
                   <!--                  (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'IN_PROGRESS')">-->
+                  
                   <li role="menuitem"
-                      *ngIf="(data?.booking_status != 'PENDING' && data?.booking_status != 'COMPLETED')">
+                      *ngIf="(data?.booking_status != 'PENDING' && data?.booking_status != 'COMPLETED') ">
                     <a class="dropdown-item" (click)="assignBooking(data)">Assign to agent</a>
                   </li>
                   <li role="menuitem">
@@ -231,7 +232,7 @@
                     <a class="dropdown-item" (click)="addFinal(data)">{{data?.commission_price ? 'Edit' : 'Add'}} final
                       property price/Unit No.</a>
                   </li>
-                  <li role="menuitem" (click)="addEditModalOpen(data)">
+                  <li role="menuitem" *ngIf="data?.booking_status != 'COMPLETED'" (click)="addEditModalOpen(data)">
                     <a class="dropdown-item">Edit</a>
                   </li>
                   <li role="menuitem" (click)="deleteData(data)">

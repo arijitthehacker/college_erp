@@ -37,7 +37,7 @@
                             [selectFirstCountry]="false"  trim="blur"
                             [selectedCountryISO]="modalData?.iso_code || CountryISO.Malaysia"
                             [maxLength]="15" [customPlaceholder]="'Enter Contact Number'"
-                            [phoneValidation]="false" formControlName="phone_number"></ngx-intl-tel-input>
+                            [phoneValidation]="true" formControlName="phone_number"></ngx-intl-tel-input>
         <div class="text-error"
              *ngIf="(form.controls['phone_number'].errors?.required && showError) ||
               (form?.value?.phone_number == null && showError1)">

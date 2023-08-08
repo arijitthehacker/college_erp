@@ -40,6 +40,7 @@ export class ChangeStatusComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>,index:any,status:any) {
+    this.form.controls.reject_reason.clearValidators();
     this.modalRef = this.modalService.show(template);
     this.selectedStatusId = this.allData[index]._id;
     this.selectedStatus = status
@@ -54,6 +55,7 @@ export class ChangeStatusComponent implements OnInit {
 
 
   openRejectModal(template1: TemplateRef<any>,index:any,status:any) {
+    this.form.controls.image.clearValidators();
     this.modalRef = this.modalService.show(template1);
     this.selectedStatusId = this.allData[index]._id;
     this.selectedStatus = status
