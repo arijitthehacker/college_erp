@@ -13,7 +13,11 @@ import { CommonService } from '../../../services/commonService/common.service';
 })
 export class ChangeStatusComponent implements OnInit {
   private modalClosedSubject = new Subject<void>();
-
+  config = {
+    backdrop: true,
+    ignoreBackdropClick: true,
+    keyboard: false, class: 'modalback'
+  };
   modalClosed$ = this.modalClosedSubject.asObservable();
   showError = false;
   form: FormGroup;
@@ -38,12 +42,11 @@ export class ChangeStatusComponent implements OnInit {
     this.getData();
     this.makeForm();
     this.getRejectReason();
-    this.onClose = new Subject()
   }
 
   openModal(template: TemplateRef<any>,index:any,status:any) {
     this.form.controls.reject_reason.clearValidators();
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.show(template,this.config);
     this.selectedStatusId = this.allData[index]._id;
     this.selectedStatus = status
     this.indexSelected = index
@@ -58,7 +61,7 @@ export class ChangeStatusComponent implements OnInit {
 
   openRejectModal(template1: TemplateRef<any>,index:any,status:any) {
     this.form.controls.image.clearValidators();
-    this.modalRef = this.modalService.show(template1);
+    this.modalRef = this.modalService.show(template1,this.config);
     this.selectedStatusId = this.allData[index]._id;
     this.selectedStatus = status
     this.selectedReason(0)

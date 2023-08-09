@@ -1410,9 +1410,9 @@ p.wedfecd {
   cursor: pointer;
   border-radius: 100%;
 }
-.mypersonalmodal{
-height: 66vh;
-}
+// .mypersonalmodal{
+// height: 66vh;
+// }
 .d-flex.dessert {
   justify-content: space-between;
 }
@@ -1471,6 +1471,21 @@ img.deimg {
   cursor: pointer;
 }
 
+
+.modalback {
+  /* backface-visibility: visible; */
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalback .modal-content{
+  width: 550px;
+}
 
 
 
