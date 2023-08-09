@@ -1280,7 +1280,7 @@ p.statusName {
 .col-md-12.grfr.form-group::before {
   content: '';
   width: 2px;
-  height: 100%;
+  height: calc(100% - 5px);
   display: block;
   position: absolute;
   background: #cbd8ea;

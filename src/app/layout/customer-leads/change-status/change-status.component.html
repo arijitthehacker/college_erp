@@ -8,7 +8,7 @@
   <div class="modal-body">
 
     <div class="row">
-      <div class="col-md-12 form-group grfr">
+      <div class="col-md-12 form-group grfr mb-0">
         <div class="qwert bbbbb">
           <p class="statusName">Consent from Referee</p>
           <p class="copm" *ngIf="allData[0]?.status_data == 'APPROVED'">Completed</p>
@@ -172,13 +172,13 @@
           </div>
         </div>
         <div class="qwert" [ngClass]="{'approve':allData[7]?.status_data == 'APPROVED','rejcvv':allData[7]?.status_data == 'REJECTED'}">
-          <p class="statusName">Referral Fees Payout</p>
+          <p class="statusName m-0">Referral Fees Payout</p>
           <div class="d-flex dessert" *ngIf="allData[7]?.status_data == 'APPROVED'">
-          <p class="copm" >Completed</p>
+          <p class="copm m-0" >Completed</p>
           <!-- <p class="undo">Undo</p> -->
           </div>
           <div *ngIf="allData[7]?.status_data == 'PENDING' && allData[6]?.status_data == 'APPROVED'">
-            <p>Pending</p>
+            <p class="m-0">Pending</p>
             <!-- <a (click)="openModal(template,7,'APPROVED')">Complete</a>
             <a (click)="openRejectModal(template1,7,'REJECTED')" style="margin-left: 20px;">Reject</a> -->
           </div>

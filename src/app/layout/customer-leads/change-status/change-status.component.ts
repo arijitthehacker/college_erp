@@ -211,6 +211,7 @@ export class ChangeStatusComponent implements OnInit {
         }
         this.form.reset();
         this.modalRef.hide();
+        this.imageValue = ''
       }, () => {
       });
     } else {
