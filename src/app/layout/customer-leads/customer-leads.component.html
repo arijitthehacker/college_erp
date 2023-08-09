@@ -217,7 +217,7 @@
                   <!--                  (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'IN_PROGRESS')">-->
                   
                   <li role="menuitem"
-                      *ngIf="(data?.booking_status != 'PENDING' && data?.booking_status != 'COMPLETED') ">
+                      *ngIf="(data?.booking_status != 'PENDING' && data?.booking_status != 'COMPLETED') && data?.agent_payment_status != 'COMPLETED'">
                     <a class="dropdown-item" (click)="assignBooking(data)">Assign to agent</a>
                   </li>
                   <li role="menuitem">
@@ -228,11 +228,11 @@
                   </li>
                   <!--                  *ngIf="!data?.commission_price"-->
                   <li role="menuitem"
-                      *ngIf="data?.last_status_name !== 'pay_completed' && data?.last_status_name !== 'Contact Lead'">
+                      *ngIf="data?.last_status_name !== 'pay_completed' && data?.last_status_name !== 'Contact Lead' && data?.agent_payment_status != 'COMPLETED'">
                     <a class="dropdown-item" (click)="addFinal(data)">{{data?.commission_price ? 'Edit' : 'Add'}} final
                       property price/Unit No.</a>
                   </li>
-                  <li role="menuitem" *ngIf="data?.booking_status != 'COMPLETED'" (click)="addEditModalOpen(data)">
+                  <li role="menuitem" *ngIf="data?.booking_status != 'COMPLETED' && data?.agent_payment_status != 'COMPLETED'" (click)="addEditModalOpen(data)">
                     <a class="dropdown-item">Edit</a>
                   </li>
                   <li role="menuitem" (click)="deleteData(data)">

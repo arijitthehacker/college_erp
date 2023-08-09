@@ -1313,6 +1313,9 @@ p.statusName {
   background: url(../images/tick_ic@3x.png) no-repeat center;
   background-size: contain;
 }
+.jgfg.approve::after{
+  display: none !important;
+}
 .jgfg{
   position: relative;
 }
