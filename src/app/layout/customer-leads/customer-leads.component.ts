@@ -160,7 +160,7 @@ export class CustomerLeadsComponent implements OnInit {
   openChangeStatus(data:any) {
     console.log(data)
      if(!data.is_customer_confirmed){
-      this.message.toast('info','Customer not confirmed booking yet')
+      this.message.toast('info','The referee has yet to provide consent')
      }else if(!data.agent_id){
         this.message.toast('info','Please assign agent first')
      }else{

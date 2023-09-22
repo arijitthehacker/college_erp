@@ -94,6 +94,13 @@ export class AdvanceRequestComponent implements OnInit {
     });
   }
 
+
+  priceDetail(data:any,data1:any){
+    console.log(data,'....data')
+    let temp:any = data - data1;
+    return parseFloat(temp).toFixed(2)
+  }
+
   //
   // cancelRequest(data) {
   //   const modalRef = this.modalService.show(RejectReasonComponent, {

@@ -52,6 +52,11 @@
               (form?.value?.phone_number == null && showError1)">
           {{message.message.required}}
         </div>
+        <div class="text-error"
+          *ngIf="(form.controls['phone_number'].errors && showError) &&
+          form?.value?.phone_number?.number?.length > 0">
+          Please enter valid phone number.
+        </div>
       </div>
 
       <ng-container *ngIf="modalData">
