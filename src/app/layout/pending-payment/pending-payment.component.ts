@@ -25,6 +25,7 @@ export class PendingPaymentComponent implements OnInit {
   dates = new FormControl([]);
   currentDate = new Date();
   prevDate = new Date();
+  isForSearch: any;
 
   constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
               private modalService: BsModalService, public router: Router) {
@@ -42,6 +43,11 @@ export class PendingPaymentComponent implements OnInit {
     this.dates.patchValue([]);
   }
 
+  searchData() {
+    this.isForSearch = true
+    this.getData()
+  }
+
   getData() {
     this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
     let obj: any = {
@@ -50,6 +56,7 @@ export class PendingPaymentComponent implements OnInit {
     };
     if (this.search) {
       obj.search = this.search;
+      obj.skip = 0
     }
     if (this.category) {
       obj.category =  this.category;
@@ -62,6 +69,11 @@ export class PendingPaymentComponent implements OnInit {
       }
     }
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
+      if (this.isForSearch) {
+        this.isForSearch = false
+        this.pagination.pageNo =1
+        this.pagination.skip =0
+      }
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
     }, () => {

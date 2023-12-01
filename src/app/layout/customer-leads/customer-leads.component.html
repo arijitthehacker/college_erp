@@ -141,11 +141,11 @@
             </td>
 
             <td>
-              <b>Founder:</b> {{data?.group_payment_status|titlecase }}
+              <b>Founder:</b> {{ data?.group_payment_id ?  (data?.group_payment_status|titlecase) : '-' }}
               <br>
-              <b>Agent:</b> {{data?.agent_payment_status|titlecase}}<br>
-              <b>Member:</b> {{data?.member_payment_status |titlecase}}<br>
-              <b>Ambassador:</b> {{data?.gold_member_payment_id ? (data?.gold_member_payment_status |titlecase) : '-' }}
+              <b>Agent:</b> {{data?.agent_payment_id ? (data?.agent_payment_status|titlecase): '-'}}<br>
+              <b>Member:</b> {{data?.member_payment_id ? (data?.member_payment_status |titlecase): '-'}}<br>
+              <b>Ambassador:</b> {{data?.gold_member_payment_id ? (data?.gold_member_payment_status |titlecase) : '-' }}<br>
               <b>Ambassador Plus:</b> {{data?.gold_member_plus_payment_id ? (data?.gold_member_plus_payment_status |titlecase) : '-' }}
 
             </td>

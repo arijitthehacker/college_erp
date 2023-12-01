@@ -44,14 +44,23 @@ export class RecycleBinComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getAllData();
+    }
+    ApplyFilter(){
+        this.pagination.skip = 0
+        this.pagination.pageNo = 1
         this.getData();
     }
 
-    getData() {
-
+    getAllData(){
         this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
+        this.getData()
+    }
+
+    getData() {
+   
         let obj: any = {
-            skip: this.pagination.skip,
+            skip:this.pagination.skip,
             model_name: this.model_name
         };
 

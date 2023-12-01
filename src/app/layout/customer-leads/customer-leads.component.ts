@@ -83,7 +83,8 @@ export class CustomerLeadsComponent implements OnInit {
         if(val.group_payment_status === 'REJECTED' ||
           val.agent_payment_status === 'REJECTED' ||
           val.member_payment_status === 'REJECTED'||
-        val.gold_member_payment_status === 'REJECTED'
+        val.gold_member_payment_status === 'REJECTED' || 
+        val.gold_member_plus_payment_status === 'REJECTED'
       ){
           val.last_status_name = 'payout_rejected';
         }

@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      email: [ this.profileData?.email , Validators.required]
+      email: [ this.profileData?.email , Validators.compose([Validators.required,Validators.email])]
     });
 
   }

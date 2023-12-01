@@ -30,10 +30,10 @@
             <input class="form-control" (keydown.space)="$event.preventDefault()" formControlName="email" type="email"
                     trim="blur"
                    placeholder="Enter Email Address"/>
-            <div class="text-error" *ngIf="form.controls['email'].errors?.required && showError">
+            <div class="text-error" *ngIf="form.controls['email']?.errors?.required && showError">
               This field is required.
             </div>
-            <div class="text-error" *ngIf="form.controls['email'].errors?.email && showError">
+            <div class="text-error" *ngIf="form.controls['email']?.errors?.email && showError">
               Please enter valid email!
             </div>
           </div>

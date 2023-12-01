@@ -26,6 +26,7 @@ export class TransactionHistoryComponent implements OnInit {
   currentDate = new Date();
   prevDate = new Date();
   category = 'ALL';
+  isForSearch: any;
 
   constructor(private http: HttpService, public commonService: CommonService,
               public router: Router, public lightbox: Lightbox) {
@@ -51,6 +52,8 @@ export class TransactionHistoryComponent implements OnInit {
     };
     if (this.search) {
       obj.search = this.search;
+      obj.skip = 0
+     
     }
     // if (this.type) {
     //   obj.type = this.type;
@@ -68,11 +71,18 @@ export class TransactionHistoryComponent implements OnInit {
         obj.end_date = moment(data[1]).format('yyyy-MM-DD');
       }
     }
-
+    
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
+      if (this.isForSearch) {
+        this.isForSearch = false
+        this.pagination.pageNo =1
+        this.pagination.skip =0
+      }
+   
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
     }, () => {
+   
     });
   }
 
@@ -89,8 +99,21 @@ export class TransactionHistoryComponent implements OnInit {
     }else if(data?.group_owner_id?.name){
       temp = 'Founder'
     }
-    console.log(temp,'....temp')
     return temp;
+  }
+
+  checkNumberData(value:string){
+   if (value.includes(`${undefined}`) || value.includes(`${null}`)) {
+    return ''
+   }else{
+    console.log(value,'....valll')
+    return value
+   }
+  }
+
+  searchData() {
+    this.isForSearch = true
+    this.getData()
   }
 
   exportData() {
@@ -102,9 +125,9 @@ export class TransactionHistoryComponent implements OnInit {
       is_pagination: false
     };
     this.http.getData(ApiUrl.accounts_list, obj).subscribe(res => {
-
       let temp: any = [];
       res.data.data.forEach((data) => {
+
         temp.push({
           // 'Name': data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name,
           'Date & Time': moment(data?.time).format('DD-MM-yyyy, hh:mm a'),
@@ -112,20 +135,20 @@ export class TransactionHistoryComponent implements OnInit {
           'Developer Name': data?.booking_id?.peroperty_id?.developer_id?.name,
           'Transferred To' : this.tranferredTo(data),
           'Transferred To Name': data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name || data?.gold_member_plus_id?.name,
-          'Transferred To Phone No.': `${data?.group_owner_id?.country_code}${data?.group_owner_id?.phone_number}` || `${data?.agent_id?.country_code}${data?.agent_id?.phone_number}` || `${data?.member_id?.country_code}${data?.member_id?.phone_number}` || `${data?.gold_member_id?.country_code}${data?.gold_member_id?.phone_number}` || `${data?.gold_member_plus_id?.country_code}${data?.gold_member_plus_id?.phone_number}` || '',
+          'Transferred To Phone No.': this.checkNumberData(`${data?.group_owner_id?.country_code}${data?.group_owner_id?.phone_number}`) || this.checkNumberData(`${data?.agent_id?.country_code}${data?.agent_id?.phone_number}`) || this.checkNumberData(`${data?.member_id?.country_code}${data?.member_id?.phone_number}`) || this.checkNumberData(`${data?.gold_member_id?.country_code}${data?.gold_member_id?.phone_number}`) || this.checkNumberData(`${data?.gold_member_plus_id?.country_code}${data?.gold_member_plus_id?.phone_number}`) || '',
           'Completed On': moment(data?.time).format('DD-MM-yyyy, hh:mm a'),
           'Member Name': data?.booking_id?.member_id?.name,
-          'Member Phone No.': `${data?.booking_id?.member_id?.country_code}${data?.booking_id?.member_id?.phone_number}`,
+          'Member Phone No.': this.checkNumberData(`${data?.booking_id?.member_id?.country_code}${data?.booking_id?.member_id?.phone_number}`),
           'Founder Name': data?.booking_id?.group_owner_id?.name,
-          'Founder Phone No.': `${data?.booking_id?.group_owner_id?.country_code}${data?.booking_id?.group_owner_id?.phone_number}`,
+          'Founder Phone No.': this.checkNumberData(`${data?.booking_id?.group_owner_id?.country_code}${data?.booking_id?.group_owner_id?.phone_number}`),
           'Agent Name': data?.booking_id?.agent_id?.name,
-          'Agent Phone No.': `${data?.booking_id?.agent_id?.country_code}${data?.booking_id?.agent_id?.phone_number}`,
+          'Agent Phone No.': this.checkNumberData(`${data?.booking_id?.agent_id?.country_code}${data?.booking_id?.agent_id?.phone_number}`),
           'Ambassador Name': data?.booking_id?.gold_member_id?.name || '',
-          'Ambassador Phone No.': `${data?.booking_id?.gold_member_id?.country_code}${data?.booking_id?.gold_member_id?.phone_number}` || '',
+          'Ambassador Phone No.': this.checkNumberData(`${data?.booking_id?.gold_member_id?.country_code}${data?.booking_id?.gold_member_id?.phone_number}`) || '',
           'Ambassador Plus Name': data?.booking_id?.gold_member_plus_id?.name || '',
-          'Ambassador Plus Phone No.': `${data?.booking_id?.gold_member_plus_id?.country_code}${data?.booking_id?.gold_member_plus_id?.phone_number}` || '',
+          'Ambassador Plus Phone No.': this.checkNumberData(`${data?.booking_id?.gold_member_plus_id?.country_code}${data?.booking_id?.gold_member_plus_id?.phone_number}`) || '',
           'Customer Name': data?.booking_id?.name,
-          'Customer Phone No': `${data?.booking_id?.country_code}${data?.booking_id?.phone_number}`,
+          'Customer Phone No': this.checkNumberData(`${data?.booking_id?.country_code}${data?.booking_id?.phone_number}`),
 
           // 'Property Price': data?.commission_price,
           'Transaction Image': data.transaction_image,
