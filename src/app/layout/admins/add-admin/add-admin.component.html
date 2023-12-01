@@ -41,7 +41,7 @@
             <div class="text-error" *ngIf="form.controls['email'].errors?.required && showError">
               This field is required.
             </div>
-            <div class="text-error" *ngIf="form.controls['email'].errors?.email && showError">
+            <div class="text-error" *ngIf="form.controls['email'].errors?.pattern && showError">
               Please enter valid email!
             </div>
           </div>

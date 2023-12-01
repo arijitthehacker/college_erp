@@ -6,7 +6,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../../services/commonService/common.service';
 import { ApiUrl } from '../../../core/apiUrl';
-import { ROLES } from '../../../core/constant';
+import { CONSTANT, ROLES } from '../../../core/constant';
 import { findIndex } from 'lodash';
 
 @Component({
@@ -34,7 +34,7 @@ export class AddAdminComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      email: ['', Validators.compose([Validators.required,Validators.email])],
+      email: ['', [Validators.required, Validators.pattern(CONSTANT.email_pattern)]],
       name: ['', Validators.required],
       password: ['', this.savedData ? '' : Validators.required]
     });

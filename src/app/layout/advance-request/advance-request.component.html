@@ -99,7 +99,7 @@
 
 
               <br>
-              <b>Phone No. :</b>{{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code|| data?.gold_member_id?.country_code || data?.gold_member_plus_id?.country_code}}{{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number|| data?.gold_member_id?.phone_number || data?.gold_member_plus_id?.phone_number}}<br>
+              <b>Phone No. : </b>{{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code|| data?.gold_member_id?.country_code || data?.gold_member_plus_id?.country_code}}{{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number|| data?.gold_member_id?.phone_number || data?.gold_member_plus_id?.phone_number}}<br>
               <b class="highlighted-text">Request On:</b> {{( data?.advanced_date || data?.time ) |date:'short'}}
             </td>
 
@@ -107,7 +107,7 @@
             <td>
               <ng-container *ngIf="data?.booking_id?.member_id?.name ; else noData">
                 <b>Name:</b> {{data?.booking_id?.member_id?.name || '-'}}, {{data?.booking_id?.member_id?.user_name}}<br>
-                <b>Phone No. :</b>
+                <b>Phone No. : </b>
                 {{data?.booking_id?.member_id?.country_code}}{{data?.booking_id?.member_id?.phone_number || '-'}}
                 <br>
               </ng-container>
@@ -134,7 +134,7 @@
                 <b>Name:</b> {{data?.booking_id?.gold_member_id?.name || '-'}}
                 <ng-container *ngIf="data?.booking_id?.gold_member_id?.user_name">, {{data?.booking_id?.gold_member_id?.user_name}}</ng-container>
                 <br>
-                <b>Phone No. :</b>
+                <b>Phone No. : </b>
                 {{data?.booking_id?.gold_member_id?.country_code}}{{data?.booking_id?.gold_member_id?.phone_number || '-'}}
                 <br>
               </ng-container>
@@ -143,7 +143,7 @@
                 <ng-container *ngIf="data?.gold_member_id?.user_name">, {{data?.gold_member_id?.user_name}}</ng-container>
 
                 <br>
-                <b>Phone No. :</b>
+                <b>Phone No. : </b>
                 {{data?.gold_member_id?.country_code}}{{data?.gold_member_id?.phone_number || '-'}}
                 <br> -->
                 <!--                <b>Email:</b> {{data?.gold_member_id?.email || '-'}}<br>-->
@@ -160,7 +160,7 @@
               <ng-container *ngIf="data?.booking_id?.gold_member_plus_id?.name ; else noData">
                 <b>Name:</b> {{data?.booking_id?.gold_member_plus_id?.name || '-'}}<ng-container *ngIf="data?.booking_id?.gold_member_plus_id?.user_name">, {{data?.booking_id?.gold_member_plus_id?.user_name}}</ng-container>
                 <br>
-                <b>Phone No. :</b>
+                <b>Phone No. : </b>
                 {{data?.booking_id?.gold_member_plus_id?.country_code}}{{data?.booking_id?.gold_member_plus_id?.phone_number || '-'}}
                 <br>
               </ng-container>
@@ -169,7 +169,7 @@
                 <ng-container *ngIf="data?.gold_member_plus_id?.user_name">, {{data?.gold_member_plus_id?.user_name}}</ng-container>
 
                 <br>
-                <b>Phone No. :</b>
+                <b>Phone No. : </b>
                 {{data?.gold_member_plus_id?.country_code}}{{data?.gold_member_plus_id?.phone_number || '-'}}
                 <br> -->
                 <!--                <b>Email:</b> {{data?.gold_member_plus_id?.email || '-'}}<br>-->

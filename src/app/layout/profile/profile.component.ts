@@ -7,6 +7,7 @@ import { ConstMsg } from 'src/app/core/ConstMsg';
 import { CommonService } from '../../services/commonService/common.service';
 import { ActivatedRoute } from '@angular/router';
 import { ApiUrl } from '../../core/apiUrl';
+import { CONSTANT } from 'src/app/core/constant';
 
 @Component({
   selector: 'app-add-account',
@@ -33,7 +34,7 @@ export class ProfileComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      email: [ this.profileData?.email , Validators.compose([Validators.required,Validators.email])]
+      email: [ this.profileData?.email ,[Validators.required, Validators.pattern(CONSTANT.email_pattern)]]
     });
 
   }
