@@ -162,6 +162,29 @@
     </tr>
   </table>
 
+  <table class="table details-table" *ngIf="modalData?.type == 7">
+    <tr>
+      <td>
+        <h5>Name</h5>
+        <p>{{modalData?.name || '-'}}</p>
+      </td>
+      <td>
+        <h5>Email</h5>
+        <p>{{modalData?.email || '-'}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h5>Phone number</h5>
+        <p>{{modalData?.country_code}} {{modalData?.phone_number || '-'}}</p>
+      </td>
+      <td *ngIf="modalData?.age">
+        <h5>Age</h5>
+        <p>{{modalData?.age || '-'}}</p>
+      </td>
+    </tr>
+  </table>
+
   <table class="table details-table" *ngIf="modalData?.type == 4">
     <tr>
       <td>

@@ -33,7 +33,8 @@ export class AddCommissionComponent implements OnInit {
       agent_commision: ['', Validators.compose([Validators.required, Validators.max(100)])],
       group_owner_commision: ['', Validators.compose([Validators.required, Validators.max(100)])],
       member_commision: ['', Validators.compose([Validators.required, Validators.max(100)])],
-      gold_member_commision: ['', Validators.compose([Validators.required, Validators.max(100)])]
+      gold_member_commision: ['', Validators.compose([Validators.required, Validators.max(100)])],
+      gold_member_plus_commision:['',Validators.compose([Validators.required, Validators.max(100)])]
     });
     if (this.modalData) {
       this.patchData(this.modalData);
@@ -46,7 +47,8 @@ export class AddCommissionComponent implements OnInit {
       member_commision: data.member_commision,
       gold_member_commision: data.gold_member_commision,
       group_owner_commision: data.group_owner_commision,
-      agent_commision: data.agent_commision
+      agent_commision: data.agent_commision,
+      gold_member_plus_commision:data.gold_member_plus_commision
     });
   }
 

@@ -76,6 +76,7 @@
             <th>Founder Info</th>
             <th>Agent Info</th>
             <th>Ambassador Info</th>
+            <th>Ambassador Plus Info</th>
             <th>Commission Status</th>
             <th>Property final price/Unit No.</th>
             <th style="min-width: 130px">Status</th>
@@ -130,11 +131,22 @@
             </td>
 
             <td>
+              <ng-container *ngIf="!data?.gold_member_plus_id?.name">-</ng-container>
+              <a (click)="openMemberDetails(data?.gold_member_plus_id, 'Ambassador Plus',7)"
+                 *ngIf="data?.gold_member_plus_id?.name"
+                 class="my-link">{{data?.gold_member_plus_id?.name || '-'}}<span *ngIf="data?.gold_member_plus_id?.user_name">,
+                {{data?.gold_member_plus_id?.user_name}}</span>
+              </a>
+
+            </td>
+
+            <td>
               <b>Founder:</b> {{data?.group_payment_status|titlecase }}
               <br>
               <b>Agent:</b> {{data?.agent_payment_status|titlecase}}<br>
               <b>Member:</b> {{data?.member_payment_status |titlecase}}<br>
               <b>Ambassador:</b> {{data?.gold_member_payment_id ? (data?.gold_member_payment_status |titlecase) : '-' }}
+              <b>Ambassador Plus:</b> {{data?.gold_member_plus_payment_id ? (data?.gold_member_plus_payment_status |titlecase) : '-' }}
 
             </td>
             <td>

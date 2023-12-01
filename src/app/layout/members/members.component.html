@@ -60,9 +60,15 @@
             </td>
             <td>
               {{data?.showCode}}
-<!--              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>-->
+<!--              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'">
+  is_gold_plus
+</app-see-more>-->
             </td>
-            <td>{{data?.is_gold ? 'Ambassador' : '-'}} </td>
+            <td>
+              <p *ngIf="data.is_gold_plus && data?.is_gold">{{'Ambassador +'}}</p>
+              <p *ngIf="!data.is_gold_plus && data?.is_gold">{{'Ambassador'}}</p>  
+              <p *ngIf="!data.is_gold_plus && !data?.is_gold">{{'-'}}</p>  
+            </td>
 
             <td class="edit-section">
 
