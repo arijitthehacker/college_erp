@@ -69,6 +69,8 @@
             <th class="col-width">Agent Info</th>
             <th class="col-width">Ambassador Info</th>
             <th class="col-width">Ambassador Plus Info</th>
+            <th class="col-width">Image</th>
+
             <th class="col-width">Customer Info</th>
             <th class="col-width">Bank Details</th>
             <th class="col-width">Payment Details</th>
@@ -155,6 +157,9 @@
                 {{data?.booking_id?.gold_member_plus_id?.country_code}}{{data?.booking_id?.gold_member_plus_id?.phone_number || '-'}}
                 <br>
               </ng-container>
+            </td>
+            <td>
+              <img [src]="imageOrNot(data)" class="imgesnn" (click)="commonService.openLightBox(imageOrNot(data))"> 
             </td>
             <td>
               <ng-container *ngIf="data?.booking_id?.name ; else noData">

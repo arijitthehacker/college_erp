@@ -79,6 +79,30 @@
         </div>
       </div>
 
+      <div class="col-md-12 form-group">
+        <label class="set-label required">Override Ambassador commission </label>
+        <input class="form-control" formControlName="override_gold_member_commision" appAmount  trim="blur"
+               type="text" placeholder="Enter Ambassador plus commission"/>
+        <div class="text-error" *ngIf="form.controls['override_gold_member_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['override_gold_member_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required">Override Ambassador plus commission </label>
+        <input class="form-control" formControlName="override_gold_member_plus_commision" appAmount  trim="blur"
+               type="text" placeholder="Enter Ambassador plus commission"/>
+        <div class="text-error" *ngIf="form.controls['override_gold_member_plus_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['override_gold_member_plus_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
     </div>
 
   </div>

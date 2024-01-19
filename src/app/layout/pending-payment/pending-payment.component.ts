@@ -80,6 +80,17 @@ export class PendingPaymentComponent implements OnInit {
     });
   }
 
+  imageOrNot(data){
+    console.log(data,'...data')
+    let temp;
+    data.all_status.forEach(element => {
+      if(element.name == 'SPA Signed'){
+        temp = element.image
+      }
+    });
+    return temp;
+  }
+
   openPaymentModal(data?: any) {
     const modalRef = this.modalService.show(PaymentComponent, {
       initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-md'
