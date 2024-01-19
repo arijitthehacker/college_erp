@@ -44,14 +44,14 @@
             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
             <td>{{data?.name}}</td>
-            <td>{{data?.group_owner_commision}}</td>
+            <td>{{data?.group_owner_commision}}%</td>
 
-            <td>{{data?.agent_commision}}</td>
-            <td>{{data?.member_commision}}</td>
-            <td>{{data?.gold_member_commision}}</td>
-            <td>{{data?.gold_member_plus_commision}}</td>
-            <td>{{data?.override_gold_member_commision}}</td>
-            <td>{{data?.override_gold_member_plus_commision}}</td>
+            <td>{{data?.agent_commision}}%</td>
+            <td>{{data?.member_commision}}%</td>
+            <td>{{data?.gold_member_commision}}%</td>
+            <td>{{data?.gold_member_plus_commision}}%</td>
+            <td>{{data?.override_gold_member_commision}}%</td>
+            <td>{{data?.override_gold_member_plus_commision}}%</td>
             <td class="edit-section">
 <!--              <div (click)="blockUnblock(data)">-->
 <!--                <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>-->
