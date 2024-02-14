@@ -149,6 +149,7 @@
               <b>Ambassador Plus:</b> {{data?.gold_member_plus_payment_id ? (data?.gold_member_plus_payment_status |titlecase) : '-' }}
 
             </td>
+           
             <td>
               <b>Final Price.:</b> {{data?.commission_price || '-'}}<br>
               <b>Unit No.:</b> {{data?.unit_no || '-'}}<br></td>
@@ -238,9 +239,10 @@
                   <li role="menuitem">
                     <a class="dropdown-item" (click)="openChangeStatus(data)">Update Status</a>
                   </li>
-                  <!--                  *ngIf="!data?.commission_price"-->
+                  <!--     data?.last_status_name !== 'pay_completed' && data?.last_status_name !== 'Contact Lead' && data?.agent_payment_status != 'COMPLETED'-->
                   <li role="menuitem"
-                      *ngIf="data?.last_status_name !== 'pay_completed' && data?.last_status_name !== 'Contact Lead' && data?.agent_payment_status != 'COMPLETED'">
+                      *ngIf="checkTrue(data)"
+                      >
                     <a class="dropdown-item" (click)="addFinal(data)">{{data?.commission_price ? 'Edit' : 'Add'}} final
                       property price/Unit No.</a>
                   </li>

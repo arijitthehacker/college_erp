@@ -259,6 +259,31 @@ export class CustomerLeadsComponent implements OnInit {
     });
   }
 
+  addEditModalOpenLogs(data?: any) {
+    const modalRef = this.modalService.show(LogsComponent, {
+      initialState: {modalData: data}, backdrop: 'static', keyboard: false, class: 'modal-lg'
+    });
+    modalRef.content.onClose.subscribe(() => {
+      this.getData();
+    });
+  }
+
+  checkTrue(data:any){
+    let temp :any =  true
+      if (data) {
+        temp =   data["last_status_name"] !== 'pay_completed' && data["last_status_name"] !== 'Contact Lead' && data["agent_payment_status"] != 'COMPLETED'
+
+       const statuses =  ["agent_payment_status" , "gold_member_payment_status", "gold_member_plus_payment_status" ,"group_payment_status", "member_payment_status"]
+        
+       statuses.forEach(element => {
+           if (data[element] == 'COMPLETED') {
+            temp = false
+           }
+        });
+      }
+   return temp
+  }
+
 
 
 }

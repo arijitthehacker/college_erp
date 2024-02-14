@@ -78,5 +78,6 @@ export const ApiUrl = {
   access_token_login: 'Admin/access_token_login',
   list_lead_logs: 'Admin/list_lead_logs',
   list_customer_request_details:'Admin/list_customer_request_details',
-  update_steps:'Admin/update_steps'
+  update_steps:'Admin/update_steps',
+  
 };

@@ -17,6 +17,7 @@ export class SideBarComponent implements OnInit {
   selectedRoute = 'appointments';
   showSideBar = false;
   profileData: any = {};
+  childreenIndex: any;
 
   constructor(private message: MessageService, private modalService: BsModalService, private router: Router,
               public activatedRoute: ActivatedRoute, public commonService: CommonService) {
@@ -65,6 +66,7 @@ export class SideBarComponent implements OnInit {
       });
     });
     this.sideBar = sideBar;
+    console.log(this.sideBar,'....sidebar')
   }
 
   setSuperAdminSideBar(data) {
@@ -94,14 +96,16 @@ export class SideBarComponent implements OnInit {
     });
   }
 
-  optionClick(index, flag?) {
+  optionClick(index, flag?,childIndex?:any) {
     if (this.selectedIndex !== index) {
       this.sideBar.forEach((val) => {
         val.isCollapsed = false;
       });
     }
+    this.childreenIndex = childIndex
+    console.log(this.childreenIndex,'....this.childreenIndex')
     this.selectedIndex = index;
-
+    console.log(this.sideBar,'....sidebar')
     switch (flag) {
       case 1:
         this.showSideBar = false;

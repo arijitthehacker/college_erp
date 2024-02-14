@@ -74,10 +74,10 @@
   <ul class="app-menu">
 
 
-    <ng-container *ngFor="let data of sideBar;let i =index">
+    <ng-container *ngFor="let data of sideBar;let i = index">
 
       <li *ngIf="!data?.children1">
-        <a [routerLinkActive]="'active'" [routerLink]="['/'+data?.path]" href="javascript://"
+        <a [routerLinkActive]="'active'" [routerLink]="['/'+data?.path + '/'+ 'recycle-bin']" href="javascript://"
            (click)="optionClick(i,1);"
            class="app-menu__item" #rla="routerLinkActive">
           <i class="fa fa-fw" [ngClass]="data.icon" [ngStyle]="{'font-size': data.fontSize}"></i>
@@ -85,9 +85,9 @@
         </a>
       </li>
 
-      <li *ngIf="data?.children1">
-        <a (click)="optionClick(i,2);" [attr.aria-expanded]="!data?.isCollapsed" aria-controls="collapseBasic"
-           class="app-menu__item sub-menu">
+      <li *ngIf="data?.children1" (click)="childreenIndex = 0">
+        <a (click)="optionClick(i,2);"  [routerLinkActive]="'active'" [routerLink]="['/'+data?.path + '/'+ data?.children1[childreenIndex]?.path]" [attr.aria-expanded]="!data?.isCollapsed" aria-controls="collapseBasic"
+           class="app-menu__item sub-menu" #rla="routerLinkActive">
           <i class="fa fa-fw" [ngClass]="data.icon"></i>
           <span class="app-menu__label">{{data?.name}}</span>
 <!--          <i class="fa " [ngClass]="data?.isCollapsed ? 'fa-chevron-up':'fa-chevron-down'"></i>-->
@@ -103,7 +103,7 @@
 
             <a routerLinkActive="active" [routerLink]="['/'+data?.path +'/'+val?.path]" href="javascript://"
                *ngIf="val?.path"
-               (click)="optionClick(i,3);" class="app-menu__item">
+               (click)="optionClick(i,3,j);" class="app-menu__item">
               <i class="inner-icons fa" [ngClass]="val.icon"></i>
               {{val?.name}}
 

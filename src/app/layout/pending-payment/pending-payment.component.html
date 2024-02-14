@@ -159,7 +159,7 @@
               </ng-container>
             </td>
             <td>
-              <img [src]="imageOrNot(data)" class="imgesnn" (click)="commonService.openLightBox(imageOrNot(data))"> 
+              <img [src]="imageOrNot(data)" style="cursor: pointer;" class="imgesnn" (click)="commonService.openLightBox(imageOrNot(data))"> 
             </td>
             <td>
               <ng-container *ngIf="data?.booking_id?.name ; else noData">
