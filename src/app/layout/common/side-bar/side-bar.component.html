@@ -77,7 +77,7 @@
     <ng-container *ngFor="let data of sideBar;let i = index">
 
       <li *ngIf="!data?.children1">
-        <a [routerLinkActive]="'active'" [routerLink]="['/'+data?.path + '/'+ 'recycle-bin']" href="javascript://"
+        <a [routerLinkActive]="'active'" [routerLink]="['/'+data?.path]" href="javascript://"
            (click)="optionClick(i,1);"
            class="app-menu__item" #rla="routerLinkActive">
           <i class="fa fa-fw" [ngClass]="data.icon" [ngStyle]="{'font-size': data.fontSize}"></i>
