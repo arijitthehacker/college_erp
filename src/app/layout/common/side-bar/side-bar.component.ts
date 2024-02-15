@@ -18,6 +18,7 @@ export class SideBarComponent implements OnInit {
   showSideBar = false;
   profileData: any = {};
   childreenIndex: any;
+  childItemSelected: boolean;
 
   constructor(private message: MessageService, private modalService: BsModalService, private router: Router,
               public activatedRoute: ActivatedRoute, public commonService: CommonService) {
@@ -96,21 +97,30 @@ export class SideBarComponent implements OnInit {
     });
   }
 
+
   optionClick(index, flag?,childIndex?:any) {
     if (this.selectedIndex !== index) {
       this.sideBar.forEach((val) => {
         val.isCollapsed = false;
       });
     }
-    this.childreenIndex = childIndex
-    console.log(this.childreenIndex,'....this.childreenIndex')
+    if (flag === 2) { // If a parent item is clicked
+      this.childreenIndex = 0;
+    } else {
+      this.childreenIndex = childIndex !== undefined ? childIndex : 0;
+    }
     this.selectedIndex = index;
+
+    console.log(this.childreenIndex,'.selcetedindexx')
     console.log(this.sideBar,'....sidebar')
+    
     switch (flag) {
       case 1:
         this.showSideBar = false;
         break;
       case 2:
+
+      console.log(index,",........s")
         this.sideBar[index].isCollapsed = !this.sideBar[index].isCollapsed;
         break;
       case 3:
@@ -128,6 +138,13 @@ export class SideBarComponent implements OnInit {
         document.getElementById('app-content').style['margin-left'] = '0';
       }
     }
+
+    setTimeout(() => {
+      const routePath = this.childreenIndex !== undefined && this.sideBar[index]?.children1[this.childreenIndex]?.path ?
+        '/' + this.sideBar[index]?.path + '/' + this.sideBar[index]?.children1[this.childreenIndex]?.path :
+        '/' + this.sideBar[index]?.path;
+      this.router.navigateByUrl(routePath);
+    }, 0); 
   }
 
   // optionClick(index?) {

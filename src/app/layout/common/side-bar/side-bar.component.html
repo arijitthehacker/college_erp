@@ -85,9 +85,9 @@
         </a>
       </li>
 
-      <li *ngIf="data?.children1" (click)="childreenIndex = 0">
-        <a (click)="optionClick(i,2);"  [routerLinkActive]="'active'" [routerLink]="['/'+data?.path + '/'+ data?.children1[childreenIndex]?.path]" [attr.aria-expanded]="!data?.isCollapsed" aria-controls="collapseBasic"
-           class="app-menu__item sub-menu" #rla="routerLinkActive">
+      <li *ngIf="data?.children1" >
+        <a (click)="optionClick(i,2);"  [ngClass]="{'active' : selectedIndex == i}" [routerLink]="['/'+data?.path + '/'+ (childreenIndex !== null ? data?.children1[childreenIndex]?.path : '')]" [attr.aria-expanded]="!data?.isCollapsed" aria-controls="collapseBasic"
+           class="app-menu__item sub-menu"  >
           <i class="fa fa-fw" [ngClass]="data.icon"></i>
           <span class="app-menu__label">{{data?.name}}</span>
 <!--          <i class="fa " [ngClass]="data?.isCollapsed ? 'fa-chevron-up':'fa-chevron-down'"></i>-->
@@ -100,7 +100,7 @@
              *ngFor="let val of data?.children1;let j =index">
           <div class="sub-menu-item  animate__animated animate__slideInDown">
 
-
+<!--  [ngClass]="{'active' : childreenIndex == j}" -->
             <a routerLinkActive="active" [routerLink]="['/'+data?.path +'/'+val?.path]" href="javascript://"
                *ngIf="val?.path"
                (click)="optionClick(i,3,j);" class="app-menu__item">
