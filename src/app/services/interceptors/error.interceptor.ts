@@ -25,7 +25,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
             this.commonService.afterLogout()
 
-            this.message.toast('error', error.error.message);
+            this.message.toast('error', 'Missing Authentication');
             /********** Auto logout if 401 response returned from api **********/
             // localStorage.clear();
             this.router.navigate(['/login']);
