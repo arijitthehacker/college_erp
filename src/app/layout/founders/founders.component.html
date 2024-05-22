@@ -44,6 +44,7 @@
             <th>Mothers Name</th>
             <th>Category</th>
             <th>Major Course</th>
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -52,32 +53,26 @@
             <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
 
             <td>
-              <img [src]="data.image || '/assets/images/no-img.webp'" class="small-img"
-                   (click)="commonService.openLightBox(data.image)">
+              {{data?.name || '--'}}
             </td>
-            <td>{{data?.name || '-'}}</td>
             <td>{{data?.email || '-'}}</td>
-            <td>{{data?.country_code}} {{data?.phone_number }}</td>
-            <!--              <td>-->
-            <!--                <app-see-more [msg]="data?.description"></app-see-more>-->
-            <!--              </td>-->
-
+            <td>{{data?.mobile_no || '-'}}</td>
+           
             <td>
-              <b>Account Name:</b> {{data?.account_name  || '-'}}<br>
-              <b>Account Number:</b> {{data?.account_number || '-'}}<br>
-              <b>Bank Name:</b> {{data?.bank_name || '-'}}<br>
-              <b>Sort Code:</b> {{data?.sort_code || '-'}}
-              <br>
+            {{data?.father_name}}
             </td>
-            <td>
-              {{data?.showCode}}
-<!--              <app-see-more [msg]="data?.showCode" [title]="'Invite Code Details'"></app-see-more>-->
 
-              <!--                <span *ngFor="let val of data?.invite_codes;let last=last">-->
-              <!--                  {{val?.invite_code}}-->
-              <!--                  <ng-container *ngIf="!last">, </ng-container>-->
-              <!--                </span>-->
-              <!--                <a (click)="openInviteCodes(data)" class="my-link">Codes</a>-->
+           
+            <td>
+              {{data?.mother_name}}
+            </td>
+
+            <td>
+              {{data?.category}}
+            </td>
+
+            <td>
+              {{data?.major_course}}
             </td>
 
 
@@ -87,17 +82,11 @@
                 <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
               </div>
 
-              <div (click)="addEditModalOpen(data)">
+              <!-- <div (click)="addEditModalOpen(data)">
                 <i  class="cursor-pointer action-fa fa fa-edit"></i>
-              </div>
-<!--                              <span class="fa-span  ml-3">-->
-              <!--                                -->
-              <!--                                </span>-->
+              </div> -->
               <div>
                 <i (click)="deleteData(data)" class="fa fa-trash"></i>
-              </div>
-              <div>
-                <i (click)="openChangePassword(data)" class="fa fa-key"></i>
               </div>
             </td>
           </tr>

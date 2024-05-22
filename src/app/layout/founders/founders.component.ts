@@ -47,8 +47,8 @@ export class FoundersComponent implements OnInit {
     }
 
     this.http.getData(ApiUrl.user_listing, obj).subscribe(res => {
-      this.allData = res.data.data;
-      this.pagination.count = res.data.total_count;
+      this.allData = res.data;
+      this.pagination.count = res.count;
 
       if (res.data.total_count > 0 && !this.allData?.length) {
         this.pagination.pageNo--;
