@@ -1,0 +1,30 @@
+<ng-container *ngIf="msg">
+  <span [innerHTML]="msg|slice:0:20"></span>
+</ng-container>
+
+<ng-container *ngIf="!msg">
+  -
+</ng-container>
+
+<a (click)="staticModal.show()"
+   *ngIf="msg?.length > 19" class="clickable">
+  ...see more
+</a>
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left"> {{title || 'Description Details'}}</h4>
+        <button class="btn-close" (click)="staticModal.hide()"></button>
+      </div>
+      <div class="modal-body">
+        <p [innerHTML]="msg"></p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="staticModal.hide()" type="button" class="btn btn-cancel mr-3">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

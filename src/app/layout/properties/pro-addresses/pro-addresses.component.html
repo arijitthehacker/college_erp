@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Address List
+  </h4>
+  <!--  <button class="btn-blue-outline" (click)="openAddAddress()" *ngIf="!allData?.length">Create New Address</button>-->
+</div>
+
+<div class="modal-body">
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <!--        <th>Sr. No.</th>-->
+        <th>State</th>
+        <th>City</th>
+        <th>Address</th>
+        <th>Longitude</th>
+        <th>Latitude</th>
+<!--        <th>Action</th>-->
+      </tr>
+      </thead>
+      <tbody>
+      <!--      *ngFor="let data of allData;let i =index"-->
+      <tr>
+        <!--        <td>{{i + 1}}</td>-->
+        <td>{{modalData?.state_id?.name}}</td>
+        <td>{{modalData?.city_id?.name}}</td>
+        <td>{{modalData?.address}}</td>
+        <td>{{modalData.location.coordinates[0]}}</td>
+        <td>{{modalData.location.coordinates[1]}}</td>
+<!--        <td class="edit-section">-->
+          <!--          <div (click)="blockUnblock(data)">-->
+          <!--            <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>-->
+          <!--            <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>-->
+          <!--          </div>-->
+
+<!--          <div>-->
+<!--            <i (click)="openAddAddress(modalData)" class="fa fa-edit"></i>-->
+<!--          </div>-->
+
+          <!--          <div>-->
+          <!--            <i (click)="deleteData(data)" class="fa fa-trash"></i>-->
+          <!--          </div>-->
+<!--        </td>-->
+      </tr>
+      </tbody>
+    </table>
+    <app-no-record *ngIf="!modalData"></app-no-record>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Close</button>
+  <!--  <button type="submit" class="btn btn-blue-outline">{{!modalData ? 'Submit' : 'Update'}}</button>-->
+</div>

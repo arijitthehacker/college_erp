@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-box box-header">
+      <div class="row">
+        <div class="col-md-7">
+          <h4 class="card-title  float-left">Approvals
+          </h4>
+        </div>
+        <div class="col-md-3 text-right sm-input-space">
+          <!-- <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search"
+                   [(ngModel)]="search" (keyup.enter)="searchFun()">
+            <span class="input-group-text" (click)="searchFun()">
+                <i class="fa fa-search"></i>
+              </span>
+          </div> -->
+        </div>
+        <!-- <div class="col-md-2 text-right">
+          <div class="sm-input-space">
+            <button (click)="addEditModalOpen()" class="btn btn-blue-outline">
+              Create New Agent
+            </button>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3 mb-2">
+  <div class="col-md-12">
+    <form [formGroup]="form" >
+      <div class="my-box">
+        <div class="col-md-5 form-group" >
+          <label class="required set-label">Pre Registration Approvals</label>
+          <select class="form-control" formControlName="pre_approval">
+            <option value="">Please Select approvals</option>
+            <option [value]="'AUTO'">Auto Approval</option>
+            <option [value]="'MANUAL'">Manual Approval</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" (click)="submitpre()" class="btn btn-blue-outline">Update</button>
+        </div>
+      </div>
+    </form>
+    <form [formGroup]="form1" >
+      <div class="my-box">
+        <div class="col-md-5 form-group" >
+          <label class="required set-label">After Registration Approvals</label>
+          <select class="form-control" formControlName="post_approval">
+            <option value="">Please Select approvals</option>
+            <option [value]="'AUTO'">Auto Approval</option>
+            <option [value]="'MANUAL'">Manual Approval</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" (click)="submitpost()" class="btn btn-blue-outline">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{!modalData ? 'Create New' : 'Edit'}} {{commonService.title}}
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label"> name</label>
+        <input [autofocus]="true" class="form-control" formControlName="name"   trim="blur"
+               placeholder="Enter name"/>
+        <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required"> Founder commission</label>
+        <input class="form-control" formControlName="group_owner_commision" appAmount  trim="blur"
+               type="text" placeholder="Enter Founder commission"/>
+        <div class="text-error" *ngIf="form.controls['group_owner_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['group_owner_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required"> agent commission</label>
+        <input class="form-control" formControlName="agent_commision" appAmount  trim="blur"
+               type="text" placeholder="Enter agent commission"/>
+        <div class="text-error" *ngIf="form.controls['agent_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['agent_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required"> member commission</label>
+        <input class="form-control" formControlName="member_commision" appAmount  trim="blur"
+               type="text" placeholder="Enter member commission"/>
+        <div class="text-error" *ngIf="form.controls['member_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['member_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required">Ambassador commission</label>
+        <input class="form-control" formControlName="gold_member_commision" appAmount  trim="blur"
+               type="text" placeholder="Enter Ambassador commission"/>
+        <div class="text-error" *ngIf="form.controls['gold_member_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['gold_member_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required">Ambassador plus commission </label>
+        <input class="form-control" formControlName="gold_member_plus_commision" appAmount  trim="blur"
+               type="text" placeholder="Enter Ambassador plus commission"/>
+        <div class="text-error" *ngIf="form.controls['gold_member_plus_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['gold_member_plus_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required">Override Ambassador commission </label>
+        <input class="form-control" formControlName="override_gold_member_commision" appAmount  trim="blur"
+               type="text" placeholder="Enter Ambassador plus commission"/>
+        <div class="text-error" *ngIf="form.controls['override_gold_member_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['override_gold_member_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="set-label required">Override Ambassador plus commission </label>
+        <input class="form-control" formControlName="override_gold_member_plus_commision" appAmount  trim="blur"
+               type="text" placeholder="Enter Ambassador plus commission"/>
+        <div class="text-error" *ngIf="form.controls['override_gold_member_plus_commision'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['override_gold_member_plus_commision'].errors?.max && showError">
+          Commission should be between 1-100
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">{{!modalData ? 'Submit' : 'Update'}}</button>
+  </div>
+</form>

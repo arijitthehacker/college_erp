@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Assign to Agent
+<!--    <ng-container *ngIf="modalData?.type === 1">Owner</ng-container>-->
+<!--    <ng-container *ngIf="modalData?.type === 2">Agent</ng-container>-->
+<!--    <ng-container *ngIf="modalData?.type === 3">Member</ng-container>-->
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+<!--      <div class="col-md-12 form-group">-->
+<!--        <label class="required set-label">Select Assign Type</label>-->
+<!--        <select class="form-control" formControlName="assignType">-->
+<!--          <option value="agent">Agent</option>-->
+<!--          <option value="group_owner">Founder</option>-->
+<!--        </select>-->
+
+<!--        <div class="text-error" *ngIf="form.controls['assignType'].errors?.required && showError">-->
+<!--          This field is required.-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="col-md-12 form-group" *ngIf="form?.value?.assignType === 'agent'">
+        <label class="required set-label">Select Agent</label>
+        <select class="form-control" formControlName="agent_id">
+          <option value="">Please Select Agent</option>
+          <option *ngFor="let data of agents" [value]="data._id">{{data?.name}}</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{!modalData ? 'Create New' : 'Edit'}} {{commonService.title}}
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="selectImage()">
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-md-6 re-inpu-grid">
+
+        <div class="requtdse-block">
+          <div class="main-heardersdqd">
+            <label class="required set-label">Upload csv</label>
+            <div class="main-flax-hearder" style="position: relative;" >
+              <label for="fileInput" class="exports-label"  (change)="onFileChange($event)">
+                <input type="file" class="d-none" id="fileInput" accept=".csv" >
+                <img  src="assets/img/gallery-export.svg" alt="">
+                <a >click to upload</a>
+                <img   src="assets/img/gallery-export.svg" class="csvfile" alt="">
+                <p  style="text-transform:uppercase;">{{fileName}} </p>
+              </label>
+              <!-- <img *ngIf="form?.value.file && !allDataSingle" (click)="removeCsv()"  src="assets/img/Icamp-new/png/close_ic.png" class="closicr" alt=""> -->
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+      <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+      <button type="submit" class="btn btn-blue-outline">{{!modalData ? 'Submit' : 'Update'}}</button>
+    </div>
+</form>

@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="my-box">
+        <div class="row">
+          <div class="col-md-3">
+            <h4 class="card-title  float-left">
+              {{commonService?.breadcrumb}}
+            </h4>
+          </div>
+
+          <div class="col-md-9 text-right">
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-blue-outline">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3 mb-2">
+    <div class="col-md-12">
+      <div class="my-box">
+
+        <div class="row">
+
+          <div class="col-md-4 form-group">
+            <label class="required set-label" style="font-size: 20px">User Share Link Details</label>
+          </div>
+
+          <div class="col-md-6 form-group">
+            <label class="switch">
+              <input type="checkbox" formControlName="member_share_link">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>

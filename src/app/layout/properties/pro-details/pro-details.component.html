@@ -1,0 +1,263 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    Property Details
+  </h4>
+  <button class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+
+<div class="modal-body">
+
+  <div class="tables-area mb-3">
+    <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 1}" (click)="clickTab(1)">
+      Property information
+    </div>
+    <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 2}" (click)="clickTab(2)">
+      Property address
+    </div>
+    <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 3}" (click)="clickTab(3)">
+      Property amenities
+    </div>
+    <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 4}" (click)="clickTab(4)">
+      Property price
+    </div>
+    <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 5}" (click)="clickTab(5)">
+      Property description
+    </div>
+    <div class="each-tab" [ngClass]="{'selected-tab':selectedTab == 6}" (click)="clickTab(6)">
+      Property Media
+    </div>
+  </div>
+
+
+  <table class="table details-table">
+
+    <ng-container *ngIf="selectedTab === 1">
+      <tr>
+        <td>
+          <h5>Name</h5>
+          <p>{{modalData?.name || '-'}}</p>
+        </td>
+        <td>
+          <h5>Category</h5>
+          <p>{{modalData?.category_id?.name || '-'}}</p>
+        </td>
+        <td>
+          <h5>Tenure</h5>
+          <p>
+            <ng-container *ngIf="modalData?.tensure == 'BOTH'"> ANY</ng-container>
+            <ng-container *ngIf="modalData?.tensure == 'FREEHOLD'"> FREEHOLD</ng-container>
+            <ng-container *ngIf="modalData?.tensure == 'LEASEHOLD'"> LEASEHOLD</ng-container>
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h5>Category Type</h5>
+          <p>{{modalData?.category_type ? (modalData?.category_type |replaceUnderscore) : '-'}}</p>
+        </td>
+        <td>
+          <h5>Status</h5>
+          <p>{{modalData?.status |replaceUnderscore}}</p>
+        </td>
+        <td>
+          <h5>Property Type</h5>
+          <p>{{modalData?.show_peropert_type || '-'}}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h5>Completion year</h5>
+          <p>{{modalData?.completion_year || '-'}}</p>
+        </td>
+        <td>
+          <h5>Developer Name</h5>
+          <p>{{modalData?.developer_id?.name || '-'}}</p>
+        </td>
+        <td>
+          <h5>Display Order</h5>
+          <p>{{modalData?.se_no || '-'}}</p>
+        </td>
+      </tr>
+
+    </ng-container>
+
+    <ng-container *ngIf="selectedTab === 2">
+      <ng-container>
+        <tr>
+          <div class="table-responsive mt-2">
+            <table class="table">
+              <thead>
+              <tr>
+                <!--                <th>Sr. No.</th>-->
+                <th>State</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <!--                *ngFor="let data of addresses;let i =index"-->
+                <!--                <td>{{i + 1}}</td>-->
+                <td>{{modalData?.state_id?.name || '-'}}</td>
+                <td>{{modalData?.city_id?.name || '-'}}</td>
+                <td>{{modalData?.address}}</td>
+                <td>{{modalData.location.coordinates[0]}}</td>
+                <td>{{modalData.location.coordinates[1]}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </tr>
+      </ng-container>
+    </ng-container>
+
+
+    <ng-container *ngIf="selectedTab === 3">
+      <tr>
+        <td>
+          <h5>Min Bedroom</h5>
+          <p>{{modalData?.min_bedroom || '-'}}</p>
+        </td>
+        <td>
+          <h5>Max Bedroom</h5>
+          <p>{{setEmptyValue(2,modalData?.max_bedroom) || '-'}}</p>
+        </td>
+        <td>
+          <h5>Min Bathroom</h5>
+          <p>{{modalData?.min_bathroom || '-'}}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h5>Max Bathroom</h5>
+          <p>{{setEmptyValue(2,modalData?.max_bathroom) || '-'}}</p>
+        </td>
+
+        <td>
+          <h5>Min Area size</h5>
+          <p>{{modalData?.min_area_size || '-'}}</p>
+        </td>
+
+        <td>
+          <h5>Max Area size</h5>
+          <p>{{setEmptyValue(1,modalData?.max_area_size) || '-'}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h5>Area size type</h5>
+          <p>{{modalData?.area_size_type || '-'}}</p>
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-container *ngIf="selectedTab === 4">
+
+      <tr>
+        <td>
+          <h5>Start Price</h5>
+          <p>{{modalData?.currency_code}} {{modalData?.start_price || '-'}}</p>
+        </td>
+        <td>
+          <h5>End Price</h5>
+          <p>
+            <ng-container *ngIf="modalData?.end_price"> {{modalData?.currency_code}}</ng-container>
+            {{modalData?.end_price || '-'}}</p>
+        </td>
+        <td>
+          <h5>Commission Name</h5>
+          <p>{{modalData?.comission_id?.name || '-'}}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h5>Total units</h5>
+          <p>{{modalData?.total_units || '-'}}</p>
+        </td>
+
+      </tr>
+
+    </ng-container>
+
+    <ng-container *ngIf="selectedTab === 5">
+      <tr>
+        <td colspan="3">
+          <h5>Description</h5>
+          <p [innerHTML]="modalData?.descriptuon">{{modalData?.descriptuon || '-'}}</p>
+        </td>
+      </tr>
+    </ng-container>
+
+    <ng-container *ngIf="selectedTab === 6">
+      <tr>
+        <td colspan="3">
+          <h5>Images</h5>
+          <div class="detail-images">
+            <ng-container *ngFor="let data of modalData?.images">
+
+              <ng-container *ngIf="!commonService.checkVideoLink(data)">
+                <img [src]="data">
+              </ng-container>
+
+              <ng-container *ngIf="commonService.checkVideoLink(data)">
+                <img src="assets/images/video-icon.png" (click)="commonService.goToLink(data)">
+              </ng-container>
+
+            </ng-container>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h5>Brochure</h5>
+          <div class="detail-images">
+            <img [src]="modalData?.brochure" *ngIf="!commonService.checkPDFLink(modalData?.brochure)">
+            <a *ngIf="commonService.checkPDFLink(modalData?.brochure)" class="my-link"
+               (click)="commonService.goToLink(modalData?.brochure)">
+              <i class="fa fa-file-pdf-o fa-3x" aria-hidden="true"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h5>Cover Image</h5>
+          <div class="detail-images">
+            <img [src]="modalData?.cover_image" *ngIf="!commonService.checkPDFLink(modalData?.cover_image)">
+            <a *ngIf="commonService.checkPDFLink(modalData?.cover_image)" class="my-link"
+               (click)="commonService.goToLink(modalData?.cover_image)">
+              <i class="fa fa-file-pdf-o fa-3x" aria-hidden="true"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+
+      <!--      <tr>-->
+      <!--        <td>-->
+      <!--          <h5>Video</h5>-->
+      <!--          <div class="detail-images">-->
+
+      <!--            <img src="assets/images/video-icon.png" (click)="commonService.goToLink(modalData?.video)">-->
+      <!--            <a class="my-link">-->
+      <!--            </a>-->
+      <!--          </div>-->
+      <!--        </td>-->
+      <!--      </tr>-->
+
+    </ng-container>
+
+  </table>
+
+</div>
+
+<div class="modal-footer">
+  <button (click)="bsModalRef.hide()" type="button" class="btn btn-default mr-3">Close</button>
+</div>

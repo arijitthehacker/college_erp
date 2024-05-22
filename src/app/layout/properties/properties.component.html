@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-box box-header">
+      <div class="row">
+
+        <div class="col-md-6">
+          <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
+          </h4>
+        </div>
+
+        <div class="col-md-3 text-right sm-input-space">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search"
+                   [(ngModel)]="search" (keyup.enter)="searchFun()">
+            <span class="input-group-text" (click)="searchFun()">
+                <i class="fa fa-search"></i>
+              </span>
+          </div>
+        </div>
+
+        <div class="col-md-3 text-right">
+          <div class="sm-input-space">
+            <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
+              Create New Property
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3 mb-2">
+  <div class="col-md-12">
+    <div class="my-box">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Display Order</th>
+            <th>Cover Image</th>
+            <th>Name</th>
+            <th>Start Price</th>
+            <th>End Price</th>
+            <th>Property Type</th>
+            <th>Address List</th>
+            <th>Property Details</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
+            <td>{{( pagination.pageNo - 1 ) * 10 + i + 1}}</td>
+            <td>{{data?.se_no || '-'}}</td>
+            <td>
+              <img [src]="data.cover_image || commonService.CONSTANT.no_image" class="small-img"
+                   (click)="commonService.openLightBox(data.cover_image)">
+            </td>
+            <td>{{data?.name || '-'}}</td>
+            <td>{{data?.start_price ? data?.currency_code : ''}} {{data?.start_price || '-'}}</td>
+            <td>{{data?.end_price ? data?.currency_code : ''}} {{data?.end_price || '-'}}</td>
+            <td>{{data?.show_peropert_type || '-'}}</td>
+            <td>
+              {{data?.address |slice:0:25 }}
+              <a class="my-link" (click)="openProAddresses(data)">..See more</a>
+            </td>
+            <td>
+              <a class="my-link" (click)="openProDetails(data)">View Property Details</a>
+            </td>
+            <!--            <td class="edit-section">-->
+
+            <td class="dots-area">
+              <div class="btn-group" dropdown>
+                <i dropdownToggle class=" fa fa-ellipsis-v"
+                   aria-controls="dropdown-animated" aria-hidden="true" style="cursor: pointer;">
+                </i>
+                <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+                    role="menu" aria-labelledby="button-animated">
+                  <li role="menuitem" (click)="blockUnblock(data)" *ngIf="data?.publish">
+                    <a class="dropdown-item" *ngIf="data?.is_blocked">Unblock</a>
+                    <a class="dropdown-item" *ngIf="!data?.is_blocked">Block</a>
+                  </li>
+                  <li role="menuitem" (click)="addEditModalOpen(data)">
+                    <a class="dropdown-item">Edit</a>
+                  </li>
+                  <li role="menuitem" (click)="deleteData(data)">
+                    <a class="dropdown-item">Delete</a>
+                  </li>
+                  <li role="menuitem" (click)="publishApi(data)" *ngIf="!data?.publish && data?.progress == 6">
+                    <a class="dropdown-item">Publish</a>
+                  </li>
+                </ul>
+              </div>
+
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <app-no-record *ngIf="!pagination.count"></app-no-record>
+      </div>
+
+      <div class="row" *ngIf="pagination.count">
+        <div class="col-sm-6">
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
+        </div>
+        <div class="col-sm-6 text-right">
+          <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
+                               nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                               screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{modalData?.commission_price ? 'Edit' : 'Add'}} final property price
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Property Price</label>
+        <input class="form-control" formControlName="commission_price"  trim="blur"
+               type="text" placeholder="Enter Property Price" appAmount/>
+        <div class="text-error" *ngIf="form.controls['commission_price'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-12 form-group">
+        <label class="required set-label">Unit No.</label>
+        <input class="form-control" formControlName="unit_no"  trim="blur"
+               type="text" placeholder="Enter unit no">
+        <div class="text-error" *ngIf="form.controls['unit_no'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">{{modalData?.commission_price ? "Update" : 'Submit'}}</button>
+  </div>
+</form>

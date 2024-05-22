@@ -1,0 +1,245 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-box">
+      <div class="row">
+        <div class="col-md-3">
+          <h4 class="card-title  float-left">
+            {{commonService?.breadcrumb}}
+            <!--            {{currentDate}}-->
+          </h4>
+        </div>
+
+
+        <div class="col-md-3 sm-input-space">
+          <select class="form-control" [(ngModel)]="category" (change)="pagination.pageNo =1;getData()">
+            <option value="ALL">All Users</option>
+            <option value="AGENT">Agent</option>
+            <option value="MEMEBER">Member</option>
+            <option value="GROUP_OWNER">Founder</option>
+            <option value="GOLD_MEMEBER">Ambassador</option>
+            <option value="GOLD_MEMEBER_PLUS">Ambassador Plus</option>
+          </select>
+        </div>
+
+
+        <div class="col-md-3 sm-input-space">
+          <div class="date-filter">
+            <div class="input-group ">
+              <input type="text" class="form-control" [formControl]="dates"
+                     bsDaterangepicker placeholder="Select Dates" [maxDate]="currentDate"
+                     [bsConfig]="{ rangeInputFormat : 'DD-MM-YYYY', dateInputFormat: 'DD-MM-YYYY', showWeekNumbers: false }">
+              <span class="input-group-text" (click)="emptyDate()">
+                <i class="fa fa-close"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 text-right">
+          <div class="sm-input-space">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search"
+                     [(ngModel)]="search" (keyup.enter)="searchData()">
+              <span class="input-group-text" (click)="searchData()">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3 mb-2">
+  <div class="col-md-12">
+    <div class="my-box">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th style="width:60px">Sr. No.</th>
+            <th>Create At</th>
+            <th class="col-width">Property Info</th>
+            <th class="col-width">Transferred to</th>
+
+            <th class="col-width">Member Info</th>
+            <th class="col-width">Founder Info</th>
+            <th class="col-width">Agent Info</th>
+            <th class="col-width">Ambassador Info</th>
+            <th class="col-width">Ambassador Plus Info</th>
+            <th class="col-width"> SPA Image</th>
+
+            <th class="col-width">Customer Info</th>
+            <th class="col-width">Bank Details</th>
+            <th class="col-width">Payment Details</th>
+            <th class="col-width">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
+            <td> {{(pagination.pageNo - 1) * 10 + i + 1}} </td>
+            <td>{{data?.time |date:'short'}}</td>
+            <td>
+              <b>Property Name:</b> {{data?.booking_id?.peroperty_id?.name || '-'}}<br>
+              <b>Developer Name:</b> {{data?.booking_id?.peroperty_id?.developer_id?.name || '-'}}
+            </td>
+            <td>
+              <b>Transfer to: </b>
+
+              <span class="highlighted-text">
+              <ng-container *ngIf="data?.group_owner_id?.name">Founder</ng-container>
+              <ng-container *ngIf="data?.agent_id?.name">Agent</ng-container>
+              <ng-container *ngIf="data?.member_id?.name">Member</ng-container>
+                <ng-container *ngIf="data?.gold_member_id?.name">Ambassador</ng-container>
+                <ng-container *ngIf="data?.gold_member_plus_id?.name">Ambassador Plus</ng-container>
+              </span>
+
+              <br>
+              <b>Name:</b> {{data?.group_owner_id?.name || data?.agent_id?.name || data?.member_id?.name || data?.gold_member_id?.name || data?.gold_member_plus_id?.name}}<ng-container *ngIf="data?.member_id?.user_name">, {{data?.member_id?.user_name}}</ng-container>
+              <ng-container *ngIf="data?.gold_member_id?.user_name">, {{data?.gold_member_id?.user_name}}</ng-container>
+              <ng-container *ngIf="data?.gold_member_plus_id?.user_name">, {{data?.gold_member_plus_id?.user_name}}</ng-container>
+              <br>
+
+
+              <b>Phone No.</b>
+              {{data?.group_owner_id?.country_code || data?.agent_id?.country_code || data?.member_id?.country_code || data?.gold_member_id?.country_code || data?.gold_member_plus_id?.country_code}}
+              {{data?.group_owner_id?.phone_number || data?.agent_id?.phone_number || data?.member_id?.phone_number || data?.gold_member_id?.phone_number || data?.gold_member_plus_id?.phone_number}}
+              <br>
+              <b class="highlighted-text">Lead Closed On:</b> {{data?.time |date:'short'}}
+            </td>
+
+
+            <td>
+              <ng-container *ngIf="data?.booking_id?.member_id?.name ; else noData">
+                <b>Name:</b> {{data?.booking_id?.member_id?.name || '-'}}
+                <ng-container *ngIf="data?.booking_id?.member_id?.user_name">, {{data?.booking_id?.member_id?.user_name}}</ng-container>
+
+                <br>
+                <b>Phone No.</b>
+                {{data?.booking_id?.member_id?.country_code}}{{data?.booking_id?.member_id?.phone_number || '-'}}
+                <br>
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="data?.booking_id?.group_owner_id?.name ; else noData">
+                <b>Name:</b> {{data?.booking_id?.group_owner_id?.name || '-'}}<br>
+                <b>Phone
+                  No.:</b> {{data?.booking_id?.group_owner_id?.country_code || '-'}}{{data?.booking_id?.group_owner_id?.phone_number || '-'}}
+                <br>
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="data?.booking_id?.agent_id?.name ; else noData">
+                <b>Name:</b> {{data?.booking_id?.agent_id?.name || '-'}}<br>
+                <b>Phone
+                  No.:</b> {{data?.booking_id?.agent_id?.country_code || '-'}}{{data?.booking_id?.agent_id?.phone_number || '-'}}
+                <br>
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="data?.booking_id?.gold_member_id?.name ; else noData">
+                <b>Name:</b> {{data?.booking_id?.gold_member_id?.name || '-'}}
+                <ng-container *ngIf="data?.booking_id?.gold_member_id?.user_name">, {{data?.booking_id?.gold_member_id?.user_name}}</ng-container>
+                <br>
+                <b>Phone No.</b>
+                {{data?.booking_id?.gold_member_id?.country_code}}{{data?.booking_id?.gold_member_id?.phone_number || '-'}}
+                <br>
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="data?.booking_id?.gold_member_plus_id?.name ; else noData">
+                <b>Name:</b> {{data?.booking_id?.gold_member_plus_id?.name || '-'}}<ng-container *ngIf="data?.booking_id?.gold_member_plus_id?.user_name">, {{data?.booking_id?.gold_member_plus_id?.user_name}}</ng-container>
+                <br>
+                <b>Phone No.</b>
+                {{data?.booking_id?.gold_member_plus_id?.country_code}}{{data?.booking_id?.gold_member_plus_id?.phone_number || '-'}}
+                <br>
+              </ng-container>
+            </td>
+            <td>
+              <img [src]="imageOrNot(data)" style="cursor: pointer;" class="imgesnn" (click)="commonService.openLightBox(imageOrNot(data))"> 
+            </td>
+            <td>
+              <ng-container *ngIf="data?.booking_id?.name ; else noData">
+                <b>Name:</b> {{data?.booking_id?.name || '-'}}<br>
+                <b>Phone
+                  No.:</b> {{data?.booking_id?.country_code || '-'}}{{data?.booking_id?.phone_number || '-'}}
+                <br>
+              </ng-container>
+            </td>
+
+
+            <td>
+              <b>Account
+                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name || data?.gold_member_id?.account_name || data?.gold_member_plus_id?.account_name || '-'}}
+              <br>
+
+              <b>Account
+                Number:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number || data?.gold_member_id?.account_number || data?.gold_member_plus_id?.account_number || '-'}}
+              <br>
+              <b>Bank
+                Name:</b> {{data?.group_owner_id?.bank_name || data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || data?.gold_member_plus_id?.bank_name || '-'}}
+              <br>
+
+              <b>Sort
+                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code || data?.gold_member_id?.sort_code || data?.gold_member_plus_id?.sort_code || '-'}}
+              <br>
+            </td>
+
+
+            <!--            <td>-->
+            <!--              <b>Bank-->
+            <!--                Name:</b> {{data?.group_owner_id?.bank_name ||data?.gold_member_id?.bank_name || data?.agent_id?.bank_name || data?.member_id?.bank_name || '-'}}-->
+            <!--              <br>-->
+            <!--              <b>Account-->
+            <!--                Name:</b> {{data?.group_owner_id?.account_name || data?.agent_id?.account_name || data?.member_id?.account_name|| data?.gold_member_id?.account_name || '-'}}-->
+            <!--              <br>-->
+            <!--              <b>Bank-->
+            <!--                Account:</b> {{data?.group_owner_id?.account_number || data?.agent_id?.account_number || data?.member_id?.account_number|| data?.gold_member_id?.account_number || '-'}}-->
+            <!--              <br>-->
+            <!--              <b>Sort-->
+            <!--                Code:</b> {{data?.group_owner_id?.sort_code || data?.agent_id?.sort_code || data?.member_id?.sort_code|| data?.gold_member_id?.sort_code || '-'}}-->
+            <!--              <br>-->
+            <!--            </td>-->
+
+            <td>
+              <b>Property Price:</b> {{data?.booking_id?.commission_price}}<br>
+<!--              <b>Advance Payment:</b> {{data?.advanced_price}}<br>-->
+              <b>Total Commission:</b> {{data?.total_price - data?.advanced_price}}<br>
+              <b>Unit No.:</b> {{data?.unit_no || '-'}}
+            </td>
+            <td>
+              <button class="btn btn-danger small-btn" (click)="cancelRequest(data)"> Decline</button>
+
+              <button class="btn btn-success small-btn" (click)="openPaymentModal(data)">Approve</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <app-no-record *ngIf="!pagination.count"></app-no-record>
+      </div>
+
+      <div class="row" *ngIf="pagination.count">
+        <div class="col-sm-6">
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
+        </div>
+        <div class="col-sm-6 text-right">
+          <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
+                               nextLabel="Next"
+                               screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                               screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #noData>
+  -
+</ng-template>

@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-box box-header">
+      <div class="row">
+
+        <div class="col-md-6">
+          <h4 class="card-title  float-left">
+            Student Listing
+          </h4>
+        </div>
+
+        <div class="col-md-3 text-right sm-input-space">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search"
+                   [(ngModel)]="search" (keyup.enter)="searchFun()">
+            <span class="input-group-text" (click)="searchFun()">
+                <i class="fa fa-search"></i>
+              </span>
+          </div>
+        </div>
+        <div class="col-md-3 text-right sm-input-space">
+          <button (click)="addEditModalOpen()" class="btn btn-blue-outline">
+            Upload CSV
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3 mb-2">
+  <div class="col-md-12">
+    <div class="my-box">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact Number</th>
+            <th>Fathers Name</th>
+            <th>Mothers Name</th>
+            <th>Category</th>
+            <th>Major Course</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;">
+            <td> {{( pagination.pageNo - 1 ) * 10 + i + 1}} </td>
+
+            <td>
+              {{data?.name || '--'}}
+            </td>
+            <td>{{data?.email || '-'}}</td>
+            <td>{{data?.mobile_no || '-'}}</td>
+           
+            <td>
+            {{data?.father_name}}
+            </td>
+
+           
+            <td>
+              {{data?.mother_name}}
+            </td>
+
+            <td>
+              {{data?.category}}
+            </td>
+
+            <td>
+              {{data?.major_course}}
+            </td>
+
+
+            <td class="edit-section">
+              <div (click)="blockUnblock(data)">
+                <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>
+                <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>
+              </div>
+
+              <!-- <div (click)="addEditModalOpen(data)">
+                <i  class="cursor-pointer action-fa fa fa-edit"></i>
+              </div> -->
+              <div>
+                <i (click)="deleteData(data)" class="fa fa-trash"></i>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <app-no-record *ngIf="!pagination.count"></app-no-record>
+      </div>
+
+      <div class="row" *ngIf="pagination.count">
+        <div class="col-sm-6">
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
+        </div>
+        <div class="col-sm-6 text-right">
+          <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
+                               nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                               screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

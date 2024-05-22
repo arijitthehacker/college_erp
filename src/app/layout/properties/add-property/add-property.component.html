@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{!modalData ? 'Create New' : 'Edit'}} {{commonService.title}}
+  </h4>
+  <button class="btn-close" (click)="bsModalRef.hide()"></button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+
+
+
+
+
+    <div class="row">
+
+
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">{{!modalData ? 'Submit' : 'Update'}}</button>
+  </div>
+</form>

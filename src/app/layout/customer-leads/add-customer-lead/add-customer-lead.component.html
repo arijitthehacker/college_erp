@@ -1,0 +1,215 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{!modalData ? 'Create New' : 'Edit'}} Customer Lead
+  </h4>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <h3 class="top-label">Customer Details</h3>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">name</label>
+        <input [autofocus]="true" class="form-control" formControlName="name"   trim="blur"
+               type="text" placeholder="Enter name"/>
+        <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Contact Number</label>
+
+        <ngx-intl-tel-input
+          [cssClass]="'my-phone'"
+          [preferredCountries]="[CountryISO.Malaysia]"
+          [enableAutoCountrySelect]="false"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [selectFirstCountry]="false"  trim="blur"
+          [selectedCountryISO]="modalData?.iso_code || CountryISO.Malaysia"
+          [maxLength]="15"
+          [customPlaceholder]="'Enter Contact Number'"
+          [phoneValidation]="false"
+          formControlName="phone_number"
+        ></ngx-intl-tel-input>
+
+        <div class="text-error"
+             *ngIf="form.controls['phone_number'].errors?.required && showError">
+          {{message.message.required}}
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Email</label>
+        <input [autofocus]="true" class="form-control" formControlName="email"  trim="blur"
+               type="text" placeholder="Enter Email"/>
+        <div class="text-error" *ngIf="form.controls['email'].errors?.required && showError">
+          This field is required.
+        </div>
+        <div class="text-error" *ngIf="form.controls['email'].errors?.pattern && showError">
+          Please enter valid email!
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Gender</label>
+        <select class="form-control" formControlName="gender">
+          <option value="">Select Gender</option>
+          <option value="MALE">MALE</option>
+          <option value="FEMALE">FEMALE</option>
+          <option value="OTHER">OTHER</option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['gender'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Age</label>
+        <input [autofocus]="true" class="form-control" formControlName="age" appNumberOnly maxlength="2"
+               type="text" placeholder="Enter age"/>
+        <div class="text-error" *ngIf="form.controls['age'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <h3 class="top-label">User Details</h3>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 form-group">
+        <label class="required set-label"> Select Member </label>
+        <ng-multiselect-dropdown
+          [placeholder]="'Select Member'"
+          [settings]="dropdownSettings"
+          [data]="members"
+          formControlName="member_id"
+        >
+        </ng-multiselect-dropdown>
+
+        <!--        <select class="form-control" formControlName="member_id">-->
+        <!--          <option value="">Select Member</option>-->
+        <!--          <option *ngFor="let data of members" [value]="data._id">-->
+        <!--            {{data?.name}}-->
+        <!--          </option>-->
+        <!--        </select>-->
+
+        <div class="text-error" *ngIf="form.controls['member_id'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <!--      <div class="col-md-4 form-group">-->
+      <!--        <label class="required set-label"> Select Agent</label>-->
+      <!--        <select class="form-control" formControlName="agent_id">-->
+      <!--          <option value="">Select Agent</option>-->
+      <!--          <option *ngFor="let data of agents" [value]="data._id">-->
+      <!--            {{data?.name}}-->
+      <!--          </option>-->
+      <!--        </select>-->
+      <!--        <div class="text-error" *ngIf="form.controls['agent_id'].errors?.required && showError">-->
+      <!--          This field is required.-->
+      <!--        </div>-->
+      <!--      </div>-->
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <h3 class="top-label">Project & location</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 form-group">
+        <label class="required set-label"> Project Interested</label>
+
+        <ng-multiselect-dropdown
+           [placeholder]="'Select Project'"
+           [settings]="dropdownSettings1"
+           [data]="properties"
+           formControlName="peroperty_id"
+        >
+        </ng-multiselect-dropdown>
+
+<!--        <select class="form-control" formControlName="peroperty_id">-->
+<!--          <option value="">Select Project</option>-->
+<!--          <option *ngFor="let data of properties" [value]="data._id">-->
+<!--            {{data?.name}}-->
+<!--          </option>-->
+<!--        </select>-->
+        <div class="text-error" *ngIf="form.controls['peroperty_id'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label">Target Location </label>
+        <input [autofocus]="true" class="form-control" formControlName="peropert_location"  trim="blur"
+               type="text" placeholder="Enter Target Location "/>
+        <div class="text-error" *ngIf="form.controls['peropert_location'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label"> Purpose</label>
+        <select class="form-control" formControlName="pupose_id">
+          <option value="">Select Purpose</option>
+          <option *ngFor="let data of purposes" [value]="data._id">
+            {{data?.name}}
+          </option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['pupose_id'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="required set-label"> Budget</label>
+        <select class="form-control" formControlName="budget_id">
+          <option value="">Select Budget</option>
+          <option *ngFor="let data of budgets" [value]="data._id">
+            {{data?.currency}} {{data?.min_price}}
+            - {{data?.max_price}}
+          </option>
+        </select>
+        <div class="text-error" *ngIf="form.controls['budget_id'].errors?.required && showError">
+          This field is required.
+        </div>
+      </div>
+
+      <div class="col-md-4 form-group">
+        <label class="set-label">Notes </label>
+        <textarea class="form-control" formControlName="note"  trim="blur"
+                  type="text" placeholder="Enter Notes"></textarea>
+        <!--        <div class="text-error" *ngIf="form.controls['note'].errors?.required && showError">-->
+        <!--          This field is required.-->
+        <!--        </div>-->
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="bsModalRef.hide()" type="button" class="btn-cancel mr-3">Cancel</button>
+    <button type="submit" class="btn btn-blue-outline">{{!modalData ? 'Submit' : 'Update'}}</button>
+  </div>
+</form>

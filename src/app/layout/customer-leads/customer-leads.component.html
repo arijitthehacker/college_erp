@@ -1,0 +1,302 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-box box-header">
+      <div class="row">
+
+        <div class="col-md-3">
+          <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
+          </h4>
+        </div>
+
+        <div class="col-md-3 text-right sm-input-space">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search"
+                   [(ngModel)]="search" (keyup.enter)="searchFun()">
+            <span class="input-group-text" (click)="searchFun()">
+                <i class="fa fa-search"></i>
+              </span>
+          </div>
+        </div>
+        <div class="col-md-3 text-right sm-input-space">
+          <select class="form-control" [(ngModel)]="status" (change)="pagination.pageNo =1;getData()">
+            <!--            <option value="">All Status</option>-->
+            <!--            <option value="PENDING">PENDING</option>-->
+            <!--            <option value="ACCEPTED">ACCEPTED</option>-->
+            <!--            <option value="NOT_ASSIGNED">NOT ASSIGNED</option>-->
+            <!--            <option value="IN_PROGRESS">IN PROGRESS</option>-->
+            <!--            <option value="REJECTED">REJECTED</option>-->
+            <!--            <option value="COMPLETED">COMPLETED</option>-->
+
+
+            <option value="">All Status</option>
+            <option value="pending">Waiting for customer confirmation</option>
+            <option value="accepted_buy_customer">Waiting for agent assignment</option>
+            <option value="assigned_agent">Contact lead</option>
+            <option value="contact_lead">Appointment</option>
+            <option value="appointment">Booking</option>
+            <option value="booking">Loan approval</option>
+
+            <!--            <option value="loan_approved_rejected">Loan Approved Rejected</option>-->
+            <option value="loan_approved">SPA Signed</option>
+            <option value="spa_signed">Payout pending</option>
+            <option value="pay_completed">Close</option>
+            <option value="rejected">Rejected</option>
+            <!--            <ng-container *ngIf="data?.last_status_name === 'Contact Lead'">Waiting for customer confirmation-->
+            <!--            </ng-container>-->
+            <!--            <ng-container *ngIf="data?.last_status_name === 'accepted_buy_customer'">Waiting to agent assign-->
+            <!--            </ng-container>-->
+            <!--            <ng-container *ngIf="data?.last_status_name === 'assigned_agent'"> Contact lead</ng-container>-->
+            <!--            <ng-container *ngIf="data?.last_status_name === 'contact_lead'">Rejected</ng-container>-->
+
+          </select>
+        </div>
+
+        <div class="col-md-3 text-right sm-input-space">
+          <button (click)="addEditModalOpen()" class="btn btn-blue-outline float-right">
+            Create New Customer Lead
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3 mb-2">
+  <div class="col-md-12">
+    <div class="my-box">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Customer Name</th>
+            <th>Property Name</th>
+            <th>Member Info</th>
+            <th>Founder Info</th>
+            <th>Agent Info</th>
+            <th>Ambassador Info</th>
+            <th>Ambassador Plus Info</th>
+            <th>Commission Status</th>
+            <th>Property final price/Unit No.</th>
+            <th style="min-width: 130px">Status</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+             *ngFor="let data of allData | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.pageNo, totalItems: pagination.count };let i = index;"
+          >
+            <td> {{(pagination.pageNo - 1) * 10 + i + 1}} </td>
+            <td>
+              <a (click)="openMemberDetails(data, 'Customer',1)"
+                 class="my-link">{{data?.name || '-'}}</a>
+            </td>
+            <td>
+              <a (click)="openProDetails(data?.peroperty_id)"
+                 class="my-link">{{data?.peroperty_id?.name || '-'}}</a>
+            </td>
+            <td>
+              <a (click)="openMemberDetails(data?.member_id, 'Member',2)"
+                 class="my-link">{{data?.member_id?.name || '-'}}, {{data?.member_id?.user_name}}</a>
+            </td>
+
+            <td>
+              <a (click)="openMemberDetails(data?.group_owner_id, 'Founder',3)"
+                 class="my-link">{{data?.group_owner_id?.name || '-'}}</a>
+              <!--              {{data?.group_owner_id?.name || '-'}}-->
+            </td>
+            <td>
+              <ng-container *ngIf="!data?.is_agent_my_self">
+                <a (click)="openMemberDetails(data?.agent_id, 'Managed By ', 4)"
+                   *ngIf="data?.agent_id?.name"
+                   class="my-link">{{data?.agent_id?.name || '-'}}</a>
+                <ng-container *ngIf="!data?.agent_id?.name">-</ng-container>
+              </ng-container>
+
+              <ng-container *ngIf="data?.is_agent_my_self">
+                <a (click)="openMemberDetails(data?.group_owner_id, 'Managed By', 3)"
+                   class="my-link">{{data?.group_owner_id?.name || '-'}}</a>
+              </ng-container>
+            </td>
+
+            <td>
+              <ng-container *ngIf="!data?.gold_member_id?.name">-</ng-container>
+              <a (click)="openMemberDetails(data?.gold_member_id, 'Ambassador',6)"
+                 *ngIf="data?.gold_member_id?.name"
+                 class="my-link">{{data?.gold_member_id?.name || '-'}}<span *ngIf="data?.gold_member_id?.user_name">,
+                {{data?.gold_member_id?.user_name}}</span>
+              </a>
+
+            </td>
+
+            <td>
+              <ng-container *ngIf="!data?.gold_member_plus_id?.name">-</ng-container>
+              <a (click)="openMemberDetails(data?.gold_member_plus_id, 'Ambassador Plus',7)"
+                 *ngIf="data?.gold_member_plus_id?.name"
+                 class="my-link">{{data?.gold_member_plus_id?.name || '-'}}<span *ngIf="data?.gold_member_plus_id?.user_name">,
+                {{data?.gold_member_plus_id?.user_name}}</span>
+              </a>
+
+            </td>
+
+            <td>
+              <b>Founder:</b> {{ data?.group_payment_id ?  (data?.group_payment_status|titlecase) : '-' }}
+              <br>
+              <b>Agent:</b> {{data?.agent_payment_id ? (data?.agent_payment_status|titlecase): '-'}}<br>
+              <b>Member:</b> {{data?.member_payment_id ? (data?.member_payment_status |titlecase): '-'}}<br>
+              <b>Ambassador:</b> {{data?.gold_member_payment_id ? (data?.gold_member_payment_status |titlecase) : '-' }}<br>
+              <b>Ambassador Plus:</b> {{data?.gold_member_plus_payment_id ? (data?.gold_member_plus_payment_status |titlecase) : '-' }}
+
+            </td>
+           
+            <td>
+              <b>Final Price.:</b> {{data?.commission_price || '-'}}<br>
+              <b>Unit No.:</b> {{data?.unit_no || '-'}}<br></td>
+
+            <td>
+
+              <ng-container *ngIf="!data?.reject_reason">
+                <label class="set-status-tab"
+                       [ngClass]="{
+                'Contact_Lead':data?.last_status_name === 'Contact Lead',
+                'accepted_buy_customer':data?.last_status_name === 'accepted_buy_customer',
+                'assigned_agent': data?.last_status_name === 'assigned_agent',
+                 'contact_lead':data?.last_status_name === 'contact_lead',
+                 'contact_lead_rejected':data?.last_status_name === 'contact_lead_rejected',
+                 'booking':data?.last_status_name === 'booking',
+                 'appointment':data?.last_status_name === 'appointment',
+                 'booking_rejected':data?.last_status_name === 'booking_rejected',
+                 'appointment_rejected':data?.last_status_name === 'appointment_rejected',
+                 'loan_approved':data?.last_status_name === 'loan_approved',
+                 'loan_approved_rejected':data?.last_status_name === 'loan_approved_rejected',
+                 'spa_signed':data?.last_status_name === 'spa_signed',
+                 'payout_rejected':data?.last_status_name === 'payout_rejected',
+                 'spa_signed_rejected':data?.last_status_name === 'spa_signed_rejected',
+                 'pay_completed':data?.last_status_name === 'pay_completed'
+            }">
+                  <ng-container *ngIf="data?.last_status_name === 'Contact Lead'">Waiting for customer confirmation
+                  </ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'accepted_buy_customer'">Waiting for agent assignment
+                  </ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'assigned_agent'"> Contact lead</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'contact_lead'">Appointment</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'contact_lead_rejected'">Contact Lead Rejected
+                  </ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'appointment'">Booking</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'appointment_rejected'">Appointment Rejected
+                  </ng-container>
+                  <!--                <ng-container *ngIf="data?.last_status_name === 'rejected'">Rejected</ng-container>-->
+                  <ng-container *ngIf="data?.last_status_name === 'booking'">Loan approval</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'booking_rejected'">Booking Rejected</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'loan_approved'">SPA Signed</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'loan_approved_rejected'">Loan Rejected</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'spa_signed'">Payout Pending</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'payout_rejected'">Payout Rejected</ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'spa_signed_rejected'">SPA Signed Rejected
+                  </ng-container>
+                  <ng-container *ngIf="data?.last_status_name === 'pay_completed'">Close</ng-container>
+                </label>
+              </ng-container>
+
+
+              <ng-container *ngIf="data?.reject_reason">
+                <label class="set-status-tab payout_rejected">{{data?.reject_reason || '-'}}</label>
+              </ng-container>
+            </td>
+
+            <td class="dots-area">
+              <div class="btn-group" dropdown>
+                <i dropdownToggle class=" fa fa-ellipsis-v"
+                   aria-controls="dropdown-animated" aria-hidden="true" style="cursor: pointer;">
+                </i>
+                <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+                    role="menu" aria-labelledby="button-animated">
+
+
+                  <!--                  <ng-container *ngIf="data?.booking_status === 'PENDING'">-->
+                  <!--                    <li role="menuitem">-->
+                  <!--                      <a class="dropdown-item" (click)="acceptReject(data,'APPROVED')">Accept</a>-->
+                  <!--                    </li>-->
+                  <!--                    <li role="menuitem">-->
+                  <!--                      <a class="dropdown-item" (click)="acceptReject(data,'REJECTED')">Reject</a>-->
+                  <!--                    </li>-->
+                  <!--                  </ng-container>-->
+
+                  <li role="menuitem"><a class="dropdown-item" (click)="openLogs(data)">
+                    View Change Log</a></li>
+                  <!--                  !data?.agent_id?._id &&-->
+                  <!--                  <li role="menuitem" *ngIf="-->
+                  <!--                  (data?.booking_status === 'ACCEPTED' || data?.booking_status === 'IN_PROGRESS')">-->
+                  
+                  <li role="menuitem"
+                      *ngIf="(data?.booking_status != 'PENDING' && data?.booking_status != 'COMPLETED') && data?.agent_payment_status != 'COMPLETED'">
+                    <a class="dropdown-item" (click)="assignBooking(data)">Assign to agent</a>
+                  </li>
+                  <li role="menuitem">
+                    <a class="dropdown-item" (click)="openStatus(data)">View Status</a>
+                  </li>
+                  <li role="menuitem">
+                    <a class="dropdown-item" (click)="openChangeStatus(data)">Update Status</a>
+                  </li>
+                  <!--     data?.last_status_name !== 'pay_completed' && data?.last_status_name !== 'Contact Lead' && data?.agent_payment_status != 'COMPLETED'-->
+                  <li role="menuitem"
+                      *ngIf="checkTrue(data)"
+                      >
+                    <a class="dropdown-item" (click)="addFinal(data)">{{data?.commission_price ? 'Edit' : 'Add'}} final
+                      property price/Unit No.</a>
+                  </li>
+                  <li role="menuitem" *ngIf="data?.booking_status != 'COMPLETED' && data?.agent_payment_status != 'COMPLETED'" (click)="addEditModalOpen(data)">
+                    <a class="dropdown-item">Edit</a>
+                  </li>
+                  <li role="menuitem" (click)="deleteData(data)">
+                    <a class="dropdown-item">Delete</a>
+                  </li>
+
+                </ul>
+              </div>
+            </td>
+
+            <!--              <td>-->
+            <!--                <app-see-more [msg]="data?.description"></app-see-more>-->
+            <!--              </td>-->
+
+            <!--              <td class="edit-section">-->
+            <!--                &lt;!&ndash;                <div (click)="blockUnblock(data)">&ndash;&gt;-->
+            <!--                &lt;!&ndash;                  <i *ngIf="data?.is_blocked" class="fa fa-lock"></i>&ndash;&gt;-->
+            <!--                &lt;!&ndash;                  <i *ngIf="!data?.is_blocked" class="fa fa-unlock"></i>&ndash;&gt;-->
+            <!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+            <!--                &lt;!&ndash;                <span class="fa-span  ml-3">&ndash;&gt;-->
+            <!--                &lt;!&ndash;                    <i (click)="addEditModalOpen(data)" class="cursor-pointer action-fa fa fa-edit"></i>&ndash;&gt;-->
+            <!--                &lt;!&ndash;                  </span>&ndash;&gt;-->
+            <!--                <div>-->
+            <!--                  <i (click)="deleteData(data)" class="fa fa-trash"></i>-->
+            <!--                </div>-->
+            <!--              </td>-->
+          </tr>
+          </tbody>
+        </table>
+        <app-no-record *ngIf="!pagination.count"></app-no-record>
+      </div>
+
+      <div class="row" *ngIf="pagination.count">
+        <div class="col-sm-6">
+          <p> Showing {{ pagination.count === 0 ? 0 : pagination.skip + 1}} to
+            {{commonService.cal(pagination.pageNo, pagination.limit, pagination.count)}} out
+            of {{pagination.count}} entries </p>
+        </div>
+        <div class="col-sm-6 text-right">
+          <pagination-controls (pageChange)="pagination.pageNo = $event;getData()" previousLabel="Previous"
+                               nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                               screenReaderCurrentLabel="You're on page"></pagination-controls>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 
+<ng-template #noData>
+  -
+</ng-template> -->
