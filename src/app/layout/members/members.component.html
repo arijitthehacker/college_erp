@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="my-box box-header">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
           <h4 class="card-title  float-left">{{commonService?.breadcrumb}}
           </h4>
         </div>
@@ -14,6 +14,11 @@
                 <i class="fa fa-search"></i>
               </span>
           </div>
+        </div>
+        <div class="col-md-3 text-right sm-input-space">
+          <button (click)="addEditModalOpen()" class="btn btn-blue-outline">
+            Create Course
+          </button>
         </div>
       </div>
     </div>
@@ -28,13 +33,7 @@
           <thead>
           <tr>
             <th>Sr. No.</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact Number</th>
-            <th>Bank Details</th>
-            <th>Invite Codes</th>
-            <th>Ambassador</th>
+            <th>Course Name</th>
             <th>Action</th>
           </tr>
           </thead>

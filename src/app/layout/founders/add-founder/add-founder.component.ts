@@ -22,6 +22,7 @@ export class AddFounderComponent implements OnInit {
   form: FormGroup;
   public onClose: Subject<{}> = new Subject();
   modalData: any;
+  csvFile: any;
 
   constructor(private fb: FormBuilder, public message: MessageService, private http: HttpService,
               public bsModalRef: BsModalRef, public commonService: CommonService) {
@@ -70,9 +71,29 @@ export class AddFounderComponent implements OnInit {
     });
   }
 
-  selectImage(event: any, id) {
-    this.http.uploadImageService(ApiUrl.upload_api, event, id).subscribe(response => {
-      this.form.controls.image.patchValue(response.data.original);
+  // csv_upload
+// 
+fileName:any
+onFileChange(event: any) {
+  const file = event.target.files[0];
+  if (file && file.type === 'text/csv') {
+    this.csvFile = file;
+    console.log(this.csvFile,'..this.csvFilethis.csvFile')
+  } else {
+    alert('Please select a valid CSV file.');
+  }
+}
+
+
+  selectImage() {
+    const obj = {
+      file:this.csvFile
+    }
+    this.http.uploadImageService(ApiUrl.csv_upload, obj).subscribe(response => {
+      console.log(response)
+      this.onClose.next(null);
+      this.message.toast('success','Added Successfully');
+      this.bsModalRef.hide();
     }, () => {
     });
   }

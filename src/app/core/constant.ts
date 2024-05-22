@@ -1,6 +1,6 @@
 export const CONSTANT = {
-  SITE_NAME: 'Referly Admin',
-  tokenKey: 'referly_token',
+  SITE_NAME: 'College Erp',
+  tokenKey: 'College_token',
   // email_pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
   email_pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
   no_image: '/assets/images/no-img.webp'
@@ -25,10 +25,10 @@ export const PROPERTY_TYPES = [
 export const SIDEBAR = [
   {
     path: '', name: 'User\'s Profile', icon: 'fa-users', children: [
-      {path: 'owners', name: 'Owners', icon: 'fa fa-connectdevelop'},
-      {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
-      {path: 'members', name: 'Members', icon: 'fa fa-user-o'},
-      {path: 'developers', name: 'Developers', icon: 'fa fa-gavel'}
+      {path: 'owners', name: 'student-listing', icon: 'fa fa-connectdevelop'},
+      // {path: 'agents', name: 'Agents', icon: 'fa fa-user'},
+      // {path: 'members', name: 'Members', icon: 'fa fa-user-o'},
+      // {path: 'developers', name: 'Developers', icon: 'fa fa-gavel'}
     ]
   },
   {
@@ -89,135 +89,135 @@ export const SIDEBAR = [
 export const ROLES = [
   {
     path: '', id: 'users_profiles', name: 'User\'s Profile', isSelected: false, icon: 'fa-users', children: [
-      {path: 'owners', id: 'users_profiles_owners', name: 'Founders', icon: 'fa fa-connectdevelop', isSelected: false},
-      {path: 'agents', id: 'users_profiles_agents', name: 'Agents', icon: 'fa fa-user', isSelected: false},
-      {path: 'members', id: 'users_profiles_members', name: 'Members', icon: 'fa fa-user-o', isSelected: false},
-      {path: 'developers', id: 'users_profiles_developers', name: 'Developers', icon: 'fa fa-gavel', isSelected: false}
+      {path: 'owners', id: 'users_profiles_owners', name: 'Student-Listing', icon: 'fa fa-connectdevelop', isSelected: false},
+      {path: 'agents', id: 'users_profiles_agents', name: 'Approvals', icon: 'fa fa-user', isSelected: false},
+      {path: 'members', id: 'users_profiles_members', name: 'Courses', icon: 'fa fa-user-o', isSelected: false},
+      {path: 'developers', id: 'users_profiles_developers', name: 'Session', icon: 'fa fa-gavel', isSelected: false}
     ]
   },
-  {
-    path: '', id: 'properties', name: 'Property Management', icon: 'fa-building', isSelected: false, children: [
-      {
-        path: 'property-categories',
-        id: 'property_category',
-        name: 'Property Categories',
-        icon: 'fa fa-rocket',
-        isSelected: false
-      },
-      {path: 'properties', id: 'property_list', name: 'Property List', icon: 'fa fa-building', isSelected: false},
-      {
-        path: 'add-new-property',
-        id: 'property_create',
-        name: 'Create Property',
-        icon: 'fa fa-plus-square-o',
-        isSelected: false
-      },
-      {path: 'commissions', id: 'property_commission', name: 'Commissions', icon: 'fa fa-money', isSelected: false},
-      {path: 'banners', id: 'property_banners', name: 'Banners', icon: 'fa fa-image', isSelected: false}
-    ]
-  },
-  {
-    path: '',
-    id: 'customer_management',
-    name: 'Customer Management',
-    icon: 'fa-bar-chart',
-    isSelected: false,
-    children: [
-      {
-        path: 'customer-leads',
-        id: 'customer_management_leads',
-        name: 'Customer Leads',
-        icon: 'fa fa-windows',
-        isSelected: false
-      }
-    ]
-  },
-  {
-    path: '',
-    id: 'location_managemant',
-    name: 'Location Management',
-    icon: 'fa-map-marker',
-    isSelected: false,
-    children: [
-      {
-        path: 'location/states',
-        id: 'location_managemant_states',
-        name: 'States',
-        icon: 'fa fa-location-arrow',
-        isSelected: false
-      },
-      {
-        path: 'location/cities',
-        id: 'location_managemant_cities',
-        name: 'Cities',
-        icon: 'fa fa-database',
-        isSelected: false
-      }
-    ]
-  },
+  // // {
+  // //   path: '', id: 'properties', name: 'Property Management', icon: 'fa-building', isSelected: false, children: [
+  // //     {
+  // //       path: 'property-categories',
+  // //       id: 'property_category',
+  // //       name: 'Property Categories',
+  // //       icon: 'fa fa-rocket',
+  // //       isSelected: false
+  // //     },
+  // //     {path: 'properties', id: 'property_list', name: 'Property List', icon: 'fa fa-building', isSelected: false},
+  // //     {
+  // //       path: 'add-new-property',
+  // //       id: 'property_create',
+  // //       name: 'Create Property',
+  // //       icon: 'fa fa-plus-square-o',
+  // //       isSelected: false
+  // //     },
+  // //     {path: 'commissions', id: 'property_commission', name: 'Commissions', icon: 'fa fa-money', isSelected: false},
+  // //     {path: 'banners', id: 'property_banners', name: 'Banners', icon: 'fa fa-image', isSelected: false}
+  // //   ]
+  // // },
+  // // {
+  // //   path: '',
+  // //   id: 'customer_management',
+  // //   name: 'Customer Management',
+  // //   icon: 'fa-bar-chart',
+  // //   isSelected: false,
+  // //   children: [
+  // //     {
+  // //       path: 'customer-leads',
+  // //       id: 'customer_management_leads',
+  // //       name: 'Customer Leads',
+  // //       icon: 'fa fa-windows',
+  // //       isSelected: false
+  // //     }
+  // //   ]
+  // // },
+  // // {
+  // //   path: '',
+  // //   id: 'location_managemant',
+  // //   name: 'Location Management',
+  // //   icon: 'fa-map-marker',
+  // //   isSelected: false,
+  // //   children: [
+  // //     {
+  // //       path: 'location/states',
+  // //       id: 'location_managemant_states',
+  // //       name: 'States',
+  // //       icon: 'fa fa-location-arrow',
+  // //       isSelected: false
+  // //     },
+  // //     {
+  // //       path: 'location/cities',
+  // //       id: 'location_managemant_cities',
+  // //       name: 'Cities',
+  // //       icon: 'fa fa-database',
+  // //       isSelected: false
+  // //     }
+  // //   ]
+  // // },
 
-  {
-    path: 'recycle-bin', id: 'recycle_bin', name: 'Recycle Bin', icon: 'fa-recycle', isSelected: false
-  },
+  // {
+  //   path: 'recycle-bin', id: 'recycle_bin', name: 'Recycle Bin', icon: 'fa-recycle', isSelected: false
+  // },
 
-  {
-    path: '', id: 'controle_management', name: 'Control Management', icon: 'fa-sliders', isSelected: false, children: [
-      {path: 'settings', id: 'controle_management_settings', name: 'Settings', icon: 'fa fa-cog', isSelected: false},
-      {path: 'admins', id: 'admins', name: 'Admins', icon: 'fa fa-user', isSelected: false, notShowInAdd: true},
-      {
-        path: 'purposes', id: 'controle_management_peroperty_pupose', name: 'Property Purposes',
-        icon: 'fa fa-user-secret', isSelected: false
-      },
-      {
-        path: 'reasons', id: 'controle_management_reject_reason', name: 'Reject Reasons',
-        icon: 'fa fa-usb', isSelected: false
-      },
-      {
-        path: 'budgets', id: 'controle_management_property_budgets',
-        name: 'Property Budgets', icon: 'fa fa-h-square', isSelected: false
-      }
+  // {
+  //   path: '', id: 'controle_management', name: 'Control Management', icon: 'fa-sliders', isSelected: false, children: [
+  //     {path: 'settings', id: 'controle_management_settings', name: 'Settings', icon: 'fa fa-cog', isSelected: false},
+  //     {path: 'admins', id: 'admins', name: 'Admins', icon: 'fa fa-user', isSelected: false, notShowInAdd: true},
+  //     {
+  //       path: 'purposes', id: 'controle_management_peroperty_pupose', name: 'Property Purposes',
+  //       icon: 'fa fa-user-secret', isSelected: false
+  //     },
+  //     {
+  //       path: 'reasons', id: 'controle_management_reject_reason', name: 'Reject Reasons',
+  //       icon: 'fa fa-usb', isSelected: false
+  //     },
+  //     {
+  //       path: 'budgets', id: 'controle_management_property_budgets',
+  //       name: 'Property Budgets', icon: 'fa fa-h-square', isSelected: false
+  //     }
 
-    ]
-  },
+  //   ]
+  // },
 
-  {
-    path: '', id: 'accounts', name: 'Accounts', icon: 'fa-money', isSelected: false, children: [
-      {
-        path: 'advance-request', id: 'accounts_advanced', name: 'Advance request',
-        icon: 'fa fa-shopping-cart', isSelected: false
-      },
-      {
-        path: 'pending-payment', id: 'accounts_pending', name: 'Pending payment',
-        icon: 'fa fa-money', isSelected: false
-      },
-      {
-        path: 'transaction-history', id: 'accounts_history',
-        name: 'History transactions', icon: 'fa fa-history', isSelected: false
-      }
-    ]
-  },
+  // {
+  //   path: '', id: 'accounts', name: 'Accounts', icon: 'fa-money', isSelected: false, children: [
+  //     {
+  //       path: 'advance-request', id: 'accounts_advanced', name: 'Advance request',
+  //       icon: 'fa fa-shopping-cart', isSelected: false
+  //     },
+  //     {
+  //       path: 'pending-payment', id: 'accounts_pending', name: 'Pending payment',
+  //       icon: 'fa fa-money', isSelected: false
+  //     },
+  //     {
+  //       path: 'transaction-history', id: 'accounts_history',
+  //       name: 'History transactions', icon: 'fa fa-history', isSelected: false
+  //     }
+  //   ]
+  // },
 
-  {
-    path: 'info-pages', id: 'content_management', name: 'Content Management',
-    icon: 'fa-info-circle', isSelected: false, children: [
-      {path: 'privacy', id: 'content_management_privacy', name: 'Privacy Policy', isSelected: false},
-      {path: 'terms', id: 'content_management_terms_condition', name: 'Terms & Conditions', isSelected: false},
-      {path: 'about', id: 'content_management_about', name: 'About Us', isSelected: false}
-      // {path: 'info-pages/privacy-settings', name: 'Privacy Settings'}
-    ]
-  }, {
-    path: '', id: 'profile', name: 'Profile', icon: 'fa-id-card-o', isSelected: false, children: [
-      {path: 'profile', id: 'profile_update', name: 'Update Profile', icon: 'fa-id-card-o', isSelected: false},
-      {
-        path: 'change-password',
-        id: 'profile_change_password',
-        name: 'Change Password',
-        icon: 'fa-key',
-        isSelected: false
-      },
-      {path: '', id: 'profile_logout', name: 'Logout', icon: 'fa-sign-out', isSelected: false}
-    ]
-  }
+  // {
+  //   path: 'info-pages', id: 'content_management', name: 'Content Management',
+  //   icon: 'fa-info-circle', isSelected: false, children: [
+  //     {path: 'privacy', id: 'content_management_privacy', name: 'Privacy Policy', isSelected: false},
+  //     {path: 'terms', id: 'content_management_terms_condition', name: 'Terms & Conditions', isSelected: false},
+  //     {path: 'about', id: 'content_management_about', name: 'About Us', isSelected: false}
+  //     // {path: 'info-pages/privacy-settings', name: 'Privacy Settings'}
+  //   ]
+  // }, {
+  //   path: '', id: 'profile', name: 'Profile', icon: 'fa-id-card-o', isSelected: false, children: [
+  //     {path: 'profile', id: 'profile_update', name: 'Update Profile', icon: 'fa-id-card-o', isSelected: false},
+  //     {
+  //       path: 'change-password',
+  //       id: 'profile_change_password',
+  //       name: 'Change Password',
+  //       icon: 'fa-key',
+  //       isSelected: false
+  //     },
+  //     {path: '', id: 'profile_logout', name: 'Logout', icon: 'fa-sign-out', isSelected: false}
+  //   ]
+  // }
 ];
 
 export const Currencies = [

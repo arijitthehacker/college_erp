@@ -42,16 +42,16 @@ export class HttpService {
   }
 
   // @ts-ignore
-  uploadImageService(url: string, event, id, backGroundUrl?: boolean) {
-
-    if (event.target.files && event.target.files[0]) {
+  uploadImageService(url: string, event, id?, backGroundUrl?: boolean) {
+    console.log(event)
+    if (event && event.file) {
       const apiUrl = `${environment.apiBaseUrl}${url}`;
       const fd = new FormData();
-      fd.append('file', event.target.files[0]);
+      fd.append('file', event.file);
       if (backGroundUrl) {
         this.loader.backGroundUrls.push(apiUrl);
       }
-      document.getElementById(id)[`value`] = '';
+      // document.getElementById(id)[`value`] = '';
       return this.http.post(apiUrl, fd).pipe(map((response: any) => {
         return response;
       }));

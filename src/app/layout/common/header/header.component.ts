@@ -28,40 +28,40 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.commonService.getProfileData();
-    this.getNotifications();
-    this.getProfileData();
+    // this.commonService.getProfileData();
+    // this.getNotifications();
+    // this.getProfileData();
 
-    this.requestPermission();
-    this.listen();
+    // this.requestPermission();
+    // this.listen();
 
   }
 
   requestPermission() {
     const messaging = getMessaging();
-    getToken(messaging,
-      {vapidKey: environment.firebase.vapidKey}).then(
-      (currentToken) => {
-        if (currentToken) {
-          this.device_token = currentToken;
-          localStorage.setItem('device_token', currentToken);
-          this.saveToken();
-        } else {
-          console.log('No registration token available. Request permission to generate one.');
-        }
-      }).catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-    });
+    // getToken(messaging,
+    //   {vapidKey: environment.firebase.vapidKey}).then(
+    //   (currentToken) => {
+    //     if (currentToken) {
+    //       this.device_token = currentToken;
+    //       localStorage.setItem('device_token', currentToken);
+    //       this.saveToken();
+    //     } else {
+    //       console.log('No registration token available. Request permission to generate one.');
+    //     }
+    //   }).catch((err) => {
+    //   console.log('An error occurred while retrieving token. ', err);
+    // });
   }
 
-  listen() {
-    const messaging = getMessaging();
-    onMessage(messaging, (payload) => {
-      console.log('Message received. ', payload);
-      this.message = payload;
-      this.messageService.toast('info', this.message.notification.title);
-    });
-  }
+  // listen() {
+  //   const messaging = getMessaging();
+  //   onMessage(messaging, (payload) => {
+  //     console.log('Message received. ', payload);
+  //     this.message = payload;
+  //     this.messageService.toast('info', this.message.notification.title);
+  //   });
+  // }
 
   saveToken() {
     let obj: any = {

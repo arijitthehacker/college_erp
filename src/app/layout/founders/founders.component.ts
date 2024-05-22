@@ -40,24 +40,13 @@ export class FoundersComponent implements OnInit {
   getData() {
     this.pagination.skip = (this.pagination.pageNo - 1) * this.pagination.limit;
     let obj: any = {
-      skip: this.pagination.skip
+      skip_num: this.pagination.skip
     };
     if (this.search) {
       obj.search = this.search;
     }
 
-    this.http.getData(ApiUrl.list_group_owner, obj).subscribe(res => {
-
-      res.data.data.forEach((val) => {
-        let showCode = '';
-        val.invite_codes.forEach((val1, key1) => {
-          showCode = showCode + val1.invite_code;
-          if (key1 != val.invite_codes.length - 1) {
-            showCode = showCode + ', ';
-          }
-        });
-        val.showCode = showCode;
-      });
+    this.http.getData(ApiUrl.user_listing, obj).subscribe(res => {
       this.allData = res.data.data;
       this.pagination.count = res.data.total_count;
 

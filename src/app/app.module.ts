@@ -21,7 +21,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { initializeApp } from "firebase/app";
-initializeApp(environment.firebase);
+// initializeApp(environment.firebase);
 
 
 @NgModule({

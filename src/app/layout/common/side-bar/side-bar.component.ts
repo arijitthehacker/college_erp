@@ -23,17 +23,12 @@ export class SideBarComponent implements OnInit {
   constructor(private message: MessageService, private modalService: BsModalService, private router: Router,
               public activatedRoute: ActivatedRoute, public commonService: CommonService) {
 
-    if (localStorage.getItem('profileData')) {
-      this.profileData = JSON.parse(localStorage.getItem('profileData'));
-      if (this.profileData.admin_type === 'SUB_ADMIN') {
-        this.setSubSideBar(this.profileData.web_roles);
-      } else {
-        // this.sideBar = ROLES;
-        this.setSuperAdminSideBar(this.profileData.web_roles);
-      }
-    }
+              }
 
+  ngOnInit() {
+    console.log(this.sideBar,'....sidebar')
     this.selectedRoute = this.router.url;
+
     this.setSelectedIndex();
     let openedIndex = 0;
     this.sideBar.forEach((val, key) => {
@@ -41,6 +36,7 @@ export class SideBarComponent implements OnInit {
         val.children.forEach((val1) => {
           if (this.router.url === '/' + val1.path) {
             openedIndex = key;
+            console.log(openedIndex)
           }
         });
       }
@@ -48,37 +44,10 @@ export class SideBarComponent implements OnInit {
     this.optionClick(openedIndex, 2);
   }
 
-  setSubSideBar(data) {
-    let sideBar: any = [];
-    this.sideBar.forEach((val, key) => {
-      let children: any = [];
-      data?.forEach((val1, key1) => {
-        val?.children?.forEach((val2, key2) => {
-          val1?.sub_modules?.forEach((val3, key3) => {
-            if (val2.id == val3.name) {
-              children.push(val2);
-            }
-          });
-        });
-        val.children1 = children?.length ? children : null;
-        if (val.id === val1.name) {
-          sideBar.push(val);
-        }
-      });
-    });
-    this.sideBar = sideBar;
-    console.log(this.sideBar,'....sidebar')
-  }
+  subSelectedIndex: any
 
-  setSuperAdminSideBar(data) {
-    let sideBar: any = [];
-    this.sideBar.forEach((val, key) => {
-      val.children1 = val?.children;
-    });
-  }
-
-  ngOnInit() {
-
+  selectedIndexSub(index) {
+  this.subSelectedIndex = index
   }
 
   setSelectedIndex() {
@@ -97,30 +66,20 @@ export class SideBarComponent implements OnInit {
     });
   }
 
-
-  optionClick(index, flag?,childIndex?:any) {
+  optionClick(index, flag?) {
     if (this.selectedIndex !== index) {
       this.sideBar.forEach((val) => {
         val.isCollapsed = false;
       });
     }
-    if (flag === 2) { // If a parent item is clicked
-      this.childreenIndex = 0;
-    } else {
-      this.childreenIndex = childIndex !== undefined ? childIndex : 0;
-    }
     this.selectedIndex = index;
-
-    console.log(this.childreenIndex,'.selcetedindexx')
-    console.log(this.sideBar,'....sidebar')
-    
+    console.log(this.selectedIndex)
     switch (flag) {
       case 1:
         this.showSideBar = false;
         break;
       case 2:
-
-      console.log(index,",........s")
+        console.log('asdasd')
         this.sideBar[index].isCollapsed = !this.sideBar[index].isCollapsed;
         break;
       case 3:
@@ -138,13 +97,6 @@ export class SideBarComponent implements OnInit {
         document.getElementById('app-content').style['margin-left'] = '0';
       }
     }
-
-    setTimeout(() => {
-      const routePath = this.childreenIndex !== undefined && this.sideBar[index]?.children1[this.childreenIndex]?.path ?
-        '/' + this.sideBar[index]?.path + '/' + this.sideBar[index]?.children1[this.childreenIndex]?.path :
-        '/' + this.sideBar[index]?.path;
-      this.router.navigateByUrl(routePath);
-    }, 0); 
   }
 
   // optionClick(index?) {
@@ -163,12 +115,5 @@ export class SideBarComponent implements OnInit {
   //
   //   // }
   // }
-
-  changePassword() {
-    this.modalService.show(ChangePasswordComponent, {
-      backdrop: 'static',
-      keyboard: false
-    });
-  }
 
 }

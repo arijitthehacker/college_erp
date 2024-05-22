@@ -11,6 +11,7 @@ import { AddAgentComponent } from './add-agent/add-agent.component';
 import {
   ChangeMemberPasswordComponent
 } from '../../shared/components/change-member-password/change-member-password.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-accounts',
@@ -22,17 +23,49 @@ export class AgentsComponent implements OnInit {
   date = '';
   search = '';
   pagination = new PaginationControls();
-
-  constructor(private http: HttpService, private message: MessageService, public commonService: CommonService,
+  form: FormGroup;
+  form1: FormGroup;
+  showErrorPre: boolean;
+  showErrorPost: boolean;
+  constructor(private http: HttpService,private fb: FormBuilder, private message: MessageService, public commonService: CommonService,
               private modalService: BsModalService, public router: Router) {
   }
 
   ngOnInit() {
-    this.getData();
+    this.makeform()
+    this.makeform1()
+    // this.getData();
+  }
+
+  makeform(){
+    this.form = this.fb.group({
+      pre_approval: ['', Validators.required],
+    });
+  }
+  makeform1(){
+    this.form1 = this.fb.group({
+      post_approval:['',Validators.required]
+    });
   }
   searchFun() {
     this.pagination.pageNo = 1;
     this.getData();
+  }
+
+  submitpre(){
+    if(this.form.valid){
+      console.log(this.form.value)
+    }else{
+      this.showErrorPre = true;
+    }
+  }
+
+  submitpost(){
+    if(this.form1.valid){
+      console.log(this.form1.value)
+    }else{
+      this.showErrorPost = true;
+    }
   }
 
   getData() {

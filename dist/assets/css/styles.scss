@@ -1576,3 +1576,31 @@ img.qwgdr {
 .sub-menu-item.animate__animated.animate__slideInDown a {
   padding-left: 24px;
 }
+
+label.exports-label {
+  width: 100%;
+  font-family: "Helvetica-regular";
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  padding: 11px 16px 11px 16px;
+  cursor: pointer;
+  height: 120px;
+  border: 1px dashed #1E87F0;
+  color: #797979;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 !important;
+  justify-content: center;
+  position: relative;
+  gap: 8px;
+}
+label.exports-label p{
+  margin: 0;
+}
+label.exports-label a{
+  color: #1E87F0 !important;
+  text-decoration: underline !important;
+  margin-top: -4px;
+}

@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
       const obj = JSON.parse(JSON.stringify(this.form.value));
 
       this.http.postData(ApiUrl.login, obj).subscribe(res => {
-          this.commonService.setToken(res.data.access_token);
-          res.data.email = this.form.value.email;
+          this.commonService.setToken(res.accessToken);
+          // res.data.email = this.form.value.email;
           localStorage.setItem('profileData', JSON.stringify(res.data));
           this.router.navigate(['/owners']);
         }, () => {

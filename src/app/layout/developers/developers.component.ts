@@ -27,7 +27,7 @@ export class DevelopersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getData();
+    // this.getData();
   }
 
   getData() {

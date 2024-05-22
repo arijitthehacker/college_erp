@@ -32,14 +32,7 @@ export class EditMemberComponent implements OnInit {
 
   makeForm() {
     this.form = this.fb.group({
-      email: ['', [Validators.pattern(CONSTANT.email_pattern)]],
-      phone_number: [''],
-      image: [''],
-      bank_name: [''],
-      account_name: [''],
-      account_number: [''],
-      sort_code: [''],
-      name: ['']
+      name: ['',Validators.required]
     });
     if (this.modalData) {
       this.patchData(this.modalData);

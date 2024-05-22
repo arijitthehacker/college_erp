@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    {{!modalData ? 'Create New' : 'Edit'}} {{commonService.title}}
+    {{!modalData ? 'Create New' : 'Edit'}} Session
   </h4>
 </div>
 
@@ -9,52 +9,14 @@
 
     <div class="row">
       <div class="col-md-6 form-group">
-        <label class="required set-label">Name</label>
+        <label class="required set-label">Session</label>
         <input class="form-control" formControlName="name"   trim="blur"
-               type="text" placeholder="Enter name"/>
+               type="text" placeholder="Enter Session"/>
         <div class="text-error" *ngIf="form.controls['name'].errors?.required && showError">
           This field is required.
         </div>
       </div>
 
-      <div class="col-md-6 form-group">
-        <label class="required set-label">address</label>
-        <input class="form-control" formControlName="address"  trim="blur"
-               type="text" placeholder="Enter address"/>
-        <div class="text-error" *ngIf="form.controls['address'].errors?.required && showError">
-          This field is required.
-        </div>
-      </div>
-
-      <div class="col-md-12 form-group">
-        <label class="required set-label">description</label>
-        <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
-        <!--        <textarea class="form-control" formControlName="description"-->
-        <!--                  type="text" placeholder="Enter description"> </textarea>-->
-        <div class="text-error" *ngIf="form.controls['description'].errors?.required && showError">
-          This field is required.
-        </div>
-      </div>
-
-      <div class="col-md-12 form-group">
-        <label class="required">Image</label>
-        <div class="product-images">
-          <input type="file" class="file-upload" id="image"
-                 accept="image/jpg, image/jpeg, image/png" (change)="selectImage($event, 'image')">
-          <label for="image">
-            <img src="/assets/images/ic_camera.png">
-          </label>
-          <img class="ml-4 uploaded-img" height="72" for="image"
-               [src]="form?.value?.image"
-               *ngIf='form?.value?.image'>
-          <i class="fa fa-times-circle fa-trash-css" (click)="removeImage('image')"
-             *ngIf='form?.value?.image'></i>
-        </div>
-        <div class="text-error"
-             *ngIf="form.controls['image'].errors?.required && showError">
-          Please select image.
-        </div>
-      </div>
     </div>
 
   </div>
